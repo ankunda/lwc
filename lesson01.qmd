@@ -1,0 +1,348 @@
+---
+title: "Lecture 0"
+date: "August 24, 2023"
+toc: true
+number-sections: true
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+## What is Computer Science
+
+This is exactly the question that we will attempt to answer in this
+curriculum, and at its conclusion you should be able to answer that very
+question. But it's not a simple one. Computer science is a large topic
+that is composed of a great many things, of which one small part is
+coding (what most people think of when they hear computer science). We
+will try to explore as many of these things as we can.  Fundamentally,
+though, computer science is about solving problems. The end goal of this
+curriculum is to understand what computer science is while
+simultaneously becoming better at solving problems (which, by the way,
+is something that we will need to do for the rest of our lives).
+
+## Coding is Easy
+
+That's what it seems like to a lot of people. In fact, this is a
+fallacy; however, the idea that it's easy (or that it should be) appears
+to be widespread. We see this on TV, in advertisements that try to get
+young people interested in computing, on the Internet, in social media,
+and so on. The problem with this is that people who start learning to
+code naturally assume that it will be easy for them as well. And then
+they hit hurdles.
+
+Coding is a bit like learning to play a sport. Let's pick on racquetball
+since it's a great game that some people love to play. It takes a while
+at first to play well. It's not easy to hit a small blue ball that is
+moving across a small court very fast. By the way, the court has four
+walls and a ceiling – a lot of surfaces for that ball to bounce off of.
+After playing for some time, we become pretty good. We win many games
+and only lose some. We win enough to feel good about our performance.
+But then we hit a plateau. That plateau sometimes lasts for years (see
+@fig-figure1). It's not fun to play a game so much and not become any better
+for a long time. But if we play long enough, we do become better. If we
+play long enough. And if we don't quit. It's just how long it takes.
+
+The same can be said with, for example, painting. Paintings often elicit
+emotion. We can look at a painting and admire its beauty. We can judge a
+painting and comment on whether it was done by an expert or a beginner.
+In fact, it's pretty easy to do so. An expert painter could spend one
+month with us to explain and demonstrate everything that there is to
+know about painting: the canvas, brushes, paint, the palette, mixing
+colors, brush techniques, etc.
+
+And then it's our turn to paint. What would our painting look like, even
+after knowing a lot about painting? Most likely, not too good. We have
+the *knowledge*; what we lack is *understanding*. The solution is to
+practice, over and over again. We will fail many times, but eventually
+we will produce a painting that we are proud of! Coding is like this. It
+takes practice, often on our own. It takes more time and effort than
+many other things. It's just how long it takes.
+
+
+## Failure
+
+![Racquetball learning curve. Horizontal axis is time spent
+playing; vertical axis is skill.](images/Lesson01-01.png){#fig-figure1}
+
+::: {.callout-tip title="Quote"} 
+*Failure should be our teacher, not our undertaker. Failure is delay,
+not defeat. It is a temporary detour, not a dead end. Failure is
+something we can avoid only by saying nothing, doing nothing, and being
+nothing.* – Denis Waitley
+:::
+
+Let's face it, quitting is easy. We often assume that if we fail at
+things, it must mean that we're not good at them. And for some reason,
+we also assume that we'll never be any good at them. So we quit,
+especially if something is supposed to be easy since everyone seems to
+think so. And if coding is not easy for us, then coding must not be for
+us. We must not be built to be a coder, and most likely our mind just
+works differently than those who are good at coding. Let's be honest,
+failure sucks.
+
+But the truth is that most programming doesn't require a special brain
+(or something that we're somehow born to do). There is no such thing as
+“I'll never be good at coding” or “I was born to code!” We can't simply
+plot our ingrained ability on a scale like this:
+
+![](images/Lesson01-02.png)
+
+In reality, it's more like this:
+
+![](images/Lesson01-02.png)
+
+This scale is more realistic and provides a more reasonable meaning to
+quantifying one's expertise in coding. We all begin as novices with no
+experience. By learning, and through practice, we become better and
+shift to the right on this scale. It is true, however, that we are all
+quite different: we have different abilities, skills, learning
+strategies, experiences, prejudices, developed behaviors, and so on.  We
+may not all shift to the right at the same velocity. Some of us may make
+progress and accelerate quickly while others may need more practice to
+get to the same point. Some of us will reach a plateau that will last a
+very long time, while others may blast through it in much less time. And
+some of us may encounter more problems along the way than others.
+Welcome to the real world. Remember this (attributed to Theodore Isaac
+Rubin): The problem is not that there are problems. The problem is
+expecting otherwise and thinking that having problems is a problem.
+
+Although the right side of the scale above is labeled expert, there is
+no such thing as an expert coder.  There is no final level in coding
+that, once reached, means that it has somehow been mastered.  Becoming
+better at coding is something that we will work on continuously from the
+time that we start coding to the time that we stop coding. It's almost
+as if someone is constantly moving the right end.  Frustrating, isn't
+it?
+
+::: {.callout-tip title="Quote"} 
+*Failure is no fun. It can be awful. But living so cautiously that you
+never fail is worse.* – J.K. Rowling
+:::
+
+## Men vs. Women 
+
+There is this perception that men have what it takes to do well in
+computer science and that women somehow do not. The truth is that
+research does not substantiate this. In fact, it is diametrically in
+opposition to this. It is true that men and women are different: we look
+different, we age differently, we have somewhat different lifespans, we
+have a different center of mass which affects how we walk, and so on.
+But it is not true that we are somehow born to have what it takes (or
+not) in terms of our potential to excel at coding – or in general,
+computer science.
+
+However, it is much more frustrating and messy than those who do it well
+let on. In other words, the plateau is often at play. And when we hit
+the plateau, we may feel that we are not making any significant progress
+for quite some time. And that is just discouraging. But the thing to do
+is to keep trucking along, to keep coding and producing work. That's
+just how long it takes.
+
+## Success
+
+![There are dozens of sources for this image,
+but none identify the original author.](images/Lesson01-04.png)
+
+Very early on we may have a pretty good idea of what good code looks
+like. We may be able to take a look at someone else's work and determine
+if and how well it solves some given problem. We may be able to comment
+on its beauty and efficiency. We may be able to call it a great
+achievement. But creating such beautiful code on our own may not
+come easily at first. The trick is to keep coding and producing
+work. And eventually, we make it through the plateau.
+
+::: {.callout-tip title="Quote"} 
+*Success is a journey, not a destination.* – Ben Sweetland
+:::
+
+Some of the most successful people in the world were failures for a
+large majority of their lives. Yet we consider them geniuses. We have
+this unfortunate knack of ignoring the hard times they went through,
+their failures, and just looking at their successes. We also see them as
+they are now. Rarely do we look at how long it took them to get to this
+point, or how much junk they put out before finally being successful.
+You would not believe how much utterly lousy code so-called experts
+created before finally creating something worth sharing and being proud
+of. You would not believe how much utterly lousy code most computer
+science professors wrote before finally producing something that they
+were proud of sharing with others without worrying if they would be
+laughed at.
+
+![There are dozens of sources for this image,
+but none identify the original author.](images/Lesson01-05.png)
+
+It's not always obvious how much work it takes to become good at
+something. The perception is that success is achieved by following some
+straightforward path. The reality is that it's just not so simple. In
+our fast-paced world, we want immediate results and solutions right
+away. And when the solutions don't come quickly, we become discouraged.
+It is therefore hard to accept the idea of failure. But to be
+successful, we must understand that failure is a part of the process. It
+is inevitably on the path to success. The key is to learn from our
+mistakes (and the mistakes of others) in order to become better and to
+grow. And this helps lead to more successes than failures in the long
+run.
+
+## Surrounding garbage
+
+To code is one thing. It takes skill, experience, and a whole lot of
+practice. But it actually takes a bit more. There is the added tedium of
+setting up our environment so that we can code efficiently. This means
+setting up an operating system, compilers, integrated development
+environments, the command line (terminal), and so on. Often, no one
+wants to help us set this stuff up because it's usually frustrating and
+takes time. There is a lot of surrounding stuff to learn to do in order
+to just get ready to begin to code. So we need to learn other things
+first in order to be able to even begin coding.
+
+::: {.callout-tip title="Quote"} 
+*Spectacular achievement is always preceded by unspectacular
+preparation.* – Robert H. Schuller
+:::
+
+A lot of coding skill is about developing a knack for asking the right
+questions on Google. It's about knowing which results to filter out and
+which to take a closer look at. It's about knowing which code that we
+find by clicking around is best to use (and, of course, give credit to –
+we obviously don't want to plagiarize). We must become good at
+discovering patterns.
+
+## Feeling stupid
+
+When it comes to coding, we should also get used to feeling lost and
+stupid. In fact, the anxiety of feeling lost and stupid is not something
+that we learn to conquer. It's something that we learn to live with and
+manage. The most common state for a programmer is a sense of inadequacy.
+There is a limitless amount of stuff to learn. We need to constantly
+learn new tools, new techniques, new principles, new hardware, and new
+software. We better develop a habit of liking to learn. In the end, it
+helps to be mentally prepared for feeling stupid.
+
+## Learning Computer Science
+
+Usually at first, our coding skills are pretty low. We take on a lot of
+projects that are fairly easy and designed to get us comfortable with
+coding and solving problems. As our skills grow, we begin to feel good.
+If the problems remain simple, however, we inevitably become bored. We
+aren't really getting any better by continuing to code simple stuff.
+It's like playing racquetball. If we limit our opponents to those that
+we can always beat, we won't become better at playing anytime soon. But
+as the challenges increase, we often begin to feel anxious. We feel
+inadequate and that our skills aren't good enough for more difficult
+problems. But if we keep solving more challenging problems and creating
+work, however, our skills will grow again. The trick is to manage our
+skills and challenges so that we continuously remain interested (see
+@fig-figure6). We want to tackle problems that are hard enough to test and
+grow our skills, but not easy enough to make us bored.
+
+Kate Ray (technical co-founder of scroll kit, a visual web page creation
+tool; she now works for WordPress) has an insightful way of visualizing
+the learning process. She breaks it down into several steps:
+
+1. Follow a tutorial, even if you don't understand everything that
+you're doing; 
+
+2. Rebuild the thing that you just made without the
+tutorial (at least, without using it too much);
+
+3. Try to build something simple that you want to build that's related
+to the thing that you just built;
+
+4. Find a new tutorial related to your new thing and use it to build
+this new thing;
+
+5. Rebuild the new thing yourself without the tutorial;
+
+6. Start a new project; and
+
+7. Repeat 1 to 6 over and over again.
+
+![From an article by Kate Ray in
+TechCrunch](images/Lesson01-06.png){#fig-figure6}
+
+These steps seem to infer that we're doing this on our own. To a large
+degree, this is true. There is only so much of coding that we can learn
+from others. It is largely a skill that is grown by locking ourselves up
+in our rooms and creating more work. And we need to do this a lot on our
+own if we really want to accelerate the learning curve. It can be quite
+frustrating. But we need to learn to grind through the frustration. It
+helps to like to tinker and break things. It helps to be OK with not
+understanding everything, but to have the desire to understand
+everything. It helps to aspire to intelligence rather than belittling
+it. It helps to be OK with not always seeing our progress.
+
+And here's an observation: most people do not know how to learn, lack
+basic organizational skills, have absolutely no clue how to manage their
+time efficiently, and are grossly inefficient at processing and storing
+information. Truly, we all share some or all of these characteristics at
+one point or another in our lives, but very few people actually figure
+out how to regularly do these seemingly common things well.  To develop
+these skills requires practice, often on our own. It's not particularly
+glamorous.
+
+There are some things that we should always strive for. For example, we
+should try to learn about everything. Yes, this sounds a bit broad. More
+specifically, we should try to foster a desire to understand how things
+work and not just how to use them. We should try to be informed, both
+about things that we are interested in (like coding, maybe) and things
+that we know help to increase our awareness of the world and our
+usefulness in and contribution to society (like politics, maybe).
+Certainly this takes an immense amount of work on our part; but in the
+end, it is absolutely worth it. To help with this, the following is a
+little bag of tricks that I have developed over the years. It helps me
+solve problems, particularly those that relate to computing:
+
+### A little bag of tricks
+
+0. What is the problem? If you don't have a clear understanding of the
+problem, you will never be able to solve it. Period.
+
+1. Simplicity is, well, simple. Give yourself a simpler problem. Try to
+find the trivial or base case.  It greatly reduces the difficulty.
+
+2. Doodling is fun! Draw pictures and diagrams to help you solve the
+problem. Few can think in math and formulas. Most of us are visual.
+
+3. Split it up. Solving parts of the problem and then putting it all
+together often helps if that's possible. This is exactly what we do when
+we design complex algorithms.
+
+4. Work from both ends. If you know what the outcome or solution is
+supposed to look like, then use that to help solve the problem. It could
+reveal ideas and shortcuts.
+
+5. Similarity, my dear Watson. Many problems are similar in nature. Try
+to see if a problem is the same thing as another you've previously
+solved or know something about. There's nothing wrong with reusing old
+material if it is relevant.
+
+6. Does it make sense? Often, students accept a first hack at an answer,
+forget to ask themselves this important question, and do not notice how
+nonsensical their answer might be. Ask yourself if an answer makes sense
+before you commit to it. This will avoid turning in assignments that
+contain unedited (and often unread) cut-and-pasted material from the Web
+with phrases like, “Click here for a detailed explanation.” And yes,
+this has actually happened. This is probably the most ignored trick and
+the most annoying to a prof who is grading your assignment.
+
+7. If time permits, optimize. It's never a bad thing to eliminate
+redundancy and optimize your solution to the problem.
+
+8. Don't give up! Seriously, don't give up. If you need help, discussing
+general ideas with fellow classmates is always a good thing. However,
+you should refrain from discussing things that are too specific (e.g.,
+code). Furthermore, teachers should always be glad to help you if you
+show them that you have reasonably thought about the problem first.
+
+9. Confidence is crucial. A lack of it can actually be quite deadly.
+
+
+::: {.callout-tip title="Quote"} 
+*Most people can't think, most of the remainder won't think, the small
+fraction who do think mostly can't do it very well. The extremely tiny
+fraction who think regularly, accurately, creatively, and without
+self-delusion – in the long run, these are the only people who count.* –
+Robert Heinlein
+:::
