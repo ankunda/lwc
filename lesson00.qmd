@@ -109,7 +109,7 @@ things to keep in mind when drafting an email to your prof:
   are by looking at your email address. Note that you can automatically
   sign each email by adding a signature.
 
-::: {.callout-note} 
+::: {.callout-warning} 
 Please make sure to check your *@latech.edu* email **daily**. There are
 times when your prof needs to communicate important things to you with
 urgency.
