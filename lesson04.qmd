@@ -1,0 +1,360 @@
+---
+title: "Introduction to Computer Programming"
+date: "August 29, 2023"
+title-block-banner: "#002f8b" 
+toc: true
+number-sections: true
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+## Machine Language
+
+::: {.callout-tip title="Definition"}
+**Machine language** is a set of specific instructions that can be executed
+directly by a computer. This language is typically made up of binary
+digits (1s and 0s).
+:::
+
+A computer can only understand machine language. Machine language
+instructions are entirely made up of binary digits and can be directly
+executed by the CPU. Since we have a particularly hard time
+understanding 1s and 0s, early programmers assigned a set of mnemonics
+to represent machine code instructions so that they would be a bit more
+readable. This mapping became known as **assembly language**. People still
+write code in assembly language, but it is not typically used to create
+large scale applications.
+
+## Programming Languages
+
+The kinds of languages that are widely used today are known as
+programming languages. Programming languages allow us to represent
+algorithms in a way that is similar to English but is more structured
+and much less ambiguous.
+
+::: {.callout-tip title="Definition"}
+A **programming language** is a precisely constructed language that is
+specifically used to communicate instructions to a computer.
+:::
+
+English is a spoken language. As such, it was spoken first, rules were
+later defined and written down.  Therefore, there are many exceptions
+(i.e., words and phrases that are grammatically correct but don't
+conform to the general grammar/spelling rules). Spoken languages are
+sometimes ambiguous and open to interpretation. This means that a single
+statement can have multiple meanings. For example, the statement “I made
+the robot fast” can mean several different things. Does it mean that the
+robot was built quickly? Or does it mean that the robot was modified so
+that it would move around more quickly than it did before? Perhaps it
+means that the robot is named Fast. Or maybe that we managed to make the
+robot stop eating nuts and bolts.
+
+Humans rely on external factors like context and body language to
+understand the true meaning of a statement in a spoken language. And
+even then mistakes in interpretation still happen. With computers
+however, we need a language that is so structured and unambiguous that
+every computer can understand and interpret a given statement in the
+exact same way. For example, we don't want two different computers
+giving us two completely different answers to the arithmetic expression
+$1 + 1$.  In contrast to spoken languages, programming languages are first
+defined with rules. The language itself is then derived from those
+rules. Programming languages are therefore quite structured and not
+ambiguous. They are very precise and logical.
+
+There are many different programming languages that can be used to
+describe an algorithm. One of them, for example, is called Python, and
+it is what we will be using for the majority of the Living with Cyber
+curriculum. It is the duty of the programmer to write down the tasks
+that he/she wants done in a given programming language. Since computers
+can only understand machine language, we utilize an application known as
+a compiler that translates this programming language into machine
+language.
+
+::: {.callout-tip title="Definition"}
+A **compiler** is a tool used to translate an algorithm expressed in a
+programming language to machine language. The process by which this
+conversion from programming language to machine language is done is
+called **compilation**.
+:::
+
+The compilation process takes an algorithm written in a programming
+language and translates it to assembly language. From there, a process
+known as linking converts the assembly language to machine language.
+This is illustrated by @fig-compilation below:
+
+![The compilation
+process](images/Lesson04-01.png){#fig-compilation}
+
+Once machine language is generated to match a program, the computer can
+then directly execute the program and implement the algorithm. A fully
+compiled language is only executable by a CPU with the same
+characteristics and operating system (often, including version) as that
+which it was compiled for.  A programmer who wants wide distribution of
+his software will need to compile source code to the various destination
+computing architectures and operating systems that are the most likely
+to be used by the target audience for the application. Of course, the
+programmer could simply distribute source code and let users compile
+that themselves. Often, however, programmers do not wish to distribute
+source code for a variety of reasons (e.g., intellectual property).
+@fig-compilation2 below shows how a program would need to be compiled
+numerous times to cover a range of target computing architectures and
+operating systems:
+
+![The compilation
+process needs to be done for different target
+architectures](images/Lesson04-02.png){#fig-compilation2}
+
+Not all programming languages are compiled to machine language. Some are
+never compiled and are executed, one instruction at a time, by an
+**interpreter**.
+
+::: {.callout-tip title="Definition"}
+An **interpreter** is a tool used to evaluate instructions, written in a
+programming language, as the program is executed.
+:::
+
+An interpreter can be thought of as a real time compiler that executes
+high level programming language instructions, one at a time. Interpreted
+languages are much slower to execute than compiled languages.  Examples
+of interpreted languages are Python, PHP, JavaScript, and Perl. To
+execute a program written in an interpreted language, you must have an
+appropriate interpreter installed on your computing system.  Interpreted
+languages also require programmers to distribute their source code, and
+users to have an appropriate interpreter installed on their system.
+Maintaining code privacy is therefore not possible with interpreted
+languages.
+
+Partially compiled and interpreted languages combine the convenience of
+interpreted languages (i.e., not having to compile source code to a
+large number of target machine language executables) and the privacy and
+speed of compiled languages (i.e., not having to distribute source
+code).
+
+::: {.callout-tip title="Definition"}
+A **hybrid language** is a programming language that is compiled down to an
+intermediate language, and then interpreted (while the program is
+executed) from there.
+:::
+
+Examples of partially compiled languages are Java, Python, and Lisp.
+Note that Python can be strictly interpreted or partially compiled
+depending on the programmer's preferences. The intermediate language is
+distributed and subsequently executed on any computing platform that has
+an interpreter for the intermediate language. For example, Java source
+code is typically expressed in a *.java* file and partially compiled to
+Java bytecodes (in a *.class* file) that can then be distributed. A Java
+Virtual Machine (JVM) executes the bytecodes by interpreting each
+instruction, one at a time. The benefit of this method is that a
+programmer can distribute a single file to everyone, regardless of CPU
+architecture and operating system. Anyone wanting to execute the file
+simply needs to have a version of the JVM for their computing system.
+This is illustrated in @fig-compilation3 below:
+
+![Partially compiled
+languages](images/Lesson04-03.png){#fig-compilation3}
+
+## Programming Paradigms
+
+Over the past forty years or so, three general classes, or paradigms, of
+programming languages have emerged. These paradigms include the
+imperative paradigm, the functional paradigm, and the logical paradigm.
+In addition, during the past decade or so these paradigms have been
+extended to include object-oriented features. A language is classified
+as belonging to a particular paradigm based on the programming features
+it supports.
+
+Object-oriented imperative languages are, by far, the most popular type
+of programming language. Both Java and C++ (two of the most used
+programming languages in industry) are object-oriented imperative
+languages. Scratch and Python are imperative languages – although Python
+does contains object- oriented attributes, Scratch does not.
+
+The imperative paradigm is based on the idea that a program is a
+sequence of commands or instructions (usually called statements) that
+the computer is to follow to complete a task. The imperative style of
+programming is the oldest, and now with object-oriented extensions,
+continues to be far and away the most popular style of programming.
+
+The Living with Cyber curriculum first (and very briefly) utilizes
+Scratch as the programming language.  This is quickly followed by
+Python. Scratch is not intended to be used to create applications
+designed for production systems. That is, it is not a general purpose
+programming language. Instead, it is a teaching tool aimed at
+simplifying the process of learning to program. Scratch purposefully
+omits many features available in other popular programming languages in
+order to keep the language from becoming overly complex. This allows you
+to focus on the big picture rather than get bogged down in the
+complexities inherent in real programming languages and their
+development environments.
+
+One way of thinking about writing Scratch programs is to compare it to
+programming in a production programming language with training wheels
+on. Complex and useful programs can be written in Scratch; however,
+there are many things that programmers are allowed to do in production
+languages that are not possible (at least not straightforward) in
+Scratch. For example, Scratch does not support functions and function
+calls directly, nor does it support recursion directly. These terms may
+not be familiar right now; however, these restrictions are designed to
+help beginning programmers avoid making common mistakes.
+
+General purpose programming languages are more robust, and can (and are)
+used in more situations than educational programming languages like
+Scratch. Think of it like this: using a programming language like
+Scratch is like building a Lego house only using 2x4 Lego pieces. While
+it is possible to do so, there is a limitation on what kinds of houses
+you can build. Conversely, using more general purpose programming
+languages is like building a house with any kind of Lego piece you can
+think up in your mind. There are fewer limitations, and the kinds of
+houses that you can build are limitless. From this point, we will use
+Python as the general purpose programming language in the course.
+
+## Why Python?
+
+You may have heard about other general purpose programming languages:
+Java, C, C++, C#, Visual Basic, and so on. So why use Python instead of,
+say, Java? In the end, it amounts to the simple idea that, unlike all of
+the other general purpose programming languages listed above, Python
+allows us to create powerful programs with limited knowledge about
+syntax, therefore allowing us to focus on problem solving instead. In a
+sense, Python is logical. That is, nothing must be initially taken on
+faith (that will ostensibly be explained at a later time). There isn't
+any excess baggage that's required in order to begin to write even
+simple Python programs.
+
+Recall how, in geometry, the formula for calculating the volume of a
+cone was given. At that time, it was simply inexplicable. That is, you
+were most likely told to memorize it. It is not until a calculus course
+that this formula is actually derived, and how it came to be is fully
+explained. Why? Well, it is simply because it requires calculus in order
+to do so. Most students taking a geometry course have not yet had
+calculus; however, formulas for calculating the volume of various
+objects (including a cone) are typical in such a course. The problem, of
+course, is that we are told to take it on faith that it, in fact, works
+as described. We are told that, how it works and how it was derived,
+will be explained at a later time. The problem with this is that it
+forces memorization of important material as opposed to a deep
+understanding of it (which, in the end, is the goal).
+
+A similar thing actually occurs in a lot of programming languages.
+Often, we must memorize syntax that will be explained later. Python is
+unique in that it does a pretty good job of taking all of that out by
+just being simple. Programming in Python is immediately logical and
+explicable.
+
+Take the following simple example of a program that displays the text,
+“Programming rules, man!” in various general purpose programming
+languages:
+
+```java
+// Basic text display program in Java.
+public class SimpleProgram
+{
+    public static void main(String[] args)
+    {
+	    System.out.println("Programming rules, man!");
+    }
+}
+```
+
+```c
+// Basic text display program in C
+#include <stdio.h>
+int main()
+{
+    printf("Programming rules, man!\n");
+}
+```
+
+```cpp
+// Basic text display program in C++
+#include <iostream>
+using namespace std;
+int main()
+{
+    cout << "Programming rules, man!" << endl;
+}
+```
+
+```cs
+//Basic text display program in C#
+public class SimpleProgram
+{
+    public static void Main()
+    {
+	    System.Console.WriteLine("Programming rules, man!");
+    }
+}
+```
+
+```vb
+'Basic text display program in Visual Basic
+Module Hello
+    Sub Main()
+	    MsgBox("Programming rules, man!")
+    End Sub
+End Module
+```
+
+And in Python
+
+```python
+print("Programming rules, man!")
+```
+
+In all of these examples, compiling and running the programs (or
+interpreting them) produces a single line of output text: “Programming
+rules, man!” Did you notice that, in all of the examples (except for
+Python), there seems to be a good bit of seemingly extra stuff for such
+a simple program? There are a lot of words that you may not be familiar
+with or immediately understand: *class, public, static, void, main/Main,
+#include, printf, cout, namespace, String[], endl, Module, Sub, MsgBox,*
+and so on. In fact, the only readable version to a beginner is usually
+the one written in Python.  It is pretty evident that the statement
+*print("Programming rules, man!")* means to display that string of
+characters to the screen (or console).
+
+Python is extremely readable because it has very simple and consistent
+syntax. This makes it perfect for beginner programmers. It also forces
+good coding practices and style, something that is very important for
+beginners (especially when it comes to debugging and/or maintaining
+programs). Python has a large set of libraries that provide powerful
+functionality to do just about anything. Libraries allow Python
+programmers to use all kinds of things that others have created (i.e.,
+we don't have to reinvent the wheel). A huge benefit of Python is that
+it is platform independent. It doesn't matter what operating system you
+use, it is supported with minimal setup and configuration, and there is
+no need to deal with dependencies (i.e., other things that are required
+in order to just begin to code in Python).
+
+Don't think that, because of its simplicity, Python is therefore not a
+powerful language (or perhaps that it doesn't compete with Java or C++).
+Python is indeed powerful, and can do everything that other programming
+languages can do (e.g., it does support the object-oriented paradigm).
+It is based on a few profound ideas (collectively known as [The Zen of
+Python](https://peps.python.org/pep-0020/) written by Tim Peters)
+
+::: {.callout-note title="Did you know" .column-margin}
+The name of the Python programming language is taken from a television
+series called *Monty Python's Flying Circus* (and not from the snake).
+:::
+
+## Integrated Development Environments (IDEs)
+
+Many programmers write their programs in a general purpose programming
+language using nothing but a text-based editor (usually a simplistic
+one, albeit with useful characteristics such as syntax highlighting). In
+fact, some write programs at the command line (in the terminal) using
+nothing but a text-based text editor (i.e., without graphical
+characteristics). Most programmers, however, use an IDE (Integrated
+Development Environment).
+
+::: {.callout-tip title="Definition"}
+An **Integrated Development Environment (IDE)** is a piece of software that
+allows computer programmers to design, execute, and debug computer
+programs in an integrated and flexible manner.
+:::
+
+
+
