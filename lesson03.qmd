@@ -558,3 +558,211 @@ $$ \frac{400 sec}{1} \times \frac{1 sec}{60 sec} \times \frac{1 hr}{60
 min} = 1.11 hr $$
 $$ \frac{0.11 hr}{1} \times \frac{60 min}{1 hr} = 6.6 min $$
 $$ \frac{0.6 min}{1} \times \frac{60 sec}{1 min} = 36 sec $$
+
+Let's explain the calculations above.
+
+- The first calculates the number of seconds required for Algorithm 1:
+4,000 sec.
+
+- To represent this in hr, min, and sec, we simply need to convert 4,000
+sec to hr (the second calculation): 1.11 hr.
+
+- The third calculation takes the fractional portion of this (0.11 hr) and
+converts it to min: 6.6 min.  
+
+- The final calculation takes the fractional portion of this (0.6 min) and
+converts it to sec: 36 sec.  The total time is then 1 hr 6 min 36 sec,
+or approximately 1 hr 7 min.
+
+Algorithm 3 only takes approximately 4.5 minutes:
+
+$$ \frac{20 tiles}{1} \times \frac{10 sec}{1 tile} = 200 sec + 60 sec =
+260 sec$$
+$$\frac{260 sec}{1} \times \frac{1 min}{60 sec} = 4.33 min$$
+$$\frac{0.33 min}{1} * \frac{60 sec}{1 min} = 19.8 sec$$
+
+Again, 
+
+- The first calculation gives us the time it takes to lay tiles across a
+  single wall, and then do the 60 sec calculation: 260 sec.  
+
+- The second calculation converts sec to min.  
+
+- The final calculation takes the fractional portion of this (0.33 min) and converts it to
+  sec: 19.8 sec.  
+  
+The total time is then 4 min 19.8 sec, or approximately 4.5 min.
+
+This means Algorithm 3 is over 15 times faster than Algorithm 1 for a 20ft x 20ft room:
+$$ \frac{4,000 sec}{260 sec} = 15.38$$
+
+Does that mean that Algorithm 3 will always be faster and therefore
+better than Algorithm 1?
+
+::: {.callout-important title="Activity" collapse=true}
+Try calculating and comparing how long it will take for either algorithm
+to cover a very small room that is 2ft x 2ft.
+:::
+
+What about if the room was 3ft x 3ft?  In this case, we find that both
+algorithms take the same amount of time.  The calculation for Algorithm
+1:
+
+$$ \frac{9 tiles}{1} \times \frac{10 sec}{1 tile} = 90 sec$$
+
+The calculation for Algorithm 3:
+
+$$ \frac{3 tiles}{1} \times \frac{10 sec}{1 tile} = 30 sec + 60 sec = 90
+sec$$
+
+The question of which algorithm is better depends on the size of the
+room to be tiled. @fig-algorithm-runtime compares the runtime of
+the two algorithms on differently sized rooms.  It is a plot in which
+the horizontal axis represents the length of one wall of the room (in
+feet), and the vertical axis represents the amount of time that is
+required to tile the room (in seconds).  The figure illustrates that for
+rooms less than 3ft x 3ft, Algorithm 1 is faster.  In the case where the
+room is exactly 3 ft x 3 ft both algorithms require the same amount of
+time.  For rooms greater than 3ft x 3ft, Algorithm 3 is faster.
+
+```{python}
+#| echo: false
+#| label: fig-algorithm-runtime
+#| fig-cap: Algorithm performance on rooms of various sizes
+import matplotlib.pyplot as plt
+import numpy as np
+
+# define data values
+tile_time = 10	# time to lay one tile
+calc_time = 60	# time to make a calculation
+wall_length = np.arange(10)  # X-axis points
+
+# calculate the runtime for the two algorithms (Y-axis points)
+alg1 = (wall_length ** 2) * tile_time  
+alg2 = (wall_length * tile_time) + calc_time
+
+# Plot the two line graphs
+plt.plot(wall_length, alg1, label = "Algorithm 1")
+plt.plot(wall_length, alg2, label = "Algorithm 3") 
+
+# Add information to the plots
+plt.legend(loc='upper left')	# show the legend
+plt.xlabel("Wall Length in feet")  # add X-axis label
+plt.ylabel("Runtime in seconds")  # add Y-axis label
+#plt.title("Algorithm performance on rooms of various sizes")  # add title
+
+plt.show()  # display
+```
+
+## Computer programs and pseudocode
+
+So far, we have discussed:
+
+1. how algorithms are step-by-step solutions to specific problems; 
+
+2. that algorithms can be represented as to-do lists and flowcharts; and 
+
+3. that the runtime of different algorithms for the same problem can be
+used to compare those algorithms.
+
+However, we did not discuss how algorithms are given to a computer so
+that it can execute our algorithms for us.
+
+The main benefit in using computers to execute algorithms is that,
+typically, they are much faster and can process calculations much more
+quickly than we can.  As humans, we speak and write in different
+languages (one of which is English).  On the other hand, computers can
+only understand a language that is made up of 1s and 0s.  We will
+discuss the details of this **machine language** later on.
+
+Therefore, there is a need to represent algorithms in a form (or
+language) that is easy for both a human being and a computer to
+understand.  This helps us to specify algorithms correctly while also
+allowing computers to execute them quickly.  The language that we use to
+do this is called a **programming language**.  There are many programming
+languages, some of which you will learn to use in this curriculum.
+They usually share some similarities with English, and this is what
+makes it easier to describe our algorithms instead of trying to
+speak 1s and 0s.  When we have represented our algorithm in a
+programming language, it is referred to as a **computer program**.
+
+::: {.callout-tip title="Definition"}
+A **programming language** is a language designed to communicate
+instructions to a computer.
+:::
+
+It is important to remember that a computer will only blindly follow the
+instructions that it is given by a human being.  It never actually
+understands the problem that it is solving.  It is the responsibility of
+the programmer to understand the problem and create an algorithm that
+solves that problem.  Good algorithms require creativity, imagination,
+and a lot of hard work.
+
+The computer programming process can be compared to composing a piece of
+music.  Composing a piece of music takes creativity.  The composer then
+has to transfer the music from his head to a piece of paper in a way
+that other people can understand and perform it (e.g., music scales).
+The composer imagines the piece of music and then encodes it as a series
+of symbols on paper.  This process requires skill and creativity.  The
+computer executing a program can be compared to performing the piece of
+music.  The performer goes through a series of mechanical motions as
+described by the musical scales (or instructions) that were designed by
+the composer.
+
+Our job as computer scientists is to become very good composers.  We
+will need to learn how to transfer the beautiful ideas that we have in
+our heads into a series of instructions that a computer can blindly
+follow to make our music.
+
+One more way of representing algorithms is called **pseudocode**.  This way
+of representing algorithms was actually shown earlier in this lesson
+when the tile laying algorithms were described.
+
+::: {.callout-tip title="Definition"}
+**Pseudocode** is a way of writing algorithms in a manner that shares
+similarities with programming languages.  It is a mixture of normal
+English and programming language concepts.
+:::
+
+This method of representing algorithms will be used more often than the
+others in the curriculum.  Here is an example of the pseudocode for an
+algorithm that models the *stirring of sugar into coffee*:
+
+```default
+1. put sugar into coffee
+2. repeat
+3.     stir sugar into coffee
+4. until sugar is dissolved
+5. stop
+```
+
+Here is the pseudocode for displaying all prime numbers less than 10:
+
+```default
+1. n ← 1
+2. repeat
+3.     if n is prime
+4.     then
+5.         display the value of n
+6.     end
+7.     increase n by 1
+8. until n >= 10
+9. stop
+```
+
+Indentation is used to identify grouped instructions, while the numbers
+on the left become line numbers that make it easier to refer to
+particular lines in the pseudocode.  Finally, assignment of values to
+variables is done with a left arrow.
+
+## A tangled web
+
+Can you determine what the flowcharts below do?  Try them out with
+different scenarios.
+
+![Doing a programming Assignment](images/Lesson03-11.png){fig-align="center"}
+
+![Should I eat food that I dropped on the floor](images/Lesson03-12.png){fig-align="center"}
+
+![Something is not working](images/Lesson03-13.png){fig-align="center"}
+

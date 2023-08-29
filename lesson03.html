@@ -88,6 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#flowcharts" id="toc-flowcharts" class="nav-link" data-scroll-target="#flowcharts"><span class="header-section-number">4</span> Flowcharts</a></li>
   <li><a href="#repetition" id="toc-repetition" class="nav-link" data-scroll-target="#repetition"><span class="header-section-number">5</span> Repetition</a></li>
   <li><a href="#efficiency-and-runtime" id="toc-efficiency-and-runtime" class="nav-link" data-scroll-target="#efficiency-and-runtime"><span class="header-section-number">6</span> Efficiency and runtime</a></li>
+  <li><a href="#computer-programs-and-pseudocode" id="toc-computer-programs-and-pseudocode" class="nav-link" data-scroll-target="#computer-programs-and-pseudocode"><span class="header-section-number">7</span> Computer programs and pseudocode</a></li>
+  <li><a href="#a-tangled-web" id="toc-a-tangled-web" class="nav-link" data-scroll-target="#a-tangled-web"><span class="header-section-number">8</span> A tangled web</a></li>
   </ul>
 </nav>
 </div>
@@ -427,6 +429,138 @@ Did you know
 <p>We find that Algorithm 1 takes approximately 1 hr 7 min:</p>
 <p><span class="math display">\[ \frac{400 tiles}{1} \times \frac{10 sec}{1 tile} = 4,000 sec \]</span> <span class="math display">\[ \frac{400 sec}{1} \times \frac{1 sec}{60 sec} \times \frac{1 hr}{60
 min} = 1.11 hr \]</span> <span class="math display">\[ \frac{0.11 hr}{1} \times \frac{60 min}{1 hr} = 6.6 min \]</span> <span class="math display">\[ \frac{0.6 min}{1} \times \frac{60 sec}{1 min} = 36 sec \]</span></p>
+<p>Let’s explain the calculations above.</p>
+<ul>
+<li><p>The first calculates the number of seconds required for Algorithm 1: 4,000 sec.</p></li>
+<li><p>To represent this in hr, min, and sec, we simply need to convert 4,000 sec to hr (the second calculation): 1.11 hr.</p></li>
+<li><p>The third calculation takes the fractional portion of this (0.11 hr) and converts it to min: 6.6 min.</p></li>
+<li><p>The final calculation takes the fractional portion of this (0.6 min) and converts it to sec: 36 sec.&nbsp;The total time is then 1 hr 6 min 36 sec, or approximately 1 hr 7 min.</p></li>
+</ul>
+<p>Algorithm 3 only takes approximately 4.5 minutes:</p>
+<p><span class="math display">\[ \frac{20 tiles}{1} \times \frac{10 sec}{1 tile} = 200 sec + 60 sec =
+260 sec\]</span> <span class="math display">\[\frac{260 sec}{1} \times \frac{1 min}{60 sec} = 4.33 min\]</span> <span class="math display">\[\frac{0.33 min}{1} * \frac{60 sec}{1 min} = 19.8 sec\]</span></p>
+<p>Again,</p>
+<ul>
+<li><p>The first calculation gives us the time it takes to lay tiles across a single wall, and then do the 60 sec calculation: 260 sec.&nbsp;</p></li>
+<li><p>The second calculation converts sec to min.</p></li>
+<li><p>The final calculation takes the fractional portion of this (0.33 min) and converts it to sec: 19.8 sec.&nbsp;</p></li>
+</ul>
+<p>The total time is then 4 min 19.8 sec, or approximately 4.5 min.</p>
+<p>This means Algorithm 3 is over 15 times faster than Algorithm 1 for a 20ft x 20ft room: <span class="math display">\[ \frac{4,000 sec}{260 sec} = 15.38\]</span></p>
+<p>Does that mean that Algorithm 3 will always be faster and therefore better than Algorithm 1?</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Try calculating and comparing how long it will take for either algorithm to cover a very small room that is 2ft x 2ft.</p>
+</div>
+</div>
+</div>
+<p>What about if the room was 3ft x 3ft? In this case, we find that both algorithms take the same amount of time. The calculation for Algorithm 1:</p>
+<p><span class="math display">\[ \frac{9 tiles}{1} \times \frac{10 sec}{1 tile} = 90 sec\]</span></p>
+<p>The calculation for Algorithm 3:</p>
+<p><span class="math display">\[ \frac{3 tiles}{1} \times \frac{10 sec}{1 tile} = 30 sec + 60 sec = 90
+sec\]</span></p>
+<p>The question of which algorithm is better depends on the size of the room to be tiled. <a href="#fig-algorithm-runtime">Figure&nbsp;1</a> compares the runtime of the two algorithms on differently sized rooms. It is a plot in which the horizontal axis represents the length of one wall of the room (in feet), and the vertical axis represents the amount of time that is required to tile the room (in seconds). The figure illustrates that for rooms less than 3ft x 3ft, Algorithm 1 is faster. In the case where the room is exactly 3 ft x 3 ft both algorithms require the same amount of time. For rooms greater than 3ft x 3ft, Algorithm 3 is faster.</p>
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-algorithm-runtime" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="lesson03_files/figure-html/fig-algorithm-runtime-output-1.png" width="593" height="429" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Algorithm performance on rooms of various sizes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="computer-programs-and-pseudocode" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="computer-programs-and-pseudocode"><span class="header-section-number">7</span> Computer programs and pseudocode</h2>
+<p>So far, we have discussed:</p>
+<ol type="1">
+<li><p>how algorithms are step-by-step solutions to specific problems;</p></li>
+<li><p>that algorithms can be represented as to-do lists and flowcharts; and</p></li>
+<li><p>that the runtime of different algorithms for the same problem can be used to compare those algorithms.</p></li>
+</ol>
+<p>However, we did not discuss how algorithms are given to a computer so that it can execute our algorithms for us.</p>
+<p>The main benefit in using computers to execute algorithms is that, typically, they are much faster and can process calculations much more quickly than we can. As humans, we speak and write in different languages (one of which is English). On the other hand, computers can only understand a language that is made up of 1s and 0s. We will discuss the details of this <strong>machine language</strong> later on.</p>
+<p>Therefore, there is a need to represent algorithms in a form (or language) that is easy for both a human being and a computer to understand. This helps us to specify algorithms correctly while also allowing computers to execute them quickly. The language that we use to do this is called a <strong>programming language</strong>. There are many programming languages, some of which you will learn to use in this curriculum. They usually share some similarities with English, and this is what makes it easier to describe our algorithms instead of trying to speak 1s and 0s. When we have represented our algorithm in a programming language, it is referred to as a <strong>computer program</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>programming language</strong> is a language designed to communicate instructions to a computer.</p>
+</div>
+</div>
+<p>It is important to remember that a computer will only blindly follow the instructions that it is given by a human being. It never actually understands the problem that it is solving. It is the responsibility of the programmer to understand the problem and create an algorithm that solves that problem. Good algorithms require creativity, imagination, and a lot of hard work.</p>
+<p>The computer programming process can be compared to composing a piece of music. Composing a piece of music takes creativity. The composer then has to transfer the music from his head to a piece of paper in a way that other people can understand and perform it (e.g., music scales). The composer imagines the piece of music and then encodes it as a series of symbols on paper. This process requires skill and creativity. The computer executing a program can be compared to performing the piece of music. The performer goes through a series of mechanical motions as described by the musical scales (or instructions) that were designed by the composer.</p>
+<p>Our job as computer scientists is to become very good composers. We will need to learn how to transfer the beautiful ideas that we have in our heads into a series of instructions that a computer can blindly follow to make our music.</p>
+<p>One more way of representing algorithms is called <strong>pseudocode</strong>. This way of representing algorithms was actually shown earlier in this lesson when the tile laying algorithms were described.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Pseudocode</strong> is a way of writing algorithms in a manner that shares similarities with programming languages. It is a mixture of normal English and programming language concepts.</p>
+</div>
+</div>
+<p>This method of representing algorithms will be used more often than the others in the curriculum. Here is an example of the pseudocode for an algorithm that models the <em>stirring of sugar into coffee</em>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>1. put sugar into coffee</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>2. repeat</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>3.     stir sugar into coffee</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>4. until sugar is dissolved</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>5. stop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here is the pseudocode for displaying all prime numbers less than 10:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>1. n ← 1</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>2. repeat</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>3.     if n is prime</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>4.     then</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>5.         display the value of n</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>6.     end</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>7.     increase n by 1</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>8. until n &gt;= 10</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>9. stop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Indentation is used to identify grouped instructions, while the numbers on the left become line numbers that make it easier to refer to particular lines in the pseudocode. Finally, assignment of values to variables is done with a left arrow.</p>
+</section>
+<section id="a-tangled-web" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="a-tangled-web"><span class="header-section-number">8</span> A tangled web</h2>
+<p>Can you determine what the flowcharts below do? Try them out with different scenarios.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson03-11.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Doing a programming Assignment</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson03-12.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Should I eat food that I dropped on the floor</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson03-13.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Something is not working</figcaption>
+</figure>
+</div>
 </section>
 
 </main>
