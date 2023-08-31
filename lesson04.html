@@ -115,6 +115,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#programming-paradigms" id="toc-programming-paradigms" class="nav-link" data-scroll-target="#programming-paradigms"><span class="header-section-number">3</span> Programming Paradigms</a></li>
   <li><a href="#why-python" id="toc-why-python" class="nav-link" data-scroll-target="#why-python"><span class="header-section-number">4</span> Why Python?</a></li>
   <li><a href="#integrated-development-environments-ides" id="toc-integrated-development-environments-ides" class="nav-link" data-scroll-target="#integrated-development-environments-ides"><span class="header-section-number">5</span> Integrated Development Environments (IDEs)</a></li>
+  <li><a href="#scratch-vs.-python" id="toc-scratch-vs.-python" class="nav-link" data-scroll-target="#scratch-vs.-python"><span class="header-section-number">6</span> Scratch vs.&nbsp;Python</a></li>
+  <li><a href="#python-primer" id="toc-python-primer" class="nav-link" data-scroll-target="#python-primer"><span class="header-section-number">7</span> Python Primer</a>
+  <ul class="collapse">
+  <li><a href="#creating-programs-and-saving-files" id="toc-creating-programs-and-saving-files" class="nav-link" data-scroll-target="#creating-programs-and-saving-files"><span class="header-section-number">7.1</span> Creating Programs and Saving Files</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -292,7 +297,7 @@ Did you know
 <p>The name of the Python programming language is taken from a television series called <em>Monty Python’s Flying Circus</em> (and not from the snake).</p>
 </div>
 </div></div></section>
-<section id="integrated-development-environments-ides" class="level2" data-number="5">
+<section id="integrated-development-environments-ides" class="level2 page-columns page-full" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="integrated-development-environments-ides"><span class="header-section-number">5</span> Integrated Development Environments (IDEs)</h2>
 <p>Many programmers write their programs in a general purpose programming language using nothing but a text-based editor (usually a simplistic one, albeit with useful characteristics such as syntax highlighting). In fact, some write programs at the command line (in the terminal) using nothing but a text-based text editor (i.e., without graphical characteristics). Most programmers, however, use an IDE (Integrated Development Environment).</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Definition">
@@ -308,6 +313,146 @@ Definition
 <p>An <strong>Integrated Development Environment (IDE)</strong> is a piece of software that allows computer programmers to design, execute, and debug computer programs in an integrated and flexible manner.</p>
 </div>
 </div>
+<p>On the Raspberry Pi, the IDE used to design Python programs is called IDLE (which stands for Python’s <strong>I</strong>ntegrated <strong>D</strong>eve<strong>L</strong>opment <strong>E</strong>nvironment). Other IDEs exist for pretty much all of the most used general purpose programming languages: Eclipse, Visual Studio, Code::Blocks, NetBeans, Dev-C++, Xcode, and so on. In fact, many of these IDEs support more than one language (some natively, others by installing additional plug-ins or modules)! Here’s an image of IDLE with the program shown earlier implemented (and executed):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson04-04.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">IDLE shell with simple python statement</figcaption>
+</figure>
+</div>
+<p>On the Raspberry Pi, IDLE can be launched as follows:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson04-05.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Launching IDLE on the raspberry pi</figcaption>
+</figure>
+</div>
+<p>Python programs can also be created and executed at the command line (or terminal). We do so by launching a terminal and typing <strong>python</strong>, which brings up the Python shell:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson04-06.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Launching IDLE in the terminal</figcaption>
+</figure>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Did you know">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Did you know
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>On computers that have two alternate versions of python installed on them, you might have to type <strong>python3</strong> as the command to open up a python shell like the one in the image.</p>
+</div>
+</div></div></section>
+<section id="scratch-vs.-python" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="scratch-vs.-python"><span class="header-section-number">6</span> Scratch vs.&nbsp;Python</h2>
+<p>Earlier in this lesson, you learned that programs written in a programming language are either compiled (to machine language so that a computer can execute them directly) or interpreted, statement-by-statement (in a sense, you could say that programs written in interpreted languages are compiled, line-by-line, in real time). Python is an interpreted language that implements the imperative paradigm. That is, programs are designed as a sequence of instructions (called statements) that can be followed to complete a task.</p>
+<p>Let’s take a look at a simple program in Scratch and see how it compares to the same thing in Python:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson04-07.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Basic Loop structure in Scratch</figcaption>
+</figure>
+</div>
+<p>What does this program do? Simply put, it displays the numbers 2, 4, 6, and 8. Take a look at the script above. The variable <em>n</em> is initially set to 1. A <em>repeat-until</em> loop is executed so long as <em>n</em> is less than 10 (i.e., 1 through 9). Each time the body of the loop is executed, the string “n is now (plus the value of n)” is displayed if <em>n</em> is evenly divisible by 2. For example, if <em>n</em> is 4, then the string <strong>n is now 4</strong> is displayed. Recall that the <em>mod</em> operator returns the remainder of a division. Therefore, when <strong>n mod 2 = 0</strong> is true, it means that the remainder of <em>n</em> divided by 2 is zero – so <em>n</em> must be even! At the end of the body of the loop, the variable <em>n</em> is incremented (ensuring that <em>n</em> will eventually reach the value 10, and we will break out of the <em>repeat-until</em> loop).</p>
+<p>Here’s how this can be similarly done in Python:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"n is now "</span> <span class="op">+</span> <span class="bu">str</span>(n))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n is now 2
+n is now 4
+n is now 6
+n is now 8</code></pre>
+</div>
+</div>
+<p>At this point, it is fine if you don’t understand everything that’s going on syntactically. The idea is simply to illustrate how Scratch and Python differ (and are similar!). But let’s try to explain.</p>
+<ul>
+<li><p>The block, <em>set n to 1</em>, in Scratch is implemented in Python as, <code>n = 1</code>. Pretty similar!</p></li>
+<li><p>Python has no <em>repeat-until</em> repetition construct. Instead, we can use a <em>while</em> construct with a modified condition. Repeating a task until a variable (in this case, <em>n</em>) is 10 is the same thing as repeating it while the variable is less than 10.</p></li>
+<li><p>If-statements are similar; however, the <em>mod</em> and <em>equality</em> operators differ. In Python, we check for equality using the double-equal (==) operator. The mod operator is a percent sign (%). So the block, <em>if n mod 2 = 0</em>, in Scratch can be implemented in Python as, <code>if n % 2 ==   0</code>.</p></li>
+<li><p>Generating the output, “n is now 4,” for example, can be implemented in Scratch using the familiar print statement: <code>print ("n is now 4")</code>. Of course, we don’t always want to display the literal string “n is 4”. So we concatenate (or join) the value of <em>n</em> to the string “n is now” just as we did in Scratch. However, since <em>n</em> is not a string of characters (i.e., it is a number – an integer to be precise), then it must first be converted to a string before being concatenated to another string. This is what <code>str(n)</code> does.</p></li>
+<li><p>Finally, the value of <em>n</em> is incremented by 1 with the statement <em>n = n + 1</em>.</p></li>
+</ul>
+<p>In Scratch, it is easy to see the blocks that belong in the body of a repetition construct. The puzzle pieces intrinsically capture this (i.e., they are quite literally visible inside the <em>repeat-until</em> block in the script above). In Python, we denote statement hierarchy (i.e., if statements belong in the body of a construct such as a <em>while</em> loop) by using <strong>indentation</strong>. Note how it is quite clear which statements belong in the body of the <em>while</em> loop above: the if-statement and the statement that increments the variable <em>n</em> by 1. Note that the <em>print</em> statement is inside the true part of the if-statement (this is evident by how it is directly beneath the if-statement and indented further to the right). Again, at this point it is fine to have a minimal grasp of Python’s syntax.</p>
+</section>
+<section id="python-primer" class="level2 page-columns page-full" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="python-primer"><span class="header-section-number">7</span> Python Primer</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Open your IDE of choice (e.g.&nbsp;IDLE) and follow along with the professor as they try out different code snippets in the python shell. This activity should give you an idea of</p>
+<ul>
+<li><p>the kinds of operators and expressions that are possible in the python shell.</p></li>
+<li><p>how to execute print statements consisting of different kinds of data</p></li>
+<li><p>how to prompt the user for some input in the middle of code execution</p></li>
+<li><p>storing values in variables</p></li>
+<li><p>using variables and the values stored within as part of other expressions.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<p>You should be able to understand every single statement in the snippet below and even create a similar sequence on your own with a clear grasp of what each statement is doing.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> ^ </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>a<span class="op">**</span>b<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">+</span> <span class="dv">6</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="bu">input</span>(<span class="st">"What is your name?"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="bu">input</span>(<span class="ss">f"so </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">, How old are you?"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> <span class="bu">int</span>(d)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"You are </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss"> years old and you will be 100 in </span><span class="sc">{</span><span class="dv">100</span><span class="op">-</span>e<span class="sc">}</span><span class="ss"> years"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="creating-programs-and-saving-files" class="level3 page-columns page-full" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="creating-programs-and-saving-files"><span class="header-section-number">7.1</span> Creating Programs and Saving Files</h3>
+<p>So far, we have been entering statements in the Python shell. These statements have been interpreted, one at a time. If we were to close the Python shell, everything that we entered would be lost. In order to save Python programs, we must type them in a separate editor outside of the Python shell, save them in a file. Once this has been done, we can then execute them in the Python shell.</p>
+<p>To create a new Python program, click on <strong>File | New File</strong> (or press <strong>Ctrl+N</strong>) in the Python shell. This brings up a new window (an editor that is a part of IDLE) in which we can type our program. Type the following program into this new window:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Enter a number: "</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Enter another number: "</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> raised to the power </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>a<span class="op">**</span>b<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you are using IDLE, this is what your window should look like.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson04-08.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Basic python file in IDLE</figcaption>
+</figure>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Did you know">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Did you know
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that when editing a python file, there will NOT be any <strong>&gt;&gt;&gt;</strong> symbols on the left of your lines of code. If you see those symbols, that means you are still within the shell and not in an actual python file.</p>
+</div>
+</div></div><p>Before we can run this program, it must be saved. Do so by clicking on <strong>File | Save</strong> (or press <strong>Ctrl+S</strong>). Give it an appropriate name, and save it to an appropriate location. Now it can be executed by clicking on <strong>Run | Run Module</strong> (or by pressing <strong>F5</strong>). This executes the program in the Python shell:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson04-09.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Code output when python file is run</figcaption>
+</figure>
+</div>
+</section>
 </section>
 
 </main>
