@@ -173,3 +173,15 @@ Lousiana Tech credentials.
 
 6. Type `reboot` into the terminal and hit `Enter`
 
+::: {.callout-important title="Activity" collapse=true}
+Feel free to explore on your **Potato**. Try out different applications
+and see how similar or different it is from your laptop. Suggestions of
+applications to look at and try out include:
+
+- Scratch
+- Libreoffice Writer
+- Libreoffice Calc
+- Terminal
+- Chromium
+:::
+
