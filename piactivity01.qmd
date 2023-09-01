@@ -45,14 +45,14 @@ In the backpack, you should find the following components.
 	- a bag with 4 chrome screws, 4 gold-colored threaded stand
 	  offs, and two black screws
 
-![LCD Display Components](/images/lcd-display-1.jpg)
+![LCD Display Components](images/lcddisplay-1.jpg)
 
 
 - From the *components* bag:
     - Wifi adapter
     - SD Card
 
-![Components Bag and Wifi Dongle](/images/components-bag-1.jpg)
+![Components Bag and Wifi Dongle](images/componentsbag-1.jpg)
 
 - **Le Potato** from the box labeled `Libre Computer Board`
 
