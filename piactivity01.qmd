@@ -45,14 +45,14 @@ In the backpack, you should find the following components.
 	- a bag with 4 chrome screws, 4 gold-colored threaded stand
 	  offs, and two black screws
 
-![LCD Display Components](/images/lcd-display-1.jpeg)
+![LCD Display Components](/images/lcd-display-1.jpg)
 
 
 - From the *components* bag:
     - Wifi adapter
     - SD Card
 
-![Components Bag and Wifi Dongle](/images/components-bag-1.jpeg)
+![Components Bag and Wifi Dongle](/images/components-bag-1.jpg)
 
 - **Le Potato** from the box labeled `Libre Computer Board`
 
@@ -72,39 +72,39 @@ of each of the four standoffs.
 containing the screw driver. Using your hands, screw the gold colored
 standoffs into the silver colored standoffs.
 
-![Gold standoffs attached to screen](images/standoffs-2.jpeg)
+![Gold standoffs attached to screen](images/standoffs-2.jpg)
 
 4. Place the Potato on top of the stand offs so that the holes align
 with the stand offs and the hdmi port on the Potato aligns with the hdmi
 port near the center of the display. Attach the potato to the display
 with the four silver screws using the screwdriver.
 
-![Potato attached to screen](images/potato-1.jpeg)
+![Potato attached to screen](images/potato-1.jpg)
 
 5. Attach the HDMI component labeled **H-3B** and the USB component
 labeled **USB-H 3B**
 
-![Before attaching HDMI and USB components](images/connectors-1.jpeg)
+![Before attaching HDMI and USB components](images/connectors-1.jpg)
 
-![After attaching HDMI and USB components](images/connectors-2.jpeg)
+![After attaching HDMI and USB components](images/connectors-2.jpg)
 
 #### Attaching the Legs
 
 6. Attach the display's **legs** as pictured using the black screws.
 
-![Attached legs](images/legs.jpeg)
+![Attached legs](images/legs.jpg)
 
 #### Attaching the Speakers
 
 7. Plug the speakers in. Note the wire colors in the image to assist
 with orientation.
 
-![Speakers plugged in](images/speakers-1.jpeg)
+![Speakers plugged in](images/speakers-1.jpg)
 
 8. Remove the paper from the speakers to expose the adhesive areas.
 Stick the speakers to the pre-outlined areas.
 
-![Speakers attached](images/speakers-2.jpeg)
+![Speakers attached](images/speakers-2.jpg)
 
 
 #### Inserting the SD Card
@@ -113,9 +113,9 @@ Stick the speakers to the pre-outlined areas.
 the sd card slot on the Potato. The slot is on the underside of the
 Potato and opposite the usb ports.
 
-![Before plugging in](images/sd-1.jpeg)
+![Before plugging in](images/sd-1.jpg)
 
-![After pluggin in](images/sd-2.jpeg)
+![After pluggin in](images/sd-2.jpg)
 
 
 #### Attaching Peripherals
@@ -123,7 +123,7 @@ Potato and opposite the usb ports.
 10. Find the **wifi dongle** in the components bag and insert it into an
 available usb port
 
-![Wifi Attached](images/wifi-1.jpeg)
+![Wifi Attached](images/wifi-1.jpg)
 
 11. Attach the **keyboard** and **mouse** to available USB ports on the Potato.
 
