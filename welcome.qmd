@@ -1,0 +1,87 @@
+---
+title: "Welcome to Computer Science At Louisiana Tech"
+date: "September 4, 2023"
+title-block-banner: "#002f8b" 
+toc: true
+number-sections: true
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+Below are a few short messages to the freshman class of 2023 from
+members of the *Computer Science Industry Advisory Board*. We hope their
+messages encourage you as you embark on this life changing journey
+through the Computer Science Program at Louisiana Tech University.
+
+
+>WELCOME NEW AND RETURNING STUDENTS to the amazing world of Computer
+Science at Louisiana Tech University.  Computer Science is critical to
+shaping the future of our nation and the world, but as you actively
+participate in classes, there will be challenges. The department’s
+faculty care about YOU!  They are dedicated to your success, so please
+reach out to them.  Get to know your classmates and develop study groups
+to hone your skills alongside your peers.  Congratulations to each of
+you.  A few members of the Computer Science Industrial Advisory Board
+would like to share a few words of encouragement as you dive into the
+program.
+
+| **Warren Ward**
+| *Chief of Staff*, Louisiana Tech Research Institute
+| *Chairman*, Computer Science Industrial Advisory Board
+
+
+>As a proud graduate with a BS in Computer Science in 1974, I wish you
+the best in this 2023-2024 academic year.  As a charter member of the
+CSIAB, I can personally attest to the dedication of the CS faculty to
+ensure the curriculum is current and responsive to meet demands of
+industry in the rapidly evolving computer science field.  I commend your
+choice to participate in the academic experience at Louisiana Tech!   
+
+| **Glen Runyon** 
+| Managing Director, Pyramid Consulting, LLC  
+
+>Welcome Back To the 23-24 Academic Year from Adreanne Kumamoto, the CEO
+of YO ADREANNE! Entertainment, a black-owned streaming service which
+launched worldwide on ROKU, Samsung TVs, LG TVs, iOS and Android devices
+on September 1, 2023.  As a Tech CS alumni, I am very excited to see you
+pursuing studies in computer science.   Your pursuits will not always be
+easy, but the effort is well worth it.  You are the next generation to
+make a huge difference…I am very proud of you!  Kind Regards,
+
+| **Adreanne Kumamoto**
+| Chief Executive Officer, YO Adreanne! Entertainment
+
+
+> Welcome to Louisiana Tech University's Computer Science Department where
+you will be on a transformative journey to shape your professional
+future and personal growth.  As a 1992 graduate, I remember feelings of
+anticipation, curiosity, and nerves that came with the first days of
+college. In the first few weeks I remember thinking that there were
+entirely too many smart people around me. And you know what? I was
+right. But that’s why I was there….to learn from them!  At Tech, not
+only will you gain the technical skills required in today’s digital era,
+but you'll also be part of a community that fosters creativity,
+collaboration, and innovation. Remember that the entire Tech community,
+including alumni like me, are rooting for you!   
+
+| **Thomas L Bont**
+| President, Bont Software & Control Systems, Inc.
+
+
+>Welcome to academic year 2023-2024 in the LA Tech Computer Science
+department.  I graduated in 2006 and I’m still using the knowledge
+Tech’s strong foundation provided by actively writing software (.NET
+being my strong suit).  You must learn the foundational basics.  Still,
+things are evolving; in the workplace, I’ve also adopted generative AI.
+I have observed that generative AI can be used for your benefit or your
+detriment. Due to the way generative AI works, really knowing the
+fundamentals is important. If you use generative AI to skip learning the
+homework that is teaching you the fundamentals, you will not be able to
+check whether the AI is “right” and if the AI is “off.”  Learn the
+fundamentals and keep an open mind to embrace the future of the
+industry.   All the best to you in your endeavors this academic year.
+
+| **Estiban Fiallos**
+| Software Engineering Manager, PioneerRX
