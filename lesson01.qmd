@@ -91,7 +91,7 @@ plot our ingrained ability on a scale like this:
 
 In reality, it's more like this:
 
-![](images/Lesson01-02.png)
+![](images/Lesson01-03.png)
 
 This scale is more realistic and provides a more reasonable meaning to
 quantifying one's expertise in coding. We all begin as novices with no
