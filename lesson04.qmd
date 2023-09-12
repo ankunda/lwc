@@ -538,3 +538,11 @@ Run Module** (or by pressing **F5**).  This executes the program in the Python
 shell:
 
 ![Code output when python file is run](images/Lesson04-09.png)
+
+You can run your code any number of times by selecting **Run | Run
+Module** (or pressing F5). If your code requires some input from the
+user, each execution affords you an opportunity to try out different
+input options e.g. inputing different numbers to see what one raised to
+another is.
+
+### Reloading a saved file

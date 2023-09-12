@@ -145,17 +145,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="required-components-and-their-source" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="required-components-and-their-source"><span class="header-section-number">3.1</span> Required Components and their Source:</h3>
 <ul>
-<li><p>From the box labeled <strong>LCD Display</strong> you will need the following</p>
+<li>From the box labeled <strong>LCD Display</strong> you will need the following
 <ul>
 <li>The display</li>
-<li>A bag labeled <code>3B</code> that contains the following:</li>
+<li>A bag labeled <code>3B</code> that contains the following:
+<ul>
 <li>an HDMI connector</li>
 <li>a USB Type-A and Micro USB conector</li>
+</ul></li>
 <li>A bag that contains two speakers</li>
-<li>A bag that contains the following:</li>
+<li>A bag that contains the following:
+<ul>
 <li>a small screwdriver</li>
 <li>two 3D printed legs</li>
-<li>a bag with 4 chrome screws, 4 gold-colored threaded stand offs, and two black screws</li>
+</ul></li>
+<li>A bag with:
+<ul>
+<li>4 chrome screws,</li>
+<li>4 gold-colored threaded stand offs, and</li>
+<li>two black screws</li>
+</ul></li>
 </ul></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
@@ -298,15 +307,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Type the following <strong>exactly</strong> as shown into the terminal and then hit <code>Enter</code> to open a file that contains information about the network</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sudo gedit /etc/wpa_supplicant/wpa_supplicant.conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </li>
-<li><p>Add the following to the file below or replacing the existing network configuration. Be sure to replace <code>abc123</code> and <code>GoDogs!</code> with your Lousiana Tech credentials.</p>
+<li><p>Append the following information to the file that was opened by the command above. Be sure to replace <code>abc123</code> and <code>GoDogs!</code> with your Lousiana Tech credentials.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>network={</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    ssid="LaTechWPA2"</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    key_mgmt=WPA-EAP</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    identity="abc123"</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    password="GoDogs!"</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Save the file and then close it.</p></li>
-<li><p>Type <code>reboot</code> into the terminal and hit <code>Enter</code></p></li>
 </ol>
 <div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Terminal Tip">
 <div class="callout-header d-flex align-content-center">
@@ -320,8 +327,27 @@ Terminal Tip
 <div class="callout-body-container callout-body">
 <p>Use the <strong>TAB</strong> key of your keyboard to autocomplete commands or file names that you are typing into your terminal to save time and avoid any typos/errors.</p>
 </div>
-</div></div><div class="callout callout-style-default callout-important callout-titled" title="Activity">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+</div><div class="callout callout-style-default callout-note callout-titled" title="Wifi Tip">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Wifi Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A large number of wifi issues stem from students mistyping the text in steps 2 and 3. Make sure to crosscheck your text before you proceed to step 4.</p>
+</div>
+</div></div>
+<ol start="4" type="1">
+<li><p>Save the file and then close it.</p></li>
+<li><p>Type <code>reboot</code> into the terminal and hit <code>Enter</code>. This should reboot your Potato.</p></li>
+<li><p>After your potato has restarted, it should automatically connect to <em>LaTech WPA2</em> and you should be able to access the internet.</p></li>
+</ol>
+<p>If done correctly, your <em>potato</em> will automatically connect to Tech’s network whenever the network is available.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -330,7 +356,7 @@ Activity
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Feel free to explore on your <strong>Potato</strong>. Try out different applications and see how similar or different it is from your laptop. Suggestions of applications to look at and try out include:</p>
 <ul>

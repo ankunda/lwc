@@ -32,18 +32,19 @@ In the backpack, you should find the following components.
 
 ### Required Components and their Source:
 
-- From the box labeled **LCD Display** you will need the following
-
-    - The display
-    - A bag labeled `3B` that contains the following:
-	- an HDMI connector
-	- a USB Type-A and Micro USB conector
-    - A bag that contains two speakers
-    - A bag that contains the following:
-	- a small screwdriver
-	- two 3D printed legs
-	- a bag with 4 chrome screws, 4 gold-colored threaded stand
-	  offs, and two black screws
+* From the box labeled **LCD Display** you will need the following
+  + The display
+  + A bag labeled `3B` that contains the following:
+    - an HDMI connector
+    - a USB Type-A and Micro USB conector
+  + A bag that contains two speakers
+  + A bag that contains the following:
+    - a small screwdriver
+    - two 3D printed legs
+  - A bag with:
+    - 4 chrome screws, 
+    - 4 gold-colored threaded stand offs, and 
+    - two black screws
 
 ![LCD Display Components](images/lcddisplay-1.jpg)
 
@@ -156,8 +157,8 @@ typos/errors.
 :::
 
 
-4. Add the following to the file below or replacing the existing network
-configuration. Be sure to replace `abc123` and `GoDogs!` with your
+3. Append the following information to the file that was opened by the
+command above. Be sure to replace `abc123` and `GoDogs!` with your
 Lousiana Tech credentials.
 
     ```default
@@ -169,9 +170,22 @@ Lousiana Tech credentials.
     }
     ```
 
-5. Save the file and then close it. 
+::: {.callout-note title="Wifi Tip" .column-margin}
+A large number of wifi issues stem from students mistyping the text
+in steps 2 and 3. Make sure to crosscheck your text before you proceed
+to step 4.
+:::
 
-6. Type `reboot` into the terminal and hit `Enter`
+4. Save the file and then close it. 
+
+5. Type `reboot` into the terminal and hit `Enter`. This should reboot
+your Potato.
+
+6. After your potato has restarted, it should automatically connect to
+*LaTech WPA2* and you should be able to access the internet. 
+
+If done correctly, your *potato* will automatically connect to Tech's
+network whenever the network is available.
 
 ::: {.callout-important title="Activity" collapse=true}
 Feel free to explore on your **Potato**. Try out different applications
