@@ -546,3 +546,49 @@ input options e.g. inputing different numbers to see what one raised to
 another is.
 
 ### Reloading a saved file
+
+To load a saved Python program, simply double-click on the saved file.
+This should bring up the **IDLE** editor with your file loaded in it.
+Sometimes, double-clicking on the file just opens it up in a notepad-
+like editor by default. To force it to open in IDLE, right-click the
+file instead, and select **Open with IDLE**.
+
+The program can then be executed as before, by clicking on **Run | Run
+Module** (or by pressing F5). This will automatically open a Python shell
+and execute the program.
+
+::: {.callout-important title="Activity" collapse=true}
+Write a python program that prompts the user for two numbers and
+displays the quotient and remainder when the first number is divided by
+the second. As an example, if the user typed in 17 and 3 for the first
+and second number respectively, it would output a result similar to the
+one shown below.
+
+```{python}
+#| echo: false
+a = 17
+b = 3
+print(f"The quotient of {a} divided by {b} is {a//b} with a remainder of {a%b}")
+```
+:::
+
+### Data types, constants, and variables
+
+::: {.callout-tip title="Definition"}
+The kinds of values that can be expressed in a programming language are
+known as its **data types**
+:::
+
+Recall that Scratch supports only two data types: text and numbers.
+Since Python is a general purpose programming language, it supports many
+more data types. Actually, it can support virtually any type that you
+can think of! That is, Python allows you to define your own type for use
+in whatever way you wish. Since this is user-defined, let's focus on
+what are called primitive types for now.
+
+::: {.callout-tip title="Definition"}
+The **primitive types** of a programming language are those data types that
+are built-in (or standard) to the language and typically considered as
+basic building blocks (i.e., more complex types can be created from
+these primitive types).
+:::
