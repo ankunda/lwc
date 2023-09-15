@@ -1,0 +1,280 @@
+---
+title: "Scratching the Surface"
+date: "September 15, 2023"
+title-block-banner: "#002f8b" 
+toc: true
+number-sections: true
+format:
+  html:
+    code-fold: false 
+jupyter: python3
+---
+
+## Introduction
+
+In this activity, you will use the Scratch programming language to
+practice your algorithm skills by designing a simple game.
+
+You will need:
+
+- ~~Raspberry Pi 4~~ Le Potato with power adapter
+- LCD touchscreen; and
+- keyboard and mouse
+
+::: {.callout-note title="Terminal Tip" .column-margin}
+You can use your usual laptop for this pi activity since it does not
+rely on the GPIO functionality of the raspberry pi. Should you choose to
+do so, make sure to install the appropriate version of **Scratch** on
+your laptop.
+:::
+
+The goal of this activity is to introduce you to the Scratch programming
+language and take you through the process of making a simple game in
+Scratch. Various programming constructs will be utilized and discussed
+(e.g., data types, constants, variables, sequence, selection,
+repetition, etc).
+
+Although you won't actually design complex programs that solve
+interesting problems (yet), you will explore algorithm design and
+computer programming in Scratch, a visual programming language that
+replaces syntax with puzzle pieces. Unlike programming languages that
+are used in practice (e.g., C++, Java, Python), Scratch is intended for
+education and provides a great starting point for novice programmers.
+But don't get boxed in to the idea that Scratch is somehow not powerful.
+In fact, it is actually quite powerful and allows you to create games,
+animations, and interactive stories.
+
+## Scratch.
+
+Scratch is a basic programming language that utilizes puzzle pieces to
+represent the properties in the language (e.g., sequence, selection, and
+repetition). The programmer decides what pieces to use in order to
+implement the algorithm, and the puzzle pieces help identify what
+actions or statements can fit with each other and in what order they
+will be executed. More robust languages such as Python are entirely
+text-based where statements are text instructions used to represent
+actions.
+
+In real physical puzzles, certain pieces have meaning and can only be
+used in certain places (e.g., edge pieces and corner pieces). This is
+similar in Scratch, in that certain pieces have meaning and must be used
+in certain places in our programs. Some of a puzzle's pieces can only be
+combined with certain other pieces so that they make sense.
+
+Scratch programs consist of scripts and is sprite driven. That is, a set
+of scripts can be defined for each sprite in a Scratch program (which we
+can more appropriately call a project). Scripts that are executed when
+the green flag is clicked can be defined for each sprite, and these
+scripts will execute *simultaneously* for each sprite! Sprites can
+communicate by way of broadcasting messages that can be received by
+other sprites. This is, in a way, a characteristic of object-oriented
+programming languages, where objects can communicate with each other by
+sending messages.
+
+Scratch scripts are made up of various puzzle pieces (or blocks) that
+serve various functions. Blocks in the *motion* group provide programming
+constructs that deal with the movement or placement of sprites, while
+blocks in the *looks* group control anything related to the appearance of
+sprites (e.g., costume, graphical effect). *Sound* blocks provide the
+ability to incorporate sound in our Scratch programs, and *pen* blocks
+allow us to draw on the stage. *Control* blocks provide some of the most
+powerful functionality in Scratch. They allow us to implement selection
+and repetition quite easily, and in a variety of useful ways. They also
+provide ways to allow communication among sprites and to specify
+1scripts to perform when events occur (e.g., when the green flag is
+clicked). Blocks in the *sensing* group provide ways of specifying input
+to our programs. We can, for example, detect if a sprite is touching
+another (and then specify some sort of action if desired). Blocks in the
+*operators* group provide math and string capabilities, something quite
+useful in our programs. These blocks allow us to compare values in order
+to determine an action to perform. Lastly, blocks in the *variables* group
+permit us to define variables and lists (i.e., a group of values). This
+is useful in virtually all programs, and you will find that declaring
+variables will become pretty routine.
+
+## Starting Scratch
+
+To begin, let's select *Scratch* from the menu
+
+![Where is Scratch on my Potato](images/lcddisplay-1.jpg)
+
+In the backpack, you should find the following components.
+
+- A box labeled with LCD Display
+- A clear bag of wires and electrical components
+- A box labeled `Libre Computer Board` (aka `Le Potato`)
+- A box labeled `USB Micro-B Power Supply`
+- A keyboard
+- A Mouse
+
+## Assembly
+
+### Required Components and their Source:
+
+* From the box labeled **LCD Display** you will need the following
+  + The display
+  + A bag labeled `3B` that contains the following:
+    - an HDMI connector
+    - a USB Type-A and Micro USB conector
+  + A bag that contains two speakers
+  + A bag that contains the following:
+    - a small screwdriver
+    - two 3D printed legs
+  - A bag with:
+    - 4 chrome screws, 
+    - 4 gold-colored threaded stand offs, and 
+    - two black screws
+
+![LCD Display Components](images/lcddisplay-1.jpg)
+
+
+- From the *components* bag:
+    - Wifi adapter
+    - SD Card
+
+![Components Bag and Wifi Dongle](images/componentsbag-1.jpg)
+
+- **Le Potato** from the box labeled `Libre Computer Board`
+
+
+### Instructions
+
+#### Attaching the Potato
+
+1. Flip the **screen** so that the display is face down. The words
+`Pineworks Labs` should be face up and easily read.
+
+2. Identify the 4 silver standoffs near the center of the backside of
+the display. Remove the circular, orange-colored stickers from the tops
+of each of the four standoffs.
+
+3. Find the 4 gold-colored threaded **standoffs** from the bag
+containing the screw driver. Using your hands, screw the gold colored
+standoffs into the silver colored standoffs.
+
+![Gold standoffs attached to screen](images/standoffs-2.jpg)
+
+4. Place the Potato on top of the stand offs so that the holes align
+with the stand offs and the hdmi port on the Potato aligns with the hdmi
+port near the center of the display. Attach the potato to the display
+with the four silver screws using the screwdriver.
+
+![Potato attached to screen](images/potato-1.jpg)
+
+5. Attach the HDMI component labeled **H-3B** and the USB component
+labeled **USB-H 3B**
+
+![Before attaching HDMI and USB components](images/connectors-1.jpg)
+
+![After attaching HDMI and USB components](images/connectors-2.jpg)
+
+#### Attaching the Legs
+
+6. Attach the display's **legs** as pictured using the black screws.
+
+![Attached legs](images/legs.jpg)
+
+#### Attaching the Speakers
+
+7. Plug the speakers in. Note the wire colors in the image to assist
+with orientation.
+
+![Speakers plugged in](images/speakers-1.jpg)
+
+8. Remove the paper from the speakers to expose the adhesive areas.
+Stick the speakers to the pre-outlined areas.
+
+![Speakers attached](images/speakers-2.jpg)
+
+
+#### Inserting the SD Card
+
+9. Find the **SD card** from the components bag. Insert the sd card into
+the sd card slot on the Potato. The slot is on the underside of the
+Potato and opposite the usb ports.
+
+![Before plugging in](images/sd-1.jpg)
+
+![After pluggin in](images/sd-2.jpg)
+
+
+#### Attaching Peripherals
+
+10. Find the **wifi dongle** in the components bag and insert it into an
+available usb port
+
+![Wifi Attached](images/wifi-1.jpg)
+
+11. Attach the **keyboard** and **mouse** to available USB ports on the Potato.
+
+12. Attach the **power supply** to the micro USB port on the
+**display/screen**. Plug the power supply into a wall outlet to boot the
+Potato. Wait about 20-30 seconds and the Potato will be ready.
+
+
+## Wifi
+
+Connecting to a typical WPA2 network (like the one you'd find at home)
+should be a straightforward process. However, connecting to an
+Enterprise *WPA2 network* like the one on Louisiana Tech's campus is a
+little more involved.
+
+
+1. Open a terminal window from the menu bar at the top of the screen by
+clicking the black icon of a with `>_` inside of it.
+
+2. Type the following **exactly** as shown into the terminal and then
+hit `Enter` to open a file that contains information about the network 
+
+    ```default
+    sudo gedit /etc/wpa_supplicant/wpa_supplicant.conf
+    ```
+::: {.callout-note title="Terminal Tip" .column-margin}
+Use the **TAB** key of your keyboard to autocomplete commands or file
+names that you are typing into your terminal to save time and avoid any
+typos/errors.
+:::
+
+
+3. Append the following information to the file that was opened by the
+command above. Be sure to replace `abc123` and `GoDogs!` with your
+Lousiana Tech credentials.
+
+    ```default
+    network={
+        ssid="LaTechWPA2"
+        key_mgmt=WPA-EAP
+        identity="abc123"
+        password="GoDogs!"
+    }
+    ```
+
+::: {.callout-note title="Wifi Tip" .column-margin}
+A large number of wifi issues stem from students mistyping the text
+in steps 2 and 3. Make sure to crosscheck your text before you proceed
+to step 4.
+:::
+
+4. Save the file and then close it. 
+
+5. Type `reboot` into the terminal and hit `Enter`. This should reboot
+your Potato.
+
+6. After your potato has restarted, it should automatically connect to
+*LaTech WPA2* and you should be able to access the internet. 
+
+If done correctly, your *potato* will automatically connect to Tech's
+network whenever the network is available.
+
+::: {.callout-important title="Activity" collapse=true}
+Feel free to explore on your **Potato**. Try out different applications
+and see how similar or different it is from your laptop. Suggestions of
+applications to look at and try out include:
+
+- Scratch
+- Libreoffice Writer
+- Libreoffice Calc
+- Terminal
+- Chromium
+:::
+
