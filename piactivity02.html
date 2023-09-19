@@ -110,13 +110,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#scratch." id="toc-scratch." class="nav-link" data-scroll-target="#scratch."><span class="header-section-number">2</span> Scratch.</a></li>
-  <li><a href="#starting-scratch" id="toc-starting-scratch" class="nav-link" data-scroll-target="#starting-scratch"><span class="header-section-number">3</span> Starting Scratch</a></li>
-  <li><a href="#assembly" id="toc-assembly" class="nav-link" data-scroll-target="#assembly"><span class="header-section-number">4</span> Assembly</a>
+  <li><a href="#starting-scratch" id="toc-starting-scratch" class="nav-link" data-scroll-target="#starting-scratch"><span class="header-section-number">3</span> Starting Scratch</a>
   <ul class="collapse">
-  <li><a href="#required-components-and-their-source" id="toc-required-components-and-their-source" class="nav-link" data-scroll-target="#required-components-and-their-source"><span class="header-section-number">4.1</span> Required Components and their Source:</a></li>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions"><span class="header-section-number">4.2</span> Instructions</a></li>
+  <li><a href="#launching-scratch" id="toc-launching-scratch" class="nav-link" data-scroll-target="#launching-scratch"><span class="header-section-number">3.1</span> Launching Scratch</a></li>
+  <li><a href="#your-first-scratch-program" id="toc-your-first-scratch-program" class="nav-link" data-scroll-target="#your-first-scratch-program"><span class="header-section-number">3.2</span> Your first Scratch Program</a></li>
+  <li><a href="#an-improvement" id="toc-an-improvement" class="nav-link" data-scroll-target="#an-improvement"><span class="header-section-number">3.3</span> An Improvement</a></li>
   </ul></li>
-  <li><a href="#wifi" id="toc-wifi" class="nav-link" data-scroll-target="#wifi"><span class="header-section-number">5</span> Wifi</a></li>
+  <li><a href="#data-types-constants-and-variables." id="toc-data-types-constants-and-variables." class="nav-link" data-scroll-target="#data-types-constants-and-variables."><span class="header-section-number">4</span> Data types, constants, and variables.</a></li>
+  <li><a href="#input-and-output-statements" id="toc-input-and-output-statements" class="nav-link" data-scroll-target="#input-and-output-statements"><span class="header-section-number">5</span> Input and output statements</a></li>
+  <li><a href="#primary-control-constructs" id="toc-primary-control-constructs" class="nav-link" data-scroll-target="#primary-control-constructs"><span class="header-section-number">6</span> Primary Control Constructs</a>
+  <ul class="collapse">
+  <li><a href="#sequence" id="toc-sequence" class="nav-link" data-scroll-target="#sequence"><span class="header-section-number">6.1</span> Sequence</a></li>
+  <li><a href="#selection" id="toc-selection" class="nav-link" data-scroll-target="#selection"><span class="header-section-number">6.2</span> Selection</a></li>
+  <li><a href="#repetition" id="toc-repetition" class="nav-link" data-scroll-target="#repetition"><span class="header-section-number">6.3</span> Repetition</a></li>
+  </ul></li>
+  <li><a href="#subprograms" id="toc-subprograms" class="nav-link" data-scroll-target="#subprograms"><span class="header-section-number">7</span> Subprograms</a></li>
+  <li><a href="#back-to-the-game" id="toc-back-to-the-game" class="nav-link" data-scroll-target="#back-to-the-game"><span class="header-section-number">8</span> Back to the game</a></li>
+  <li><a href="#a-first-game" id="toc-a-first-game" class="nav-link" data-scroll-target="#a-first-game"><span class="header-section-number">9</span> A first game?</a></li>
+  <li><a href="#playing-with-sprites" id="toc-playing-with-sprites" class="nav-link" data-scroll-target="#playing-with-sprites"><span class="header-section-number">10</span> Playing with Sprites</a></li>
   </ul>
 </nav>
 </div>
@@ -157,200 +168,18 @@ Terminal Tip
 <p>Scratch programs consist of scripts and is sprite driven. That is, a set of scripts can be defined for each sprite in a Scratch program (which we can more appropriately call a project). Scripts that are executed when the green flag is clicked can be defined for each sprite, and these scripts will execute <em>simultaneously</em> for each sprite! Sprites can communicate by way of broadcasting messages that can be received by other sprites. This is, in a way, a characteristic of object-oriented programming languages, where objects can communicate with each other by sending messages.</p>
 <p>Scratch scripts are made up of various puzzle pieces (or blocks) that serve various functions. Blocks in the <em>motion</em> group provide programming constructs that deal with the movement or placement of sprites, while blocks in the <em>looks</em> group control anything related to the appearance of sprites (e.g., costume, graphical effect). <em>Sound</em> blocks provide the ability to incorporate sound in our Scratch programs, and <em>pen</em> blocks allow us to draw on the stage. <em>Control</em> blocks provide some of the most powerful functionality in Scratch. They allow us to implement selection and repetition quite easily, and in a variety of useful ways. They also provide ways to allow communication among sprites and to specify 1scripts to perform when events occur (e.g., when the green flag is clicked). Blocks in the <em>sensing</em> group provide ways of specifying input to our programs. We can, for example, detect if a sprite is touching another (and then specify some sort of action if desired). Blocks in the <em>operators</em> group provide math and string capabilities, something quite useful in our programs. These blocks allow us to compare values in order to determine an action to perform. Lastly, blocks in the <em>variables</em> group permit us to define variables and lists (i.e., a group of values). This is useful in virtually all programs, and you will find that declaring variables will become pretty routine.</p>
 </section>
-<section id="starting-scratch" class="level2" data-number="3">
+<section id="starting-scratch" class="level2 page-columns page-full" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="starting-scratch"><span class="header-section-number">3</span> Starting Scratch</h2>
+<section id="launching-scratch" class="level3 page-columns page-full" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="launching-scratch"><span class="header-section-number">3.1</span> Launching Scratch</h3>
 <p>To begin, let’s select <em>Scratch</em> from the menu</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/lcddisplay-1.jpg" class="img-fluid figure-img"></p>
+<p><img src="images/pi2/scratch1.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">Where is Scratch on my Potato</figcaption>
 </figure>
 </div>
-<p>In the backpack, you should find the following components.</p>
-<ul>
-<li>A box labeled with LCD Display</li>
-<li>A clear bag of wires and electrical components</li>
-<li>A box labeled <code>Libre Computer Board</code> (aka <code>Le Potato</code>)</li>
-<li>A box labeled <code>USB Micro-B Power Supply</code></li>
-<li>A keyboard</li>
-<li>A Mouse</li>
-</ul>
-</section>
-<section id="assembly" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="assembly"><span class="header-section-number">4</span> Assembly</h2>
-<section id="required-components-and-their-source" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="required-components-and-their-source"><span class="header-section-number">4.1</span> Required Components and their Source:</h3>
-<ul>
-<li>From the box labeled <strong>LCD Display</strong> you will need the following
-<ul>
-<li>The display</li>
-<li>A bag labeled <code>3B</code> that contains the following:
-<ul>
-<li>an HDMI connector</li>
-<li>a USB Type-A and Micro USB conector</li>
-</ul></li>
-<li>A bag that contains two speakers</li>
-<li>A bag that contains the following:
-<ul>
-<li>a small screwdriver</li>
-<li>two 3D printed legs</li>
-</ul></li>
-<li>A bag with:
-<ul>
-<li>4 chrome screws,</li>
-<li>4 gold-colored threaded stand offs, and</li>
-<li>two black screws</li>
-</ul></li>
-</ul></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/lcddisplay-1.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">LCD Display Components</figcaption>
-</figure>
-</div>
-<ul>
-<li>From the <em>components</em> bag:
-<ul>
-<li>Wifi adapter</li>
-<li>SD Card</li>
-</ul></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/componentsbag-1.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Components Bag and Wifi Dongle</figcaption>
-</figure>
-</div>
-<ul>
-<li><strong>Le Potato</strong> from the box labeled <code>Libre Computer Board</code></li>
-</ul>
-</section>
-<section id="instructions" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="instructions"><span class="header-section-number">4.2</span> Instructions</h3>
-<section id="attaching-the-potato" class="level4" data-number="4.2.1">
-<h4 data-number="4.2.1" class="anchored" data-anchor-id="attaching-the-potato"><span class="header-section-number">4.2.1</span> Attaching the Potato</h4>
-<ol type="1">
-<li><p>Flip the <strong>screen</strong> so that the display is face down. The words <code>Pineworks Labs</code> should be face up and easily read.</p></li>
-<li><p>Identify the 4 silver standoffs near the center of the backside of the display. Remove the circular, orange-colored stickers from the tops of each of the four standoffs.</p></li>
-<li><p>Find the 4 gold-colored threaded <strong>standoffs</strong> from the bag containing the screw driver. Using your hands, screw the gold colored standoffs into the silver colored standoffs.</p></li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/standoffs-2.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Gold standoffs attached to screen</figcaption>
-</figure>
-</div>
-<ol start="4" type="1">
-<li>Place the Potato on top of the stand offs so that the holes align with the stand offs and the hdmi port on the Potato aligns with the hdmi port near the center of the display. Attach the potato to the display with the four silver screws using the screwdriver.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/potato-1.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Potato attached to screen</figcaption>
-</figure>
-</div>
-<ol start="5" type="1">
-<li>Attach the HDMI component labeled <strong>H-3B</strong> and the USB component labeled <strong>USB-H 3B</strong></li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/connectors-1.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Before attaching HDMI and USB components</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/connectors-2.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">After attaching HDMI and USB components</figcaption>
-</figure>
-</div>
-</section>
-<section id="attaching-the-legs" class="level4" data-number="4.2.2">
-<h4 data-number="4.2.2" class="anchored" data-anchor-id="attaching-the-legs"><span class="header-section-number">4.2.2</span> Attaching the Legs</h4>
-<ol start="6" type="1">
-<li>Attach the display’s <strong>legs</strong> as pictured using the black screws.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/legs.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Attached legs</figcaption>
-</figure>
-</div>
-</section>
-<section id="attaching-the-speakers" class="level4" data-number="4.2.3">
-<h4 data-number="4.2.3" class="anchored" data-anchor-id="attaching-the-speakers"><span class="header-section-number">4.2.3</span> Attaching the Speakers</h4>
-<ol start="7" type="1">
-<li>Plug the speakers in. Note the wire colors in the image to assist with orientation.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/speakers-1.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Speakers plugged in</figcaption>
-</figure>
-</div>
-<ol start="8" type="1">
-<li>Remove the paper from the speakers to expose the adhesive areas. Stick the speakers to the pre-outlined areas.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/speakers-2.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Speakers attached</figcaption>
-</figure>
-</div>
-</section>
-<section id="inserting-the-sd-card" class="level4" data-number="4.2.4">
-<h4 data-number="4.2.4" class="anchored" data-anchor-id="inserting-the-sd-card"><span class="header-section-number">4.2.4</span> Inserting the SD Card</h4>
-<ol start="9" type="1">
-<li>Find the <strong>SD card</strong> from the components bag. Insert the sd card into the sd card slot on the Potato. The slot is on the underside of the Potato and opposite the usb ports.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/sd-1.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Before plugging in</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/sd-2.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">After pluggin in</figcaption>
-</figure>
-</div>
-</section>
-<section id="attaching-peripherals" class="level4" data-number="4.2.5">
-<h4 data-number="4.2.5" class="anchored" data-anchor-id="attaching-peripherals"><span class="header-section-number">4.2.5</span> Attaching Peripherals</h4>
-<ol start="10" type="1">
-<li>Find the <strong>wifi dongle</strong> in the components bag and insert it into an available usb port</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/wifi-1.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Wifi Attached</figcaption>
-</figure>
-</div>
-<ol start="11" type="1">
-<li><p>Attach the <strong>keyboard</strong> and <strong>mouse</strong> to available USB ports on the Potato.</p></li>
-<li><p>Attach the <strong>power supply</strong> to the micro USB port on the <strong>display/screen</strong>. Plug the power supply into a wall outlet to boot the Potato. Wait about 20-30 seconds and the Potato will be ready.</p></li>
-</ol>
-</section>
-</section>
-</section>
-<section id="wifi" class="level2 page-columns page-full" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="wifi"><span class="header-section-number">5</span> Wifi</h2>
-<p>Connecting to a typical WPA2 network (like the one you’d find at home) should be a straightforward process. However, connecting to an Enterprise <em>WPA2 network</em> like the one on Louisiana Tech’s campus is a little more involved.</p>
-<ol type="1">
-<li><p>Open a terminal window from the menu bar at the top of the screen by clicking the black icon of a with <code>&gt;_</code> inside of it.</p></li>
-<li><p>Type the following <strong>exactly</strong> as shown into the terminal and then hit <code>Enter</code> to open a file that contains information about the network</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sudo gedit /etc/wpa_supplicant/wpa_supplicant.conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</li>
-<li><p>Append the following information to the file that was opened by the command above. Be sure to replace <code>abc123</code> and <code>GoDogs!</code> with your Lousiana Tech credentials.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>network={</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    ssid="LaTechWPA2"</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    key_mgmt=WPA-EAP</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    identity="abc123"</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    password="GoDogs!"</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ol>
+
 <div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Terminal Tip">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -361,47 +190,478 @@ Terminal Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use the <strong>TAB</strong> key of your keyboard to autocomplete commands or file names that you are typing into your terminal to save time and avoid any typos/errors.</p>
+<p>This <em>might</em> look a little different on your raspberry pi or potato.</p>
+<p>If you selected to use your laptop, then it will definitely look different but you should still be able to identify where it is and select it.’</p>
 </div>
-</div><div class="callout callout-style-default callout-note callout-titled" title="Wifi Tip">
+</div></div><p>After a short while, the Scratch interface will be displayed:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/scratch2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Scratch ver 1.4 home page</figcaption>
+</figure>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Terminal Tip">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Wifi Tip
+Terminal Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A large number of wifi issues stem from students mistyping the text in steps 2 and 3. Make sure to crosscheck your text before you proceed to step 4.</p>
+<p>The scratch images shown on this page are taken using Scratch ver 1.4. We recommend that you actually use <strong>Scratch ver 3</strong> instead as it has more updated options. However, in the event that your computer does not allow easy installation of version 3, we shall leave these instructions in ver 1.4</p>
 </div>
-</div></div>
-<ol start="4" type="1">
-<li><p>Save the file and then close it.</p></li>
-<li><p>Type <code>reboot</code> into the terminal and hit <code>Enter</code>. This should reboot your Potato.</p></li>
-<li><p>After your potato has restarted, it should automatically connect to <em>LaTech WPA2</em> and you should be able to access the internet.</p></li>
+</div></div><p>Although the interface looks a bit complicated, it really isn’t. We won’t make use of everything at first; however, here is an overview of the interface components:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/scratch%20interface.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">What are all the things I see on the scratch home page?</figcaption>
+</figure>
+</div>
+<p>The Scratch interface is quite busy; however, there are three main areas that you will find yourself interacting with often: the blocks palette, the scripts area, and the stage.</p>
+<p>The <strong>blocks palette</strong> panel provides a variety of useful constructs that allow you to write programs. In total, there are eight different block types, accessible by clicking the groups in the top-left of the interface:</p>
+<ul>
+<li><em>Motion</em>: anything related to the movement or placement of sprites (graphics);</li>
+<li><em>Looks</em>: anything related to the appearance of sprites;</li>
+<li><em>Sound</em>: anything related to incorporating sound in your programs;</li>
+<li><em>Pen</em>: anything related to the pen which allows drawing on the canvas (background);</li>
+<li><em>Control</em>: anything related to controlling the flow of programs;</li>
+<li><em>Sensing</em>: anything related to detecting things (like movement, collisions, etc);</li>
+<li><em>Operators</em>: anything related to math functions and string handling; and</li>
+<li><em>Variables</em>: anything related to the declaration and upkeep of variables.</li>
+</ul>
+<p>The <strong>scripts area</strong> is where you define your computer programs. This is done by dragging various blocks from the blocks palette and connecting them to make a program. It’s almost like solving a jigsaw puzzle. 3In fact, blocks have different types of notches and ridges that allow them to match up only to certain other blocks. This helps simplify the design of programs.</p>
+<p>The <strong>stage</strong> is where your programs are executed. It’s where to look to see if your code works…or not. On the stage, we can place sprites (graphics), variables, text, and drawings. At the top-right of the stage, a green flag and a red stop sign are used to start and stop your programs. The stage implements a two- dimensional coordinate system, where x and y represent the horizontal and vertical axes respectively. On our system with the LCD touchscreen, the center of the stage is at the point (0,0); the top-left corner is at (-240,180); the bottom-right corner is at (240,-180). Note that the stage is actually much larger (i.e., the cat sprite could technically be moved out of the viewable area of the stage).</p>
+</section>
+<section id="your-first-scratch-program" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="your-first-scratch-program"><span class="header-section-number">3.2</span> Your first Scratch Program</h3>
+<p>Let’s create a simple program. Your task will be to move the cat sprite on the canvas. One useful block in the control blocks group is the <strong>when green flag clicked</strong> block. It is used to specify what to do when the green flag at the top of the stage is clicked (in other words, what to do when your program starts). We can add it to the scripts area by dragging it from the control blocks group in the blocks palette. Let’s also add the first instruction to <strong>move 10 steps</strong> (pixels) in the direction the cat is facing (i.e., to the right). For this, we can utilize a block in the motion blocks group. Drag the move steps block to the scripts area until it snaps in place beneath the green flag block:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program1-2b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Click on the green flag in the top-right corner of the stage to run this program. You will notice that the cat moves very quickly a very small distance to the right. Click the green flag several times so that the cat repeatedly moves to the right a bit more.</p>
+<p>Modify the program to move a different number of steps by changing the value in the move 10 steps block to something like -100 (which will move the sprite 100 pixels in the opposite direction that the cat is facing). Click the field that specifies the number of steps and replace 10 with -100:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program1-5b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Clicking the green flag a few times moves the cat to the left quickly. This movement is too quick and quite joggy. In the motion blocks group, a glide 5 secs to x,y block allows motion to be more specifically defined. Let’s replace the move steps block with this new block. To remove the move steps block, drag it away from the green flag block (you can just put it to the side if you anticipate using it again, or drag it back to the blocks palette to trash it). Tweak the values as you wish in the new motion block and watch the cat move smoothly to the specified coordinates:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program2-1b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>You can actually click on the cat sprite to move it anywhere on the stage; then try running your program again.</p>
+</section>
+<section id="an-improvement" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="an-improvement"><span class="header-section-number">3.3</span> An Improvement</h3>
+<p>Let’s combine blocks to form a more complicated program. Create the following program and run it:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program3b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>You’ll notice that the program moves the cat around the perimeter of the stage, pointing in the direction of travel as it does so. How could the program be modified to repeat this some number of times (like 2)? There is a <strong>repeat</strong> block in the control blocks group that can be used to repeat an action some number of times.</p>
+<p>Modify your program as follows:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program4-1b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Some of you will notice that the first two motion blocks (<strong>point in direction 90</strong> and <strong>go to x,y</strong>) can be moved out of and above the repeat block. Try it. You probably won’t notice much difference, but these two blocks serve to initially orient and position the cat sprite. This really only needs to be done once at the beginning of the program.</p>
+<p>At this point, let’s cover some of the basic features of programming languages before continuing with the game.</p>
+</section>
+</section>
+<section id="data-types-constants-and-variables." class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="data-types-constants-and-variables."><span class="header-section-number">4</span> Data types, constants, and variables.</h2>
+<p>The kinds of values that can be expressed in a programming language are known as its <strong>data types</strong>. Scratch supports only two data types: text and numbers. The text data type provides the ability to represent non-numeric data such as names, addresses, English phrases, etc. The numeric data type allows the language to manipulate numbers, both positive and negative, whole numbers and fractions.</p>
+<p>A <strong>constant</strong> is defined as a value of a particular type that does not change over time. Both numbers and text may be expressed as constants in Scratch. Numeric constants are composed of the digits 0 through 9 and, optionally, a negative sign (for negative numbers), and a decimal point (for floating point numbers). Numeric constants may not contain commas, dollar signs, or any other special symbols. The following are valid Scratch numeric constants: +15, -150, 15.01, 3200.</p>
+<p>A <strong>text constant</strong> consists of a sequence of characters (also known as a string of characters – or just a string). The following are examples of valid string constants:</p>
+<ul>
+<li>“She turned me into a newt.”</li>
+<li>“I got better.”</li>
+<li>“Very small rocks.”</li>
+</ul>
+<p>Note that the quotes surrounding the strings are not actually necessary to define a text constant in Scratch BUT they are very essential in more standard programming languages to differentiate strings (words important to the program user) from commands and variables (words important to the programmer and computer)</p>
+<p>A <strong>variable</strong> is defined to be a named object that can store a value of a particular type. Scratch supports two types of variables: text variables and numeric variables. Before a variable can be used, its name must be declared. Variables are declared in Scratch through the variables blocks group.</p>
+</section>
+<section id="input-and-output-statements" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="input-and-output-statements"><span class="header-section-number">5</span> Input and output statements</h2>
+<p>In order for a computer program to perform any useful work, it must be able to communicate with the outside world. The process of communicating with the outside world is known as input/output (or I/O). Scratch includes various input and output statements, although they are not implemented in the same way as other <em>real</em> programming languages such as Python or Java.</p>
+<p>For example, in Scratch, individual sprites can <strong>say something for n secs</strong> or <strong>think something for n secs</strong>, displaying voice or thought bubbles with text. These are located in the <em>looks</em> blocks group. Sprites can also switch costumes, and programs can play sounds, draw with the pen, and so on. These are all output statements. Input statements include sensing when sprites are touching (or near) other sprites, or at the edge of the stage. Scratch can also ask the user for input (either text or numeric), and store this input to a variable. Many input statements in Scratch are located in the sensing blocks group. Most imperative languages include mechanisms for performing other kinds of I/O such as detecting where the mouse is pointing and accessing the contents of a disk drive.</p>
+<p>The flexibility and power that input statements give programming languages cannot be overstated. Without them the only way to get a program to change its output would be to modify the program code itself, which is something that a typical user cannot be expected to do.</p>
+<p>General-purpose programming languages allow human programmers to construct programs that do amazing things. When attempting to understand what a program does, however, it is vitally important to always keep in mind that the computer does not comprehend the meaning of the character strings it manipulates or the significance of the calculations it performs. Take, for example, the following simple Scratch program:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/io1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>This program simply displays strings of characters, stores user input, and echoes that input back to the screen along with some additional character strings. The computer has no clue what the text string “Please enter your name.” means. For all it cares, the string could have been “My hovercraft is full of eels.” or “qwerty uiop asdf ghjkl;” (or any other text string for that matter). Its only concern is to copy the characters of the text string onto the display screen.</p>
+<p>Only in the minds of human beings do the sequence of characters “Please enter your name.” take on meaning. If this seems odd, try to remember that comprehension does not even occur in the minds of all humans, only those who are capable of reading and understanding written English. A four year old, for example, would not know how to respond to this prompt because he or she would be unable to read it. This is so despite the fact that if you were to ask the child his or her name, he or she could immediately respond and perhaps even type it out on the keyboard for you.</p>
+<p>Consider this Scratch program:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/io4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Here, input is numeric instead of text. The program prompts the user for two numbers, which it then computes the sum for and displays to the user. Note that two variables were declared in the <strong>variables</strong> blocks group: <em>num1</em> and <em>num2</em>. The first number is captured and stored in the variable <em>num1</em>. The second number is captured and stored in the variable <em>num2</em>. What do you think would happen if the user did not provide numeric input and, for example, inputted “Bob” for the first number? In the <em>real world</em>, programmers must create robust programs that examine user input in order to verify that it is of the proper type before processing that input. If the input is found to be in error, the program must take appropriate corrective action, such as rejecting the invalid input and requesting the user try again.</p>
+</section>
+<section id="primary-control-constructs" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="primary-control-constructs"><span class="header-section-number">6</span> Primary Control Constructs</h2>
+<p>In order to create programs capable of solving more complex tasks we need to examine how the basic instructions we have studied can be organized into higher-level constructs. The vast majority of imperative programming languages support three types of control constructs which are used to group individual statements together and specify the conditions under which they will be executed. These control constructs are: sequence, selection, and repetition.</p>
+<section id="sequence" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="sequence"><span class="header-section-number">6.1</span> Sequence</h3>
+<p><strong>Sequence</strong> requires that the individual statements of a program be executed one after another, in the order that they appear in the program. Sequence is defined implicitly by the physical order of the statements. It does not require an explicit program structure. This is related to our previous discussion on <strong>control flow</strong>.</p>
+<p>In Scratch, sequence is almost too trivial because of the way the puzzle pieces are arranged. If one piece is attached to the top of a second piece, then the piece on top will be completely executed before the botton piece is executed.</p>
+</section>
+<section id="selection" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="selection"><span class="header-section-number">6.2</span> Selection</h3>
+<p><strong>Selection</strong> constructs contain one or more blocks of statements and specify the conditions under which the blocks should be executed. Basically, selection allows a human programmer to include within a program one or more blocks of <em>optional</em> code along with some tests that the program can use to determine which one of the blocks to perform. Selection allows imperative programs to choose which particular set of actions to perform, based on the conditions that exist at the time the construct is encountered during program execution.</p>
+<p>Selection statements give imperative languages the ability to make choices based on the results of certain condition tests. These condition tests take the form of <strong>Boolean expressions</strong>, which are expressions that evaluate to either <em>true</em> or <em>false</em>. There are various types of Boolean expressions, but the types supported in Scratch are based on relational operators. <strong>Relational operators</strong> compare two expressions of like type to determine whether their values satisfy some criterion. The general form of all Boolean expressions supported in Scratch is:</p>
+<p><code>expression relational_operator expression</code></p>
+<p>For example:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/relational.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Scratch includes three relational operators for comparing numeric expressions:</p>
+<ul>
+<li><code>&lt;</code> meaning less than</li>
+<li><code>=</code> meaning equal to</li>
+<li><code>&gt;</code> meaning greater than</li>
+</ul>
+<p>For example, when <em>x</em> is 15 and <em>y</em> is 25, the expression <code>x &gt; y</code> evaluates to <em>false</em>, since 15 is not greater than 25. Here are some additional examples of Boolean expressions that use these relational operators. These examples assume that the variable <em>x</em> holds 15 and <em>y</em> holds 25:</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/pi2/relational3.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption"><code>true</code></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/pi2/relational4.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption"><code>true</code></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/pi2/relational2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption"><code>false</code></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Notice that the last expression always evaluates to <em>false</em> regardless of the value of <em>x</em>. This is because there is no possible value for <em>x</em> that will be equal to that value plus one. Another point illustrated by these examples is that relational operators have a lower precedence than mathematical operators. During expression evaluation, all multiplication, division, addition, and subtraction operations are performed before any relational operations.</p>
+<p>The relational operators also work for <em>text expressions</em> as follows:</p>
+<ul>
+<li><code>&lt;</code> meaning <em>preceeds</em></li>
+<li><code>=</code> meaning <em>equal to</em></li>
+<li><code>&gt;</code> meaning <em>follows</em></li>
+</ul>
+<p>Note that Scratch does not differentiate between uppercase and lowercase letters. That is, A is equal to a. Here are some examples, assuming that the variable <em>x</em> holds <code>Bob</code> and <em>y</em> holds <code>bobcat</code>:</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/pi2/relational5.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption"><code>false</code></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/pi2/relational6.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption"><code>false</code></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/pi2/relational7.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption"><code>true</code></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Since <code>Bob</code> precedes <code>bobcat</code> in alphabetical order, <code>Bob &lt; bobcat</code> is <em>true</em>.</p>
+<p>Selection statements use the results of Boolean expressions to choose which sequence of actions to perform next. Scratch supports two different selection statements: <strong>if-else</strong> and <strong>if</strong>. An <em>if-else</em> statement allows a program to make a two-way choice based on the result of a Boolean expression.</p>
+<p>The general form of an if-else statements is shown below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/if-else.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Any statements that are to be executed if the condition is <code>true</code> are placed in the top/if half of the puzzle piece. Any statements that are to be executed if the condition is <code>false</code> are placed in the bottom/else half.</p>
+<p><em>If-else</em> statements specify a Boolean expression and two separate blocks of code: one that is to be executed if the expression is <code>true</code>, the other to be executed if the expression is <code>false</code>. Here’s a flowchart for an <em>if-else</em> statement:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/flow01.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>And here’s an example of a program that implements an <em>if-else</em> statement (several, actually):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/if-else2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>This program prompts the user to enter a name and age, and responds appropriately. It compares the user’s age to several constants (40, 30, and 20), and sets the variable phrase depending on the user’s age. If the user’s age is more than 40, then the program responds that the user is pretty old; otherwise, the program then checks to see if the user’s age is more than 30. If so, the program responds that the user is not too old; otherwise, it then checks to see if the user’s age is more than 20. If so, it responds that the user is pretty young; otherwise (any age less than or equal to 20), it responds that the user is just a baby.</p>
+<p>Note that we can nest an <em>if-else</em> statement inside of another <em>if-else</em> statement to provide more than two alternatives or paths. Here’s the program above represented in pseudocode:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>*name* ← prompt for name</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>age ← prompt for age</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>if age &gt; 40</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>then</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    phrase ← "Wow, " + name + "; you are pretty old!"</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>else</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    if age &gt; 30</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    then</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        phrase ← "Wow, " + name + "; you are not too old!"</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    else</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        if age &gt; 20</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        then</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            phrase ← "Wow, " + name + "; you are pretty young!"</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        else</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            phrase ← "Wow, " + name + "; you are just a baby!"</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        end</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>end</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>display phrase</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <em>if</em> statement is similar to the <em>if-else</em> statement except that it does not include an <em>else</em> block. That is, it only specifies what to do if the Boolean expression is true. Here’s a flowchart for an <em>if</em> statement:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/flow02.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><em>If</em> statements are generally used by programmers to allow their programs to detect and handle conditions that require <em>special</em> or <em>additional</em> processing. This is in contrast to <em>if-else</em> statements, which can be viewed as selecting between two (or more) <em>equal</em> choices.</p>
+</section>
+<section id="repetition" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="repetition"><span class="header-section-number">6.3</span> Repetition</h3>
+<p>Repetition is the name given to the class of control constructs that allow computer programs to repeat a task over and over. This is useful, particularly when considering the idea of solving problems by decomposing them into repeatable steps. Repetition constructs contain exactly one block of statements together with a mechanism for repeating the statements within the block some number of times. There are two major types of repetition: <strong>iteration</strong> and <strong>recursion</strong>. Iteration, which is usually implemented directly in a programming language as an explicit program structure, often involves repeating a block of statements either:</p>
+<ol type="1">
+<li>while some condition is true or</li>
+<li>some fixed number of times.</li>
 </ol>
-<p>If done correctly, your <em>potato</em> will automatically connect to Tech’s network whenever the network is available.</p>
-<div class="callout callout-style-default callout-important callout-titled" title="Activity">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<p><strong>Recursion</strong> involves a subprogram (e.g., a function) that makes reference to itself. As with sequence, recursion does not normally have an explicit program construct associated with it.</p>
+<p>Scratch supports iteration in two main forms: the <em>repeat</em> loop and the <em>forever</em> loop. The repeat loop has two forms: <em>repeat-until</em> and <em>repeat-n</em> (where <em>n</em> is some fixed or known number of times). The <em>repeat-until</em> loop is condition-based; that is, it executes the statements of the loop until a condition becomes true. The <em>repeat-n</em> loop is count-based; that is, it executes the statements of the loop n times.</p>
+<p>Here’s a flowchart of the repeat-until loop:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/flow03.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>The Boolean expression is first evaluated. If it evaluates to false, the loop statements are executed; otherwise, the loop halts. Here is an example:</p>
+<div id="fig-repeatuntil" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/pi2/repeat-until.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Repeat Until</figcaption>
+</figure>
+</div>
+<p>This program asks the user to enter a positive number or -1. If a positive number is entered, it is added to a running total. If -1 is entered, the program displays the total and halts. The <em>repeat-until</em> loop is used here to repeat the process of asking the user for input until the value entered is less than 0. It is interesting to note that although the program instructs users to enter -1 to quit, the condition that controls the loop is actually <code>num &lt; 0</code> (which will be true for any negative number). Thus, the loop will actually terminate whenever the user enters any number less than zero (e.g., -5).</p>
+<p>Here’s the program above represented in pseudocode:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>total ← 0</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>repeat</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    num ← prompt for a positive number (or -1 to quit)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    if num &gt; 0</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    then</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        total ← total + num</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>until num &lt; 0</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>display total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The repeat-n loop executes the loop statements a fixed (or known) number of times. Here’s a flowchart of the <em>repeat-n</em> loop:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/flow05.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Although the programmer does not have access to a variable that counts the specified number of times (shown as <em>n</em> in the figure above), the process works in this manner. A counter is initially set to 1. A Boolean expression is then evaluated that checks to see if that counter is less than or equal to the target value (e.g., 10). If so, the loop statements execute. Once the loop statements have completed, the counter is incremented, and the expression is reevaluated. Here is an example:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/repeat-n.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>This program asks the user to enter five numbers. Each time, the number is added to a running total. After all five numbers have been entered, the total is displayed.</p>
+<p>The forever loop also has two forms: <em>forever</em> and <em>forever-if</em>. The <em>forever</em> loop executes the statements of the loop forever. Well, it’s not technically forever, since we can click the stop button to halt all scripts at any time. The <em>forever-if</em> loop is condition-based (like the <em>repeat-until</em> loop), and executes the statements of the loop if a condition is true. Note that the <em>forever-if</em> loop also runs forever (until the stop button is clicked). the difference is that the loop statements are only executed if the condition is true.</p>
+<p>Here is a flowchart of the <em>forever-if</em> loop:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/flow04.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>This loop construct is often used to perform real time checking of sprites and execute statements if, for example, the sprite is at a certain position on the stage. Another example is to constantly check the value of a variable that is changed by some other sprite. In this way, a sprite can monitor a variable, and when changed to an appropriate value, perform some action.</p>
+<p>Lastly, here is a flowchart of the <em>forever</em> loop:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/flow06.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Pretty straightforward…</p>
+<p>Note that any program written using a <em>repeat-n</em> loop can be rewritten as a <em>repeat-until</em> loop. Take, for example the <em>repeat-n</em> loop shown earlier in <a href="#fig-repeatuntil">Figure&nbsp;1</a> . Here is the same algorithm rewritten using a <em>repeat-until</em> loop:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/repeat-until2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>The only difference is that, in the <em>repeat-until</em> loop, the programmer must keep track of (and modify) the counter each time the loop statements execute. In the <em>repeat-n</em> loop, Scratch automatically takes care of this.</p>
+<p>Is the opposite true? That is, can every program that uses a <em>repeat-until</em> loop be rewritten using a <em>repeat-n</em> loop? The answer is no. A <em>repeat-n</em> loop simply loops a fixed or known number of times. A <em>repeat-until</em> loop repeats until some condition is true. That condition could be, for example, when the user inputs -1 to terminate. The idea of expressing a condition that represents a sentinel value in a manner that requires knowing how many times the loop statements will execute is nonsensical. There is no way to tell how many times the loop statements will execute until the user inputs -1. It could be the very first time (or the 10,000th). Because <em>repeat-n</em> loops can always be replaced with <em>repeat-until</em> loops, but not all <em>repeat-until</em> loops can be replaced with <em>repeat-n</em> loops, we say that the <em>repeat-until</em> loop is more general than the <em>repeat-n</em> loop.</p>
+</section>
+</section>
+<section id="subprograms" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="subprograms"><span class="header-section-number">7</span> Subprograms</h2>
+<p>A <strong>subprogram</strong> is a program within a program. Recall an earlier lesson on representing algorithms as to-do lists. One algorithm represented the steps necessary to <em>get to class</em>. One of those steps was <em>eat breakfast</em>. We noted how we could zoom in to that step and identify the sub-steps necessary to complete the <em>eat breakfast</em> step. Control flow shifted from the main to-do list to the <em>eat breakfast</em> to-do list when the <em>eat breakfast</em> step was encountered, and then returned to the main to-do list at the point where it left earlier. We can consider the <em>eat breakfast</em> to-do list as a subprogram.</p>
+<p>Very few <em>real</em> programs are written as one long piece of code. Instead, traditional imperative programs generally consist of large numbers of relatively simple subprograms that work together to accomplish some complex task. While it is theoretically possible to write large programs without the use of subprograms, as a practical matter any significant program must be decomposed into manageable pieces if humans are to write and maintain it.</p>
+<p>When a subprogram is invoked, or called, from within a program, the <em>calling</em> program pauses temporarily so that the called subprogram can carry out its actions. Eventually, the called subprogram will complete its task and control will once again return to the <em>caller</em>. When this occurs, the calling program <em>wakes up</em> and resumes its execution from the point it was at when the call took place.</p>
+<p>Subprograms can call other subprograms (including copies of themselves as we will see later). These subprograms can, in turn, call other subprograms. This chain of subprogram invocations can extend to an arbitrary depth as long as the <em>bottom</em> of the chain is eventually reached. It is necessary that infinite calling sequences be avoided, since each subprogram in the chain of subprogram invocations must eventually complete its task and return control to the program that called it.</p>
+<p>In Scratch, we define subprograms as broadcasts. That is, a sprite can broadcast a message that can be received by another sprite (or even the same sprite). We can think of this as calling a subprogram. When receiving a broadcast, we can specify the script (subprogram) associated with it. Here is a simple example of a subprogram that computes the sum of two numbers stored in the variables <em>i</em> and <em>j</em>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/functions1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>The left side shows the subprogram defined by receiving the broadcast <em>addem</em>. The right side shows the broadcast (or the subprogram <em>call</em>). Assuming that the variables <em>i</em> and <em>j</em> have been declared and given numeric values, then the <em>addem</em> subprogram would add the two variables together and store the result to the variable <em>sum</em>. Here is an example when <em>i</em> is 37 and <em>j</em> is 71 (note that the <em>addem</em> subprogram has been <em>called</em> by being broadcasted):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/functions2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="back-to-the-game" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="back-to-the-game"><span class="header-section-number">8</span> Back to the game</h2>
+<p>It would be neat to count the number of 90 degree turns that the cat makes during its journey. To do this, let’s define a variable (called <code>counter</code>) that will be updated each time the cat turns. Defining variables can be done by selecting <strong>make a variable</strong> in the variables blocks group.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program4-2b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>This adds the variable on the stage. Drag it to the center of the stage so that it doesn’t get in the cat’s way as it moves around:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program4-5c.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>To use the counter in your program, it will first need to be initialized (with the value 0) and then incremented each time the cat makes a 90 degree turn. We can modify our program as follows:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program4-5b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="a-first-game" class="level2 page-columns page-full" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="a-first-game"><span class="header-section-number">9</span> A first game?</h2>
+<p>Modify your program (you can save the current version first if you wish) so that it looks like this:</p>
+
+<div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Renaming your Sprite">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Activity
+Renaming your Sprite
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can change the name of the cat sprite at the top of the scripts area. Make sure that the cat is selected in the sprite list below the stage.</p>
+</div>
+</div></div><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program5-2b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Notice that we now have two block groups in the scripts area. One that is executed when the green flag is clicked; and another that is executed when the cat sprite (Sprite1) is clicked. What does the program do?</p>
+</section>
+<section id="playing-with-sprites" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="playing-with-sprites"><span class="header-section-number">10</span> Playing with Sprites</h2>
+<p>At the top of the scripts area, there are several other tabs that provide sprite costume and sound tools. Click on the <strong>costumes</strong> tab. You will notice that the cat actually has two sprites, one named costume1 and another named costume2:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program6-1b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>By alternating them, we can make it look as if the cat is walking or running. Modify your program as follows:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program6-4b.png" class="img-fluid figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<p>You can also create your own sprites via the paint new sprite button in the sprite list:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program7-1b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>This displays a <strong>paint editor</strong> that can be used to create a new sprite of your design. The other buttons to the right allow saved sprites to be loaded (Scratch comes with many different sprites) and a random sprite to be added to the sprite list.</p>
+<p>Try creating one now:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program7-2b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Click OK when done. This will drop your new sprite in the sprite list and on the stage:</p>
+<p>As mentioned earlier, you can also load a saved sprite if you click on the middle button in the row at the top of the sprite list:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program7-3b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Feel free to select any sprite from any category that you wish:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program7-5b.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Again, you can have a random sprite brought to the stage too by clicking the right-most button:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program7-1d.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program7-10.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>You can click on any sprite in the sprite list, and its scripts load in the scripts area. This allows you to have a separate program for each sprite in the sprite list. Think about what this means. You can separately control each sprite while they all run their programs simultaneously!</p>
+<p>Try clicking on one of the sprites in the sprites area and create the following program for it:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/program7-9b.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>What does this program do? What does the if on edge bounce block do?</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Catch the Baby">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Catch the Baby
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Feel free to explore on your <strong>Potato</strong>. Try out different applications and see how similar or different it is from your laptop. Suggestions of applications to look at and try out include:</p>
-<ul>
-<li>Scratch</li>
-<li>Libreoffice Writer</li>
-<li>Libreoffice Calc</li>
-<li>Terminal</li>
-<li>Chromium</li>
-</ul>
+<p>Follow along with your professor as they create a <strong>Catch the Baby</strong> game. The objective of the game is to be in control of a <em>trampoline</em> that will stop a <em>baby</em> from hurting themselves as they fall from the top of the screen to the bottom of the screen. Every time you successfully catch a baby, your score increases. Whether the baby is successfully caught or otherwise, a new baby will appear at another random position at the top of the screen and the old baby will disappear. As a user, all one can do is move the trampoline sideways in order to get it under the falling baby.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pi2/baby1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
