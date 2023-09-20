@@ -121,6 +121,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#creating-programs-and-saving-files" id="toc-creating-programs-and-saving-files" class="nav-link" data-scroll-target="#creating-programs-and-saving-files"><span class="header-section-number">7.1</span> Creating Programs and Saving Files</a></li>
   <li><a href="#reloading-a-saved-file" id="toc-reloading-a-saved-file" class="nav-link" data-scroll-target="#reloading-a-saved-file"><span class="header-section-number">7.2</span> Reloading a saved file</a></li>
   <li><a href="#data-types-constants-and-variables" id="toc-data-types-constants-and-variables" class="nav-link" data-scroll-target="#data-types-constants-and-variables"><span class="header-section-number">7.3</span> Data types, constants, and variables</a></li>
+  <li><a href="#input-and-output" id="toc-input-and-output" class="nav-link" data-scroll-target="#input-and-output"><span class="header-section-number">7.4</span> Input and Output</a></li>
+  <li><a href="#expressions-and-assignment" id="toc-expressions-and-assignment" class="nav-link" data-scroll-target="#expressions-and-assignment"><span class="header-section-number">7.5</span> Expressions and assignment</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -511,6 +513,123 @@ Definition
 <p>The <strong>primitive types</strong> of a programming language are those data types that are built-in (or standard) to the language and typically considered as basic building blocks (i.e., more complex types can be created from these primitive types).</p>
 </div>
 </div>
+<p>Python’s standard types can be grouped into several classes: numeric types, sequences, sets, and mappings. Although there are actually others, we will focus on these in the <em>Living with Cyber</em> curriculum.</p>
+<p>Numeric types include whole numbers, floating point numbers, and complex numbers. Python has two whole number types: <code>int</code> and <code>long</code>. The <code>int</code> data type is a 64-bit integer. This means that 64 bits (i.e.&nbsp;a bit can be either 0 or 1) is used to represent a single whole number. For example the following series of bits represent a single integer (in fact it represents the number 846,251,337): 0000 0000 0000 0000 0000 0000 0000 0000 0011 0010 0111 0000 1100 0101 0100 1001. We will explore this in more detail at a later time. The <code>long</code> data type is an integer of unlimited length. This means Python will give us enough bits to store any number we want! Note that in Python 3.x, an <code>int</code> is an integer of unlimited length (there is no long data type). These integer types can represent negative or positive whole numbers. The <code>float</code> type is a 64-bit floating point (decimal) number. This means it can hold numbers like 3.14 and -90.3324235. Lastly, the <code>complex</code> type represents complex numbers (i.e., numbers with real and imaginary parts). Most of our programs will require only <code>int</code> and <code>float</code>.</p>
+<p>So what does this all mean? We create variables that contain data of some data type. Knowing the data type of a variable is like knowing the superpowers of a person you can control. In this analogy, the superpowers of a data type are the methods and properties that can be leveraged for use in whatever program you are writing at the time. For example, one of the superpowers of the numeric data types is raising them to a power. To do that, we can use the function of the form <code>pow(x,y)</code>. In this example, <em>x</em> and <em>y</em> are variables that are of type <code>int</code> or <code>float</code>. The <strong>pow</strong> function returns the value of the computation involving raising the value in x to the power of the value in y (i.e., x<sup>y</sup> ). This function would not typically be able to work for variables that aren’t numeric data types. You may recall that the same functionality can be implemented in Python as: <code>x ** y</code>. This effectively performs the same thing.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>constant</strong> is defined as a value of a particular type that does not change over time.</p>
+</div>
+</div>
+<p>In Python (just as in Scratch), both numbers and text may be expressed as constants. <strong>Numeric constants</strong> are composed of the digits 0 through 9 and, optionally, a negative sign (for negative numbers), and a decimal point (for floating point numbers). For example, the number -3.14159 is a numeric constant in Python.</p>
+<p>A text constant consists of a sequence of characters (also known as a string of characters – or just a string). The following are examples of valid string constants:</p>
+<ul>
+<li>“A man, a plan, a canal, Panama.”</li>
+<li>“Was it Eliot’s toilet I saw?”</li>
+<li>“There are 10 kinds of people in this world. Those who know binary, those who don’t, and those who didn’t know it was in base 3!”</li>
+</ul>
+<p>Note that, unlike Scratch, Python requires the quotes surrounding text constants.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>variable</strong> is a named object that can store a value of a particular data type.</p>
+</div>
+</div>
+<p>Recall that Scratch supports two types of variables: text variables and numeric variables. Moreover, before a variable can be used, its name must be declared. In many programming languages, both its name and type must be declared; however, both Scratch and Python only require a variable’s name to be declared before it is used. Here is an example of declaring and initializing a variable in Python compared to the process in Scratch.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/Lesson04-10.png" class="img-fluid"></p>
+</div>
+<div class="cell quarto-layout-cell" data-execution_count="3" style="flex-basis: 50.0%;justify-content: center;">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">19</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>Here are some examples that deal with variables and how they compare in Scratch and Python:</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/Lesson04-11.png" class="img-fluid"></p>
+</div>
+<div class="cell quarto-layout-cell" data-execution_count="4" style="flex-basis: 50.0%;justify-content: center;">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">19</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> age <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> age <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (age <span class="op">&gt;</span> <span class="dv">35</span>):</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You are old."</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Young'n!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Young'n!</code></pre>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/Lesson04-12.png" class="img-fluid"></p>
+</div>
+<div class="cell quarto-layout-cell" data-execution_count="5" style="flex-basis: 50.0%;justify-content: center;">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="dv">35</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="dv">69</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>avg <span class="op">=</span> (num1 <span class="op">+</span> num2) <span class="op">/</span> <span class="fl">2.0</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(avg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>52.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>In short, to declare variables in Python, we simply write a statement that assigns a value to a variable name. Note that, just as in Scratch, we can assign a value of a different type to a variable. For example:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="fl">3.14159</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="st">"Pi"</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5
+3.14159
+Pi</code></pre>
+</div>
+</div>
+<p>It is important to realize that, while human programmers generally try to give variables names that reflect the use to which they will be put, the variable name itself doesn’t mean anything to the computer. For example, the numeric variable <code>age</code> can be used to hold any number, not just an age. It is perfectly legal for <code>age</code> to hold the number of students in a class or the number of eggs in your refrigerator. The computer couldn’t care less. Human programmers, on the other hand, generally care a great deal. They expect a variable’s name to accurately reflect its purpose; so while it is possible to do so, it would be considered poor programming practice to use the variable <code>age</code> to store anything other than an age.</p>
+</section>
+<section id="input-and-output" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="input-and-output"><span class="header-section-number">7.4</span> Input and Output</h3>
+<p>In order for a computer program to perform any useful work, it must be able to communicate with the outside world. The process of communicating with the outside world is known as input/output (or I/O). Most imperative languages include mechanisms for performing other kinds of I/O such as detecting where the mouse is pointing and accessing the contents of a disk drive.</p>
+<p>The flexibility and power that input statements give programming languages cannot be overstated. Without them the only way to get a program to change its output would be to modify the program code itself, which is something that a typical user cannot be expected to do.</p>
+<p>General-purpose programming languages allow human programmers to construct programs that do amazing things. When attempting to understand what a program does, however, it is vitally important to always keep in mind that the computer does not comprehend the meaning of the character strings it manipulates or the significance of the calculations it performs. Take, for example, the following simple Scratch program:</p>
+<p><img src="images/Lesson04-13.png" class="img-fluid"></p>
+<p>This program simply displays strings of characters, stores user input, and echoes that input back to the screen along with some additional character strings. The computer has no clue what the text string “Please enter your name:” means. For all it cares, the string could have been “My hovercraft is full of eels.” or “qwerty uiop asdf ghjkl;” (or any other text string for that matter). Its only concern is to copy the characters of the text string onto the display screen.</p>
+<p>Only in the minds of human beings do the sequence of characters “Please enter your name:” take on meaning. If this seems odd, try to remember that comprehension does not even occur in the minds of all humans, only those who are capable of reading and understanding written English. A four year old, for example, would not know how to respond to this prompt because he or she would be unable to read it. This is so despite the fact that if you were to ask the child his or her name, he or she could immediately respond and perhaps even type it out on the keyboard for you.</p>
+<p>Now consider this Scratch program:</p>
+<p><img src="images/Lesson04-14.png" class="img-fluid"></p>
+<p>Here, the input is numeric instead of text. The program prompts the user for two numbers, which it then computes the sum for and displays to the user. Note that two variables were declared: <code>num1</code> and <code>num2</code>. The first number is captured and stored in the variable <code>num1</code>. The second number is captured and stored in the variable <code>num2</code>. What do you think would happen if the user did not provide numeric input and, for example, inputted “Bob” for the first number? In the <em>real world</em>, programmers must create robust programs that examine user input in order to verify that it is of the proper type before processing that input. If the input is found to be in error, the program must take appropriate corrective action, such as rejecting the invalid input and requesting the user try again.</p>
+<p>In Python, output is implemented as a <strong>print</strong> statement:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"This is some output!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We use the <strong>input</strong> statement to ask a question and obtain user input. In the same statement, we can assign the result of this to a variable:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"How old are you? "</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Of course, we need to take care to properly specify whether the input is numeric or text (in Python 3.x its a text by default. Use casting to convert into numeric).</p>
+</section>
+<section id="expressions-and-assignment" class="level3" data-number="7.5">
+<h3 data-number="7.5" class="anchored" data-anchor-id="expressions-and-assignment"><span class="header-section-number">7.5</span> Expressions and assignment</h3>
 </section>
 </section>
 
