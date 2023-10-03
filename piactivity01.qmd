@@ -156,8 +156,12 @@ names that you are typing into your terminal to save time and avoid any
 typos/errors.
 :::
 
+::: {.callout-note title="Wifi Tip #1" .column-margin}
+**Append** means add the information to the end of the existing file. Do
+NOT delete any information that already exists in the file.
+:::
 
-3. Append the following information to the file that was opened by the
+3. **Append** the following information to the file that was opened by the
 command above. Be sure to replace `abc123` and `GoDogs!` with your
 Lousiana Tech credentials.
 
@@ -170,7 +174,7 @@ Lousiana Tech credentials.
     }
     ```
 
-::: {.callout-note title="Wifi Tip" .column-margin}
+::: {.callout-note title="Wifi Tip #2" .column-margin}
 A large number of wifi issues stem from students mistyping the text
 in steps 2 and 3. Make sure to crosscheck your text before you proceed
 to step 4.
