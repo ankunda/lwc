@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-08-29">
+<meta name="dcterms.date" content="2023-11-30">
 
-<title>Introduction to Computer Programming</title>
+<title>More on Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,16 +58,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="lesson04_files/libs/clipboard/clipboard.min.js"></script>
-<script src="lesson04_files/libs/quarto-html/quarto.js"></script>
-<script src="lesson04_files/libs/quarto-html/popper.min.js"></script>
-<script src="lesson04_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="lesson04_files/libs/quarto-html/anchor.min.js"></script>
-<link href="lesson04_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="lesson04_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="lesson04_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="lesson04_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="lesson04_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="lesson11_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lesson11_files/libs/quarto-html/quarto.js"></script>
+<script src="lesson11_files/libs/quarto-html/popper.min.js"></script>
+<script src="lesson11_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="lesson11_files/libs/quarto-html/anchor.min.js"></script>
+<link href="lesson11_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lesson11_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="lesson11_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="lesson11_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="lesson11_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <style>
 
       .quarto-title-block .quarto-title-banner {
@@ -85,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Introduction to Computer Programming</h1>
+      <h1 class="title">More on Python</h1>
                       </div>
   </div>
     
@@ -96,7 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 29, 2023</p>
+        <p class="date">November 30, 2023</p>
       </div>
     </div>
     
@@ -110,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#machine-language" id="toc-machine-language" class="nav-link active" data-scroll-target="#machine-language"><span class="header-section-number">1</span> Machine Language</a></li>
+  <li><a href="#what-you-should-already-know" id="toc-what-you-should-already-know" class="nav-link active" data-scroll-target="#what-you-should-already-know"><span class="header-section-number">1</span> What you should already know</a></li>
   <li><a href="#programming-languages" id="toc-programming-languages" class="nav-link" data-scroll-target="#programming-languages"><span class="header-section-number">2</span> Programming Languages</a></li>
   <li><a href="#programming-paradigms" id="toc-programming-paradigms" class="nav-link" data-scroll-target="#programming-paradigms"><span class="header-section-number">3</span> Programming Paradigms</a></li>
   <li><a href="#why-python" id="toc-why-python" class="nav-link" data-scroll-target="#why-python"><span class="header-section-number">4</span> Why Python?</a></li>
@@ -124,12 +124,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#input-and-output" id="toc-input-and-output" class="nav-link" data-scroll-target="#input-and-output"><span class="header-section-number">7.4</span> Input and Output</a></li>
   <li><a href="#expressions-and-assignment" id="toc-expressions-and-assignment" class="nav-link" data-scroll-target="#expressions-and-assignment"><span class="header-section-number">7.5</span> Expressions and assignment</a></li>
   </ul></li>
-  <li><a href="#subprograms" id="toc-subprograms" class="nav-link" data-scroll-target="#subprograms"><span class="header-section-number">8</span> Subprograms</a></li>
-  <li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"><span class="header-section-number">9</span> Operators</a>
-  <ul class="collapse">
-  <li><a href="#arithmetic-operators" id="toc-arithmetic-operators" class="nav-link" data-scroll-target="#arithmetic-operators"><span class="header-section-number">9.1</span> Arithmetic Operators</a></li>
-  <li><a href="#relational-operators" id="toc-relational-operators" class="nav-link" data-scroll-target="#relational-operators"><span class="header-section-number">9.2</span> Relational Operators</a></li>
-  </ul></li>
   </ul>
 </nav>
 </div>
@@ -138,8 +132,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="machine-language" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="machine-language"><span class="header-section-number">1</span> Machine Language</h2>
+<section id="what-you-should-already-know" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="what-you-should-already-know"><span class="header-section-number">1</span> What you should already know</h2>
+<p>In this lesson, we will build on what you have already learned about the Python programming language. To be sure that we are all on the same page, let’s briefly review the things about Python that you should already be familiar with. For more detail, review the lesson on <em>Introduction to Computer Programming</em>.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Definition">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -636,309 +631,6 @@ Pi</code></pre>
 </section>
 <section id="expressions-and-assignment" class="level3" data-number="7.5">
 <h3 data-number="7.5" class="anchored" data-anchor-id="expressions-and-assignment"><span class="header-section-number">7.5</span> Expressions and assignment</h3>
-<p>You’ve seen how to assign values to variables above using a simple assignment statement. For example:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Shonda Lear"</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">19</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>grade <span class="op">=</span> <span class="fl">91.76</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>letter_grade <span class="op">=</span> <span class="st">"A"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>These are all examples of assignment statements. In this configuration, the equal sign (=) functions as the assignment operator. Later, you will see how it can also be used to compare values or expressions.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>An <strong>expression</strong> in a programming language is some combination of values (e.g., constants and variables) that are evaluated to produce some new value.</p>
-</div>
-</div>
-<p>For example, a simple expression in Python is <code>1 + 2</code>. The result of this expression is, of course, <code>3</code>! Expressions usually take on the form of <em>operand operator operand</em>. In the previous example, the operator was <code>+</code> and the operands were <code>1</code> and <code>2</code>. The operator <code>+</code> has a very well defined behavior on operands of numeric types: it simply adds them. On string types, it concatenates.</p>
-<div class="callout callout-style-default callout-important callout-titled" title="Activity">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Activity
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>What do you think would happen if the operands are of two different types (e.g., numeric and string)? Try out the statements below and see if you can understand the output that you get.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">+</span> <span class="st">"one"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"one"</span> <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1"</span> <span class="op">+</span> <span class="st">"1"</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">+</span> <span class="st">"1"</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"one"</span> <span class="op">+</span> <span class="bu">str</span>(<span class="dv">1</span>))</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">+</span> <span class="bu">int</span>(<span class="st">"1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-<p>The activity above should have demonstrated that Python doesn’t know what it means to “add” a numeric type to a string type. Therefore, it results in an error: unsupported operand type(s). To “add” a string type to a numeric type, we must convert the numeric type to a string type via <code>str</code>. Then, Python understands that “adding” actually means concatenating two strings. It is interesting to note how Python handles “multiplying” a string type and a numeric type like this:</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello"</span> <span class="op">*</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>hellohellohellohellohello</code></pre>
-</div>
-</div>
-<p>It turns out that Python understands how to “multiply” both types by interpreting the <code>*</code> operator as concatenating a string type a number of times specified by a numeric type.</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Baby Shark"</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"doo "</span> <span class="op">*</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Baby Shark
-doo doo doo doo doo doo </code></pre>
-</div>
-</div>
-<p>Python has many different operators that perform a variety of operations on operands. These will be discussed later in this lesson.</p>
-</section>
-</section>
-<section id="subprograms" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="subprograms"><span class="header-section-number">8</span> Subprograms</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A <strong>subprogram</strong> is a block or segment of organized, reusable, and related statements that perform some action.</p>
-</div>
-</div>
-<p>It is essentially a program within a program. Recall an earlier lesson on representing algorithms as to-do lists. One algorithm represented the steps necessary to <em>get to class</em>. One of those steps was <em>eat breakfast</em>. We noted how we could zoom in to that step and identify the sub-steps necessary to complete the <em>eat breakfast</em> step. Control flow shifted from the main to-do list to the <em>eat breakfast</em> to-do list when the <em>eat breakfast</em> step was encountered, and then returned to the main to-do list at the point where it left earlier. We can consider the <em>eat breakfast</em> to-do list as a subprogram.</p>
-<p>Very few <em>real</em> programs are written as one long piece of code. Instead, traditional imperative programs generally consist of large numbers of relatively simple subprograms that work together to accomplish some complex task. While it is theoretically possible to write large programs without the use of subprograms, as a practical matter any significant program must be decomposed into manageable pieces if humans are to write and maintain it.</p>
-<p>Subprograms make the construction of software libraries possible.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A <strong>software library</strong> (or just <strong>library</strong>) is a collection of subprograms, or routines as they are sometimes called, for solving common problems that have been written, tested, and debugged.</p>
-</div>
-</div>
-<p>Most programming languages come with extensive libraries for performing mathematical and text string operations and for building graphical user interfaces. These languages allow programmers to include library routines in their code. Using subprograms from the library speeds up the software development process and results in a more reliable finished product.</p>
-<p>When a subprogram is invoked, or called, from within a program, the <em>calling</em> program pauses temporarily so that the <em>called</em> subprogram can carry out its actions. Eventually, the called subprogram will complete its task and control will once again return to the <em>caller</em>. When this occurs, the calling program <em>wakes up</em> and resumes its execution from the point it was at when the call took place.</p>
-<p>Subprograms can call other subprograms (including copies of themselves as we will see later). These subprograms can, in turn, call other subprograms. This chain of subprogram invocations can extend to an arbitrary depth as long as the <em>bottom</em> of the chain is eventually reached. It is necessary that infinite calling sequences be avoided, since each subprogram in the chain of subprogram invocations must eventually complete its task and return control to the program that called it.</p>
-<p>Subprograms are broken down into two types: methods and functions.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A <strong>method</strong> is a subprogram that performs an action and returns flow of control to the point at which it was called. A <strong>function</strong> is similar; however, it returns some sort of value before flow of control is transferred back to the point at which it was called.</p>
-</div>
-</div>
-<p>For example, a method may simply display some useful information about a program to the user (e.g., a program’s help menu), while a function may compute some numeric value and return it to the user. Subprograms in Python are generally just referred to as functions, regardless of whether or not they return a value. For the remainder of this lesson, we will refer to subprograms as functions.</p>
-<p>In Python, functions must formally be declared prior to their use. That is, the body or content of a function must be specified in a program before it can be called. The syntax for declaring a function is as follows:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> function_name(optional_parameters):</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    function_body</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The keyword <strong>def</strong> is a reserved word in Python and is used to declare functions. A function name can be any valid identifier. As you will see later, an <strong>identifier</strong> is a name used to identify a variable, function, or other object (note that objects will be discussed later). The function name must be followed by a set of parentheses containing optional parameters.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Parameters</strong> allow for values (constants, variables, expressions, and so on) to be passed in to a function. They form the input needed for the function to execute properly.</p>
-</div>
-</div>
-<p>For example, a function may accept two values, calculate their average, and return the result to the caller. The function <strong>definition</strong> (or <strong>header</strong>) is terminated with a colon (<code>:</code>). The <strong>body</strong> of a function (i.e., its enclosed statements) is indented.</p>
-<p>Here is an example of a simple function that displays a line of text:</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sayHelloWorld():</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hello World!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This function is called <code>sayHelloWorld</code> and takes no parameters. It simply displays the text, “Hello world!”</p>
-<p>Once its been defined, we can then progress to using this function as many times as we’d like. To call this function, we simply need to specify its name and the values of its parameters (if any) as follows:</p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>sayHelloWorld()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Hello World!</code></pre>
-</div>
-</div>
-<p>Or if we want to call it multiple times:</p>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>sayHelloWorld()</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>sayHelloWorld()</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>sayHelloWorld()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Hello World!
-Hello World!
-Hello World!</code></pre>
-</div>
-</div>
-<p>Formally, functions have a <strong>header</strong> and a <strong>body</strong>. The header is the statement that defines the function (i.e., with the def keyword). The header of a function is often called its <strong>signature</strong>, and provides its name and any parameters. Function parameters help a function complete its task by providing input values. In fact, each call to a function possibly means a new set of parameters. The body of a function describes what the function does. This is the code within the function. Some functions compute and return a result, called the <strong>return value</strong>, that is returned via the <strong>return</strong> keyword.</p>
-<p>Here’s a function that accepts two parameters and calculates (and returns) the average of the two:</p>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average(a, b):</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (a <span class="op">+</span> b) <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>And here are some examples of how it could be called:</p>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> average(<span class="dv">5</span>, <span class="dv">11</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> average(<span class="dv">4</span>, <span class="dv">6</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> average(<span class="dv">22</span>, <span class="dv">21</span>)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a = </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, b = </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">, c = </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>a = 8.0, b = 5.0, c = 21.5</code></pre>
-</div>
-</div>
-<p>Note the <strong>return</strong> keyword. Its purpose is to return whatever expression comes after it. The statement <code>return (a + b) / 2</code> returns the result of the expression <code>(a + b) / 2</code> to the caller (one of which happened at the statement <code>average(5, 11)</code>).</p>
-<p>Here’s a pow function that returns the exponentiation of one parameter by another:</p>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="bu">pow</span>(x, y):</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">**</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Recall that <code>x ** y</code> in Python implies exponentiation and means <em>x</em> raised to the power <em>y</em>. Formally, we call <code>**</code> the exponentiation operator. Operators will be discussed in detail in the next section.</p>
-<p>Here’s sample output of this function with various parameters:</p>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">pow</span>(<span class="dv">2</span>, <span class="dv">8</span>)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">pow</span>(<span class="dv">10</span>, <span class="dv">4</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="bu">pow</span>(<span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a = </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, b = </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">, c = </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>a = 256, b = 10000, c = 243</code></pre>
-</div>
-</div>
-</section>
-<section id="operators" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="operators"><span class="header-section-number">9</span> Operators</h2>
-<p>Like Scratch, Python has a variety of operators, broken down into several classes: arithmetic operators, relational (comparison) operators, assignment operators, logical operators, bitwise operators, membership operators, and identity operators. Operators allow operations to be performed on operands. Let’s first take a look at the arithmetic operators since they relate directly to assignment.</p>
-<section id="arithmetic-operators" class="level3" data-number="9.1">
-<h3 data-number="9.1" class="anchored" data-anchor-id="arithmetic-operators"><span class="header-section-number">9.1</span> Arithmetic Operators</h3>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <strong>arithmetic operators</strong> allow us to perform arithmetic operations on two operands.</p>
-</div>
-</div>
-<p>In the following table, assume that <code>a = 23</code>, <code>b = 17</code>, <code>c = 4.0</code>, and <code>d = 8.0</code>:</p>
-<table class="table">
-<caption>Python Arithmetic Operators and Examples</caption>
-<colgroup>
-<col style="width: 8%">
-<col style="width: 21%">
-<col style="width: 39%">
-<col style="width: 30%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Symbol</th>
-<th style="text-align: left;">Description</th>
-<th style="text-align: left;">Example 1</th>
-<th style="text-align: left;">Example 2</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>+</code></td>
-<td style="text-align: left;">addition</td>
-<td style="text-align: left;">a + b = 40</td>
-<td style="text-align: left;">c + d = 12.0</td>
-</tr>
-<tr class="even">
-<td><code>-</code></td>
-<td style="text-align: left;">subtraction</td>
-<td style="text-align: left;">a - b = 6</td>
-<td style="text-align: left;">c - d = -4.0</td>
-</tr>
-<tr class="odd">
-<td><code>*</code></td>
-<td style="text-align: left;">multiplication</td>
-<td style="text-align: left;">a * b = 391</td>
-<td style="text-align: left;">c * d = 32.0</td>
-</tr>
-<tr class="even">
-<td><code>/</code></td>
-<td style="text-align: left;">division</td>
-<td style="text-align: left;">a / b = 1.3529411764705883</td>
-<td style="text-align: left;">c / d = 0.5</td>
-</tr>
-<tr class="odd">
-<td><code>%</code></td>
-<td style="text-align: left;">modulus</td>
-<td style="text-align: left;">a % b = 6</td>
-<td style="text-align: left;">c % d = 4.0</td>
-</tr>
-<tr class="even">
-<td><code>**</code></td>
-<td style="text-align: left;">exponentiation</td>
-<td style="text-align: left;">a ** b = 141050039560662968926103</td>
-<td style="text-align: left;">c ** d = 65536.0</td>
-</tr>
-<tr class="odd">
-<td><code>//</code></td>
-<td style="text-align: left;">floor division</td>
-<td style="text-align: left;">a // b = 1</td>
-<td style="text-align: left;">c // d = 0.0</td>
-</tr>
-</tbody>
-</table>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">4.0</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="fl">8.0</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c <span class="op">+</span> d)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c <span class="op">-</span> d)</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c <span class="op">*</span> d)</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c <span class="op">/</span> d)</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c <span class="op">%</span> d)</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c <span class="op">**</span> d)</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c <span class="op">//</span> d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>12.0
--4.0
-32.0
-0.5
-4.0
-65536.0
-0.0</code></pre>
-</div>
-</div>
-</section>
-<section id="relational-operators" class="level3" data-number="9.2">
-<h3 data-number="9.2" class="anchored" data-anchor-id="relational-operators"><span class="header-section-number">9.2</span> Relational Operators</h3>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <strong>relational operators</strong> allow us to compare the values of two operands.</p>
-</div>
-</div>
 </section>
 </section>
 
