@@ -129,7 +129,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#arithmetic-operators" id="toc-arithmetic-operators" class="nav-link" data-scroll-target="#arithmetic-operators"><span class="header-section-number">9.1</span> Arithmetic Operators</a></li>
   <li><a href="#relational-operators" id="toc-relational-operators" class="nav-link" data-scroll-target="#relational-operators"><span class="header-section-number">9.2</span> Relational Operators</a></li>
+  <li><a href="#assignment-operators" id="toc-assignment-operators" class="nav-link" data-scroll-target="#assignment-operators"><span class="header-section-number">9.3</span> Assignment Operators</a></li>
   </ul></li>
+  <li><a href="#identifiers-and-reserved-words" id="toc-identifiers-and-reserved-words" class="nav-link" data-scroll-target="#identifiers-and-reserved-words"><span class="header-section-number">10</span> Identifiers and Reserved Words</a></li>
+  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments"><span class="header-section-number">11</span> Comments</a></li>
+  <li><a href="#primary-control-constructs" id="toc-primary-control-constructs" class="nav-link" data-scroll-target="#primary-control-constructs"><span class="header-section-number">12</span> Primary Control Constructs</a></li>
   </ul>
 </nav>
 </div>
@@ -838,7 +842,7 @@ Definition
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <strong>arithmetic operators</strong> allow us to perform arithmetic operations on two operands.</p>
+<p><strong>Arithmetic operators</strong> allow us to perform arithmetic operations on two operands.</p>
 </div>
 </div>
 <p>In the following table, assume that <code>a = 23</code>, <code>b = 17</code>, <code>c = 4.0</code>, and <code>d = 8.0</code>:</p>
@@ -936,10 +940,309 @@ Definition
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <strong>relational operators</strong> allow us to compare the values of two operands.</p>
+<p><strong>Relational operators</strong> allow us to compare the values of two operands.</p>
 </div>
 </div>
+<p>The result is the relation among the operands. In the following table, assume that <code>a = 23</code> and <code>b = 17</code>:</p>
+<table class="table">
+<caption>Python Relational Operators and Examples</caption>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code></td>
+<td style="text-align: left;">equality</td>
+<td style="text-align: left;"><code>a == b</code> is <code>False</code></td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td style="text-align: left;">inequality</td>
+<td style="text-align: left;"><code>a != b</code> is <code>True</code></td>
+</tr>
+<tr class="odd">
+<td><code>&lt;&gt;</code></td>
+<td style="text-align: left;">inequality</td>
+<td style="text-align: left;"><code>a &lt;&gt; b</code> is <code>True</code></td>
+</tr>
+<tr class="even">
+<td><code>&gt;</code></td>
+<td style="text-align: left;">greater than</td>
+<td style="text-align: left;"><code>a &gt; b</code> is <code>True</code></td>
+</tr>
+<tr class="odd">
+<td><code>&gt;=</code></td>
+<td style="text-align: left;">greater than or equal to</td>
+<td style="text-align: left;"><code>a &gt;= b</code> is <code>True</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;</code></td>
+<td style="text-align: left;">less than</td>
+<td style="text-align: left;"><code>a &lt; b</code> is <code>False</code></td>
+</tr>
+<tr class="odd">
+<td><code>&lt;=</code></td>
+<td style="text-align: left;">less than or equal to</td>
+<td style="text-align: left;"><code>a &lt;= b</code> is <code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note that the capitalization of <code>True</code> and <code>False</code> is intentional. In Python, the boolean value <em>true</em> is expressed as <code>True</code> and <em>false</em> as <code>False</code>. Also note that the use of <code>&lt;&gt;</code> is mostly discouraged as this is an old style way of checking for inequality. It is therefore recommended to use <code>!=</code> instead.</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">23</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">17</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">==</span> b)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">!=</span> b)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">&gt;</span> b)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">&gt;=</span> b)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">&lt;</span> b)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">&lt;=</span> b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+True
+True
+True
+False
+False</code></pre>
+</div>
+</div>
+<p>In Python, relational operators are typically used in if-statements, where branching is often desired. This will be illustrated in more detail later.</p>
 </section>
+<section id="assignment-operators" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="assignment-operators"><span class="header-section-number">9.3</span> Assignment Operators</h3>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Assignment operators</strong> allow us to assign values to variables.</p>
+</div>
+</div>
+<p>You have already seen the most basic example of this using the equal assignment operator (as in the statement: <code>age = 19</code>). In the following table, assume that <code>a = 23.0</code> and <code>b = 17</code>:</p>
+<table class="table">
+<caption>Python Assignment Operators and Examples</caption>
+<colgroup>
+<col style="width: 4%">
+<col style="width: 13%">
+<col style="width: 56%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th style="text-align: left;">Expression</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>=</code></td>
+<td style="text-align: left;"><code>a = b</code></td>
+<td style="text-align: left;">assigns the value in <code>b</code> to <code>a</code></td>
+<td style="text-align: left;">a = 17</td>
+</tr>
+<tr class="even">
+<td><code>+=</code></td>
+<td style="text-align: left;"><code>a += b</code></td>
+<td style="text-align: left;">increments the value in <code>a</code> by <code>b</code> (same as <code>a = a + b</code>)</td>
+<td style="text-align: left;">a = 40.0</td>
+</tr>
+<tr class="odd">
+<td><code>-=</code></td>
+<td style="text-align: left;"><code>a -= b</code></td>
+<td style="text-align: left;">decrements the value in <code>a</code> by <code>b</code> (same as <code>a = a - b</code>)</td>
+<td style="text-align: left;">a = 6.0</td>
+</tr>
+<tr class="even">
+<td><code>*=</code></td>
+<td style="text-align: left;"><code>a *= b</code></td>
+<td style="text-align: left;">increases the value in <code>a</code> by a factor of <code>b</code> (same as <code>a = a * b</code>)</td>
+<td style="text-align: left;">a = 391.0</td>
+</tr>
+<tr class="odd">
+<td><code>/=</code></td>
+<td style="text-align: left;"><code>a /= b</code></td>
+<td style="text-align: left;">decreases the value in <code>a</code> by a factor of <code>b</code> (same as <code>a = a / b</code>)</td>
+<td style="text-align: left;">a = 1.3529411764705883</td>
+</tr>
+<tr class="even">
+<td><code>%=</code></td>
+<td style="text-align: left;"><code>a %= b</code></td>
+<td style="text-align: left;">changes the value in <code>a</code> to the remainder of dividing <code>a</code> by <code>b</code> (same as <code>a = a % b</code>)</td>
+<td style="text-align: left;">a = 6.0</td>
+</tr>
+<tr class="odd">
+<td><code>**=</code></td>
+<td style="text-align: left;"><code>a **= b</code></td>
+<td style="text-align: left;">changes the value in <code>a</code> to the exponentiation of <code>a</code> to <code>b</code> (same as <code>a = a ** b</code>)</td>
+<td style="text-align: left;">a = 1.4105003956066297e+23</td>
+</tr>
+<tr class="even">
+<td><code>//=</code></td>
+<td style="text-align: left;"><code>a //= b</code></td>
+<td style="text-align: left;">changes the value in <code>a</code> the floor of dividing <code>a</code> by <code>b</code> (same as <code>a = a // b</code>)</td>
+<td style="text-align: left;">a = 1.0</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="identifiers-and-reserved-words" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="identifiers-and-reserved-words"><span class="header-section-number">10</span> Identifiers and Reserved Words</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An <strong>identifier</strong> is a name used to identify a variable, function, or other object (note that objects will be discussed later).</p>
+</div>
+</div>
+<p>Variable names (such as <code>age</code> and <code>average</code>, for example) or function names (such as <code>midPoint</code> and <code>distance</code>, for example) are all valid identifiers.</p>
+<p>In Python, identifiers must begin with a letter (either lowercase <code>a</code> to <code>z</code> or uppercase <code>A</code> to <code>Z</code>) or an underscore (_) followed by zero or more letters, underscores, and digits (0 through 9). Here are examples of valid identifiers:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>average</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>Average</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>average_grade</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>averageScore</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>_mustard</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>_7a69_</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>a1b2c3X7Y9Z0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that Python is a case-sensitive language. For example, the identifier <code>average</code> is not the same as the identifier <code>Average</code>. Take a look at this example:</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>average <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>Average <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"average = </span><span class="sc">{</span>average<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Average = </span><span class="sc">{</span>Average<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>average = 100
+Average = 50</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Reserved words</strong> (sometimes called <strong>keywords</strong>) in a programming language are words that are meaningful to the language and <strong>cannot</strong> be used as identifiers.</p>
+</div>
+</div>
+<p>Most programming languages have quite a few reserved words. Python 3.x, for example, has the following reserved words:</p>
+<div class="cell" data-execution_count="19">
+<div class="cell-output cell-output-stdout">
+<pre><code>False, None, True, __peg_parser__, and, as, assert, async, await, break, class, continue, 
+def, del, elif, else, except, finally, for, from, global, if, import, in, 
+is, lambda, nonlocal, not, or, pass, raise, return, try, while, with, yield, </code></pre>
+</div>
+</div>
+<p>You are already familiar with some of these: <code>def</code>, <code>print</code>, and <code>return</code>. Many of the Python reserved words will be discussed later.</p>
+</section>
+<section id="comments" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="comments"><span class="header-section-number">11</span> Comments</h2>
+<p>It is often useful to provide informative text in our programs.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>comment</strong> is text that is not interpreted nor converted to some sort of executable format as typical source code may be. It simply exists to provide information to developers, coders, or users working on or inspecting source code.</p>
+</div>
+</div>
+<p>We often comment parts of programs to describe what something does, why a choice in construct was chosen, and so on. Typically, a header at the top of our programs is also inserted to provide information such as who authored the program, when it was last updated, and what it does.</p>
+<p>In Python, there are two kinds of comments: single- and multi-line comments. Although there are several ways of commenting, we will only discuss the more widely used methods.</p>
+<p>Single-line comments span a single line (or a part of a line). A single line comment begins with the pound or hash (for the Twitter/X crowd) sign: <code>#</code>. A single-line comments can take up the entire line (i.e., the line begins with <code>#</code>), or it can follow a valid Python statement (i.e., only the latter part of a line is commented). Here are sample single-line comments:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the user's name</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"What is your name? "</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Dr. "</span> <span class="op">+</span> name    <span class="co"># prepend the Dr. title</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co"># say hello!</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the snippet above, there are three single-line comments. Two each take up an entire line. The third takes up only part of the line. The text that comes before it is valid Python syntax that is interpreted. Note that, once a comment has been started on a line, the rest of the line must be a comment.</p>
+<p>Multi-line comments begin and end with three single (<code>'''</code>) or double quotes (<code>"""</code>)in succession. They are typically used in source code headers, to comment out blocks of code for reasons such as debugging, and so on. Here are sample multi-line comments:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">Author: Manny McFarlane</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co">Last updated: 2023-12-19</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co">Description: This program is nothing but fluff.</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co">And</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co">here</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="co">is</span></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="co">another</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="co">multi-line</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="co">comment!</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a><span class="co">""" This is also a valid</span></span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="co">multi-line comment """</span></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a><span class="co">''' And so is this! '''</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that single and double quotes cannot be mixed in multi-line comments. That is, a multi-line comment cannot start with three single quotes and end with three double quotes. Many Python programmers prefer to implement multi-line comments as a sequence of single-line comments; for example:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Manny McFarlane</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Last updated: 2023-12-19</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Description: This program is nothing but fluff.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This often stems from the fact that, in Python, strings can be enclosed in single quotes (<code>'</code>), double quotes (<code>"</code>), or three successive single (<code>'''</code>) or double (<code>"""</code>) quotes. The latter allows strings to span multiple lines. For example:</p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>first_name <span class="op">=</span> <span class="st">'Joe'</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>last_name <span class="op">=</span> <span class="st">"Smith"</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>bio <span class="op">=</span> <span class="st">"""I am a wonderful human being</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="st">capable of truly incredible things!"""</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first_name)</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(last_name)</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Joe
+Smith
+I am a wonderful human being
+capable of truly incredible things!</code></pre>
+</div>
+</div>
+<p>Specifically regarding program headers, many programmers choose to implement them as follows to make them readable and easily identifiable:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#################################################</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Manny McFarlane</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Last updated: 2023-12-19</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Description: This program is nothing but fluff.</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co">#################################################</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="primary-control-constructs" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="primary-control-constructs"><span class="header-section-number">12</span> Primary Control Constructs</h2>
+<p>What makes computers more than simple calculating devices is their ability to respond in different ways to different situations. In order to create programs capable of solving more complex tasks we need to examine how the basic instructions we have studied can be organized into higher-level constructs. Recall that the vast majority of imperative programming languages support three types of control constructs which are used to group individual statements together and specify the conditions under which they will be executed. Again, these control constructs are: sequence, selection, and repetition.</p>
+<p>Recall from a previous RPi activity that <strong>sequence</strong> requires that the individual statements of a program be executed one after another, in the order that they appear in the program. Sequence is defined implicitly by the physical order of the statements. It does not require an explicit program structure. This is related to our previous discussion on <strong>control flow</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Selection</strong> constructs contain one or more blocks of statements and specify the conditions under which the blocks should be executed.</p>
+</div>
+</div>
 </section>
 
 </main>

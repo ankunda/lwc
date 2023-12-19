@@ -1064,7 +1064,7 @@ operators since they relate directly to assignment.
 ### Arithmetic Operators
 
 ::: {.callout-tip title="Definition"}
-The **arithmetic operators** allow us to perform arithmetic operations on
+**Arithmetic operators** allow us to perform arithmetic operations on
 two operands.
 :::
 
@@ -1098,5 +1098,253 @@ print(c // d)
 ### Relational Operators
 
 ::: {.callout-tip title="Definition"}
-The **relational operators** allow us to compare the values of two operands.
+**Relational operators** allow us to compare the values of two operands.
+:::
+
+The result is the relation among the operands. In the following table,
+assume that `a = 23` and `b = 17`:
+
+| Symbol | Description | Example |
+|---|:-----|:-------|
+|`==`| equality | `a == b` is `False`|
+|`!=`| inequality | `a != b` is `True`|
+|`<>`| inequality | `a <> b` is `True`|
+|`>`| greater than | `a > b` is `True`|
+|`>=`| greater than or equal to | `a >= b` is `True`|
+|`<`| less than | `a < b` is `False`|
+|`<=`| less than or equal to | `a <= b` is `False`|
+
+: Python Relational Operators and Examples
+
+Note that the capitalization of `True` and `False` is intentional. In
+Python, the boolean value *true* is expressed as `True` and *false* as
+`False`.
+Also note that the use of `<>` is mostly discouraged as this is an old
+style way of checking for inequality. It is therefore recommended to use
+`!=` instead.
+
+```{python}
+a = 23
+b = 17
+print(a == b)
+print(a != b)
+print(a > b)
+print(a >= b)
+print(a < b)
+print(a <= b)
+```
+
+In Python, relational operators are typically used in if-statements,
+where branching is often desired. This will be illustrated in more
+detail later.
+
+### Assignment Operators
+
+::: {.callout-tip title="Definition"}
+**Assignment operators** allow us to assign values to variables.
+:::
+
+You have already seen the most basic example of this using the equal
+assignment operator (as in the statement: `age = 19`). In the following
+table, assume that `a = 23.0` and `b = 17`:
+
+| Symbol | Expression | Description | Result |
+|-|:--|:------------|:-----|
+|`=`|`a = b`| assigns the value in `b` to `a` | a = 17 |
+|`+=`|`a += b`| increments the value in `a` by `b` (same as `a = a + b`) | a = 40.0 |
+|`-=`|`a -= b`| decrements the value in `a` by `b` (same as `a = a - b`) | a = 6.0 |
+|`*=`|`a *= b`| increases the value in `a` by a factor of `b` (same as `a = a * b`) | a = 391.0 |
+|`/=`|`a /= b`| decreases the value in `a` by a factor of `b` (same as `a = a / b`) | a = 1.3529411764705883 |
+|`%=`|`a %= b`| changes the value in `a` to the remainder of dividing `a` by `b` (same as `a = a % b`) | a = 6.0 |
+|`**=`|`a **= b`| changes the value in `a` to the exponentiation of `a` to `b` (same as `a = a ** b`) | a = 1.4105003956066297e+23 |
+|`//=`|`a //= b`| changes the value in `a` the floor of dividing `a` by `b` (same as `a = a // b`) | a = 1.0 |
+
+: Python Assignment Operators and Examples
+
+## Identifiers and Reserved Words
+
+::: {.callout-tip title="Definition"}
+An **identifier** is a name used to identify a variable, function, or other
+object (note that objects will be discussed later).
+:::
+
+Variable names (such as `age` and `average`, for example) or function
+names (such as `midPoint` and `distance`, for example) are all valid
+identifiers.
+
+In Python, identifiers must begin with a letter (either lowercase `a` to
+`z` or uppercase `A` to `Z`) or an
+underscore (\_) followed by zero or more letters, underscores, and digits (0 through 9). Here are
+examples of valid identifiers:
+
+```python
+average
+Average
+average_grade
+averageScore
+_mustard
+_7a69_
+a1b2c3X7Y9Z0
+```
+
+Note that Python is a case-sensitive language. For example, the
+identifier `average` is not the same as the identifier `Average`. Take a
+look at this example:
+
+```{python}
+average = 100
+Average = 50
+print(f"average = {average}")
+print(f"Average = {Average}")
+```
+
+::: {.callout-tip title="Definition"}
+**Reserved words** (sometimes called **keywords**) in a programming language are
+words that are meaningful to the language and **cannot** be used as
+identifiers.
+:::
+
+Most programming languages have quite a few reserved words. Python 3.x,
+for example, has the following reserved words:
+
+```{python}
+#| echo: false
+from keyword import kwlist
+reservedwords = kwlist
+for i in range(len(reservedwords)):
+    print(f"{reservedwords[i]}, ", end = "")
+    if (i % 12 == 11):
+        print()
+```
+
+You are already familiar with some of these: `def`, `print`, and
+`return`.  Many of the Python reserved words will be discussed later.
+
+## Comments
+
+It is often useful to provide informative text in our programs.
+
+::: {.callout-tip title="Definition"}
+A **comment** is text that is not interpreted nor converted to some sort of
+executable format as typical source code may be. It simply exists to
+provide information to developers, coders, or users working on or
+inspecting source code.
+:::
+
+We often comment parts of programs to describe what something does, why
+a choice in construct was chosen, and so on. Typically, a header at the
+top of our programs is also inserted to provide information such as who
+authored the program, when it was last updated, and what it does.
+
+In Python, there are two kinds of comments: single- and multi-line
+comments. Although there are several ways of commenting, we will only
+discuss the more widely used methods.
+
+Single-line comments span a single line (or a part of a line). A single
+line comment begins with the pound or hash (for the Twitter/X crowd) sign:
+`#`. A single-line comments can take up the entire line (i.e., the line
+begins with `#`), or it can follow a valid Python statement (i.e., only
+the latter part of a line is commented). Here are sample single-line
+comments:
+
+```python
+# get the user's name
+name = input("What is your name? ")
+name = "Dr. " + name	# prepend the Dr. title
+
+# say hello!
+print(f"Hello {name}!")
+```
+
+In the snippet above, there are three single-line comments. Two each
+take up an entire line. The third takes up only part of the line. The
+text that comes before it is valid Python syntax that is interpreted.
+Note that, once a comment has been started on a line, the rest of the
+line must be a comment.
+
+Multi-line comments begin and end with three single (`'''`) or double
+quotes (`"""`)in succession. They are typically used in source code
+headers, to comment out blocks of code for reasons such as debugging,
+and so on.  Here are sample multi-line comments:
+
+```python
+"""
+Author: Manny McFarlane
+Last updated: 2023-12-19
+Description: This program is nothing but fluff.
+"""
+'''
+And
+here
+is
+another
+multi-line
+comment!
+'''
+""" This is also a valid
+multi-line comment """
+''' And so is this! '''
+```
+
+Note that single and double quotes cannot be mixed in multi-line
+comments. That is, a multi-line comment cannot start with three single
+quotes and end with three double quotes. Many Python programmers prefer
+to implement multi-line comments as a sequence of single-line comments;
+for example:
+
+```python
+# Author: Manny McFarlane
+# Last updated: 2023-12-19
+# Description: This program is nothing but fluff.
+```
+
+This often stems from the fact that, in Python, strings can be enclosed
+in single quotes (`'`), double quotes (`"`), or three successive single
+(`'''`) or double (`"""`) quotes. The latter allows strings to span
+multiple lines. For example:
+
+```{python}
+first_name = 'Joe'
+last_name = "Smith"
+bio = """I am a wonderful human being
+capable of truly incredible things!"""
+
+print(first_name)
+print(last_name)
+print(bio)
+```
+
+Specifically regarding program headers, many programmers choose to
+implement them as follows to make them readable and easily identifiable:
+
+```python
+#################################################
+# Author: Manny McFarlane
+# Last updated: 2023-12-19
+# Description: This program is nothing but fluff.
+#################################################
+```
+
+## Primary Control Constructs
+
+What makes computers more than simple calculating devices is their
+ability to respond in different ways to different situations. In order
+to create programs capable of solving more complex tasks we need to
+examine how the basic instructions we have studied can be organized into
+higher-level constructs.  Recall that the vast majority of imperative
+programming languages support three types of control constructs which
+are used to group individual statements together and specify the
+conditions under which they will be executed. Again, these control
+constructs are: sequence, selection, and repetition.
+
+Recall from a previous RPi activity that **sequence** requires that the
+individual statements of a program be executed one after another, in the
+order that they appear in the program. Sequence is defined implicitly by
+the physical order of the statements. It does not require an explicit
+program structure. This is related to our previous discussion on
+**control flow**.
+
+::: {.callout-tip title="Definition"}
+**Selection** constructs contain one or more blocks of statements and
+specify the conditions under which the blocks should be executed.
 :::
