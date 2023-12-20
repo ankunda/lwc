@@ -133,7 +133,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#identifiers-and-reserved-words" id="toc-identifiers-and-reserved-words" class="nav-link" data-scroll-target="#identifiers-and-reserved-words"><span class="header-section-number">10</span> Identifiers and Reserved Words</a></li>
   <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments"><span class="header-section-number">11</span> Comments</a></li>
-  <li><a href="#primary-control-constructs" id="toc-primary-control-constructs" class="nav-link" data-scroll-target="#primary-control-constructs"><span class="header-section-number">12</span> Primary Control Constructs</a></li>
+  <li><a href="#primary-control-constructs" id="toc-primary-control-constructs" class="nav-link" data-scroll-target="#primary-control-constructs"><span class="header-section-number">12</span> Primary Control Constructs</a>
+  <ul class="collapse">
+  <li><a href="#sequence" id="toc-sequence" class="nav-link" data-scroll-target="#sequence"><span class="header-section-number">12.1</span> Sequence</a></li>
+  <li><a href="#selection" id="toc-selection" class="nav-link" data-scroll-target="#selection"><span class="header-section-number">12.2</span> Selection</a></li>
+  <li><a href="#repetition" id="toc-repetition" class="nav-link" data-scroll-target="#repetition"><span class="header-section-number">12.3</span> Repetition</a></li>
+  </ul></li>
+  <li><a href="#program-flow" id="toc-program-flow" class="nav-link" data-scroll-target="#program-flow"><span class="header-section-number">13</span> Program Flow</a></li>
   </ul>
 </nav>
 </div>
@@ -1226,7 +1232,7 @@ capable of truly incredible things!</code></pre>
 <span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Description: This program is nothing but fluff.</span></span>
 <span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co">#################################################</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="primary-control-constructs" class="level2" data-number="12">
+<section id="primary-control-constructs" class="level2 page-columns page-full" data-number="12">
 <h2 data-number="12" class="anchored" data-anchor-id="primary-control-constructs"><span class="header-section-number">12</span> Primary Control Constructs</h2>
 <p>What makes computers more than simple calculating devices is their ability to respond in different ways to different situations. In order to create programs capable of solving more complex tasks we need to examine how the basic instructions we have studied can be organized into higher-level constructs. Recall that the vast majority of imperative programming languages support three types of control constructs which are used to group individual statements together and specify the conditions under which they will be executed. Again, these control constructs are: sequence, selection, and repetition.</p>
 <p>Recall from a previous RPi activity that <strong>sequence</strong> requires that the individual statements of a program be executed one after another, in the order that they appear in the program. Sequence is defined implicitly by the physical order of the statements. It does not require an explicit program structure. This is related to our previous discussion on <strong>control flow</strong>.</p>
@@ -1243,6 +1249,416 @@ Definition
 <p><strong>Selection</strong> constructs contain one or more blocks of statements and specify the conditions under which the blocks should be executed.</p>
 </div>
 </div>
+<p>Basically, selection allows a human programmer to include within a program one or more blocks of <em>optional</em> code along with some tests that the program can use to determine which one of the blocks to perform. Selection allows imperative programs to choose which particular set of actions to perform, based on the conditions that exist at the time the construct is encountered during program execution.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Repetition</strong> constructs contain exactly one block of statements together with a mechanism for repeating the statements within the block some number of times.</p>
+</div>
+</div>
+<p>There are two major types of repetition: iteration and recursion.</p>
+<p><strong>Iteration</strong>, which is usually implemented directly in a programming language as an explicit program structure, often involves repeating a block of statements either:</p>
+<ol type="1">
+<li><p>while some condition is true, or</p></li>
+<li><p>some fixed number of times.</p></li>
+</ol>
+<p><strong>Recursion</strong> involves a subprogram (e.g., a function) that makes reference to itself. As with sequence, recursion does not normally have an explicit program construct associated with it.</p>
+<section id="sequence" class="level3" data-number="12.1">
+<h3 data-number="12.1" class="anchored" data-anchor-id="sequence"><span class="header-section-number">12.1</span> Sequence</h3>
+<p>Sequence is the most basic control construct. It is the <em>glue</em> that holds the individual statements of a program together. Yet, when students who are new to programming try to understand how a particular program works, they often just glance over the various statements making up the program to get a <em>feel</em> for what it does rather than methodically tracing through the sequence of actions it performs. One reason such an approach is tempting is because students tend to believe they can figure out what a program is <em>supposed</em> to do based on contextual clues such as the meaning of variable names and character strings.</p>
+<p>While it is often possible to gain a superficial knowledge of a program simply by reading it, this approach will not give you the kind of detailed understanding that is frequently required to accurately predict a program’s output. Being able to carefully trace through a program to determine exactly what it does is an important skill. Failure to carefully follow the sequence of instructions often leads to confusion when trying to understand the behavior of a program.</p>
+<p>The following Scratch program illustrates the importance of sequence. It contains a little <em>do nothing</em> program that displays the value 16. What makes this program interesting is not so much what its output is, as the way in which that output is computed. Without carefully tracing through the program, one statement at a time, it would be difficult to correctly predict the final output generated by the program.</p>
+<div id="fig-scratchsequence" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/Lesson04-15.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>Note that the variables <code>x</code>, <code>y</code>, and <code>z</code> were declared in the variables blocks group. The following illustrates the state of the program’s memory after executing each line of code. After performing the first declaration, the program knows only about the variable <code>x</code>. After the second declaration, it knows of <code>x</code> and <code>y</code>, and after the third, it knows of <code>x</code>, <code>y</code>, and <code>z</code>. Since these variables have not yet been assigned values, their values are considered to be undefined at this point.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson04-16.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Program Output: <code>16</code></figcaption>
+</figure>
+</div>
+<p>In Python, sequence is implemented in a manner very similar to Scratch: we simply place statements in the order that we wish them to be executed. Here’s the program above in Python:</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x <span class="op">+</span> y</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">-=</span> <span class="dv">2</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">+</span> y <span class="op">+</span> z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>16</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Sequence</strong> represents the natural order of statement execution. It represents a top-down, sequential order where lines of code are evaluated one after the other.</p>
+</div>
+</div>
+</section>
+<section id="selection" class="level3 page-columns page-full" data-number="12.2">
+<h3 data-number="12.2" class="anchored" data-anchor-id="selection"><span class="header-section-number">12.2</span> Selection</h3>
+<p>Selection statements give imperative languages the ability to make choices based on the results of certain condition tests. These condition tests take the form of <strong>Boolean expressions</strong>, which are expressions that evaluate to either <code>True</code> or <code>False</code>. As discussed earlier, there are various types of Boolean expressions, but most of the time condition tests are based on relational operators. Recall that <strong>relational operators</strong> compare two expressions of like type to determine whether their values satisfy some criterion. Selection statements use the results of Boolean expressions to choose which sequence of actions to perform next. The general form of all Boolean expressions:</p>
+<pre><code>expression   relational_operator   expression</code></pre>
+<p>Both Scratch and Python support two different selection statements: <strong>if-else</strong> and <strong>if</strong>. An <em>if-else</em> statement allows a program to make a two-way choice based on the result of a Boolean expression. If-else statements specify a Boolean expression and two separate blocks of code: one that is to be executed if the expression is true, the other to be executed if the expression is false. Recall that, in Scratch, selection constructs contain one or more blocks of statements and specify the conditions under which the blocks should be executed.</p>
+<p>Here’s an example:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson04-17.png" class="img-fluid figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<p>Here is an equivalent snippet of code in Python</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>grade <span class="op">=</span> <span class="fl">89.45</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (grade <span class="op">&gt;</span> <span class="fl">89.5</span>):</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    letter_grade <span class="op">=</span> <span class="st">"A"</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (grade <span class="op">&gt;</span> <span class="fl">79.5</span>):</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>        letter_grade <span class="op">=</span> <span class="st">"B"</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (grade <span class="op">&gt;</span> <span class="fl">69.5</span>):</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>            letter_grade <span class="op">=</span> <span class="st">"C"</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (grade <span class="op">&gt;</span> <span class="fl">59.5</span>):</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>                letter_grade <span class="op">=</span> <span class="st">"D"</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>                letter_grade <span class="op">=</span> <span class="st">"F"</span></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>grade<span class="sc">}</span><span class="ss"> is a/an </span><span class="sc">{</span>letter_grade<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>89.45 is a/an B</code></pre>
+</div>
+</div>
+<p>Note the structure of an if-else statement in Python:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition):</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this is the if body i.e. statements that will be executed if the</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># condition is True</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this is the else body i.e. statements that will be executed if the</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># condition is False</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Any statements UNindented are NO longer a part of the appropriate</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="co"># if-else block.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Did you NOTICE">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Did you NOTICE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note the colons after the condition and the <code>else</code>, as well as the indentation of both the true and false parts/blocks. Both are vital in indicating where the <code>True</code> and <code>False</code> sections of the <em>if-else</em> statement begin and end!</p>
+</div>
+</div></div><p>Note in the grade/letter_grade example above that there are a few nested <em>if-else</em> statements i.e.&nbsp;<em>if-else</em> statements inside of other <em>if-else</em> statements. Python provides a more elegant way to do the same thing using the <strong>elif</strong> clause (which stands for <strong>else if</strong>):</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>grade <span class="op">=</span> <span class="fl">67.4</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (grade <span class="op">&gt;</span> <span class="fl">89.5</span>):</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    letter_grade <span class="op">=</span> <span class="st">"A"</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> (grade <span class="op">&gt;</span> <span class="fl">79.5</span>):</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>    letter_grade <span class="op">=</span> <span class="st">"B"</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> (grade <span class="op">&gt;</span> <span class="fl">69.5</span>):</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>    letter_grade <span class="op">=</span> <span class="st">"C"</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> (grade <span class="op">&gt;</span> <span class="fl">59.5</span>):</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>    letter_grade <span class="op">=</span> <span class="st">"D"</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>    letter_grade <span class="op">=</span> <span class="st">"F"</span></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>grade<span class="sc">}</span><span class="ss"> is a/an </span><span class="sc">{</span>letter_grade<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>67.4 is a/an D</code></pre>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Did you NOTICE">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Did you NOTICE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note the indentation looks a little different when you use <em>elif</em> statements compared to nested <em>if-else</em> statements. This is because all blocks of the elif statements are at the same level. This is in contrast to nested <em>if-else</em> blocks where an entire <em>if-else</em> block is contained within either the <em>if</em> or <em>else</em> of another <em>if-else</em> block.</p>
+</div>
+</div></div><p>The if statement is similar to the if-else statement except that it does not include an else block. That is, it only specifies what to do if the Boolean expression is true.</p>
+<p>The structure of an if statement in Python is:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition):</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this is the if body i.e. statements that will only be executed if</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the condition is True</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Any statements UNindented are NO longer a part of the if block i.e.</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="co"># any statements here will be executed whether or not the condition was</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="co"># True.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Did you NOTICE">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Did you NOTICE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note the colon and indentation. As in the <em>if-else</em> statement, both are vital in indicating where the true section of the if statement begins and ends!</p>
+</div>
+</div></div><p><em>If</em> statements are generally used by programmers to allow their programs to detect and handle conditions that require special, optional or additional processing. This is in contrast to <em>if-else</em> statements, which can be viewed as selecting between two (or more) mutually exclusive choices.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (age <span class="op">&gt;=</span> <span class="dv">62</span>):</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You are a senior citizen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It is worth mentioning that the conditions in both <em>if</em> and <em>if-else</em> statements are not required to be placed in parenthesis in Python. However, we believe getting used to doing so will make your transition to other programming languages easier because many of them require that the conditions of their if and if-else statements are placed within parenthesis.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condition:</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># do something</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="co"># is the exact same as </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition):</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># do something</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co"># this statement in Python.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="repetition" class="level3" data-number="12.3">
+<h3 data-number="12.3" class="anchored" data-anchor-id="repetition"><span class="header-section-number">12.3</span> Repetition</h3>
+<p>Repetition is the name given to the class of control constructs that allow computer programs to repeat a task over and over. This is useful, particularly when considering the idea of solving problems by decomposing them into repeatable steps. There are two primary forms of repetition: <em>iteration</em> and <em>recursion</em>.</p>
+<section id="iteration" class="level4" data-number="12.3.1">
+<h4 data-number="12.3.1" class="anchored" data-anchor-id="iteration"><span class="header-section-number">12.3.1</span> Iteration</h4>
+<p>Recall that Scratch supports iteration in two main forms: the <em>repeat</em> loop and the <em>forever</em> loop. The repeat loop has two forms: <em>repeat-until</em> and <em>repeat-n</em> (where <code>n</code> is some fixed or known number of times). The <em>repeat-until</em> loop is condition-based; that is, it executes the statements of the loop until a condition becomes true. The <em>repeat-n</em> loop is count-based; that is, it executes the statements of the loop <code>n</code> times.</p>
+<p>In a <em>repeat-until</em> loop, the Boolean expression is first evaluated. If it evaluates to false, the loop statements are executed; otherwise, the loop halts. Here’s an example in pseudocode:</p>
+<pre><code>total = 0
+repeat
+    num = prompt for a positive number (-1 to quit)
+    if num &gt; 0
+        total = total + num
+until num &lt; 0
+display total</code></pre>
+<p>This program asks the user to enter a positive number or -1. If a positive number is entered, it is added to a running total. If -1 is entered, the program displays the total and halts. The <em>repeat-until</em> loop is used here to repeat the process of asking the user for input until the value entered is less than 0. It is interesting to note that although the program instructs users to enter -1 to quit, the condition that controls the loop is actually <code>num &lt; 0</code> (which will be true for any negative number). Thus, the loop will actually terminate whenever the user enters any number less than zero (e.g., -5).</p>
+<p>In Scratch, the <em>repeat-n</em> loop executes the loop statements a fixed (or known) number of times. Recall the flowchart for the <em>repeat-n</em> loop:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson04-18.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Although the programmer does not have access to a variable that counts the specified number of times (shown as n in the figure above), the process works in this manner. A counter is initially set to 1. A Boolean expression is then evaluated that checks to see if that counter is less than or equal to the target value (e.g., 10). If so, the loop statements execute. Once the loop statements have completed, the counter is incremented, and the expression is reevaluated.</p>
+<p>Like Scratch, Python provides several constructs for <em>repetition</em>. The <em>while</em> loop is the most general one, and allows for both event-control (e.g., <em>repeat-until</em>) and count-control (e.g., <em>repeat-n</em>). Comparing this to Scratch, the while loop is similar to the <em>repeat-until</em> and <em>repeat-n</em> blocks. Here is a simple example in Scratch:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson04-19.png" class="img-fluid figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<p>This simple script initializes a variable, sum, to 10. It then repeatedly decrements it by one until it is 0. This can be accomplished in Python using a while loop. The structure of a while loop in Python is:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (condition):</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># statements that will be executed while the condition is True. To</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get out of the while block, the condition needs to become False by</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the end of block during one of its iterations.</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="co"># statements that will be executed once the while loop is completed.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Similar to <em>if</em> and <em>if-else</em> conditions, the while condition can be placed within or without parenthesis in Python.</p>
+<p>Below is a simple python program that will change the value of <code>sum</code> from 10 to 0 by decrementing it by <code>1</code> multiple times. See if you can follow the code to see how it does it and produces the shown output.</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Before the loop: sum is </span><span class="sc">{</span><span class="bu">sum</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="bu">sum</span> <span class="op">&gt;</span> <span class="dv">0</span>):</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"sum is now </span><span class="sc">{</span><span class="bu">sum</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After the loop: sum is </span><span class="sc">{</span><span class="bu">sum</span><span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Before the loop: sum is 10
+sum is now 10
+sum is now 9
+sum is now 8
+sum is now 7
+sum is now 6
+sum is now 5
+sum is now 4
+sum is now 3
+sum is now 2
+sum is now 1
+After the loop: sum is 0</code></pre>
+</div>
+</div>
+<p>There is a slight difference between the condition in Scratch’s repeat-until loop and the condition in Python’s while loop: the condition in the while loop needs to be true to remain in the loop; the loop is terminated whenever the condition evaluates to false. Conversely, the condition in the repeat-until loop should be false to remain in the loop. The repeat-until loop is terminated whenever the condition evaluates to true.</p>
+<p>To implement Scratch’s <em>repeat-n</em> loop in Python with a while loop, we need to create a counter:</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>counter <span class="op">=</span> <span class="dv">0</span> <span class="co"># a variable to keep track of how many iterations the</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>            <span class="co"># while loop will be executing.</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Before the loop: counter = </span><span class="sc">{</span>counter<span class="sc">}</span><span class="ss">, sum = </span><span class="sc">{</span><span class="bu">sum</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (counter <span class="op">&lt;</span> <span class="dv">10</span>):</span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">+=</span> <span class="dv">2</span>        <span class="co"># execute the body of the loop i.e. whatever</span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># task you want to execute repeatedly...</span></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>    counter <span class="op">+=</span> <span class="dv">1</span>    <span class="co"># and then increment the counter by 1</span></span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After the loop: counter = </span><span class="sc">{</span>counter<span class="sc">}</span><span class="ss">, sum = </span><span class="sc">{</span><span class="bu">sum</span><span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Before the loop: counter = 0, sum = 0
+After the loop: counter = 10, sum = 20</code></pre>
+</div>
+</div>
+<p>Before leaving the topic of iteration, we should say a few words about the idea of <em>nested</em> loops. Two loops are nested when one loop appears within the body of another loop. This is quite common, and in fact may be carried out to an arbitrary depth. However, to keep the logic of a program from becoming too hard to follow, programmers try to limit nesting depths to no more than three or four levels deep.</p>
+<p>The following Python program displays the multiplication table. This program consists of two nested <em>while</em> loops. The loop variable of the outer loop is <code>i</code>, and the loop variable for the inner loop is <code>j</code>. Both of these loops count from one to nine:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span>   <span class="co"># variable to keep track of the outer loop</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (i <span class="op">&lt;</span> <span class="dv">10</span>):</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> <span class="dv">1</span>   <span class="co"># a variable to keep track of the inner loop. Note that</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>            <span class="co"># this variable will be reset to 1 every time the outer loop</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>            <span class="co"># restarts.</span></span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (j <span class="op">&lt;</span> <span class="dv">10</span>):</span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss"> x </span><span class="sc">{</span>j<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>i<span class="op">*</span>j<span class="sc">}</span><span class="ss">"</span>) </span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a>        j <span class="op">+=</span> <span class="dv">1</span>  <span class="co"># increment the variable for the inner loop</span></span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span>  <span class="co"># increment the variable for the outer loop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The program’s output is of the form <code>i x j = k</code>, where <code>i</code> and <code>j</code> represent the values of the respective variables, and <code>k</code> is their product. Notice that <code>j</code> runs through its entire range, from 1 to 9, before <code>i</code> is incremented by 1. This behavior is easy to understand when you think about the structure of the program.</p>
+<p>Let’s look at the outer loop. What does it do? Well, first <code>i</code> is initialized to 1, it is then compared to 10, and since <code>i</code> is less than 10, the first iteration of the loop commences. The first statement of the loop initializes <code>j</code> to 1. The next statement is another <code>while</code> loop. In order for the first iteration of the outer loop to complete, the program must execute this inner loop to completion. Note that the last statement in each while loop is a statement that increments its respective variable. Recall that the loops counter needs to change in order for the condition to eventually be false so that the execution can exit the while loop.</p>
+<p>The process repeats until all 81 entries in the multiplication table, from 1 x 1 to 9 x 9, are computed and displayed.</p>
+<p>We conclude this section with the following Python program:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>bottles <span class="op">=</span> <span class="dv">99</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (bottles <span class="op">&gt;</span> <span class="dv">0</span>):</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">str</span>(bottles) <span class="op">+</span> <span class="st">" bottles of beer on the wall."</span>)</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">str</span>(bottles) <span class="op">+</span> <span class="st">" bottles of beer."</span>)</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Take one down, pass it around."</span>)</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>    bottles <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">str</span>(bottles) <span class="op">+</span> <span class="st">" bottles of beer on the wall."</span>)</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This program displays the lyrics to the song, “99 Bottles of Beer on the Wall.” As you most likely know, the song begins as follows:</p>
+<pre><code>99 bottles of beer on the wall.
+99 bottles of beer.
+Take one down, pass it around.
+98 bottles of beer on the wall.
+98 bottles of beer on the wall.
+98 bottles of beer.
+Take one down, pass it around.
+97 bottles of beer on the wall.</code></pre>
+<p>It continues in this manner, with one less bottle in each verse, until it finally runs out of beer. An interesting feature of the program is that it decrements <code>bottles</code> in the middle of the loop rather than at the end. You should trace through the program with a few bottles to convince yourself that it does work properly. One thing you will probably notice as you do so is that when the program gets down to one beer, it reports that as “1 bottles of beer on the wall.” While this lack of grammatical correctness might not seem like such a big deal, especially after 98 beers, we can correct it easily with an <em>if</em> statement.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>See if you can write out the “Bottles of Beer” program above such that it is grammatically correct throughout the entire song.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="recursion" class="level4" data-number="12.3.2">
+<h4 data-number="12.3.2" class="anchored" data-anchor-id="recursion"><span class="header-section-number">12.3.2</span> Recursion</h4>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Recursion</strong> is a type of repetition that is implemented when a subprogram calls itself.</p>
+</div>
+</div>
+<p>When a recursive call takes place, control is passed to what appears to be a brand new copy of the subprogram. This copy of the subprogram may, in turn, call another copy of the subprogram. That copy may call another copy, and so on. Eventually, these recursive calls must terminate and return control to the original calling program.</p>
+<p>Take the “99 Bottles of Beer on the Wall” program above. It illustrated an iterative method of singing the song. Here’s an example of the same program in Python, implemented using recursion:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a function that takes in the number of bottles as its argument,</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co"># "sings" a verse of the song, and then calls another copy of itself</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="co"># with a smaller number of bottles.</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> consumeBeers(bottles):</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (bottles <span class="op">&gt;</span> <span class="dv">0</span>):</span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="bu">str</span>(bottles) <span class="op">+</span> <span class="st">" bottles of beer on the wall."</span>)</span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="bu">str</span>(bottles) <span class="op">+</span> <span class="st">" bottles of beer."</span>)</span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Take one down, pass it around."</span>)</span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="bu">str</span>(bottles <span class="op">-</span> <span class="dv">1</span>)<span class="op">+</span> <span class="st">" bottles of beer on the wall."</span>)</span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>()</span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a>        consumeBeers(bottles <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a><span class="co"># A simple statement to call the function the first time with the</span></span>
+<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a><span class="co"># original number of bottles.</span></span>
+<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a>consumeBeers(<span class="dv">99</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At first glance you might think that this program is nearly identical to the program shown earlier. There are, however, two major differences between the two. First, instead of a <em>while</em> loop, this program has an <em>if</em> statement. Also, just before the end of the if statement, the same subprogram (<code>consumeBeers</code>) is called. This is the recursive call!</p>
+<p>Note that the value of the variable <code>bottles</code> is decremented by 1 at the recursive call. When control enters the subprogram, the value is checked to see if it is greater than 0. This ensures that, so long as <code>bottles</code> is decremented each time the subprogram executes, it will eventually reach 0. When this occurs, it will cause the Boolean expression in the if statement to evaluate to false, thereby not executing its block (and calling itself again) and stopping the recursion.</p>
+<p>One way to envision recursion is to think of it as a spiral. Each time a subprogram calls itself, we descend down a level of the spiral until we eventually reach the bottom. At that point, execution begins to <em>unwind</em> as the subprogram calls complete and we retrace our path back up through the various levels until finally arriving at the top level where execution began.</p>
+<p>The recursive program above illustrates what is called <em>tail recursion</em>, because the recursive call is the last action taken by the subprogram. In tail recursion, there is no work to be done during the <em>unwinding</em> process because it was all done on the <em>way down</em> the spiral. In Scratch, this is the only way of implementing recursion. Python permits other forms of recursion, where the recursive call can occur before other statements.</p>
+<p>Many students, upon learning how recursion works, worry that programs that employ this form of repetition might be very inefficient in terms of their utilization of machine resources. After all, you have all of those <em>copies</em> of the subprogram hanging around. The good news is that recursion is not nearly as expensive as you probably think. For one thing, only one copy of the actual subprogram code is needed. All that is reproduced during each call is the <em>execution environment</em>, the variables and whatnot that are used by that <em>version</em> of the subprogram. While it is true that recursion generally involves more overhead than iteration, recursive calls are really no more expensive than any other kind of function call. In fact, some optimizing compilers convert tail recursion into iteration so there is often no additional expense in using that form of recursion at all.</p>
+<p>Aside from the efficiency issue, you may be wondering why programming languages would support recursion. After all, whenever the need for repetition arises the programmer could always use one of the iteration constructs. The reasons for supporting both recursion and iteration are the same as those, for example, supporting two types of selection statements (<em>if</em> and <em>if-else</em>): clarity and convenience. Some problems are simply easier to solve using recursion than iteration. For these types of problems, a recursive solution is often more compact and easier to read than an iterative one.</p>
+</section>
+</section>
+</section>
+<section id="program-flow" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="program-flow"><span class="header-section-number">13</span> Program Flow</h2>
+<p>It is very important to be able to identify the flow of control in any program, particularly to understand what is going on. In Python, function definitions aren’t executed in the order that they are written in the source code. Functions are only executed when they are called. This is perhaps best illustrated with an example:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1"></a><span class="kw">def</span> <span class="bu">min</span>(a, b):</span>
+<span id="cb75-2"><a href="#cb75-2"></a>    <span class="cf">if</span> (a <span class="op">&lt;</span> b): </span>
+<span id="cb75-3"><a href="#cb75-3"></a>        <span class="cf">return</span> a</span>
+<span id="cb75-4"><a href="#cb75-4"></a>    <span class="cf">else</span>:</span>
+<span id="cb75-5"><a href="#cb75-5"></a>        <span class="cf">return</span> b</span>
+<span id="cb75-6"><a href="#cb75-6"></a></span>
+<span id="cb75-7"><a href="#cb75-7"></a><span class="kw">def</span> <span class="bu">max</span>(a, b):</span>
+<span id="cb75-8"><a href="#cb75-8"></a>    <span class="cf">if</span> (a <span class="op">&gt;</span> b):</span>
+<span id="cb75-9"><a href="#cb75-9"></a>        <span class="cf">return</span> a</span>
+<span id="cb75-10"><a href="#cb75-10"></a>    <span class="cf">else</span>:</span>
+<span id="cb75-11"><a href="#cb75-11"></a>        <span class="cf">return</span> b</span>
+<span id="cb75-12"><a href="#cb75-12"></a></span>
+<span id="cb75-13"><a href="#cb75-13"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Enter a number: "</span>))</span>
+<span id="cb75-14"><a href="#cb75-14"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Enter another number: "</span>))</span>
+<span id="cb75-15"><a href="#cb75-15"></a><span class="bu">print</span>(<span class="ss">f"The smaller number is </span><span class="sc">{</span><span class="bu">min</span>(num1, num2)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb75-16"><a href="#cb75-16"></a><span class="bu">print</span>(<span class="ss">f"The larger number is </span><span class="sc">{</span><span class="bu">max</span>(num1, num2)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Each Python statement is numbered for reference. Lines 1 through 5 represent the definition of the function min. This function returns the minimum of two values provided as parameters. Lines 7 through 11 represent the definition of the function max. This function returns the maximum of two values provided as parameters. Lines 13 through 16 represent the main part of the program. Although the Python interpreter does see lines 1 through 12, those lines are not actually executed until the functions min and max are actually called. The first line of the program to actually be executed is line 13. In fact, here is the order of the statements executed in this program if num1 = 34 and num2 = 55:</p>
+<pre><code>13, 14, 15, 1, 2, 3, 16, 7, 8, 10, 11</code></pre>
+<p>Let’s explain. Line 13 asks the user to provide some value for the first number (which is stored in the variable num1). Line 14 asks the user to provide some value for the second number (which is stored in the variable num2). Line 15 displays some text; however, part of the text must be obtained by first calling the function <code>min</code>. This transfers control to line 1 (where <code>min</code> is defined). The two actual parameters, <em>num1</em> and <em>num2</em>, are then passed in and mapped to the formal parameters defined in <code>min</code>, <em>a</em> and <em>b</em>. Then, line 2 is executed and performs a comparison of the two numbers. Since <code>a = 34</code> and <code>b = 55</code>, then the condition in the if-statement is true. Therefore, line 3 is executed before control is transferred back to the main program with the value of the smaller number returned (and then control continues on to line 15). Note that lines 4 and 5 are never executed in this case!</p>
+<p>Line 16 is then executed and displays some text. Again, part of the text must be obtained by first calling the function <code>max</code>. This transfers control to line 7 (where <code>max</code> is defined). The variables <em>a</em> and <em>b</em> take on the values 34 and 55 respectively. Line 8 is then executed, and the result of the comparison is false. Therefore, line 9 is not executed. Control then goes to line 10, and then to line 11 which returns the larger value. The program then ends.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>See if you can figure out the <em>order of execution</em> if <code>num1 = 55</code> and <code>num2 = 34</code>.</p>
+<p>What about when <code>num1 = 100</code> and <code>num2 = 100</code>?</p>
+</div>
+</div>
+</div>
+<p>Knowing the order in which statements are executed is crucial to debugging programs and ultimately to creating programs that work.</p>
 </section>
 
 </main>
