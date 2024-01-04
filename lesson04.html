@@ -873,7 +873,7 @@ Activity
 </div>
 </div>
 </div>
-<p>Figure <a href="#fig-argreturn">Figure&nbsp;4</a> should help clarify some of the terminology that we have discussed so far that might be a little confusing.</p>
+<p><a href="#fig-argreturn">Figure&nbsp;4</a> should help clarify some of the terminology that we have discussed so far that might be a little confusing.</p>
 <div id="fig-argreturn" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/Lesson04-argreturn.png" class="img-fluid figure-img"></p>
@@ -884,7 +884,7 @@ Activity
 <div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"this only has value to the person reading this screen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Input</strong> statements are used to gather information from the user of the program. They can also be executed by any part of the program i.e.&nbsp;main program or subprogram and their sole purpose is to <em>prompt</em> the user for some kind of information that will be used by the program later on.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">input</span>(<span class="st">"I need some information from the user of this program"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Arguments / Parameters</strong> are pieces of information that a subprogram requires to even start its execution. They can either be provided by the main program or another subprogram. You will typically see these arguments whenever the subprogram is being called/used. However, the designer of the subprogram should anticipate the reception of these arguments and will typically have a variable place holder for those arguments.</p>
+<p><strong>Arguments / Parameters</strong> are pieces of information that a subprogram requires to even start its execution. They can either be provided by the main program or another subprogram. You will typically see these arguments whenever the subprogram is being called/used. However, the subprogram should anticipate the reception of these arguments and will typically have a variable place holder for them.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in this example, x is the argument. The DESIGNER of the function knows</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># that in order for the function to even begin, it will need some piece</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># of information and they will temporarily store that information in the</span></span>
@@ -893,14 +893,14 @@ Activity
 <span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    ans <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> x</span>
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ans</span>
 <span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Once the function is defined, the USER of the function is now in</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Once the function is defined, the DESIGNER of the main program is now in</span></span>
 <span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="co"># charge of giving a value that will be mapped to x. In the lines below,</span></span>
 <span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 5, 9, and b are the arguments that will be mapped to x over three</span></span>
 <span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="co"># different executions of the function.</span></span>
 <span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> double(<span class="dv">5</span>)</span>
 <span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> double(<span class="dv">9</span>)</span>
 <span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> double(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Return</strong> values are pieces of information that a subprogram wants to give back to the user of the subprogram. These values are typically the result of some kind of calculation or process. You will find return statements at the end of a subprogram. The user of a subprogram should anticipate the reception of a return value by either storing it in a variable or using the value as part of an expression.</p>
+<p><strong>Return</strong> values are pieces of information that a subprogram wants to give back to the main program (or another subprogram). These values are typically the result of some kind of calculation or process. You will find return statements at the end of a subprogram. The main program (or subprogram) that is using the subprogram in question should anticipate the reception of a return value by either storing it in a variable or using the value as part of an expression.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in the code snippet above, note that ans is the value that is</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># returned.</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the value actually in ans will depend on what argument was passed into</span></span>

@@ -1093,7 +1093,7 @@ printcurrentdate()	# print out the current date.
 
 :::
 
-Figure @fig-argreturn should help clarify some of the terminology that
+@fig-argreturn should help clarify some of the terminology that
 we have discussed so far that might be a little confusing. 
 
 ![input vs print, arguments vs returns](images/Lesson04-argreturn.png){fig-align="center" #fig-argreturn}
@@ -1121,9 +1121,8 @@ x = input("I need some information from the user of this program")
 requires to even start its execution. They can either be provided by the
 main program or another subprogram. You will typically see these
 arguments whenever the subprogram is being called/used. However, the
-designer of the subprogram should anticipate the reception of these
-arguments and will typically have a variable place holder for those
-arguments.
+subprogram should anticipate the reception of these arguments and will
+typically have a variable place holder for them.
 
 ```python
 # in this example, x is the argument. The DESIGNER of the function knows
@@ -1134,21 +1133,23 @@ def double(x):
     ans = 2 * x
     return ans
 
-# Once the function is defined, the USER of the function is now in
+# Once the function is defined, the DESIGNER of the main program is now in
 # charge of giving a value that will be mapped to x. In the lines below,
 # 5, 9, and b are the arguments that will be mapped to x over three
 # different executions of the function.
 a = double(5)
 b = double(9)
 c = double(b)
+
 ```
 
 **Return** values are pieces of information that a subprogram wants to
-give back to the user of the subprogram. These values are typically the
-result of some kind of calculation or process. You will find return
-statements at the end of a subprogram. The user of a subprogram should
-anticipate the reception of a return value by either storing it in a
-variable or using the value as part of an expression.
+give back to the main program (or another subprogram). These values are
+typically the result of some kind of calculation or process. You will
+find return statements at the end of a subprogram. The main program (or
+subprogram) that is using the subprogram in question should anticipate
+the reception of a return value by either storing it in a variable or
+using the value as part of an expression.
 
 ```python
 # in the code snippet above, note that ans is the value that is
