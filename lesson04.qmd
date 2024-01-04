@@ -1052,6 +1052,112 @@ c = pow(3, 5)
 print(f"a = {a}, b = {b}, c = {c}")
 ```
 
+
+::: {.callout-important title="Activity" collapse=true}
+See how many of the following subprograms you can design and use.
+```python
+double(x)			# a function to return double of the argument it receives
+power(x, y)			# a function to return the result of x raised to the
+				    # power of y
+average(x, y, z)	# return the average of its arguments
+concat(a, b)		# a function to return a string concatenation of its
+				    # arguments
+isin(a, b)			# a function to tell whether the string a is a part of b
+max(x, y)			# return the larger of two values
+iseven(x)			# return a whether the argument is even or not
+squarenum(x)		# return square of its argument
+cubenum(x)			# return cube of its argument
+divide(x, y)		# return the quotient of x and y
+factorial(x)		# return the result of x!
+isprime(x)			# return whether x is a prime number or not
+countvowels(a)		# return number of vowels in a string
+fibonacci(x)		# return the xth fibonacci number
+celstofahr(x)		# change a temperature from celsius to fahrenheit
+lbstokgs(x)			# change pounds to kilograms
+```
+
+Recall that *designing* and *using* a function are two different parts
+of working with subprograms. Make sure that you are comfortable with
+tackling either part of the process.
+
+Below are a few more programs that you can try to design and use. These
+programs will not require any return statements.
+
+```python
+greet(a)			# a function to print out a greeting for the name a
+printmulttable(x)	# print out all values of [1-10] * x
+printstarsquare(x)	# print out a square of size x of * characters
+displaymenu()		# print out the items in a fictional menu
+printcurrentdate()	# print out the current date.
+```
+
+:::
+
+Figure @fig-argreturn should help clarify some of the terminology that
+we have discussed so far that might be a little confusing. 
+
+![input vs print, arguments vs returns](images/Lesson04-argreturn.png){fig-align="center" #fig-argreturn}
+
+**Print** statements are used to provide information to the user of
+the program. They can be executed by either the main program or any
+subprogram and their purpose is to produce some kind of information on
+the computer screen for the user of the program.
+
+```python
+print("this only has value to the person reading this screen")
+```
+
+**Input** statements are used to gather information from the user of the
+program. They can also be executed by any part of the program i.e. main
+program or subprogram and their sole purpose is to *prompt* the user for
+some kind of information that will be used by the program later on.
+
+```python
+x = input("I need some information from the user of this program")
+```
+
+
+**Arguments / Parameters** are pieces of information that a subprogram
+requires to even start its execution. They can either be provided by the
+main program or another subprogram. You will typically see these
+arguments whenever the subprogram is being called/used. However, the
+designer of the subprogram should anticipate the reception of these
+arguments and will typically have a variable place holder for those
+arguments.
+
+```python
+# in this example, x is the argument. The DESIGNER of the function knows
+# that in order for the function to even begin, it will need some piece
+# of information and they will temporarily store that information in the
+# variable x
+def double(x):
+    ans = 2 * x
+    return ans
+
+# Once the function is defined, the USER of the function is now in
+# charge of giving a value that will be mapped to x. In the lines below,
+# 5, 9, and b are the arguments that will be mapped to x over three
+# different executions of the function.
+a = double(5)
+b = double(9)
+c = double(b)
+```
+
+**Return** values are pieces of information that a subprogram wants to
+give back to the user of the subprogram. These values are typically the
+result of some kind of calculation or process. You will find return
+statements at the end of a subprogram. The user of a subprogram should
+anticipate the reception of a return value by either storing it in a
+variable or using the value as part of an expression.
+
+```python
+# in the code snippet above, note that ans is the value that is
+# returned.
+# the value actually in ans will depend on what argument was passed into
+# x when the "double" function is called
+```
+
+
 ## Operators
 
 Like Scratch, Python has a variety of operators, broken down into
