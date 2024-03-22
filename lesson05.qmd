@@ -628,16 +628,306 @@ circuit introduced earlier:
 OR gate vs 2 switches in parallel
 :::
 
-You should convince yourself that the behavior of the or gate captures
+You should convince yourself that the behavior of the *or* gate captures
 the semantics of the word “or” as it is commonly used. The statement:
 “My cat is either on the couch or under the bed” is true if either the
 phrase “My cat is on the couch” is true or the phrase “my cat is under
 the bed” is true. The original statement is false only when neither of
 these phrases is true.
 
+The third basic logic gate is the **not** gate. The not gate has a single
+input and a single output. The output is the inverse of the input. Here
+is the symbol and truth table for the *not* gate:
+
+![A NOT gate](images/Lesson05-16.png){fig-align="center"}
+
+|A|Z|
+|-|-|
+|0|1|
+|1|0|
+
+: A NOT gate's Truth table {.striped .hover}
+
+Note that this truth table consists of only two rows rather than four
+(as was the case with the and and or gates). This is consistent with the
+claim that truth tables contain exactly 2^n^ rows for an *n* input
+circuit.  Since the not gate takes in only a single input, there are
+only two possible configurations that the gate can be in.
+
+As with the *and* and *or* gates, the behavior of the not gate captures
+the semantics of the word. If the sentence: “My cat is black” is true,
+then the sentence “My cat is not black” would be false (and vice versa).
+
+## Combining Gates
+
+Consider the following circuit:
+
+![](images/Lesson05-17.png){fig-align="center"}
+
+Here's its state table:
+
+|Switch A|Switch B|Switch C|Light|
+|--------|--------|--------|-----|
+|Open	 |Open	  |Open	   | Off |
+|Open	 |Open	  |Closed  | Off |
+|Open	 |Closed  |Open	   | Off |
+|Open	 |Closed  |Closed  | On  |
+|Closed	 |Open	  |Open	   | Off |
+|Closed	 |Open	  |Closed  | On  |
+|Closed	 |Closed  |Open	   | Off |
+|Closed	 |Closed  |Closed  | On  |
+
+: {.striped .hover}
+
+So long as either A **or** B is closed **and** C is closed, then the light bulb
+is lit. C must be closed in order for the bulb to be lit.
+
+It is natural to ask at this point what an equivalent circuit consisting
+of logic gates would look like.  Since switches A and B are in parallel,
+this portion of the circuit can be represented using an *or* gate.  The
+output of that part of the circuit is in series with C, so it can be
+modeled with an *and* gate. The logic gate circuit shown below is thus
+equivalent to the switch circuit given above.
+
+![](images/Lesson05-18.png){fig-align="center"}
+
+In fact, here is the truth table for this circuit:
+
+|A|B|C|Z|
+|-|-|-|-|
+|0|0|0|0|
+|0|0|1|0|
+|0|1|0|0|
+|0|1|1|1|
+|1|0|0|0|
+|1|0|1|1|
+|1|1|0|0|
+|1|1|1|1|
+
+: {.striped .hover}
+
+For readability and to make it a bit easier to derive, we can expand the
+truth table to provide intermediate gate outputs as follows (where *Z* is
+the output of *A or B*, and *Z'* is the output of *Z and C*):
+
+|A|B|Z|C|Z'|
+|-|-|-|-|-|
+|0|0|0|0|0|
+|0|0|0|1|0|
+|0|1|1|0|0|
+|0|1|1|1|1|
+|1|0|1|0|0|
+|1|0|1|1|1|
+|1|1|1|0|0|
+|1|1|1|1|1|
+
+: {.striped .hover}
 
 
+::: {.callout-important title="Activity" collapse=true}
 
+Can you fill in the truth table for the circuit below? Let *Z* represent
+the output of *A and B*, and *Z'* represent the output of *Z or C*.
+
+![](images/Lesson05-19.png){fig-align="center"}
+
+:::
+
+## Boolean Algebra
+
+The arithmetic that is used to reason about two-state systems was first
+developed by George Boole in 1854.
+
+::: {.callout-tip title="Definition"}
+**Boolean algebra** is a mathematics based on three fundamental operators:
+and, or, and not; and the variables on which they operate.
+:::
+
+Boolean variables are binary, having only two valid states: 1
+(representing *true*) and 0 (representing *false*).
+
+The operator *and* is written as a dot “ ⋅ ”, *or* is written as a plus
+“+”, and *not* is written as a horizontal bar drawn over the expression
+being negated. The behavior of these three Boolean operators is
+identical to the behavior of the corresponding logic gates. Thus, the
+expression $A⋅B$ , meaning *A and B*, will be 1 (true) when the
+variables *A* and *B* are both 1 (true). The expression $A + B$ ,
+meaning *A or B*, will be 1 when either or both variables are 1. The
+expression *not A* (written $\bar A$ ), will be 0 when *A* is 1 and 1
+when *A* is 0. The relationship between the Boolean operators and the
+fundamental logic gates is illustrated below. In the illustration, the
+Boolean variables *A* and *B* correspond to the inputs to the circuit,
+and the variable *Z* corresponds to the output.
+
+![](images/Lesson05-20.png){fig-align="center"}
+
+As in ordinary algebra, Boolean algebra uses parentheses to indicate
+which operands go with which operators. The Boolean expression $A+(B⋅C)$
+represents a completely different circuit from $(A+B)⋅C$ .  In the
+first, B and C are fed into an and gate, with the result being sent
+(along with A) into an or gate. In the second, A and B are fed into an
+or gate, with the result being combined with C via an and gate.
+
+As you may be beginning to suspect, there is a direct correspondence
+between Boolean expressions and logic circuits. Every logic circuit that
+can ever be constructed will have a corresponding Boolean expression,
+and every valid Boolean expression that can ever be written maps to an
+equivalent logic circuit. The process of converting between the two
+representations is quite mechanical: simply use the substitutions above,
+being sure to parenthesize Boolean expressions in a manner that
+preserves which operators go with which operands.
+
+::: {.callout-important title="Activity" collapse=true}
+Try to write the Boolean expression corresponding to the following
+circuit:
+
+![](images/Lesson05-21.png){fig-align="center"}
+:::
+
+
+Boolean algebra provides computer scientists and engineers a powerful
+tool for concisely representing circuits and reasoning about their
+behavior. While the details are beyond the scope of this lesson, Boolean
+algebra allows us to do things like prove that two different circuits
+compute the same function; or find simpler (and thus less expensive)
+ways of implementing the functionality of a circuit.
+
+## Other Gates
+
+Any device, whose operation can be defined in terms of a truth table or
+Boolean expression, can be implemented using only the fundamental logic
+gates: *and*, *or*, and *not*. However, a number of additional gates are
+usually defined, as they prove useful for practical purposes. For
+example, it is frequently the case that a not will immediately follow an
+*and* gate, like so:
+
+![](images/Lesson05-22.png){fig-align="center"}
+
+Since this is such a common occurrence, the circuit has been given a
+name (*nand*) and a gate symbol (the *and* symbol combined with the
+bubble from the *not* symbol).  Similarly, *not* often follows *or*, so
+there is a *nor* gate whose symbol is the bubble from the *not* attached
+to the *or* symbol. The following figure illustrates both the *nand* and
+*nor* gates. Their behavior, in terms of Boolean expressions, is
+provided as well. It is important to remember that these gates are
+simply a convenience (a kind of shorthand), in that they allow a circuit
+to be constructed from fewer underlying components.
+
+![](images/Lesson05-23.png){fig-align="center"}
+
+As another example, the basic *and* and *or* gates support only two inputs;
+however, a circuit designer will frequently need to *and* or *or* more than
+two inputs. For this reason multi-input and and or gates exist.
+
+The following figure presents the three and four input *and* and *or*
+gates along with their Boolean expressions:
+
+![](images/Lesson05-24.png){fig-align="center"}
+
+While these gates are often quite convenient, remember that it is always
+possible to construct equivalent circuits from the underlying two-input
+gates. For example, the following circuit represents one possible
+implementation of a four-input *and* gate:
+
+![](images/Lesson05-25.png){fig-align="center"}
+
+Its Boolean expression is $Z =(A⋅B)⋅(C⋅D)$ . Note, however, that it
+could be designed differently (with a different Boolean expression), yet
+still represent a four-input and gate. For example, $Z =((A⋅B)⋅C)⋅D$
+would also work. The other multi-input gates can be constructed in a
+similar manner.
+
+In addition to multi-input *and* and *or* gates, multi-input *nand* and
+*nor* gates can be constructed. The symbols for these gates are
+identical to the symbols for the multi-input *and* and *or* gates, with
+the exception of a *not* bubble attached to the output of each gate
+symbol. Their Boolean expressions are also identical as well, except
+that a *not* bar appears above the right-hand side of the expression.
+
+## Combinational Circuits
+
+::: {.callout-tip title="Definition"}
+**Combinational circuits** are digital circuits that do not involve any kind
+of feedback. In other words, the output of a combinational circuit
+cannot be fed back into that circuit as input.
+:::
+
+In this lesson, we will focus on the simplest combinational circuits.
+Let's start with a relatively simple circuit, the *exclusive or*.
+
+An exclusive or, or *xor*, has two inputs and a single output. Its
+behavior is defined by the following truth table, where the inputs are
+labeled *A* and *B* and the output is labeled *Z*:
+
+|A|B|Z|
+|-|-|-|
+|0|0|0|
+|0|1|1|
+|1|0|1|
+|1|1|0|
+
+: Truth table for XOR gate {.striped .hover}
+
+Like the standard two-input or, the *xor* produces a 1 (true) when
+either of its inputs are 1, and a 0 (false) when both of its inputs are
+0. The difference between *or* and *xor* appears in the case when both
+inputs are 1. The standard *or* produces a 1 in this case. The *xor*
+generates a 0. In other words, the “exclusive or” outputs a 1 when
+either, *but not both*, of its inputs are 1.
+
+English does not contain a unique word for expressing the idea of *xor*
+– the word “or” does double duty for both its “inclusive” and
+“exclusive” forms. However, one can usually tell from the context of a
+sentence which form is intended. For example, if you tell a child “you
+can have candy or popcorn,” the intended meaning is exclusive or –
+either candy or popcorn, but not both. On the other hand, if a friend
+says “I’d be happy winning either the Porsche or the Mercedes,” the
+intended meaning is inclusive or – you would certainly not expect your
+friend to become unhappy if he won both cars.
+
+Now that we understand the behavior of *xor* in terms of its inputs and
+outputs, we can turn our attention to the problem of designing a circuit
+with its behavior. But how are we to begin?
+
+One approach that often gets you moving in the right direction is to
+examine the truth table to determine the various circumstances under
+which the circuit must produce a 1. In the case of xor, there are two
+such cases: one in which input A is 0 and input B is 1, and another in
+which input A is 1 and input B is 0.  Once these cases have been
+identified, we proceed by designing *sub-circuits* that will produce 1
+in each of the required cases. The final step is to combine the
+sub-circuits together using an *or* gate. This is necessary because the
+main circuit would be true under any of the cases in which the
+sub-circuits generate a 1.
+
+The following sub-circuit will generate a 1 when input A is 0 and input
+B is 1. Its Boolean expression is $Z=\bar A⋅B$:
+
+![](images/Lesson05-26.png){fig-align="center"}
+
+It works by negating A and feeding that result (together with B) into an
+*and* gate. Since both of the inputs to an *and* must be 1 for it to
+produce a 1, the original value of A must be 0, while the value of B
+must be 1. Under all other circumstances this sub-circuit produces 0.
+Thus, this circuit successfully captures the meaning of line two of the
+*xor* truth table.
+
+A sub-circuit to implement line three of the xor truth table can be
+constructed similarly. Its Boolean expression is $Z =A⋅\bar B$ :
+
+![](images/Lesson05-27.png){fig-align="center"}
+
+This circuit generates a 1 whenever input A is 1 and B is 0. Under all
+other circumstances, it produces a 0. The following figure illustrates a
+complete *xor* circuit, which contains the two sub-circuits joined
+together by an *or* gate. This is reasonable since the *xor* can be true
+either by way of the first sub-circuit or the second. Note that due to
+the manner in which the two sub-circuits were constructed, it is
+impossible for both of them to be true at the same time.
+
+![](images/Lesson05-28.png){fig-align="center"}
+
+The Boolean expression for this circuit is $Z =(A⋅\bar B)+(\bar A⋅B)$ .
 
 
 
