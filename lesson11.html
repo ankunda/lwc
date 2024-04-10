@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -78,33 +78,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
 </head>
 
 <body>
@@ -150,25 +123,11 @@ window.Quarto = {
   <li><a href="#revisiting-searching-and-sorting-in-python" id="toc-revisiting-searching-and-sorting-in-python" class="nav-link" data-scroll-target="#revisiting-searching-and-sorting-in-python"><span class="header-section-number">11</span> Revisiting searching and sorting in Python</a></li>
   <li><a href="#other-operators" id="toc-other-operators" class="nav-link" data-scroll-target="#other-operators"><span class="header-section-number">12</span> Other operators</a></li>
   <li><a href="#string-methods" id="toc-string-methods" class="nav-link" data-scroll-target="#string-methods"><span class="header-section-number">13</span> String methods</a></li>
-  <li><a href="#importing-extertan-libraries" id="toc-importing-extertan-libraries" class="nav-link" data-scroll-target="#importing-extertan-libraries"><span class="header-section-number">14</span> Importing extertan libraries</a></li>
-  <li><a href="#programming-languages" id="toc-programming-languages" class="nav-link" data-scroll-target="#programming-languages"><span class="header-section-number">15</span> Programming Languages</a></li>
-  <li><a href="#programming-paradigms" id="toc-programming-paradigms" class="nav-link" data-scroll-target="#programming-paradigms"><span class="header-section-number">16</span> Programming Paradigms</a></li>
-  <li><a href="#why-python" id="toc-why-python" class="nav-link" data-scroll-target="#why-python"><span class="header-section-number">17</span> Why Python?</a></li>
-  <li><a href="#integrated-development-environments-ides" id="toc-integrated-development-environments-ides" class="nav-link" data-scroll-target="#integrated-development-environments-ides"><span class="header-section-number">18</span> Integrated Development Environments (IDEs)</a></li>
-  <li><a href="#scratch-vs.-python" id="toc-scratch-vs.-python" class="nav-link" data-scroll-target="#scratch-vs.-python"><span class="header-section-number">19</span> Scratch vs.&nbsp;Python</a></li>
-  <li><a href="#python-primer" id="toc-python-primer" class="nav-link" data-scroll-target="#python-primer"><span class="header-section-number">20</span> Python Primer</a>
-  <ul class="collapse">
-  <li><a href="#creating-programs-and-saving-files" id="toc-creating-programs-and-saving-files" class="nav-link" data-scroll-target="#creating-programs-and-saving-files"><span class="header-section-number">20.1</span> Creating Programs and Saving Files</a></li>
-  <li><a href="#reloading-a-saved-file" id="toc-reloading-a-saved-file" class="nav-link" data-scroll-target="#reloading-a-saved-file"><span class="header-section-number">20.2</span> Reloading a saved file</a></li>
-  <li><a href="#data-types-constants-and-variables-1" id="toc-data-types-constants-and-variables-1" class="nav-link" data-scroll-target="#data-types-constants-and-variables-1"><span class="header-section-number">20.3</span> Data types, constants, and variables</a></li>
-  <li><a href="#input-and-output-1" id="toc-input-and-output-1" class="nav-link" data-scroll-target="#input-and-output-1"><span class="header-section-number">20.4</span> Input and Output</a></li>
-  <li><a href="#expressions-and-assignment" id="toc-expressions-and-assignment" class="nav-link" data-scroll-target="#expressions-and-assignment"><span class="header-section-number">20.5</span> Expressions and assignment</a></li>
-  </ul></li>
+  <li><a href="#importing-extertal-libraries" id="toc-importing-extertal-libraries" class="nav-link" data-scroll-target="#importing-extertal-libraries"><span class="header-section-number">14</span> Importing extertal libraries</a></li>
   </ul>
 </nav>
 </div>
 <main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
-
 
 
 
@@ -244,7 +203,7 @@ Activity
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>:    <span class="cf">for</span> b <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">5</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>:      <span class="bu">print</span>(<span class="st">"</span><span class="sc">{}</span><span class="st"> * </span><span class="sc">{}</span><span class="st"> = </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(a, b, a <span class="op">*</span> b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This snippet of code displays a portion of a multiplication table. In fact, run this to see the output:</p>
-<div id="12889af3" class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">4</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> b <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">5</span>):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="sc">{}</span><span class="st"> * </span><span class="sc">{}</span><span class="st"> = </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(a, b, a <span class="op">*</span> b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -328,7 +287,7 @@ Definition
 <section id="variable-scope" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="variable-scope"><span class="header-section-number">9</span> Variable scope</h2>
 <p>Consider the following Python program snippet and its output:</p>
-<div id="54006c11" class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
@@ -564,7 +523,7 @@ in main: a=15.0, b=20</code></pre>
 <code>The value 3 was found at index 14!</code></p>
 <p>Note that the value 3 occurs twice in the list (at index 14 and index 15); however, only the first instance is reported to the user before the search terminates. The break statement exits the enclosing repetition construct: in this case, the for loop.</p>
 <p>What if the break keyword is located in a repetition construct that is also located inside of another repetition construct? In this case, it will exit the inner repetition construct only. Here’s an example and output:</p>
-<div id="367cbb65" class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"i=</span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(i)),</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
@@ -909,8 +868,8 @@ False
 ['So, when ', 's th', 's go', 'ng to get d', 'ff', 'cult?']</code></pre>
 <p>Note the execution of the string method <strong>str.find()</strong> above: <code>s.find("going")</code>. This string method returns the first index of the string, “going”, within the string, <em>s</em>. Why is the result 17? At first glance, it seems that the first character of the string, “going”, is at position 18. However, strings are sequences (just like lists); therefore, the characters of a string in Python begin at index 0.</p>
 </section>
-<section id="importing-extertan-libraries" class="level2" data-number="14">
-<h2 data-number="14" class="anchored" data-anchor-id="importing-extertan-libraries"><span class="header-section-number">14</span> Importing extertan libraries</h2>
+<section id="importing-extertal-libraries" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="importing-extertal-libraries"><span class="header-section-number">14</span> Importing extertal libraries</h2>
 <p>It is often useful (and necessary) to import external functionality into our programs. In fact, you’ve seen (and used) this before (in the lesson <em>Introduction to Data Structures</em>), although it may not have been explained in detail. Often, others have designed functions and other bits of code that may prove useful. We don’t always want to recreate things that already exist. Python supports the importing of such things via the <strong>import</strong> reserved word. For example, many of the programs we create require the use of mathematical functions beyond simple arithmetic (e.g., sin, cos, tan) or mathematical constants (e.g., pi, e). The structure of an import statement is as follows:</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> library</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Pretty simple. Here’s an example of the importing and use of the math library:</p>
@@ -966,510 +925,13 @@ NameError: name 'pi' is not defined
 <span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">pass</span></span>
 <span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="co"># stop the timer</span></span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="dv">18</span></span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>duration <span class="op">=</span> stop_time()</span>
-<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="co"># display how long it took</span></span>
-<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Algorithm took </span><span class="sc">{}</span><span class="st"> seconds."</span>.<span class="bu">format</span>(duration))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>duration <span class="op">=</span> stop_time()</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="co"># display how long it took</span></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Algorithm took </span><span class="sc">{}</span><span class="st"> seconds."</span>.<span class="bu">format</span>(duration))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that the “algorithm” in the test code above really does nothing. It’s just there to take up some noticeable amount of time so that the module can be tested. Here’s a sample run:</p>
 <pre><code>jgourd@pi:~$ python MyGoodiesTest.py 
 Algorithm took 5.71634602547 seconds.</code></pre>
-</section>
-<section id="programming-languages" class="level2" data-number="15">
-<h2 data-number="15" class="anchored" data-anchor-id="programming-languages"><span class="header-section-number">15</span> Programming Languages</h2>
-<p>The kinds of languages that are widely used today are known as programming languages. Programming languages allow us to represent algorithms in a way that is similar to English but is more structured and much less ambiguous.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A <strong>programming language</strong> is a precisely constructed language that is specifically used to communicate instructions to a computer.</p>
-</div>
-</div>
-<p>English is a spoken language. As such, it was spoken first, rules were later defined and written down. Therefore, there are many exceptions (i.e., words and phrases that are grammatically correct but don’t conform to the general grammar/spelling rules). Spoken languages are sometimes ambiguous and open to interpretation. This means that a single statement can have multiple meanings. For example, the statement “I made the robot fast” can mean several different things. Does it mean that the robot was built quickly? Or does it mean that the robot was modified so that it would move around more quickly than it did before? Perhaps it means that the robot is named Fast. Or maybe that we managed to make the robot stop eating nuts and bolts.</p>
-<p>Humans rely on external factors like context and body language to understand the true meaning of a statement in a spoken language. And even then mistakes in interpretation still happen. With computers however, we need a language that is so structured and unambiguous that every computer can understand and interpret a given statement in the exact same way. For example, we don’t want two different computers giving us two completely different answers to the arithmetic expression <span class="math inline">\(1 + 1\)</span>. In contrast to spoken languages, programming languages are first defined with rules. The language itself is then derived from those rules. Programming languages are therefore quite structured and not ambiguous. They are very precise and logical.</p>
-<p>There are many different programming languages that can be used to describe an algorithm. One of them, for example, is called Python, and it is what we will be using for the majority of the Living with Cyber curriculum. It is the duty of the programmer to write down the tasks that he/she wants done in a given programming language. Since computers can only understand machine language, we utilize an application known as a compiler that translates this programming language into machine language.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A <strong>compiler</strong> is a tool used to translate an algorithm expressed in a programming language to machine language. The process by which this conversion from programming language to machine language is done is called <strong>compilation</strong>.</p>
-</div>
-</div>
-<p>The compilation process takes an algorithm written in a programming language and translates it to assembly language. From there, a process known as linking converts the assembly language to machine language. This is illustrated by <a href="#fig-compilation" class="quarto-xref">Figure&nbsp;1</a> below:</p>
-<div id="fig-compilation" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-compilation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/Lesson04-01.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compilation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: The compilation process
-</figcaption>
-</figure>
-</div>
-<p>Once machine language is generated to match a program, the computer can then directly execute the program and implement the algorithm. A fully compiled language is only executable by a CPU with the same characteristics and operating system (often, including version) as that which it was compiled for. A programmer who wants wide distribution of his software will need to compile source code to the various destination computing architectures and operating systems that are the most likely to be used by the target audience for the application. Of course, the programmer could simply distribute source code and let users compile that themselves. Often, however, programmers do not wish to distribute source code for a variety of reasons (e.g., intellectual property). <a href="#fig-compilation2" class="quarto-xref">Figure&nbsp;2</a> below shows how a program would need to be compiled numerous times to cover a range of target computing architectures and operating systems:</p>
-<div id="fig-compilation2" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-compilation2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/Lesson04-02.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compilation2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: The compilation process needs to be done for different target architectures
-</figcaption>
-</figure>
-</div>
-<p>Not all programming languages are compiled to machine language. Some are never compiled and are executed, one instruction at a time, by an <strong>interpreter</strong>.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>An <strong>interpreter</strong> is a tool used to evaluate instructions, written in a programming language, as the program is executed.</p>
-</div>
-</div>
-<p>An interpreter can be thought of as a real time compiler that executes high level programming language instructions, one at a time. Interpreted languages are much slower to execute than compiled languages. Examples of interpreted languages are Python, PHP, JavaScript, and Perl. To execute a program written in an interpreted language, you must have an appropriate interpreter installed on your computing system. Interpreted languages also require programmers to distribute their source code, and users to have an appropriate interpreter installed on their system. Maintaining code privacy is therefore not possible with interpreted languages.</p>
-<p>Partially compiled and interpreted languages combine the convenience of interpreted languages (i.e., not having to compile source code to a large number of target machine language executables) and the privacy and speed of compiled languages (i.e., not having to distribute source code).</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A <strong>hybrid language</strong> is a programming language that is compiled down to an intermediate language, and then interpreted (while the program is executed) from there.</p>
-</div>
-</div>
-<p>Examples of partially compiled languages are Java, Python, and Lisp. Note that Python can be strictly interpreted or partially compiled depending on the programmer’s preferences. The intermediate language is distributed and subsequently executed on any computing platform that has an interpreter for the intermediate language. For example, Java source code is typically expressed in a <em>.java</em> file and partially compiled to Java bytecodes (in a <em>.class</em> file) that can then be distributed. A Java Virtual Machine (JVM) executes the bytecodes by interpreting each instruction, one at a time. The benefit of this method is that a programmer can distribute a single file to everyone, regardless of CPU architecture and operating system. Anyone wanting to execute the file simply needs to have a version of the JVM for their computing system. This is illustrated in <a href="#fig-compilation3" class="quarto-xref">Figure&nbsp;3</a> below:</p>
-<div id="fig-compilation3" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-compilation3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/Lesson04-03.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compilation3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Partially compiled languages
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="programming-paradigms" class="level2" data-number="16">
-<h2 data-number="16" class="anchored" data-anchor-id="programming-paradigms"><span class="header-section-number">16</span> Programming Paradigms</h2>
-<p>Over the past forty years or so, three general classes, or paradigms, of programming languages have emerged. These paradigms include the imperative paradigm, the functional paradigm, and the logical paradigm. In addition, during the past decade or so these paradigms have been extended to include object-oriented features. A language is classified as belonging to a particular paradigm based on the programming features it supports.</p>
-<p>Object-oriented imperative languages are, by far, the most popular type of programming language. Both Java and C++ (two of the most used programming languages in industry) are object-oriented imperative languages. Scratch and Python are imperative languages – although Python does contains object- oriented attributes, Scratch does not.</p>
-<p>The imperative paradigm is based on the idea that a program is a sequence of commands or instructions (usually called statements) that the computer is to follow to complete a task. The imperative style of programming is the oldest, and now with object-oriented extensions, continues to be far and away the most popular style of programming.</p>
-<p>The Living with Cyber curriculum first (and very briefly) utilizes Scratch as the programming language. This is quickly followed by Python. Scratch is not intended to be used to create applications designed for production systems. That is, it is not a general purpose programming language. Instead, it is a teaching tool aimed at simplifying the process of learning to program. Scratch purposefully omits many features available in other popular programming languages in order to keep the language from becoming overly complex. This allows you to focus on the big picture rather than get bogged down in the complexities inherent in real programming languages and their development environments.</p>
-<p>One way of thinking about writing Scratch programs is to compare it to programming in a production programming language with training wheels on. Complex and useful programs can be written in Scratch; however, there are many things that programmers are allowed to do in production languages that are not possible (at least not straightforward) in Scratch. For example, Scratch does not support functions and function calls directly, nor does it support recursion directly. These terms may not be familiar right now; however, these restrictions are designed to help beginning programmers avoid making common mistakes.</p>
-<p>General purpose programming languages are more robust, and can (and are) used in more situations than educational programming languages like Scratch. Think of it like this: using a programming language like Scratch is like building a Lego house only using 2x4 Lego pieces. While it is possible to do so, there is a limitation on what kinds of houses you can build. Conversely, using more general purpose programming languages is like building a house with any kind of Lego piece you can think up in your mind. There are fewer limitations, and the kinds of houses that you can build are limitless. From this point, we will use Python as the general purpose programming language in the course.</p>
-</section>
-<section id="why-python" class="level2 page-columns page-full" data-number="17">
-<h2 data-number="17" class="anchored" data-anchor-id="why-python"><span class="header-section-number">17</span> Why Python?</h2>
-<p>You may have heard about other general purpose programming languages: Java, C, C++, C#, Visual Basic, and so on. So why use Python instead of, say, Java? In the end, it amounts to the simple idea that, unlike all of the other general purpose programming languages listed above, Python allows us to create powerful programs with limited knowledge about syntax, therefore allowing us to focus on problem solving instead. In a sense, Python is logical. That is, nothing must be initially taken on faith (that will ostensibly be explained at a later time). There isn’t any excess baggage that’s required in order to begin to write even simple Python programs.</p>
-<p>Recall how, in geometry, the formula for calculating the volume of a cone was given. At that time, it was simply inexplicable. That is, you were most likely told to memorize it. It is not until a calculus course that this formula is actually derived, and how it came to be is fully explained. Why? Well, it is simply because it requires calculus in order to do so. Most students taking a geometry course have not yet had calculus; however, formulas for calculating the volume of various objects (including a cone) are typical in such a course. The problem, of course, is that we are told to take it on faith that it, in fact, works as described. We are told that, how it works and how it was derived, will be explained at a later time. The problem with this is that it forces memorization of important material as opposed to a deep understanding of it (which, in the end, is the goal).</p>
-<p>A similar thing actually occurs in a lot of programming languages. Often, we must memorize syntax that will be explained later. Python is unique in that it does a pretty good job of taking all of that out by just being simple. Programming in Python is immediately logical and explicable.</p>
-<p>Take the following simple example of a program that displays the text, “Programming rules, man!” in various general purpose programming languages:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Basic text display program in Java.</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> SimpleProgram</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">"Programming rules, man!"</span><span class="op">);</span></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Basic text display program in C</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Programming rules, man!</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb55"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Basic text display program in C++</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Programming rules, man!"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb56"><pre class="sourceCode cs code-with-copy"><code class="sourceCode cs"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">//Basic text display program in C#</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> SimpleProgram</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span><span class="op">()</span></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>        System<span class="op">.</span><span class="fu">Console</span><span class="op">.</span><span class="fu">WriteLine</span><span class="op">(</span><span class="st">"Programming rules, man!"</span><span class="op">);</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode vb code-with-copy"><code class="sourceCode monobasic"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">'Basic text display program in Visual Basic</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="kw">Module </span>Hello</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">Sub </span>Main()</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>        MsgBox(<span class="st">"Programming rules, man!"</span>)</span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">End Sub</span></span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="kw">End Module</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>And in Python</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Programming rules, man!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In all of these examples, compiling and running the programs (or interpreting them) produces a single line of output text: “Programming rules, man!” Did you notice that, in all of the examples (except for Python), there seems to be a good bit of seemingly extra stuff for such a simple program? There are a lot of words that you may not be familiar with or immediately understand: <em>class, public, static, void, main/Main, #include, printf, cout, namespace, String[], endl, Module, Sub, MsgBox,</em> and so on. In fact, the only readable version to a beginner is usually the one written in Python. It is pretty evident that the statement <em>print(“Programming rules, man!”)</em> means to display that string of characters to the screen (or console).</p>
-<p>Python is extremely readable because it has very simple and consistent syntax. This makes it perfect for beginner programmers. It also forces good coding practices and style, something that is very important for beginners (especially when it comes to debugging and/or maintaining programs). Python has a large set of libraries that provide powerful functionality to do just about anything. Libraries allow Python programmers to use all kinds of things that others have created (i.e., we don’t have to reinvent the wheel). A huge benefit of Python is that it is platform independent. It doesn’t matter what operating system you use, it is supported with minimal setup and configuration, and there is no need to deal with dependencies (i.e., other things that are required in order to just begin to code in Python).</p>
-<p>Don’t think that, because of its simplicity, Python is therefore not a powerful language (or perhaps that it doesn’t compete with Java or C++). Python is indeed powerful, and can do everything that other programming languages can do (e.g., it does support the object-oriented paradigm). It is based on a few profound ideas (collectively known as <a href="https://peps.python.org/pep-0020/">The Zen of Python</a> written by Tim Peters)</p>
-
-<div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Did you know">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Did you know
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The name of the Python programming language is taken from a television series called <em>Monty Python’s Flying Circus</em> (and not from the snake).</p>
-</div>
-</div></div></section>
-<section id="integrated-development-environments-ides" class="level2 page-columns page-full" data-number="18">
-<h2 data-number="18" class="anchored" data-anchor-id="integrated-development-environments-ides"><span class="header-section-number">18</span> Integrated Development Environments (IDEs)</h2>
-<p>Many programmers write their programs in a general purpose programming language using nothing but a text-based editor (usually a simplistic one, albeit with useful characteristics such as syntax highlighting). In fact, some write programs at the command line (in the terminal) using nothing but a text-based text editor (i.e., without graphical characteristics). Most programmers, however, use an IDE (Integrated Development Environment).</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>An <strong>Integrated Development Environment (IDE)</strong> is a piece of software that allows computer programmers to design, execute, and debug computer programs in an integrated and flexible manner.</p>
-</div>
-</div>
-<p>On the Raspberry Pi, the IDE used to design Python programs is called IDLE (which stands for Python’s <strong>I</strong>ntegrated <strong>D</strong>eve<strong>L</strong>opment <strong>E</strong>nvironment). Other IDEs exist for pretty much all of the most used general purpose programming languages: Eclipse, Visual Studio, Code::Blocks, NetBeans, Dev-C++, Xcode, and so on. In fact, many of these IDEs support more than one language (some natively, others by installing additional plug-ins or modules)! Here’s an image of IDLE with the program shown earlier implemented (and executed):</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Lesson04-04.png" class="img-fluid figure-img"></p>
-<figcaption>IDLE shell with simple python statement</figcaption>
-</figure>
-</div>
-<p>On the Raspberry Pi, IDLE can be launched as follows:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Lesson04-05.png" class="img-fluid figure-img"></p>
-<figcaption>Launching IDLE on the raspberry pi</figcaption>
-</figure>
-</div>
-<p>Python programs can also be created and executed at the command line (or terminal). We do so by launching a terminal and typing <strong>python</strong>, which brings up the Python shell:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Lesson04-06.png" class="img-fluid figure-img"></p>
-<figcaption>Launching IDLE in the terminal</figcaption>
-</figure>
-</div>
-
-<div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Did you know">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Did you know
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>On computers that have two alternate versions of python installed on them, you might have to type <strong>python3</strong> as the command to open up a python shell like the one in the image.</p>
-</div>
-</div></div></section>
-<section id="scratch-vs.-python" class="level2" data-number="19">
-<h2 data-number="19" class="anchored" data-anchor-id="scratch-vs.-python"><span class="header-section-number">19</span> Scratch vs.&nbsp;Python</h2>
-<p>Earlier in this lesson, you learned that programs written in a programming language are either compiled (to machine language so that a computer can execute them directly) or interpreted, statement-by-statement (in a sense, you could say that programs written in interpreted languages are compiled, line-by-line, in real time). Python is an interpreted language that implements the imperative paradigm. That is, programs are designed as a sequence of instructions (called statements) that can be followed to complete a task.</p>
-<p>Let’s take a look at a simple program in Scratch and see how it compares to the same thing in Python:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Lesson04-07.png" class="img-fluid figure-img"></p>
-<figcaption>Basic Loop structure in Scratch</figcaption>
-</figure>
-</div>
-<p>What does this program do? Simply put, it displays the numbers 2, 4, 6, and 8. Take a look at the script above. The variable <em>n</em> is initially set to 1. A <em>repeat-until</em> loop is executed so long as <em>n</em> is less than 10 (i.e., 1 through 9). Each time the body of the loop is executed, the string “n is now (plus the value of n)” is displayed if <em>n</em> is evenly divisible by 2. For example, if <em>n</em> is 4, then the string <strong>n is now 4</strong> is displayed. Recall that the <em>mod</em> operator returns the remainder of a division. Therefore, when <strong>n mod 2 = 0</strong> is true, it means that the remainder of <em>n</em> divided by 2 is zero – so <em>n</em> must be even! At the end of the body of the loop, the variable <em>n</em> is incremented (ensuring that <em>n</em> will eventually reach the value 10, and we will break out of the <em>repeat-until</em> loop).</p>
-<p>Here’s how this can be similarly done in Python:</p>
-<div id="0a1a5894" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&lt;</span> <span class="dv">10</span>:</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"n is now "</span> <span class="op">+</span> <span class="bu">str</span>(n))</span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>n is now 2
-n is now 4
-n is now 6
-n is now 8</code></pre>
-</div>
-</div>
-<p>At this point, it is fine if you don’t understand everything that’s going on syntactically. The idea is simply to illustrate how Scratch and Python differ (and are similar!). But let’s try to explain.</p>
-<ul>
-<li><p>The block, <em>set n to 1</em>, in Scratch is implemented in Python as, <code>n = 1</code>. Pretty similar!</p></li>
-<li><p>Python has no <em>repeat-until</em> repetition construct. Instead, we can use a <em>while</em> construct with a modified condition. Repeating a task until a variable (in this case, <em>n</em>) is 10 is the same thing as repeating it while the variable is less than 10.</p></li>
-<li><p>If-statements are similar; however, the <em>mod</em> and <em>equality</em> operators differ. In Python, we check for equality using the double-equal (==) operator. The mod operator is a percent sign (%). So the block, <em>if n mod 2 = 0</em>, in Scratch can be implemented in Python as, <code>if n % 2 ==   0</code>.</p></li>
-<li><p>Generating the output, “n is now 4,” for example, can be implemented in Scratch using the familiar print statement: <code>print ("n is now 4")</code>. Of course, we don’t always want to display the literal string “n is 4”. So we concatenate (or join) the value of <em>n</em> to the string “n is now” just as we did in Scratch. However, since <em>n</em> is not a string of characters (i.e., it is a number – an integer to be precise), then it must first be converted to a string before being concatenated to another string. This is what <code>str(n)</code> does.</p></li>
-<li><p>Finally, the value of <em>n</em> is incremented by 1 with the statement <em>n = n + 1</em>.</p></li>
-</ul>
-<p>In Scratch, it is easy to see the blocks that belong in the body of a repetition construct. The puzzle pieces intrinsically capture this (i.e., they are quite literally visible inside the <em>repeat-until</em> block in the script above). In Python, we denote statement hierarchy (i.e., if statements belong in the body of a construct such as a <em>while</em> loop) by using <strong>indentation</strong>. Note how it is quite clear which statements belong in the body of the <em>while</em> loop above: the if-statement and the statement that increments the variable <em>n</em> by 1. Note that the <em>print</em> statement is inside the true part of the if-statement (this is evident by how it is directly beneath the if-statement and indented further to the right). Again, at this point it is fine to have a minimal grasp of Python’s syntax.</p>
-</section>
-<section id="python-primer" class="level2 page-columns page-full" data-number="20">
-<h2 data-number="20" class="anchored" data-anchor-id="python-primer"><span class="header-section-number">20</span> Python Primer</h2>
-<div class="callout callout-style-default callout-important callout-titled" title="Activity">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Activity
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Open your IDE of choice (e.g.&nbsp;IDLE) and follow along with the professor as they try out different code snippets in the python shell. This activity should give you an idea of</p>
-<ul>
-<li><p>the kinds of operators and expressions that are possible in the python shell.</p></li>
-<li><p>how to execute print statements consisting of different kinds of data</p></li>
-<li><p>how to prompt the user for some input in the middle of code execution</p></li>
-<li><p>storing values in variables</p></li>
-<li><p>using variables and the values stored within as part of other expressions.</p></li>
-</ul>
-</div>
-</div>
-</div>
-<p>You should be able to understand every single statement in the snippet below and even create a similar sequence on your own with a clear grasp of what each statement is doing.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">15</span></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> ^ </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>a<span class="op">**</span>b<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">+</span> <span class="dv">6</span>)</span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="bu">input</span>(<span class="st">"What is your name?"</span>)</span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="bu">input</span>(<span class="ss">f"so </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">, How old are you?"</span>)</span>
-<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> <span class="bu">int</span>(d)</span>
-<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"You are </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss"> years old and you will be 100 in </span><span class="sc">{</span><span class="dv">100</span><span class="op">-</span>e<span class="sc">}</span><span class="ss"> years"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="creating-programs-and-saving-files" class="level3 page-columns page-full" data-number="20.1">
-<h3 data-number="20.1" class="anchored" data-anchor-id="creating-programs-and-saving-files"><span class="header-section-number">20.1</span> Creating Programs and Saving Files</h3>
-<p>So far, we have been entering statements in the Python shell. These statements have been interpreted, one at a time. If we were to close the Python shell, everything that we entered would be lost. In order to save Python programs, we must type them in a separate editor outside of the Python shell, save them in a file. Once this has been done, we can then execute them in the Python shell.</p>
-<p>To create a new Python program, click on <strong>File | New File</strong> (or press <strong>Ctrl+N</strong>) in the Python shell. This brings up a new window (an editor that is a part of IDLE) in which we can type our program. Type the following program into this new window:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Enter a number: "</span>))</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Enter another number: "</span>))</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> raised to the power </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>a<span class="op">**</span>b<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you are using IDLE, this is what your window should look like.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Lesson04-08.png" class="img-fluid figure-img"></p>
-<figcaption>Basic python file in IDLE</figcaption>
-</figure>
-</div>
-
-<div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Did you know">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Did you know
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that when editing a python file, there will NOT be any <strong>&gt;&gt;&gt;</strong> symbols on the left of your lines of code. If you see those symbols, that means you are still within the shell and not in an actual python file.</p>
-</div>
-</div></div><p>Before we can run this program, it must be saved. Do so by clicking on <strong>File | Save</strong> (or press <strong>Ctrl+S</strong>). Give it an appropriate name, and save it to an appropriate location. Now it can be executed by clicking on <strong>Run | Run Module</strong> (or by pressing <strong>F5</strong>). This executes the program in the Python shell:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Lesson04-09.png" class="img-fluid figure-img"></p>
-<figcaption>Code output when python file is run</figcaption>
-</figure>
-</div>
-<p>You can run your code any number of times by selecting <strong>Run | Run Module</strong> (or pressing F5). If your code requires some input from the user, each execution affords you an opportunity to try out different input options e.g.&nbsp;inputing different numbers to see what one raised to another is.</p>
-</section>
-<section id="reloading-a-saved-file" class="level3" data-number="20.2">
-<h3 data-number="20.2" class="anchored" data-anchor-id="reloading-a-saved-file"><span class="header-section-number">20.2</span> Reloading a saved file</h3>
-<p>To load a saved Python program, simply double-click on the saved file. This should bring up the <strong>IDLE</strong> editor with your file loaded in it. Sometimes, double-clicking on the file just opens it up in a notepad- like editor by default. To force it to open in IDLE, right-click the file instead, and select <strong>Open with IDLE</strong>.</p>
-<p>The program can then be executed as before, by clicking on <strong>Run | Run Module</strong> (or by pressing F5). This will automatically open a Python shell and execute the program.</p>
-<div class="callout callout-style-default callout-important callout-titled" title="Activity">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Activity
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Write a python program that prompts the user for two numbers and displays the quotient and remainder when the first number is divided by the second. As an example, if the user typed in 17 and 3 for the first and second number respectively, it would output a result similar to the one shown below.</p>
-<div id="14c82d31" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-stdout">
-<pre><code>The quotient of 17 divided by 3 is 5 with a remainder of 2</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="data-types-constants-and-variables-1" class="level3" data-number="20.3">
-<h3 data-number="20.3" class="anchored" data-anchor-id="data-types-constants-and-variables-1"><span class="header-section-number">20.3</span> Data types, constants, and variables</h3>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The kinds of values that can be expressed in a programming language are known as its <strong>data types</strong></p>
-</div>
-</div>
-<p>Recall that Scratch supports only two data types: text and numbers. Since Python is a general purpose programming language, it supports many more data types. Actually, it can support virtually any type that you can think of! That is, Python allows you to define your own type for use in whatever way you wish. Since this is user-defined, let’s focus on what are called primitive types for now.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <strong>primitive types</strong> of a programming language are those data types that are built-in (or standard) to the language and typically considered as basic building blocks (i.e., more complex types can be created from these primitive types).</p>
-</div>
-</div>
-<p>Python’s standard types can be grouped into several classes: numeric types, sequences, sets, and mappings. Although there are actually others, we will focus on these in the <em>Living with Cyber</em> curriculum.</p>
-<p>Numeric types include whole numbers, floating point numbers, and complex numbers. Python has two whole number types: <code>int</code> and <code>long</code>. The <code>int</code> data type is a 64-bit integer. This means that 64 bits (i.e.&nbsp;a bit can be either 0 or 1) is used to represent a single whole number. For example the following series of bits represent a single integer (in fact it represents the number 846,251,337): 0000 0000 0000 0000 0000 0000 0000 0000 0011 0010 0111 0000 1100 0101 0100 1001. We will explore this in more detail at a later time. The <code>long</code> data type is an integer of unlimited length. This means Python will give us enough bits to store any number we want! Note that in Python 3.x, an <code>int</code> is an integer of unlimited length (there is no long data type). These integer types can represent negative or positive whole numbers. The <code>float</code> type is a 64-bit floating point (decimal) number. This means it can hold numbers like 3.14 and -90.3324235. Lastly, the <code>complex</code> type represents complex numbers (i.e., numbers with real and imaginary parts). Most of our programs will require only <code>int</code> and <code>float</code>.</p>
-<p>So what does this all mean? We create variables that contain data of some data type. Knowing the data type of a variable is like knowing the superpowers of a person you can control. In this analogy, the superpowers of a data type are the methods and properties that can be leveraged for use in whatever program you are writing at the time. For example, one of the superpowers of the numeric data types is raising them to a power. To do that, we can use the function of the form <code>pow(x,y)</code>. In this example, <em>x</em> and <em>y</em> are variables that are of type <code>int</code> or <code>float</code>. The <strong>pow</strong> function returns the value of the computation involving raising the value in x to the power of the value in y (i.e., x<sup>y</sup> ). This function would not typically be able to work for variables that aren’t numeric data types. You may recall that the same functionality can be implemented in Python as: <code>x ** y</code>. This effectively performs the same thing.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A <strong>constant</strong> is defined as a value of a particular type that does not change over time.</p>
-</div>
-</div>
-<p>In Python (just as in Scratch), both numbers and text may be expressed as constants. <strong>Numeric constants</strong> are composed of the digits 0 through 9 and, optionally, a negative sign (for negative numbers), and a decimal point (for floating point numbers). For example, the number -3.14159 is a numeric constant in Python.</p>
-<p>A text constant consists of a sequence of characters (also known as a string of characters – or just a string). The following are examples of valid string constants:</p>
-<ul>
-<li>“A man, a plan, a canal, Panama.”</li>
-<li>“Was it Eliot’s toilet I saw?”</li>
-<li>“There are 10 kinds of people in this world. Those who know binary, those who don’t, and those who didn’t know it was in base 3!”</li>
-</ul>
-<p>Note that, unlike Scratch, Python requires the quotes surrounding text constants.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A <strong>variable</strong> is a named object that can store a value of a particular data type.</p>
-</div>
-</div>
-<p>Recall that Scratch supports two types of variables: text variables and numeric variables. Moreover, before a variable can be used, its name must be declared. In many programming languages, both its name and type must be declared; however, both Scratch and Python only require a variable’s name to be declared before it is used. Here is an example of declaring and initializing a variable in Python compared to the process in Scratch.</p>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">19</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/Lesson04-10.png" class="img-fluid"></p>
-</div>
-<div id="3fb55031" class="cell quarto-layout-cell" data-execution_count="6" style="flex-basis: 50.0%;justify-content: flex-start;">
-
-</div>
-</div>
-</div>
-<p>Here are some examples that deal with variables and how they compare in Scratch and Python:</p>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">19</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> age <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> age <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (age <span class="op">&gt;</span> <span class="dv">35</span>):</span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You are old."</span>)</span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Young'n!"</span>)</span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="dv">35</span></span>
-<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="dv">69</span></span>
-<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>avg <span class="op">=</span> (num1 <span class="op">+</span> num2) <span class="op">/</span> <span class="fl">2.0</span></span>
-<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(avg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/Lesson04-11.png" class="img-fluid"></p>
-</div>
-<div id="0d226833" class="cell quarto-layout-cell" data-execution_count="7" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="cell-output cell-output-stdout">
-<pre><code>Young'n!</code></pre>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/Lesson04-12.png" class="img-fluid"></p>
-</div>
-<div id="dc4dd066" class="cell quarto-layout-cell" data-execution_count="8" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="cell-output cell-output-stdout">
-<pre><code>52.0</code></pre>
-</div>
-</div>
-</div>
-</div>
-<p>In short, to declare variables in Python, we simply write a statement that assigns a value to a variable name. Note that, just as in Scratch, we can assign a value of a different type to a variable. For example:</p>
-<div id="8b9ff3e5" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var)</span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="fl">3.14159</span></span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var)</span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="st">"Pi"</span></span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>5
-3.14159
-Pi</code></pre>
-</div>
-</div>
-<p>It is important to realize that, while human programmers generally try to give variables names that reflect the use to which they will be put, the variable name itself doesn’t mean anything to the computer. For example, the numeric variable <code>age</code> can be used to hold any number, not just an age. It is perfectly legal for <code>age</code> to hold the number of students in a class or the number of eggs in your refrigerator. The computer couldn’t care less. Human programmers, on the other hand, generally care a great deal. They expect a variable’s name to accurately reflect its purpose; so while it is possible to do so, it would be considered poor programming practice to use the variable <code>age</code> to store anything other than an age.</p>
-</section>
-<section id="input-and-output-1" class="level3" data-number="20.4">
-<h3 data-number="20.4" class="anchored" data-anchor-id="input-and-output-1"><span class="header-section-number">20.4</span> Input and Output</h3>
-<p>In order for a computer program to perform any useful work, it must be able to communicate with the outside world. The process of communicating with the outside world is known as input/output (or I/O). Most imperative languages include mechanisms for performing other kinds of I/O such as detecting where the mouse is pointing and accessing the contents of a disk drive.</p>
-<p>The flexibility and power that input statements give programming languages cannot be overstated. Without them the only way to get a program to change its output would be to modify the program code itself, which is something that a typical user cannot be expected to do.</p>
-<p>General-purpose programming languages allow human programmers to construct programs that do amazing things. When attempting to understand what a program does, however, it is vitally important to always keep in mind that the computer does not comprehend the meaning of the character strings it manipulates or the significance of the calculations it performs. Take, for example, the following simple Scratch program:</p>
-<p><img src="images/Lesson04-13.png" class="img-fluid"></p>
-<p>This program simply displays strings of characters, stores user input, and echoes that input back to the screen along with some additional character strings. The computer has no clue what the text string “Please enter your name:” means. For all it cares, the string could have been “My hovercraft is full of eels.” or “qwerty uiop asdf ghjkl;” (or any other text string for that matter). Its only concern is to copy the characters of the text string onto the display screen.</p>
-<p>Only in the minds of human beings do the sequence of characters “Please enter your name:” take on meaning. If this seems odd, try to remember that comprehension does not even occur in the minds of all humans, only those who are capable of reading and understanding written English. A four year old, for example, would not know how to respond to this prompt because he or she would be unable to read it. This is so despite the fact that if you were to ask the child his or her name, he or she could immediately respond and perhaps even type it out on the keyboard for you.</p>
-<p>Now consider this Scratch program:</p>
-<p><img src="images/Lesson04-14.png" class="img-fluid"></p>
-<p>Here, the input is numeric instead of text. The program prompts the user for two numbers, which it then computes the sum for and displays to the user. Note that two variables were declared: <code>num1</code> and <code>num2</code>. The first number is captured and stored in the variable <code>num1</code>. The second number is captured and stored in the variable <code>num2</code>. What do you think would happen if the user did not provide numeric input and, for example, inputted “Bob” for the first number? In the <em>real world</em>, programmers must create robust programs that examine user input in order to verify that it is of the proper type before processing that input. If the input is found to be in error, the program must take appropriate corrective action, such as rejecting the invalid input and requesting the user try again.</p>
-<p>In Python, output is implemented as a <strong>print</strong> statement:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"This is some output!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We use the <strong>input</strong> statement to ask a question and obtain user input. In the same statement, we can assign the result of this to a variable:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"How old are you? "</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Of course, we need to take care to properly specify whether the input is numeric or text (in Python 3.x its a text by default. Use casting to convert into numeric).</p>
-</section>
-<section id="expressions-and-assignment" class="level3" data-number="20.5">
-<h3 data-number="20.5" class="anchored" data-anchor-id="expressions-and-assignment"><span class="header-section-number">20.5</span> Expressions and assignment</h3>
-</section>
 </section>
 
 </main>
@@ -1553,27 +1015,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1583,17 +1028,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1605,130 +1041,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -1772,7 +1085,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1798,32 +1110,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1884,7 +1170,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
 
 
 
