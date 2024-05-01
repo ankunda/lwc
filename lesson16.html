@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-04-27">
+
+<title>Recursion</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="lesson16_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lesson16_files/libs/quarto-html/quarto.js"></script>
+<script src="lesson16_files/libs/quarto-html/popper.min.js"></script>
+<script src="lesson16_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="lesson16_files/libs/quarto-html/anchor.min.js"></script>
+<link href="lesson16_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lesson16_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="lesson16_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="lesson16_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="lesson16_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #002f8b;
+      }
+</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Recursion</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 27, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#recursion" id="toc-recursion" class="nav-link active" data-scroll-target="#recursion"><span class="header-section-number">1</span> Recursion</a>
+  <ul class="collapse">
+  <li><a href="#the-towers-of-hanoi" id="toc-the-towers-of-hanoi" class="nav-link" data-scroll-target="#the-towers-of-hanoi"><span class="header-section-number">1.1</span> The Towers of Hanoi</a></li>
+  <li><a href="#breaking-problems-down" id="toc-breaking-problems-down" class="nav-link" data-scroll-target="#breaking-problems-down"><span class="header-section-number">1.2</span> Breaking problems down</a></li>
+  <li><a href="#recursion-1" id="toc-recursion-1" class="nav-link" data-scroll-target="#recursion-1"><span class="header-section-number">1.3</span> Recursion</a></li>
+  <li><a href="#the-towers-of-hanoi-reloaded" id="toc-the-towers-of-hanoi-reloaded" class="nav-link" data-scroll-target="#the-towers-of-hanoi-reloaded"><span class="header-section-number">1.4</span> The Towers of Hanoi… Reloaded</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+
+<section id="recursion" class="level2 page-columns page-full" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="recursion"><span class="header-section-number">1</span> Recursion</h2>
+<section id="the-towers-of-hanoi" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="the-towers-of-hanoi"><span class="header-section-number">1.1</span> The Towers of Hanoi</h3>
+<p>Although a lot of problems exist, it is often fun (and interesting) to study games to see if we can glean anything of value from them beyond just entertainment. In some cases, we actually learn useful tactics that can help us solve <em>real</em> problems later on. The Towers of Hanoi is an old, simple game (in principle). You are presented with three pegs (or towers) on which you can move various discs around. Initially, the discs rest on a single tower (the largest is on the bottom and the smallest is on the top). The objective is to move the discs from this <em>source</em> tower to some <em>destination</em> tower. But there are rules:</p>
+<ol type="1">
+<li><p>Only a single disc can be moved at a time;</p></li>
+<li><p>No larger disc may ever be placed on top of a smaller disc; and</p></li>
+<li><p>Moving a single disc constitutes one move.</p></li>
+</ol>
+<p>The objective, of course, is to move all of the discs from a source tower to a destination tower in the minimum number of moves. Here is an example of what the start of the game looks like (with three discs):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The game is interesting because it presents us with an optimization problem. That is, the goal is not just to find a solution (i.e., to successfully move the discs from the source tower on the left to the destination tower on the right), but to find one that is optimal (i.e., that results in some minimum number of moves). It is quite easy to eventually find a solution in, say, 100 moves. In fact, we can probably make mostly random moves and get there within 100.</p>
+<p>The minimum number of moves required to solve the Towers of Hanoi with three discs turns out to be seven! In fact, here are the moves:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Trying our hand at solving the puzzle with one, two, three discs, and so on, may lead to some idea of where to place the first disc. We also notice a pattern; however, it is not so straightforward. In fact, attempting to design an algorithm to solve the puzzle would most likely be difficult at this point. It would undoubtedly involve repetition, and breaking down the problem so that it can be reasoned about and an algorithm designed is not as simple as it may initially appear</p>
+<p>The simplest case of the Towers of Hanoi is one with a single disc. The minimum number of moves required in this case is, trivially, one (move the disc from the source tower to the destination tower). We can create a table that, given an initial number of discs, provides the minimum number of moves required for a Towers of Hanoi problem with that many discs:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Number of Discs</th>
+<th style="text-align: center;">Minimum number of moves</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">31</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">63</td>
+</tr>
+</tbody>
+</table>
+<p>In the general case of <em>n</em> discs, how many moves would it minimally take? Do you see a pattern? A quick look indicates that the minimum number of moves required appears to double each time a disc is added. For example, one disc requires one move. Two discs requires three moves (a bit more than double the number of moves required for a single disc). Three discs requires seven moves (a bit more than double the number of moves required for two discs). And so on</p>
+<p>It appears that the minimum number of moves required can be represented as a power of two of the number of discs. In the case of a single disc, we have: <span class="math inline">\(2^{1} = 2\)</span>; and <span class="math inline">\(2 - 1 = 1\)</span>. In this case, that’s <span class="math inline">\(2^{1}-1\)</span> moves (minimally). In the case of two discs, we have: <span class="math inline">\(2^{2} = 4\)</span>; and <span class="math inline">\(4 - 1 = 3\)</span>. That’s <span class="math inline">\(2^{2} - 1\)</span> moves. And in the case of three discs, we have <span class="math inline">\(2^{3} = 8\)</span>; and <span class="math inline">\(8 - 1 = 7\)</span>. That’s <span class="math inline">\(2^{3} - 1\)</span> moves. Generalizing this for <em>n</em> discs, we simply have <span class="math inline">\(2^{*n*} - 1\)</span> moves (minimally)! Here’s the updated table:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Number of Discs</th>
+<th style="text-align: center;">Minimum number of moves</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">31</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">63</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><em>n</em></td>
+<td style="text-align: center;"><span class="math inline">\(2^{n} - 1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Let’s suppose that it takes 1 second for you to make a single move. How long would it take to complete the puzzle with six discs? Since it takes 63 moves to complete the puzzle with six discs, and each move takes 1 second, then it would take slightly over one minute to complete the puzzle. Since the number of moves effectively doubles each time a disc is added to the problem, so does the time it takes to solve the puzzle! For example, it would take approximately two minutes to solve a puzzle with seven discs, approximately 16 minutes for a puzzle with ten discs, and approximately 11 days for a puzzle with 20 discs!</p>
+<p>Suppose that your computer could make 500 million moves per second (which is probably about right!). A quick calculation shows us that the Towers of Hanoi with 30 discs would take a little over two seconds. Again, it doubles with every additional disc. For example, it would take your computer approximately four seconds for a puzzle with 31 discs, approximately one minute for puzzle with 35 discs, and approximately one hour for a puzzle with 41 discs. And it would take almost one month for a puzzle with 50 discs! One month for a fast computer that can make 500 million moves per second!</p>
+<p>It is said that a group of monks are working to solve the Towers of Hanoi with 64 golden disks. They believe that, once solved, it will be the end of the world. They move the discs by hand. Think of the size of the discs to be able to stack 64 of them (golden ones, mind you) on a single tower! They must require pulleys, ropes, many monks for each move, and so on. Suppose that they can make one move every ten minutes (which is quite fast, considering). It would take them over 350 billion millennia (that’s over 350 billion thousand years) to solve the puzzle in the minimum ~18.4 quintillion moves! I’m not worried…</p>
+</section>
+<section id="breaking-problems-down" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="breaking-problems-down"><span class="header-section-number">1.2</span> Breaking problems down</h3>
+<p>Consider a simple question: Let’s say that there are ten students in the class. Suppose that some activity requires pairing students in groups of two. How many unique groups could be generated? That is, how many ways could the class be split up into groups of two? Although not particularly difficult, the answer is not obvious at first. A strategy may be to simplify the problem into a trivial case, and build up from there. We could do this by first considering a class of two students. How many groups of two could be formed? Clearly, only one. There is only one way to group two students in groups of two. Let’s add a third student. In fact, let’s consider the three students, S<sub>1</sub>, S<sub>2</sub>, and S<sub>3</sub>. How many ways could groups of two be formed from these three students? Let’s try to enumerate them all:</p>
+<ol type="1">
+<li><p>S<sub>1</sub> and S<sub>2</sub>;</p></li>
+<li><p>S<sub>1</sub> and S<sub>3</sub>; and</p></li>
+<li><p>S<sub>2</sub> and S<sub>3</sub>.</p></li>
+</ol>
+<p>So there are three ways to form groups of two from three total students. What about four total students, S<sub>1</sub> through S<sub>4</sub>?</p>
+<ol type="1">
+<li><p>S<sub>1</sub> and S<sub>2</sub>;</p></li>
+<li><p>S<sub>1</sub> and S<sub>3</sub>;</p></li>
+<li><p>S<sub>1</sub> and S<sub>4</sub>;</p></li>
+<li><p>S<sub>2</sub> and S<sub>3</sub>;</p></li>
+<li><p>S<sub>2</sub> and S<sub>4</sub>; and</p></li>
+<li><p>S<sub>3</sub> and S<sub>4</sub></p></li>
+</ol>
+<p>There are six ways to form groups of two from four total students. One more: what about five total student, S<sub>1</sub> through S<sub>5</sub>?</p>
+<ol type="1">
+<li><p>S<sub>1</sub> and S<sub>2</sub>;</p></li>
+<li><p>S<sub>1</sub> and S<sub>3</sub>;</p></li>
+<li><p>S<sub>1</sub> and S<sub>4</sub>;</p></li>
+<li><p>S<sub>1</sub> and S<sub>5</sub>;</p></li>
+<li><p>S<sub>2</sub> and S<sub>3</sub>;</p></li>
+<li><p>S<sub>2</sub> and S<sub>4</sub>;</p></li>
+<li><p>S<sub>2</sub> and S<sub>5</sub>;</p></li>
+<li><p>S<sub>3</sub> and S<sub>4</sub>;</p></li>
+<li><p>S<sub>3</sub> and S<sub>5</sub>; and</p></li>
+<li><p>S<sub>4</sub> and S<sub>5</sub>.</p></li>
+</ol>
+<p>There are ten ways to form groups of two from five total students. How does this scale to more students? Take a look at this table (note that there are exactly zero ways to form groups of two from a single student!):</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Student</th>
+<th style="text-align: center;">Groups</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">21</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">36</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">?</td>
+</tr>
+</tbody>
+</table>
+<p>Can you guess the number of groups of two that can be formed with ten students? Can you see a pattern that gives the number of groups from some number of students? Take a closer look at a subset of the table above:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Student</th>
+<th style="text-align: center;">Groups</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span style="color:red">2</span></td>
+<td style="text-align: center;"><span style="color:red">1</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span style="color:red">3</span></td>
+</tr>
+</tbody>
+</table>
+<p>For the case of three students, it seems that we can calculate the number of groups of two that can be formed as the sum of the number of groups of two that can be formed with two students plus those two students (i.e., 1 + 2 = 3). Let’s see if this continues to work out with four students:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Student</th>
+<th style="text-align: center;">Groups</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span style="color:red">3</span></td>
+<td style="text-align: center;"><span style="color:red">3</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span style="color:red">6</span></td>
+</tr>
+</tbody>
+</table>
+<p>To calculate how many groups of two can be formed with four students, we can sum the number of students in the row above (3) with the number of groups that can be formed with that many students (3): (3 + 3 = 6).</p>
+<p>And one more:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Student</th>
+<th style="text-align: center;">Groups</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span style="color:red">4</span></td>
+<td style="text-align: center;"><span style="color:red">6</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><span style="color:red">10</span></td>
+</tr>
+</tbody>
+</table>
+<p>The number of groups of two that can be formed with five students is the number of groups of two that can be formed with four students (6) plus those four students (4): (6 + 4 = 10). And now, we can calculate the number of groups of two that can be formed with 10 students:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Student</th>
+<th style="text-align: center;">Groups</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">21</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span style="color:red">9</span></td>
+<td style="text-align: center;"><span style="color:red">36</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;"><span style="color:red">45</span></td>
+</tr>
+</tbody>
+</table>
+<p>How can we generalize this for any number of students (say, <em>n</em>)? It turns out that we can use a recurrence relation to describe this behavior.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>recurrence relation</strong> is an equation that recursively defines a sequence. That is, each term in the sequence is defined as a function of the preceding terms in some way.</p>
+</div>
+</div>
+<p>For example, in the table above the number of groups of two that can be formed with ten students is a function of the number of groups of two that can be formed with nine students. And that itself is a function of the number of groups of two that can be formed with eight students. And this goes on. Ultimately, however, we can establish some base (or trivial) case that is immediately answerable. For example, we can say (without needing to think about it too much) that no groups of two can be formed with one student. In fact, this is the simplest case for this problem. It is the base (or trivial) case.</p>
+<p>Recurrence relations must ensure that, at some point, the base case is achievable. That is, the problem must be repeatedly broken down into smaller and smaller versions of itself, eventually reaching the base case. The solution to a specific term in the sequence is then built back up, from the base case! Algorithms that repeatedly break something down until a base case is reached and build a solution back up are known as <strong>divide and conquer</strong> algorithms.</p>
+<p>For the groups of students problem stated above, we can define a function, <em>G(n)</em>, that calculates the number of groups of two that can be formed from n total students. We could express this function as follows: <span class="math display">\[\begin{equation}
+G(n) =
+   \left\{\begin{array}{lr}
+       0 &amp;\text{, if } n = 1\\
+       (n-1)+G(n-1) &amp;\text{, otherwise}
+    \end{array}\right.
+\end{equation}\]</span></p>
+<p>We read this as follows: the number of groups of two that can be formed from n students is:</p>
+<p>• 0, if the number of students, n, is 1; or</p>
+<p>• n minus 1 plus the number of groups of two that can be formed from n minus 1 students, otherwise.</p>
+<p>Although fully understanding this at this point is not necessary, note how the second part of the function is dependent on the function itself. That is, the <em>otherwise</em> part breaks the problem down a bit into a smaller version of itself via <em>G(n – 1)</em>. The interesting thing is that the problem can be broken down enough times to ensure that the base case is eventually reached! If <em>n</em> is some positive number greater than 0, the recurrence relation will break down the problem until <em>n</em> is 1, at which point the base case is reached (and everything stops).</p>
+<p>Formally, the equation above is known as a recurrence relation because it is defined in terms of itself. It also has two separate parts, and the result depends on the input value. In mathematics, we refer to this type of function as a piecewise function. This particular function has two pieces:</p>
+<p>• The first results in 0, but only if the input value, n, is 1; and</p>
+<p>• The second results in a broken down version of itself, otherwise (i.e., for values of n that are not 1).</p>
+</section>
+<section id="recursion-1" class="level3 page-columns page-full" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="recursion-1"><span class="header-section-number">1.3</span> Recursion</h3>
+<p>In computer science, recursion is usually understood to be the idea of a subprogram repeatedly calling itself. Of course, at some point this repeated calling has to stop (otherwise, it would be an infinite loop). In a previous lesson, we envisioned recursion as a spiral of sorts. Each time a subprogram calls itself, we descend down a level of the spiral until we eventually reach the bottom (some base or trivial case). At that point, execution begins to <em>unwind</em> as the subprogram calls complete and we retrace our path back up through the various levels until finally arriving at the <em>top</em> level where execution began. This is when the solution is built back up. Generally, however, recursion is just another name for recurrence relation.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Recursion</strong> is the process of breaking down a problem into smaller and smaller versions of itself until a base or trivial case is reached. Recursion must have two parts: (1) a base or trivial case that provides an immediate answer to some specified input; and (2) a recursive step that breaks the problem down into a smaller version of itself.</p>
+</div>
+</div>
+<p>Recursion is the programming equivalent of mathematical induction (which is just defining something in terms of itself). To illustrate this more clearly, let’s take a look at a simple algorithm that computes a base to some power (i.e., x<sup>y</sup>):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute 2^10</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">pow</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, y):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">pow</span> <span class="op">*=</span> x</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">{}</span><span class="st">^</span><span class="sc">{}</span><span class="st"> = </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(x, y, <span class="bu">pow</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This example computes 2<sup>10</sup> (1024). It basically multiplies one by the base <em>(x) y</em> times. When the base is two and the exponent is ten, it multiples one by two, ten times (i.e., 1 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2).</p>
+<p>To convert this iterative algorithm to a recursive one, we must first define the recurrence relation that solves the problem. First, the base or trivial case. For exponents, that’s simple: <span class="math inline">\(x^{0} = 1\)</span>. That is, anything raised to the power zero is always one. The recursive step takes more thought. A hint is to observe how powers can be broken down. For example: <span class="math inline">\(2^{2} = 2 * 2\)</span>. Extending this, <span class="math inline">\(2^{3} = 2 * 2 * 2\)</span>. This can be rewritten as <span class="math inline">\(2^{3} = 2 * 2^{2}\)</span>. We can extend this further: <span class="math inline">\(2^{4} = 2 * 2^{3}\)</span>. Notice how the exponents can be repeatedly broken down into smaller exponents. The trick is to see if the base case is eventually reached.</p>
+<p>Let’s take a look at the first example again: <span class="math inline">\(2^{2} = 2 * 2\)</span>. Technically, <span class="math inline">\(2^{2} = 2 * 2^{1}\)</span>. And <span class="math inline">\(2^{1} = 2 * 2^{0}\)</span>! So the base case can eventually be reached. We can now formally define a recurrence relation for some function <code>Pow(x, y)</code> as follows:</p>
+<p><span class="math display">\[\begin{equation}
+Pow(x, y) =
+   \left\{\begin{array}{lr}
+       1 &amp;\text{, if } y = 0\\
+       x*Pow(x, y-1) &amp;\text{, otherwise}
+    \end{array}\right.
+\end{equation}\]</span></p>
+<p>Let’s see if it works with an example: 2<sup>5</sup> (which is 32). In the recurrence relation above, we would call the function with Pow(2, 5). Since y is not zero, the second (recursive) case is applied resulting in 2 * Pow(2, 4). To calculate Pow(2, 4), the second case is applied again resulting in 2 * Pow(2, 3). And to calculate Pow(2, 3), we apply the second case another time which results in 2 * Pow(2, 2). We have to apply the second case a few more times: first with Pow(2, 2) which results in 2 * Pow(2, 1), and lastly with Pow(2, 1) which results in 2 * Pow(2, 0). At this point, the first (base) case is applied (since y is 0) resulting in 1. We can now build it all back up: 1 * 2 * 2 * 2 * 2 * 2 = 32.</p>
+<p>Perhaps this is best illustrated as follows; first with the recursive calls:</p>
+<p>Pow(2, 5)</p>
+<p> 2 * Pow(2, 4)</p>
+<p>  2 * Pow(2, 3)</p>
+<p>   2 * Pow(2, 2)</p>
+<p>    2 * Pow(2, 1)</p>
+<p>     2 * Pow(2, 0)</p>
+<p>Now let’s build the result back up:</p>
+<p><del>Pow(2, 5)</del> <span style="color:red">32</span></p>
+<p> 2 * <del>Pow(2, 4)</del> <span style="color:red">16</span></p>
+<p>  2 * <del>Pow(2, 3)</del> <span style="color:red">8</span></p>
+<p>   2 * <del>Pow(2, 2)</del> <span style="color:red">4</span></p>
+<p>    2 * <del>Pow(2, 1)</del> <span style="color:red">2</span></p>
+<p>     2 * <del>Pow(2, 0)</del> <span style="color:red">1</span></p>
+<p>Notice how, at each step in the building back up, the result of the recursive calls combine to form simple arithmetic problems (e.g., 2 * Pow(2, 0) becomes 2 * 1 which equals 2). The arithmetic results form the answer to a previous recursive call (which is then replaced to form another simple arithmetic problem).</p>
+<p>Here’s another interesting mathematical function: the factorial. Let’s first look at its recursive definition:</p>
+<p><span class="math display">\[\begin{equation}
+Frac(n) =
+   \left\{\begin{array}{lr}
+       1 &amp;\text{, if } n = 0\\
+       n*Frac(n-1) &amp;\text{, otherwise}
+    \end{array}\right.
+\end{equation}\]</span></p>
+<p>The factorial function repeatedly multiplies some integer by all the integers below it (up to 1). For example, five factorial (referred to as 5!) = 5 * 4 * 3 * 2 * 1 = 120. To see how this works, let’s take a look at some examples:</p>
+<p>5! = 5 * 4 * 3 * 2 * 1 = 120</p>
+<p>4! = 4 * 3 * 2 * 1 = 24</p>
+<p>3! = 3 * 2 * 1 = 6</p>
+<p>2! = 2 * 1 = 2</p>
+<p>1! = 1</p>
+<p>Note how 4! is embedded within 5!:</p>
+<p>5! = 5 * <span style="color:red">4 * 3 * 2 * 1</span></p>
+<p>And so on. In fact, we could say that 5! = 5 * 4!, and 4! = 4 * 3!, and 3! = 3 * 2!, and so on. This clearly breaks the problem down into smaller and smaller versions of itself. So what is the base case? Perhaps it’s just that 1! = 1. Although correct, mathematicians actually prefer 0! = 1 (as illustrated in the recurrence relation above). So the breaking down occurs as follows:</p>
+<p>5! = 5 * 4!</p>
+<p>4! = 4 * 3!</p>
+<p>3! = 3 * 2!</p>
+<p>2! = 2 * 1!</p>
+<p>1! = 1 * 0!</p>
+<p>0! = 1</p>
+<p>And now we can implement a recursive factorial function as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (n <span class="op">==</span> <span class="dv">0</span>):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n <span class="op">*</span> fact(n <span class="op">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And to compute 5!:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"5! = </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(fact(<span class="dv">5</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s see how the recursion works as in the previous Pow example; first with the recursive calls:</p>
+<p>fact(5)</p>
+<p> 5 * fact(4)</p>
+<p>  4 * fact(3)</p>
+<p>   3 * fact(2)</p>
+<p>    2 * fact(1)</p>
+<p>     1 * fact(0)</p>
+<p>Next with the building back up:</p>
+<p><del>fact(5)</del> <span style="color:red">120</span></p>
+<p> <del>5 * fact(4)</del> <span style="color:red">24</span></p>
+<p>  <del>4 * fact(3)</del> <span style="color:red">6</span></p>
+<p>   <del>3 * fact(2)</del> <span style="color:red">2</span></p>
+<p>    <del>2 * fact(1)</del> <span style="color:red">1</span></p>
+<p>     <del>1 * fact(0)</del> <span style="color:red">1</span></p>
+
+<div class="no-row-height column-margin column-container"><div class="callout callout-style-default callout-note callout-titled" title="Did you know">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Did you know
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Although not always simple, any iterative algorithm can be converted to a recursive one and vice versa!</p>
+</div>
+</div></div><p>Try implementing an iterative factorial algorithm (in Python)</p>
+<p>Another interesting mathematical function is one that generates the Fibonacci sequence. Although it has been featured in a puzzle, no actual function was provided. Let’s take a look at the Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, …</p>
+<p>A term in the sequence can be calculated as the sum of the two previous terms. For example, the seventh term (8) is the sum of the fifth and sixth terms (3 and 5). Here’s a recurrence relation for the Fibonacci sequence:</p>
+<p><span class="math display">\[\begin{equation}
+Fib(n) =
+   \left\{\begin{array}{lr}
+       0 &amp;\text{, if } n = 1\\
+       1 &amp;\text{, if } n = 2\\
+       Fib(n-1)+Fib(n-2) &amp;\text{, otherwise}
+    \end{array}\right.
+\end{equation}\]</span></p>
+<p>Note that this recurrence relation has two base cases! This is necessary since the recursion requires the sum of the <em>two</em> previous terms. The first term in the sequence, Fib(1), is 0 (the first base case). The second term in the sequence, Fib(2), is 1 (the second base case). The remaining terms are calculated recursively as the sum of the previous two terms, Fib(<em>n</em> – 1) + Fib(<em>n</em> – 2). Here’s how the recursion breaks down for Fib(6) (which equals 5). Since there are multiple branches of recursion (i.e., two parts to each recursive call), we’ll use a different method to show the recursion:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-03.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>At the top, Fib(6) breaks down to Fib(5) + Fib(4). The figure then takes on an upside-down tree-like structure. Note how, if flipped upside-down, the top would form a root. The root then splits into two branches, each of which split into two more branches, and so on. The values at the bottom of the figure form what are called leaves. These represent the base cases, all either Fib(1) or Fib(2). In a future lesson, we will discuss trees more formally.</p>
+<p>We can build the result back up as follows:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-04.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The result (at the top) is, as expected, 5.</p>
+</section>
+<section id="the-towers-of-hanoi-reloaded" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="the-towers-of-hanoi-reloaded"><span class="header-section-number">1.4</span> The Towers of Hanoi… Reloaded</h3>
+<p>As noted earlier, crafting an algorithm for this puzzle is not as simple as it sounds. In fact, it is quite difficult to design an iterative algorithm for it. Let’s see if we can use recursion to our advantage. Consider the puzzle with three discs:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-05.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Suppose that the destination tower is the one on the right. The middle tower will be used as a spare. In order to move all three discs from the source tower to the destination tower, we can think of first needing to move two discs (the top two, in fact) from the source tower to the spare tower:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-06.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Clearly this is not possible since we cannot move two discs simultaneously; however, let’s continue with this <em>train of thought</em> for a moment. Supposing that we have successfully done this, then we would need to move the single disc left on the source tower to the destination tower:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-07.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>And all that would be left to do is to move the two discs that are on the spare tower over to the destination tower:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-08.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Puzzle solved! However, as mentioned we cannot move two discs simultaneously. However, let’s go back to the original state:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-09.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>In order to move the two top discs from the source tower to the spare tower, we first need to move the single top disc from the source tower to the destination tower:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-10.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>We can then move the second disc from the source tower to the spare tower:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-11.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>And we can finally move the small disc from the destination tower to the spare tower:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson16-12.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>In a sense, the three disc puzzle (i.e., moving three discs from the source tower to the destination tower) is a two-disc puzzle (moving the two top discs from the source tower to the spare tower), followed by a one-disc puzzle (moving the largest disc from the source tower to the destination tower), and finished with a two-disc puzzle (moving the two discs left on the spare tower to the destination tower).</p>
+<p>But of course, the two-disc puzzles are simply three one-disc puzzles! And a one-disc puzzle is simple: just move the disc from one tower to another. Moving one disc is, in fact, the base case of the Towers of Hanoi! Moving more than one disc can be broken down as a sequence of three smaller puzzles as follows:</p>
+<ol type="1">
+<li><p>Move all but the bottom disc from the source tower to the spare tower;</p></li>
+<li><p>Move the largest disc from the source tower to the destination tower; and</p></li>
+<li><p>Move the discs on the spare tower to the destination tower.</p></li>
+</ol>
+<p>Or in general, given n discs:</p>
+<ol type="1">
+<li><p>Move n – 1 discs from source to spare;</p></li>
+<li><p>Move 1 disc from source to destination; and</p></li>
+<li><p>Move n – 1 discs from spare to destination.</p></li>
+</ol>
+<p>We can design a recursive algorithm in Python as follows:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hanoi(n, src, dst, spr):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (n <span class="op">==</span> <span class="dv">1</span>):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="sc">{}</span><span class="st"> -&gt; </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(src, dst))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        hanoi(n <span class="op">-</span> <span class="dv">1</span>, src, spr, dst)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        hanoi(<span class="dv">1</span>, src, dst, spr)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        hanoi(n <span class="op">-</span> <span class="dv">1</span>, spr, dst, src)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note the parameters in the function <code>hanoi</code>. The variable <em>n</em> specifies the number of discs. The variables <em>src</em>, <em>dst</em>, and <em>spr</em> refer to the three towers. We can execute the algorithm and call the <code>hanoi</code> function (with three discs from a source tower A to a destination tower C using a spare tower B) as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hanoi(<span class="dv">3</span>, <span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here is the output:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">-&gt;</span> C</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">-&gt;</span> B</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>C <span class="op">-&gt;</span> B</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">-&gt;</span> C</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>B <span class="op">-&gt;</span> A</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>B <span class="op">-&gt;</span> C</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>A <span class="op">-&gt;</span> C</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The recursive function does require a little bit of explanation. Let’s take a look at the initial call to the function again:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hanoi(<span class="dv">3</span>, <span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When this call occurs, the actual parameters, 3, “A”, “C”, and “B”, are passed in (or mapped) to the formal parameters, <em>n</em>, <em>src</em>, <em>dst</em>, and <em>spr</em>. To be clear, the source tower is A, and the destination tower is C. The first part of the recursive function, representing the base case when <em>n</em> = 1, is clear: simply move the single disc from <em>src</em> to <em>dst</em>. This is accomplished by displaying the move to the console</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">{}</span><span class="st"> -&gt; </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(src, dst))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If <em>n</em> &gt; 1, the recursive step is applied:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>hanoi(n <span class="op">-</span> <span class="dv">1</span>, src, spr, dst)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>hanoi(<span class="dv">1</span>, src, dst, spr)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>hanoi(n <span class="op">-</span> <span class="dv">1</span>, spr, dst, src)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That is, to move <em>n</em> discs from <em>src</em> to <em>dst</em> using <em>spr</em>, we must first move <em>n</em> – 1 discs from <em>src</em> to <em>spr</em> (using <em>dst</em> as the temporary spare tower), then move one disc from <em>src</em> to <em>dst</em>, and finally move the <em>n</em> – 1 discs moved previously from <em>spr</em> to <em>dst</em> (using <em>src</em> as the temporary spare tower). Let’s look at the first call only along with the function definition:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hanoi(n, src, dst, spr):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    hanoi(n <span class="op">-</span> <span class="dv">1</span>, src, spr, dst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this call, the actual parameter, <em>n</em> – 1, is mapped to the formal parameter, <em>n</em>. So whatever <em>n</em> is in the function, when it is called again, it is with <em>n</em> – 1. Similarly, <em>src</em> is mapped to <em>src</em> (since moving <em>n</em> discs from some source results in moving <em>n</em> – 1 discs from that source first). The <em>n</em> – 1 discs, however, are moved to the spare tower (to get them out of the way). So the call maps <em>spr</em> as the actual parameter to <em>dst</em> as the formal parameter. Lastly, <em>dst</em> is mapped to <em>spr</em>. That is, the destination tower is temporarily used as the spare tower when moving the <em>n</em> – 1 discs out of the way.</p>
+<p>Perhaps this is best viewed dynamically, as each call is made. Let’s illustrate this with a simple puzzle with two discs:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hanoi(<span class="dv">2</span>, <span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This call results in the following variable values:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">src</th>
+<th style="text-align: center;">dst</th>
+<th style="text-align: center;">spr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">B</td>
+</tr>
+</tbody>
+</table>
+<p>The recursive step is then applied, which results in the following three recursive calls:</p>
+<p>    <span style="color:red">1</span>  <span style="color:red">A</span> <span style="color:red">B</span> &nbsp;<span style="color:red">C</span></p>
+<p>hanoi(<del>n - 1</del>, <del>src</del>, <del>spr</del>, <del>dst</del>)</p>
+<p>    <span style="color:red">A</span>  <span style="color:red">B</span> <span style="color:red">C</span></p>
+<p>hanoi(1, <del>src</del>, <del>dst</del>, <del>spr</del>)</p>
+<p>    <span style="color:red">1</span>  <span style="color:red">B</span> <span style="color:red">C</span> &nbsp;<span style="color:red">A</span></p>
+<p>hanoi(<del>n - 1</del>, <del>spr</del>, <del>dst</del>, <del>src</del>)</p>
+<p>Since these are all one-disc puzzles, the base case is applied each time (which simply displays the move to the console). The first recursive call results in the the following variable values:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">src</th>
+<th style="text-align: center;">dst</th>
+<th style="text-align: center;">spr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+</tr>
+</tbody>
+</table>
+<p>It therefore displays the following move: A → B. The second recursive call results in the the following variable values:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">src</th>
+<th style="text-align: center;">dst</th>
+<th style="text-align: center;">spr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">B</td>
+</tr>
+</tbody>
+</table>
+<p>It therefore displays the following move: A → C. The third recursive call results in the the following variable values:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">src</th>
+<th style="text-align: center;">dst</th>
+<th style="text-align: center;">spr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">A</td>
+</tr>
+</tbody>
+</table>
+<p>It therefore displays the following move: B → C. The three moves do, in fact, solve the two-disc puzzle. Note that the values for the three towers can be anything. The strings “A”, “B”, and “C” were used above; however, the integers 1, 2, and 3 would work just as well. If we wish, we can display the moves required for puzzles with one through four discs as follows:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">5</span>):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The Towers of Hanoi with </span><span class="sc">{}</span><span class="st"> disc(s):"</span>.<span class="bu">format</span>(i))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    hanoi((i, <span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The output of this modified algorithm is:</p>
+<pre><code>The Towers of Hanoi with 1 disc(s):
+A -&gt; C
+
+The Towers of Hanoi with 2 disc(s):
+A -&gt; B
+A -&gt; C
+B -&gt; C
+
+The Towers of Hanoi with 3 disc(s):
+A -&gt; C
+A -&gt; B
+C -&gt; B
+A -&gt; C
+B -&gt; A
+B -&gt; C
+A -&gt; C
+
+The Towers of Hanoi with 4 disc(s):
+A -&gt; B
+A -&gt; C
+B -&gt; C
+A -&gt; B
+C -&gt; A
+C -&gt; B
+A -&gt; B
+A -&gt; C
+B -&gt; C
+B -&gt; A
+C -&gt; A
+B -&gt; C
+A -&gt; B
+A -&gt; C
+B -&gt; C</code></pre>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
