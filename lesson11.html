@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -78,6 +78,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body>
@@ -110,20 +137,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-you-should-already-know" id="toc-what-you-should-already-know" class="nav-link active" data-scroll-target="#what-you-should-already-know"><span class="header-section-number">1</span> What you should already know</a></li>
-  <li><a href="#data-types-constants-and-variables" id="toc-data-types-constants-and-variables" class="nav-link" data-scroll-target="#data-types-constants-and-variables"><span class="header-section-number">2</span> Data types, constants, and variables</a></li>
-  <li><a href="#input-and-output" id="toc-input-and-output" class="nav-link" data-scroll-target="#input-and-output"><span class="header-section-number">3</span> Input and output</a></li>
-  <li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"><span class="header-section-number">4</span> Operators</a></li>
-  <li><a href="#primary-control-constructs" id="toc-primary-control-constructs" class="nav-link" data-scroll-target="#primary-control-constructs"><span class="header-section-number">5</span> Primary control constructs</a></li>
-  <li><a href="#subprograms" id="toc-subprograms" class="nav-link" data-scroll-target="#subprograms"><span class="header-section-number">6</span> Subprograms</a></li>
-  <li><a href="#a-review-of-program-flow" id="toc-a-review-of-program-flow" class="nav-link" data-scroll-target="#a-review-of-program-flow"><span class="header-section-number">7</span> A review of program flow</a></li>
-  <li><a href="#formal-vs-actual-parameters" id="toc-formal-vs-actual-parameters" class="nav-link" data-scroll-target="#formal-vs-actual-parameters"><span class="header-section-number">8</span> Formal vs actual parameters</a></li>
-  <li><a href="#variable-scope" id="toc-variable-scope" class="nav-link" data-scroll-target="#variable-scope"><span class="header-section-number">9</span> Variable scope</a></li>
-  <li><a href="#a-review-of-the-python-list" id="toc-a-review-of-the-python-list" class="nav-link" data-scroll-target="#a-review-of-the-python-list"><span class="header-section-number">10</span> A review of the Python list</a></li>
-  <li><a href="#revisiting-searching-and-sorting-in-python" id="toc-revisiting-searching-and-sorting-in-python" class="nav-link" data-scroll-target="#revisiting-searching-and-sorting-in-python"><span class="header-section-number">11</span> Revisiting searching and sorting in Python</a></li>
-  <li><a href="#other-operators" id="toc-other-operators" class="nav-link" data-scroll-target="#other-operators"><span class="header-section-number">12</span> Other operators</a></li>
-  <li><a href="#string-methods" id="toc-string-methods" class="nav-link" data-scroll-target="#string-methods"><span class="header-section-number">13</span> String methods</a></li>
-  <li><a href="#importing-extertal-libraries" id="toc-importing-extertal-libraries" class="nav-link" data-scroll-target="#importing-extertal-libraries"><span class="header-section-number">14</span> Importing extertal libraries</a></li>
+  <li><a href="#what-you-should-already-know" id="toc-what-you-should-already-know" class="nav-link active" data-scroll-target="#what-you-should-already-know"><span class="header-section-number">1</span> What you should already know</a>
+  <ul class="collapse">
+  <li><a href="#data-types-constants-and-variables" id="toc-data-types-constants-and-variables" class="nav-link" data-scroll-target="#data-types-constants-and-variables"><span class="header-section-number">1.1</span> Data types, constants, and variables</a></li>
+  <li><a href="#input-and-output" id="toc-input-and-output" class="nav-link" data-scroll-target="#input-and-output"><span class="header-section-number">1.2</span> Input and output</a></li>
+  <li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"><span class="header-section-number">1.3</span> Operators</a></li>
+  <li><a href="#primary-control-constructs" id="toc-primary-control-constructs" class="nav-link" data-scroll-target="#primary-control-constructs"><span class="header-section-number">1.4</span> Primary control constructs</a></li>
+  <li><a href="#subprograms" id="toc-subprograms" class="nav-link" data-scroll-target="#subprograms"><span class="header-section-number">1.5</span> Subprograms</a></li>
+  <li><a href="#a-review-of-program-flow" id="toc-a-review-of-program-flow" class="nav-link" data-scroll-target="#a-review-of-program-flow"><span class="header-section-number">1.6</span> A review of program flow</a></li>
+  </ul></li>
+  <li><a href="#formal-vs-actual-parameters" id="toc-formal-vs-actual-parameters" class="nav-link" data-scroll-target="#formal-vs-actual-parameters"><span class="header-section-number">2</span> Formal vs actual parameters</a></li>
+  <li><a href="#variable-scope" id="toc-variable-scope" class="nav-link" data-scroll-target="#variable-scope"><span class="header-section-number">3</span> Variable scope</a></li>
+  <li><a href="#a-review-of-the-python-list" id="toc-a-review-of-the-python-list" class="nav-link" data-scroll-target="#a-review-of-the-python-list"><span class="header-section-number">4</span> A review of the Python list</a></li>
+  <li><a href="#revisiting-searching-and-sorting-in-python" id="toc-revisiting-searching-and-sorting-in-python" class="nav-link" data-scroll-target="#revisiting-searching-and-sorting-in-python"><span class="header-section-number">5</span> Revisiting searching and sorting in Python</a></li>
+  <li><a href="#other-operators" id="toc-other-operators" class="nav-link" data-scroll-target="#other-operators"><span class="header-section-number">6</span> Other operators</a></li>
+  <li><a href="#string-methods" id="toc-string-methods" class="nav-link" data-scroll-target="#string-methods"><span class="header-section-number">7</span> String methods</a></li>
+  <li><a href="#importing-extertal-libraries" id="toc-importing-extertal-libraries" class="nav-link" data-scroll-target="#importing-extertal-libraries"><span class="header-section-number">8</span> Importing extertal libraries</a></li>
   </ul>
 </nav>
 </div>
@@ -132,36 +161,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+
 <section id="what-you-should-already-know" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="what-you-should-already-know"><span class="header-section-number">1</span> What you should already know</h2>
 <p>In this lesson, we will build on what you have already learned about the Python programming language. To be sure that we are all on the same page, let’s briefly review the things about Python that you should already be familiar with. For more detail, review the lesson on <em>Introduction to Computer Programming</em>.</p>
-</section>
-<section id="data-types-constants-and-variables" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="data-types-constants-and-variables"><span class="header-section-number">2</span> Data types, constants, and variables</h2>
+<section id="data-types-constants-and-variables" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="data-types-constants-and-variables"><span class="header-section-number">1.1</span> Data types, constants, and variables</h3>
 <p>You should know that the kinds of calues that cen be expressed in a programming language are known as its <strong>data types</strong>. The <strong>primitive types</strong> of a programming language are those data types that are built-in (or standard) to the language and typically considered as basic building blocks (i.e., more complex types can be created from these primitive types). Python’s standard types can be grouped into several classes: numeric types, sequences, sets, and mappings. You should be familiar with numeric types and sequences (e.g., lists)</p>
 <p>You should know that a <strong>constant</strong> is defined as a value of a particular type that does not change over time. In Python both numbers and text may be expressed as constants. <strong>Numeric constants</strong> are composed of the digits 0 through 9 and, optionally, a negative sign (for negative numbers), and a decimal point (for floating point numbers). <strong>Text constants</strong> consists of a sequence of characters (also known as a string of characters – or just a <strong>string</strong>).</p>
 <p>You should know that a <strong>variable</strong> is defined to be a named object that can store a value of a particular type. Before a variable can be used, its name must be declared.</p>
 </section>
-<section id="input-and-output" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="input-and-output"><span class="header-section-number">3</span> Input and output</h2>
+<section id="input-and-output" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="input-and-output"><span class="header-section-number">1.2</span> Input and output</h3>
 <p>You should be familiar with obtaining input (via the input function) and generating output (via the <code>print</code> statement) in Python. Here’s a simple example:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"What is your name? "</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello, </span><span class="sc">{}</span><span class="st">!"</span>.<span class="bu">format</span>(name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="operators" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="operators"><span class="header-section-number">4</span> Operators</h2>
+<section id="operators" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="operators"><span class="header-section-number">1.3</span> Operators</h3>
 <p>You should be familiar with a variety of operators in Python. Specifically, arithmetic operators, relational (comparison) operators, and assignment operators. Arithmetic operators include addition, subtraction, etc, and perform arithmetic operations on operands. Relational operators include comparison of equality, inequality, less-than, and so on, and perform comparisons on operands and return true or false. Assignment operators include operators such as +=, -=, and so on, and combine assignment with arithmetic.</p>
 </section>
-<section id="primary-control-constructs" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="primary-control-constructs"><span class="header-section-number">5</span> Primary control constructs</h2>
+<section id="primary-control-constructs" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="primary-control-constructs"><span class="header-section-number">1.4</span> Primary control constructs</h3>
 <p>You should be very familiar with the three primary control constructs: sequence, selection, and repetition. Sequence implies one statement after another. Selection allows blocks of optional statements to be executed. Repetition provides a mechanism for repeating blocks of statements. There are two main forms of repetition that we have covered: iteration and recursion. Iteration involves repeating a task some fixed number of times, until a condition is reached, or over some structure (such as the items in a list). Although recursion was only briefly covered, you should know that it involves breaking a problem down repeatedly into smaller versions of itself until a base or trivial case is reached. We will cover recursion in much more detail later in the curriculum.</p>
 </section>
-<section id="subprograms" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="subprograms"><span class="header-section-number">6</span> Subprograms</h2>
+<section id="subprograms" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="subprograms"><span class="header-section-number">1.5</span> Subprograms</h3>
 <p>You should be quite familiar with subprograms and how they can encapsulate behavior in programs. They are organized, reusable, and related statements that perform some action. Specifically, some subprograms perform tasks and terminate; others return a value. You should understand how control flow is transferred to a subprogram when a subprogram is called, and how it is returned when the subprogram terminates</p>
 </section>
-<section id="a-review-of-program-flow" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="a-review-of-program-flow"><span class="header-section-number">7</span> A review of program flow</h2>
+<section id="a-review-of-program-flow" class="level3" data-number="1.6">
+<h3 data-number="1.6" class="anchored" data-anchor-id="a-review-of-program-flow"><span class="header-section-number">1.6</span> A review of program flow</h3>
 <p>Although you should be familiar with this already, it is so important that we should probably go over it in detail again. It is very important to be able to identify the flow of control in any program, particularly to understand what is going on. In fact, this significantly helps to debug problems in programs. Recall that, in Python, function definitions aren’t executed in the order that they are written in the source code. Functions are only executed when they are called. This is perhaps best illustrated with an example that you have seen before:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>: <span class="kw">def</span> <span class="bu">min</span>(a, b):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>: <span class="cf">if</span> (a <span class="op">&lt;</span> b):</span>
@@ -203,7 +232,7 @@ Activity
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>:    <span class="cf">for</span> b <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">5</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>:      <span class="bu">print</span>(<span class="st">"</span><span class="sc">{}</span><span class="st"> * </span><span class="sc">{}</span><span class="st"> = </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(a, b, a <span class="op">*</span> b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This snippet of code displays a portion of a multiplication table. In fact, run this to see the output:</p>
-<div class="cell" data-execution_count="1">
+<div id="bf5c633c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">4</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> b <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">5</span>):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="sc">{}</span><span class="st"> * </span><span class="sc">{}</span><span class="st"> = </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(a, b, a <span class="op">*</span> b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -241,8 +270,9 @@ Activity
 <p>Again, knowing the order in which statements are executed is crucial to debugging programs and ultimately to creating programs that work.</p>
 <p>This concludes a review of what you should already know in Python. From here, we’ll introduce new content.</p>
 </section>
-<section id="formal-vs-actual-parameters" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="formal-vs-actual-parameters"><span class="header-section-number">8</span> Formal vs actual parameters</h2>
+</section>
+<section id="formal-vs-actual-parameters" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="formal-vs-actual-parameters"><span class="header-section-number">2</span> Formal vs actual parameters</h2>
 <p>You have seen that a function can have parameters. These parameters are formally stated when the function is defined; for example:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average(a, b):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (a <span class="op">+</span> b) <span class="op">/</span> <span class="fl">2.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -284,10 +314,10 @@ Definition
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>avg <span class="op">=</span> average(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here, the result is still the same. The average of the two variables, <em>x</em> and <em>y</em> (with the values 11 and 67 respectively), is stored in the variable <em>avg</em>. Here, <em>x</em> and <em>y</em> are also actual parameters (even if they are variables themselves) because they represent the actual values supplied to the function <code>average</code>.</p>
 </section>
-<section id="variable-scope" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="variable-scope"><span class="header-section-number">9</span> Variable scope</h2>
+<section id="variable-scope" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="variable-scope"><span class="header-section-number">3</span> Variable scope</h2>
 <p>Consider the following Python program snippet and its output:</p>
-<div class="cell" data-execution_count="2">
+<div id="f9c3a5ab" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
@@ -410,8 +440,8 @@ in main: a=15.0, b=20</code></pre>
 <p>When control is transferred back to the main part of the program, the local version of <em>b</em> disappears. All that’s left is the global version (that remains unchanged at 20). Therefore, the output in the main part of the program is also clear:</p>
 <pre><code>in main: a=15.0, b=20</code></pre>
 </section>
-<section id="a-review-of-the-python-list" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="a-review-of-the-python-list"><span class="header-section-number">10</span> A review of the Python list</h2>
+<section id="a-review-of-the-python-list" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="a-review-of-the-python-list"><span class="header-section-number">4</span> A review of the Python list</h2>
 <p>Although you should be familiar with Python lists, they are quite important and used often; therefore, we will go over it again. Generally, a Python sequence is composed of (typically related) elements. Each element in a sequence is assigned an index (or position). A sequence with n elements has indexes 0 to n–1. Python has many built-in types of sequences; however, the most popular is called the list. The list in Python is quite versatile. Recall that a list is declared using square brackets; for example:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> [ <span class="dv">94</span>, <span class="dv">78</span>, <span class="dv">100</span>, <span class="dv">86</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The statement above declares the list <code>grades</code> with four integers: 94, 78, 100, and 86. The list can be displayed in its entirety (e.g., with the statement <code>print(grades)</code>); however, we can access each element individually by its index (specified within brackets). Accessing can mean to read a value in the list, or it can mean to change a value in the list; for example:</p>
@@ -481,8 +511,8 @@ in main: a=15.0, b=20</code></pre>
 </tbody>
 </table>
 </section>
-<section id="revisiting-searching-and-sorting-in-python" class="level2" data-number="11">
-<h2 data-number="11" class="anchored" data-anchor-id="revisiting-searching-and-sorting-in-python"><span class="header-section-number">11</span> Revisiting searching and sorting in Python</h2>
+<section id="revisiting-searching-and-sorting-in-python" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="revisiting-searching-and-sorting-in-python"><span class="header-section-number">5</span> Revisiting searching and sorting in Python</h2>
 <p>In previous lessons, we designed several searching algorithms (sequential/linear search and binary search) and sorting algorithms (bubble sort, selection sort, and insertion sort). We first specified them in pseudocode, and for some we showed how they could be implemented in Python (sequential search, binary search, and selection sort). To help get a better understanding of Python, let’s briefly revisit some of these.</p>
 <p>First, here’s the <strong>sequential search</strong> for the smallest value in a list (from an earlier lesson). Note that a Python list is first populated with 20 random integers (from 1 to 99, also from an earlier lesson):</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>: <span class="im">from</span> random <span class="im">import</span> randint</span>
@@ -523,7 +553,7 @@ in main: a=15.0, b=20</code></pre>
 <code>The value 3 was found at index 14!</code></p>
 <p>Note that the value 3 occurs twice in the list (at index 14 and index 15); however, only the first instance is reported to the user before the search terminates. The break statement exits the enclosing repetition construct: in this case, the for loop.</p>
 <p>What if the break keyword is located in a repetition construct that is also located inside of another repetition construct? In this case, it will exit the inner repetition construct only. Here’s an example and output:</p>
-<div class="cell" data-execution_count="3">
+<div id="1dda5017" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"i=</span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(i)),</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
@@ -612,8 +642,8 @@ next</code></pre>
 <p>Here’s an explanation of the code. Line 2 controls the number of passes through the list (<em>n</em>-1 total passes). The variable <em>i</em> is initialized to 1 (the second index in the list) and iterates through (but not including) <em>n</em>; therefore, through the last index in the list. So, starting with the second value in the list, it looks to the left (of this current value). Line 3 checks if that value is greater, and if so, then it must move it to the right. Line 4 temporarily stores the current item, and lines 5 and 6 then begin the process of iterating from the previous element, continuing to the left. At any point, if a value to the left is greater than the current item, it is shifted one index to the right. This continues either until (1) the beginning of the list is reached; or (2) a value that is not greater is found. Ultimately, the current item is placed into its proper position in the list. The outer loop then continues with the next value in the list (through the last value in the list).</p>
 <p>Note that there are many other ways that the searches and sorts shown could have been implemented in Python. For example, the use of for loops in the selection sort could have been replaced with while loops (or vice versa in the insertion sort).</p>
 </section>
-<section id="other-operators" class="level2 page-columns page-full" data-number="12">
-<h2 data-number="12" class="anchored" data-anchor-id="other-operators"><span class="header-section-number">12</span> Other operators</h2>
+<section id="other-operators" class="level2 page-columns page-full" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="other-operators"><span class="header-section-number">6</span> Other operators</h2>
 <p>Python provides several more classes of operators than you are already familiar with. Recall that, so far, you have been exposed to (and should be quite familiar with) arithmetic operators, relational (comparison) operators, and assignment operators. In this lesson, we will cover several other classes of operators: <strong>logical operators</strong> and <strong>membership operators</strong>.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Definition">
 <div class="callout-header d-flex align-content-center">
@@ -796,8 +826,8 @@ Definition
 </table>
 <p>You have seen this in previous for loop examples (e.g., <code>for i in list</code>). This for loop configuration has the variable <em>i</em> take on each of the values in <em>list</em>, one at a time</p>
 </section>
-<section id="string-methods" class="level2" data-number="13">
-<h2 data-number="13" class="anchored" data-anchor-id="string-methods"><span class="header-section-number">13</span> String methods</h2>
+<section id="string-methods" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="string-methods"><span class="header-section-number">7</span> String methods</h2>
 <p>Strings are often necessary when writing programs. As such, Python provides a variety of methods that work on strings. You have already seen one such method, <strong>format()</strong>, that formats a string as specified (we did this earlier in one variant of the <strong>print</strong> statement). The following table lists some of the more useful string methods:</p>
 <table class="table">
 <caption>Python String Methods/Functions</caption>
@@ -868,8 +898,8 @@ False
 ['So, when ', 's th', 's go', 'ng to get d', 'ff', 'cult?']</code></pre>
 <p>Note the execution of the string method <strong>str.find()</strong> above: <code>s.find("going")</code>. This string method returns the first index of the string, “going”, within the string, <em>s</em>. Why is the result 17? At first glance, it seems that the first character of the string, “going”, is at position 18. However, strings are sequences (just like lists); therefore, the characters of a string in Python begin at index 0.</p>
 </section>
-<section id="importing-extertal-libraries" class="level2" data-number="14">
-<h2 data-number="14" class="anchored" data-anchor-id="importing-extertal-libraries"><span class="header-section-number">14</span> Importing extertal libraries</h2>
+<section id="importing-extertal-libraries" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="importing-extertal-libraries"><span class="header-section-number">8</span> Importing extertal libraries</h2>
 <p>It is often useful (and necessary) to import external functionality into our programs. In fact, you’ve seen (and used) this before (in the lesson <em>Introduction to Data Structures</em>), although it may not have been explained in detail. Often, others have designed functions and other bits of code that may prove useful. We don’t always want to recreate things that already exist. Python supports the importing of such things via the <strong>import</strong> reserved word. For example, many of the programs we create require the use of mathematical functions beyond simple arithmetic (e.g., sin, cos, tan) or mathematical constants (e.g., pi, e). The structure of an import statement is as follows:</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> library</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Pretty simple. Here’s an example of the importing and use of the math library:</p>
@@ -1015,10 +1045,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1028,8 +1075,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1041,7 +1097,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1085,6 +1264,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1110,6 +1290,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1170,6 +1376,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

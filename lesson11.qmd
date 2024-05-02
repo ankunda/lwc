@@ -18,7 +18,7 @@ page, let's briefly review the things about Python that you should
 already be familiar with. For more detail, review the lesson on
 *Introduction to Computer Programming*.
 
-## Data types, constants, and variables
+### Data types, constants, and variables
 You should know that the kinds of calues that cen be expressed in a programming language are known
 as its **data types**. The **primitive types** of a programming language are those data types that are built-in 
 (or standard) to the language and typically considered as basic building blocks (i.e., more complex types
@@ -36,7 +36,7 @@ known as a string of characters – or just a **string**).
 You should know that a **variable** is defined to be a named object that can store a value of a particular 
 type. Before a variable can be used, its name must be declared. 
 
-## Input and output
+### Input and output
 You should be familiar with obtaining input (via the input function) and generating output (via the 
 `print` statement) in Python. Here's a simple example:
 ```python
@@ -44,7 +44,7 @@ name = input("What is your name? ")
 print("Hello, {}!".format(name))
 ```
 
-## Operators
+### Operators
 You should be familiar with a variety of operators in Python. Specifically, arithmetic operators, 
 relational (comparison) operators, and assignment operators. Arithmetic operators include addition, 
 subtraction, etc, and perform arithmetic operations on operands. Relational operators include 
@@ -52,7 +52,7 @@ comparison of equality, inequality, less-than, and so on, and perform comparison
 return true or false. Assignment operators include operators such as +=, -=, and so on, and combine 
 assignment with arithmetic.
 
-## Primary control constructs
+### Primary control constructs
 You should be very familiar with the three primary control constructs: sequence, selection, and 
 repetition. Sequence implies one statement after another. Selection allows blocks of optional statements
 to be executed. Repetition provides a mechanism for repeating blocks of statements. There are two 
@@ -62,14 +62,14 @@ in a list). Although recursion was only briefly covered, you should know that it
 problem down repeatedly into smaller versions of itself until a base or trivial case is reached. We will 
 cover recursion in much more detail later in the curriculum.
 
-## Subprograms
+### Subprograms
 You should be quite familiar with subprograms and how they can encapsulate behavior in programs. 
 They are organized, reusable, and related statements that perform some action. Specifically, some 
 subprograms perform tasks and terminate; others return a value. You should understand how control 
 flow is transferred to a subprogram when a subprogram is called, and how it is returned when the 
 subprogram terminates
 
-## A review of program flow
+### A review of program flow
 Although you should be familiar with this already, it is so important that we should probably go over it 
 in detail again. It is very important to be able to identify the flow of control in any program, particularly
 to understand what is going on. In fact, this significantly helps to debug problems in programs. Recall 

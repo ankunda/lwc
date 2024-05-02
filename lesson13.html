@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-04-14">
+
+<title>Number Systems and Binary Arithmetic</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="lesson13_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lesson13_files/libs/quarto-html/quarto.js"></script>
+<script src="lesson13_files/libs/quarto-html/popper.min.js"></script>
+<script src="lesson13_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="lesson13_files/libs/quarto-html/anchor.min.js"></script>
+<link href="lesson13_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lesson13_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="lesson13_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="lesson13_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="lesson13_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #002f8b;
+      }
+</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Number Systems and Binary Arithmetic</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 14, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-binary-number-system" id="toc-the-binary-number-system" class="nav-link active" data-scroll-target="#the-binary-number-system"><span class="header-section-number">1</span> The binary number system</a></li>
+  <li><a href="#the-hexadecimal-number-system" id="toc-the-hexadecimal-number-system" class="nav-link" data-scroll-target="#the-hexadecimal-number-system"><span class="header-section-number">2</span> The hexadecimal number system</a></li>
+  <li><a href="#number-system-conversion" id="toc-number-system-conversion" class="nav-link" data-scroll-target="#number-system-conversion"><span class="header-section-number">3</span> Number system conversion</a></li>
+  <li><a href="#binary-arithmetic" id="toc-binary-arithmetic" class="nav-link" data-scroll-target="#binary-arithmetic"><span class="header-section-number">4</span> Binary arithmetic</a></li>
+  <li><a href="#binary-adder" id="toc-binary-adder" class="nav-link" data-scroll-target="#binary-adder"><span class="header-section-number">5</span> Binary adder</a></li>
+  <li><a href="#bitwise-operators-in-python" id="toc-bitwise-operators-in-python" class="nav-link" data-scroll-target="#bitwise-operators-in-python"><span class="header-section-number">6</span> Bitwise operators in Python</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>The most basic unit of storage is the bit. At any point in time, a bit can be in only one of two states: “0” or “1.” Bits are generally implemented as two-state electronic devices (e.g., a current is flowing or not flowing, a voltage is high or low, a magnetic field is polarized in one direction or the opposite direction, etc). The symbol “0” is used to represent one of these states and the symbol “1” is used to represent the other. It really doesn’t matter which symbol (the “0” or the “1”) represents which physical state (e.g., “high” or “low”). All that is important is that the symbols be assigned consistently and that the two states be clearly distinguishable from each other. Sequences (or “patterns”) of bit values can be used to represent numbers (both positive and negative, integer and real), alphanumeric characters, images, sounds, and even program instructions. In fact, anything that can be stored in a computer must ultimately be stored as a pattern of bit values.</p>
+<section id="the-binary-number-system" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-binary-number-system"><span class="header-section-number">1</span> The binary number system</h2>
+<p>Today, virtually all civilizations use a base ten counting system. However, this has not always been so. In primitive tally systems, for example, there is one stroke for each object being counted. For example, the following tally pattern represents twelve:</p>
+<p><img src="images/Lesson13-01.png" class="img-fluid"></p>
+<p>Some tally systems group strokes together. The one illustrated above places five strokes in each group. Most early systems attached little or no meaning to the order of the symbols used to represent a number. Roman numerals did use position, but only to indicate whether one value should be added to or subtracted from another value. For example, the Roman numeral MMC stands for 2,100, because “M” represents one thousand, “C” represents one hundred, and the positional rule states that when the symbols are arranged in order of decreasing value, all of the values should be added together. Hence, the meaning of MMC is <span class="math inline">\(1,000 + 1,000 + 100 = 2,100\)</span>. On the other hand, MCM means 1,900, because the positional rules states that when a symbol for a smaller value immediately precedes a symbol for a larger value, the smaller value is to be subtracted from the larger value. So, MCM is <span class="math inline">\(1,000 + (1,000 – 100) = 1,900\)</span>. The year 1999 as a Roman numeral is written MCMXCIX, meaning <span class="math inline">\(1,000 + (1,000 – 100) + (100 – 10) + (10 – 1)\)</span>.</p>
+<p>Positional notation truly became useful only after the zero digit was introduced. Our modern decimal number system is a base ten positional system. It uses the ten symbols “0” through “9.” We count by sequencing through these symbols: “0” for zero, “1” for one, “2” for two, and so on. Once the last symbol is encountered (i.e., “9”), how do we represent the next number? What we need to do is replace the current symbol, “9”, with the first symbol in the series, “0”, and then increment the symbol immediately to the left of the current symbol by one. Since base ten numbers are assumed to be preceded by (usually unwritten) 0’s, the number nine can be written as “09.” Hence, cycling “9” back to “0” and incrementing the leftmost “0” to “1” gives “10” as the base ten symbol for the number ten. To continue counting, we cycle the rightmost digit through the symbols “0” through “9” again, producing “10” through “19” for the numbers ten through nineteen. The number twenty can be represented by resetting the “9” to “0” and replacing the “1” with the next symbol in the sequence, “2”, giving “20.” If we extend this to, say “99,” the idea is still the same. The next number, “100,” is obtained in the same manner. We first reset the “9” in the right-most digit to “0.” We then attempt to increment the next digit (also “9”), but it, too, is at the end of the sequence. Therefore, we reset it to “0” as well, and increment the left-most “0” to “1,” giving “100.”</p>
+<p>Computer systems use base two, or binary, instead of base ten. Counting in binary is similar to counting in base ten. We still cycle through the sequence of symbols, incrementing the symbol to the left of the current symbol whenever the current symbol cycles back to the beginning of the sequence. The only difference is that instead of ten symbols, there are only two symbols: “0” and “1” (hence why it is called the <em>binary</em> number system). We begin counting by sequencing through these symbols: “0” for zero, “1” for one, and then we have reached the symbol with the largest value. Keeping in mind that the number one can be rewritten as “01,” we reset the rightmost symbol, “1”, to the first symbol in the sequence, “0”, and then increment the implied “0” immediately to the left to “1” giving “10” (the base two symbol for two).</p>
+<p>Note carefully that the symbol “10” (pronounced “one zero”) when interpreted as a base two number refers to the number two, <em>not</em> ten. When discussing base two values you should <em>never</em> refer to the symbol “10” as “ten” since that is not the value of the number represented by this symbol.</p>
+<p>Continuing with the example, the next number, three, can be represented in base two as “11” (we simply increment the right-most digit of “10” from “0” to “1”). To generate the base two representation of four, we begin with three represented as “011” (remember that it is fine to add 0’s to the left-hand side of a number symbol). Next, we set the rightmost “1” digit back to “0” and attempt to increment the middle digit. However, that digit is also at the end of the sequence, since it contains a “1.” So, we reset this digit to “0” as well and proceed to the third (leftmost) digit, which we increment from “0” to “1.” The final result is “100,” which is the base two representation of the number four.</p>
+<p>This process for generating base two numbers can be continued indefinitely. The base ten (decimal) and base two (binary) representations of the numbers zero through eight are shown below. For readability, binary numbers are padded to the left with zeros):</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Base 10 (decimal)</th>
+<th style="text-align: left;">Base 2 (binary)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td style="text-align: left;">0000</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td style="text-align: left;">0001</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td style="text-align: left;">0010</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td style="text-align: left;">0011</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td style="text-align: left;">0100</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td style="text-align: left;">0101</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td style="text-align: left;">0110</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td style="text-align: left;">0111</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td style="text-align: left;">1000</td>
+</tr>
+</tbody>
+</table>
+<p>Of course, we will need to develop a fast way to find out the number represented by a base two symbol (instead of “counting up to it”). However, before we leave the notion of counting, let’s investigate one other base that is commonly used when discussing programs and data at the machine level.</p>
+</section>
+<section id="the-hexadecimal-number-system" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-hexadecimal-number-system"><span class="header-section-number">2</span> The hexadecimal number system</h2>
+<p>Base sixteen, or <strong>hexadecimal</strong>, uses sixteen symbols: “0” through “9” for the numbers zero through nine, and “A” through “F” for the numbers ten through fifteen. The number sixteen is written as “10” in base sixteen, since after the symbol “F” is encountered, it is necessary to cycle back to the beginning of the sequence, “0.” When this occurs, the digit immediately to the left of the current digit (an understood “0”) is incremented to “1,” giving “10.” The following illustrates the base ten, base two, and base sixteen representations of the numbers zero through twenty. For readability, binary numbers have been padded to the left with zeros:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Base 10 (decimal)</th>
+<th style="text-align: left;">Base 2 (binary)</th>
+<th>Base 16 (hexadecimal)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td style="text-align: left;">00000</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td style="text-align: left;">00001</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td style="text-align: left;">00010</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td style="text-align: left;">00011</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td style="text-align: left;">00100</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td style="text-align: left;">00101</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td style="text-align: left;">00110</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td style="text-align: left;">00111</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td style="text-align: left;">01000</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td style="text-align: left;">01001</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td style="text-align: left;">01010</td>
+<td>A</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td style="text-align: left;">01011</td>
+<td>B</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td style="text-align: left;">01100</td>
+<td>C</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td style="text-align: left;">01101</td>
+<td>D</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td style="text-align: left;">01110</td>
+<td>E</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td style="text-align: left;">01111</td>
+<td>F</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td style="text-align: left;">10000</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>17</td>
+<td style="text-align: left;">10001</td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td style="text-align: left;">10010</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>19</td>
+<td style="text-align: left;">10011</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td style="text-align: left;">10100</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<p>In order to clearly distinguish which base a number-symbol is to be interpreted under, we generally write the base (two, ten, or sixteen) as a subscript immediately following the digits of the number. Therefore, 11<sub>2</sub> is three, 11<sub>10</sub> is eleven, and 11<sub>16</sub> is seventeen. It is standard operating procedure to omit the subscript base if the number is in base 10 (decimal). Repeating the above examples: 11<sub>2</sub> is three, 11 is eleven, and 11<sub>16</sub> is seventeen.</p>
+</section>
+<section id="number-system-conversion" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="number-system-conversion"><span class="header-section-number">3</span> Number system conversion</h2>
+<p>Now that we have reviewed the concept of number systems and the idea of counting in a variety of bases, let’s look more carefully at what exactly a numeric “base” is. As you learned long ago in grade school, 123 is the way we normally write the number one hundred twenty-three. This is because the “1” is in the <em>hundreds place</em>, the “2” is in the <em>tens place</em>, and the “3” is in the <em>ones place</em>. That is, the digits are positional. Each digit is multiplied by the value of its position (think of this as a weight for each digit position), and the results are then added together. Consider the following way of breaking down the number 123:</p>
+<p><img src="images/Lesson13-02.png" class="img-fluid"></p>
+<p>The system we normally use for representing numbers is called the decimal number system. In this system, the rightmost digit is referred to as being in the one’s or “units” position. Immediately to the left of the units position is the ten’s position. To the left of the ten’s position is the hundred’s position, then the thousand’s, then the ten thousand’s, and so on. The decimal number system is a “base ten” positional number system, because the value of each position can be expressed as a power of the number ten.</p>
+<p>The exponent that the base is raised to is given by the position minus one. The right-most position (i.e., position 1), or units position, is 10<sup>0</sup>. Note that anything to the power of zero is equal to 1. This right-most position is also known as the least significant position or digit (since it is represented by the lowest power of 10). The tens position is 10<sup>1</sup>, the hundreds is 10<sup>2</sup>, the thousands is 10<sup>3</sup>, and so on. The value of each position is exactly ten times the value of the position immediately to its right.</p>
+<p>The other bases work similarly. In the binary number system, the base is two; therefore, the values of the positions (given from right to left) are one (2<sup>0</sup>), two (2<sup>1</sup>), four (2<sup>2</sup>), eight (2<sup>3</sup>), sixteen (2<sup>4</sup>), thirty-two (2<sup>5</sup>), and so on. The value of each position in a base two system is two times the value of the position immediately to its right. For example, the number five is represented in base two as 101<sub>2</sub> (since there is a one in the four’s position and a one in the units position). This is illustrated below:</p>
+<p><img src="images/Lesson13-03.png" class="img-fluid"></p>
+<p><img src="images/Lesson13-04.png" class="img-fluid"></p>
+<p>In the hexadecimal number system, the base is sixteen. Therefore, the values of the positions (again from right to left) are one (16<sup>0</sup>), sixteen (16<sup>1</sup>), two hundred fifty-six (16<sup>2</sup>), four thousand ninety-six (16<sup>3</sup>), and so on. The value of each position in this system is exactly sixteen times the value of the position immediately to its right. The value of the base sixteen number 1A3<sub>16</sub> is four hundred nineteen, since there is one in the two hundred and fifty six’s position, ten in the sixteen’s position, and three in the units position. This is illustrated below:</p>
+<p><img src="images/Lesson13-05.png" class="img-fluid"></p>
+<p>Here’s one more example illustrating the representation of the number “nineteen ninety nine” in all three of the bases we have discussed; first, in base ten:</p>
+<p><img src="images/Lesson13-06.png" class="img-fluid"></p>
+<p>Now, in base two:</p>
+<p><img src="images/Lesson13-07.png" class="img-fluid"></p>
+<p><img src="images/Lesson13-08.png" class="img-fluid"></p>
+<p>And finally, in base sixteen:</p>
+<p><img src="images/Lesson13-09.png" class="img-fluid"></p>
+<p>One of the most common tasks we face when working with multiple bases is converting numbers from one base to another. We have already seen how to convert from base sixteen and base two to base ten: simply multiply the value of each symbol by the value of its position and add the results together. But how do we convert from base ten to base sixteen or to base two? We also need to figure out how to convert from base two to base sixteen and from base sixteen to base two.</p>
+<p>Converting from base two to base sixteen and from base sixteen to base two is easy. In fact, the only reason computer scientists even use base sixteen is because it serves as convenient “shorthand” for base two. The following illustrates the fact that each base sixteen digit can be represented by a group of exactly four base two digits:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Base 16 (hexadecimal)</th>
+<th style="text-align: left;">Base 2 (binary)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td style="text-align: left;">00000</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td style="text-align: left;">00001</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td style="text-align: left;">00010</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td style="text-align: left;">00011</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td style="text-align: left;">00100</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td style="text-align: left;">00101</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td style="text-align: left;">00110</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td style="text-align: left;">00111</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td style="text-align: left;">01000</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td style="text-align: left;">01001</td>
+</tr>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: left;">01010</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: left;">01011</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td style="text-align: left;">01100</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td style="text-align: left;">01101</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td style="text-align: left;">01110</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td style="text-align: left;">01111</td>
+</tr>
+</tbody>
+</table>
+<p>To convert from base sixteen to base two, simply replace each base sixteen digit with its corresponding group of four binary digits. For example, the rather imposing hexadecimal number 1AFC3<sub>16</sub> can easily be converted its binary representation as illustrated below:</p>
+<p><img src="images/Lesson13-10.png" class="img-fluid"></p>
+<p>Therefore, 1AFC316 = 110101111110000112. Note that leading zeros have been removed as they are not necessary.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Try to convert FACE16 to base two.</p>
+<p>Now try to convert 4B1D16 to base two.</p>
+</div>
+</div>
+</div>
+<p>Converting from base two to base sixteen is just as straightforward. We scan the base two number from right to left, replacing each group of four binary digits that we encounter with the equivalent hexadecimal digit. It is important that we group the digits of the base two representation from <em>right to left</em>, in case the number of digits is not evenly divisible by four. If this occurs, we simply add leading zeros until the number of digits is divisible by four. Conversion of the bit pattern 11111001111<sub>2</sub> to its hexadecimal representation is shown below:</p>
+<p><img src="images/Lesson13-11.png" class="img-fluid"></p>
+<p>The original bit pattern, 11111001111, was first broken down from right-to-left into groups of four, and a leading zero was added to the left-most group: 0111 1100 1111. Ultimately, 11111001111<sub>2</sub> = 7CF<sub>16</sub>.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Try to convert 1111000000001101<sub>2</sub> to hexadecimal.</p>
+<p>Try to convert 11101111010100101<sub>2</sub> to hexadecimal.</p>
+</div>
+</div>
+</div>
+<p>Note that these conversions between binary and hexadecimal representations in no way change the actual number being represented. For example, 7CF<sub>16</sub> and 11111001111<sub>2</sub> both refer to the same number (1,999), as was illustrated earlier.</p>
+<p>We have now looked at conversion methods from base two (and base sixteen) to base ten, from base sixteen to base two, and from base two to base sixteen. The only conversions that we have yet to cover are from base ten to base sixteen and from base ten to base two. We really only need to look at the base ten to base two conversion, since conversion between base two and base sixteen is so trivial. If you have a base ten number and want its base sixteen representation, you can apply a decimal to binary conversion algorithm, and then change the base two result to its base sixteen representation via the grouping method described above.</p>
+<p>A number can be converted from decimal to binary by subtracting from it the largest power of two that is less than or equal to the number, and repeating until a remainder of zero is reached. The binary representation of the number is then formed by placing a “1” in the positions corresponding to each of the powers of two that were subtracted. A “0” is placed in the positions corresponding to the powers of two that were not subtracted.</p>
+<p>For example, take the decimal number 37. The largest power of two that can be subtracted from it is 32 (2<sup>5</sup>), which leaves five. The largest power of two that can be subtracted from 5 is 4 (2<sup>2</sup>), which leaves one. Finally, the largest power of two that can be subtracted from 1 is 1 (2<sup>0</sup>), which leaves zero. The base two representation of the number is thus formed by placing a “1” in the thirty-two’s, four’s, and units positions, and by placing a “0” in all other positions. This gives 100101<sub>2</sub>. The conversion process for this number is illustrated below:</p>
+<p><img src="images/Lesson13-12.png" class="img-fluid"></p>
+<p><img src="images/Lesson13-13.png" class="img-fluid"></p>
+<p>Another method of converting from decimal to binary is to divide the decimal number in half and record both the quotient and the remainder. We then repeat this process with the quotient, while keeping track of the remainder of each division. This is repeated until the quotient is zero. The binary equivalent of the original number is subsequently given by listing the remainders in the reverse order of their derivation (i.e., from the most recent remainder to the first remainder). Here’s this method on the decimal number 37:</p>
+<p><img src="images/Lesson13-14.png" class="img-fluid"></p>
+<p>Listing the remainders in reverse order gives 100101 (the same as in the previous example). Therefore, 37<sub>10</sub> = 100101<sub>2</sub>.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Try to convert the decimal number 642 to base two.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="binary-arithmetic" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="binary-arithmetic"><span class="header-section-number">4</span> Binary arithmetic</h2>
+<p>Let’s take a look at how arithmetic operations, such as addition and multiplication, can be performed on binary numbers. First, let’s examine binary addition of single digit numbers. The simplest case is the addition of 0 plus 0. In binary, it is represented as follows:</p>
+<p><span class="math display">\[0+0=0\]</span></p>
+<p>Some prefer to view this vertically as opposed to horizontally as follows:</p>
+<p><img src="images/Lesson13-15.png" class="img-fluid"></p>
+<p>Extending this, zero plus one and one plus zero both equal one:</p>
+<p><span class="math display">\[0 + 1 = 1\]</span></p>
+<p><span class="math display">\[1 + 0 = 1\]</span></p>
+<p>Or vertically:</p>
+<p><img src="images/Lesson13-16.png" class="img-fluid"></p>
+<p>Finally, one plus one equals two. But the problem is that two cannot be represented as a single binary digit. Instead, we record a zero in the one’s position and carry a one over to the two’s position. This is represented as follows:</p>
+<p><span class="math display">\[1 + 1 = 0\]</span> (carry 1)</p>
+<p>Or vertically:</p>
+<p><img src="images/Lesson13-17.png" class="img-fluid"></p>
+<p>Multi-digit binary addition uses the same strategy employed in decimal addition. One works right-to-left from the least significant digit to the most significant digit, making sure that the carry from the previous column is added to the current column. Because the carry digit for a particular column may be “1” at the same time the corresponding digits of both of the numbers being added are also “1,” it is possible to encounter “one plus one plus one equals three” while performing addition. Since 11<sub>2</sub> equals three, “1” should be placed in the current position and another “1” carried over to the position immediately to the left of the current position. This is be represented as follows:</p>
+<p><span class="math display">\[1 + 1 + 1 = 1\]</span> (carry 1)</p>
+<p>Or vertically:</p>
+<p><img src="images/Lesson13-18.png" class="img-fluid"></p>
+<p>Let’s take a look at the addition of 38 + 15 = 53. The following table shows both the binary addition (on the left) and decimal addition (on the right):</p>
+<p><img src="images/Lesson13-19.png" class="img-fluid"></p>
+<p>And now the addition of 43 + 58 = 101:</p>
+<p><img src="images/Lesson13-20.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Try the addition of 50 + 77 = 127.</p>
+</div>
+</div>
+</div>
+<p>Binary multiplication is also fairly simple. Zero times zero equals zero, as does zero times one and one times zero. One times one equals one. These expressions can be represented in base two as follows:</p>
+<p><span class="math display">\[0 \times 0 = 0\]</span> <span class="math display">\[0 \times 1 = 0\]</span> <span class="math display">\[1 \times 0 = 0\]</span> <span class="math display">\[1 \times 1 = 1\]</span></p>
+<p>Notice that none of these four expressions generate a carry, and only one generates a result other than zero. As we will see later, these features lead to binary multiplication being easy to perform; in fact, even easier to perform than decimal multiplication!</p>
+<p>Multiplication of multi-digit binary numbers works in a manner similar to multiplication of decimal numbers. As we all learned in grade school, multiplication problems are solved by adding together several partial products. A partial product is formed by multiplying a single digit of the bottom number times the entire top number. For example, given the base ten multiplication problem <span class="math inline">\(472 \times 104\)</span>, we would solve it in the following way:</p>
+<p><img src="images/Lesson13-21.png" class="img-fluid"></p>
+<p>The first partial product is given by multiplying 4 times 472, which is 1888. The second partial product is computed as 0 times 472, which is 0. Normally we do not write down zero partial products. The final partial product is 1 times 472. Notice that we write this partial product so that its rightmost digit is directly under the digit of the second number that we multiplied by (i.e., 1). We then add the partial products, column by column from right-to-left, in order to obtain the final answer (49,088 in this case).</p>
+<p>We apply this same strategy to perform binary multiplication. Let’s take a look at the product of <span class="math inline">\(19 \times 5 = 95\)</span> (in base two: <span class="math inline">\(10011_2 \times 101_2 = 1011111_2\)</span>):</p>
+<p><img src="images/Lesson13-22.png" class="img-fluid"></p>
+<p>We form partial products by multiplying the top number by each of the digits of the bottom number. Since the right-most digit of the second number is 1, the first partial product is given by 1 times 10011<sub>2</sub>, or 10011<sub>2</sub>. The right-most digit of this partial product is aligned with the rightmost digit of the second number. We do not record the partial product for zero times something, so multiplying the first number by the second digit of the second number, 0, doesn’t generate anything. The final partial product is computed as 1 times 10011 again, but this time where the right-most digit of this result is aligned beneath the third digit of the second number. The partial products are then added to obtain the final result, 1011111<sub>2</sub>.</p>
+<p>As we have just seen, in binary multiplication the formation of the partial products is very easy since we are only multiplying by 1 (in which case we copy the top number into the proper position) or 0 (in which case we do nothing). The only <em>difficult</em> steps in this process are making sure that we align the partial products correctly and compute the sum of those products accurately. Now let’s try a more difficult problem: the product of 143  23 = 3289 (in base two: <span class="math inline">\(10001111_2 \times 10111_2 = 110011011001_2\)</span>)</p>
+<p><img src="images/Lesson13-23.png" class="img-fluid"></p>
+<p>Here, we copy the top number as a partial product everywhere there is a 1 digit in the second number, each time making sure that we align the partial product so that the least significant digit is directly underneath the 1 we are multiplying by. We get the final result by adding the partial products together.</p>
+<p>When adding together the partial products, it is important that we handle the carry values properly. Because there is no limit on the size of the numbers to be multiplied, it is possible that there will be a large number of partial products. This situation can lead to carry values that extend over multiple columns. To illustrate this, consider summing a partial product column of five 1s:</p>
+<p><img src="images/Lesson13-24.png" class="img-fluid"></p>
+<p>Considering these separately, we initially add the first two 1s: 1 + 1 = 10. We then add the next one to that sum: 10 + 1 = 11. We then add the next one: 11 + 1 = 100. Finally, we add the last one: 100 + 1 = 101. So, 1 + 1 + 1 + 1 + 1 = 101<sub>2</sub>. To record this, we write a 1 in the current column and carry 10, placing the 0 in the column immediately to the left of the current column and 1 immediately to the left of that column. This is no different from the situation we encounter when adding up a long series of decimal numbers. If the current column of digits added to one hundred and one, we would place a 1 in the current column, carry a 0 to the previous column, and carry a 1 to the column before that.</p>
+<p>Let’s take a closer look at the summation of the partial products of the previous example (<span class="math inline">\(143 \times 23 = 3289\)</span>). The right-most column of partial products offers no problem. It is simply 1 plus nothing, giving a result of 1 with no carry. The second column requires us to add 1 + 1 resulting in a 0 with 1 carried over to the third column. Column three is interesting and is illustrated below:</p>
+<p><img src="images/Lesson13-25.png" class="img-fluid"></p>
+<p>The sum of the digits in column three, including the carry, is 1 + 1 + 1 + 1 = 100<sub>2</sub> = 4. Hence, a 0 is written in column three, a 0 is carried to column four, and a 1 is carried to column five.</p>
+<p>Column four contains three 1s, giving us a sum of 11<sub>2</sub>. Hence, we write a 1 in column four and carry a 1 to column five. Note that the 1 we just carried to column five joins the carry of 1 already in that column:</p>
+<p><img src="images/Lesson13-26.png" class="img-fluid"></p>
+<p>Column five now contains a total of five 1s (including the two carries). Since five is written in binary as 101<sub>2</sub>, we write a 1 in column five, and carry a 0 into column six and a 1 into column seven. The current state of the summation of partial products after adding the contents of column five is illustrated below:</p>
+<p><img src="images/Lesson13-27.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>The remainder of the computation is carried out in a similar manner, always being careful to handle the carries properly. Try it out.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="binary-adder" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="binary-adder"><span class="header-section-number">5</span> Binary adder</h2>
+<p>An adder, as its name implies, is a circuit for adding binary numbers. The simplest adder adds two bits. As shown above, adding two bits can result in the following:</p>
+<p><img src="images/Lesson13-28.png" class="img-fluid"></p>
+<p>When adding, two parts are produced: a sum and a carry (each of which can be either 0 or 1). A circuit to implement the behavior of an adder will need two inputs (one for each of the single-bit numbers) and two outputs (one for the sum and one for the carry). Constructing such a circuit is fairly straightforward. Consider the following truth table for the adder (where S is sum and C is carry):</p>
+<p><img src="images/Lesson13-29.png" class="img-fluid"></p>
+<p>Notice that the values in the S column correspond to an xor of the two inputs, while the values in the C column correspond to an and of the two inputs. Here are their respective truth tables for reference:</p>
+<p><img src="images/Lesson13-30.png" class="img-fluid"></p>
+<p>Note how the output of the <em>xor</em> gate is exactly the same as the sum bit produced by the adder. Similarly, the output of the <em>and</em> gate is exactly the same as the carry bit produced by the adder. Constructing the circuit is almost too easy:</p>
+<p><img src="images/Lesson13-31.png" class="img-fluid"></p>
+<p>This circuit is called a <strong>half adder</strong>. It has two Boolean expressions: <span class="math inline">\(S=(A \cdot \bar{B})+(\bar{A} \cdot B)\)</span> and <span class="math inline">\(C=A \cdot B\)</span> . While a half adder does add two single-bit numbers and can generate a carry, it has no provision for a carry <em>input</em> into the circuit. As shown above, when adding two multi-bit binary numbers, one works column by column from right-to-left, making sure that the carry bit from the previous column is added into the current column. Here is the illustration of this process show earlier, on 38 and 15:</p>
+<p><img src="images/Lesson13-32.png" class="img-fluid"></p>
+<p>A half adder could be used to add the right-most (low-order) bits of the two numbers, but it is not general enough to add the digits of an arbitrary column since it does not support a carry as input.</p>
+<p>A <strong>full adder</strong> overcomes this limitation of the half adder by allowing a carry to be fed into the circuit along with a bit from each of the numbers to be added. Thus, a full adder will have three inputs: the two bits being added, plus a <em>carry</em> <em>in</em>. Only two output bits, the sum and a <em>carry</em> <em>out</em>, are needed because the largest result that can be produced by the circuit will be three (11<sub>2</sub>). This occurs when all three inputs are 1. Here is a complete truth table for a full adder. The inputs are almost the same as before, except that the carry in is labeled C<sub>in</sub>, and the carry out is labeled C<sub>out</sub>:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>C<sub>in</sub></th>
+<th style="text-align: left;">A</th>
+<th>B</th>
+<th>S</th>
+<th>C<sub>out</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td style="text-align: left;">0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td style="text-align: left;">0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td style="text-align: left;">1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td style="text-align: left;">1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td style="text-align: left;">0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td style="text-align: left;">0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td style="text-align: left;">0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td style="text-align: left;">1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Designing a circuit to implement this behavior from scratch would be challenging. However, through careful observation and the use of two half adders, the job is manageable. Since we’ll be using half adders to build the full adder, our circuit diagram will be simpler if we imagine the half adder encapsulated into a <em>black box</em>, as shown below:</p>
+<p><img src="images/Lesson13-34.png" class="img-fluid"></p>
+<p>The trick to building a full adder is to think of the sum of the three terms, A + B + C<sub>in</sub>, as a sequence of two sums associated left to right: (A + B) + C<sub>in</sub>. One half adder will be used to compute the sum A + B. The <em>sum</em> bit output by this half adder, along with C<sub>in</sub>, will be fed as input into a second half adder. The <em>sum</em> bit produced by the second half adder will serve as the <em>sum</em> bit of the full adder. The <em>carry out</em> bit of the full adder is produced by routing the <em>carry out</em> bits of both half adders into an <em>or</em> gate. This is illustrated below:</p>
+<p><img src="images/Lesson13-35.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Try to develop a complete implementation of the full adder using only and, or, and not gates.</p>
+<p>Now verify that this circuit does, in fact, generate the truth table for binary addition.</p>
+</div>
+</div>
+</div>
+<p>Just as we encapsulated the half adder, we can encapsulate the single-bit full adder into a black box.</p>
+<p><img src="images/Lesson13-36.png" class="img-fluid"></p>
+<p>This representation looks a little different than the previous circuit because it has been rotated clockwise 90 degrees to make the following figure easier to read. Note that the inputs, outputs, behavior, and internal details of the circuit remain unchanged.</p>
+<p>Multi-bit adders can be implemented as a chain of single-bit full adders where the <em>carry out</em> of each adder is routed to the <em>carry in</em> of the adder immediately to its left. Under this scheme, each full adder is essentially responsible for adding a single bit of each of the two input numbers, plus the carry bit generated by the adder immediately to its right. The <em>carry in</em> for the rightmost adder is permanently set to 0. The <em>carry out</em> of the leftmost adder indicates whether or not addition of the inputs produces an overflow. We will cover why this is necessary later when discussing how numbers are represented.</p>
+<p>Here’s a four-bit adder constructed from four single-bit (full) adders. In this example, A holds the number six (0110<sub>2</sub>) and B holds seven (0111<sub>2</sub>). The result of this addition operation is 1101<sub>2</sub>, or thirteen:</p>
+<p><img src="images/Lesson13-37.png" class="img-fluid"></p>
+<p>Interestingly, we can continue to build this. To illustrate this, let’s go back one step to the full adder. We can chain two full adders together (each of which can effectively produce the sum and C<sub>out</sub> of A, B, and C<sub>in</sub>) to produce the sum of two 2-bit numbers as follows:</p>
+<p><img src="images/Lesson13-38.png" class="img-fluid"></p>
+<p>Indeed, 10<sub>2</sub> + 11<sub>2</sub> = 101<sub>2</sub> (the overflow bit is 1). And now we can box the two full adders into a single 2- bit adder as follows:</p>
+<p><img src="images/Lesson13-39.png" class="img-fluid"></p>
+<p>The result is the same as chaining two full adders. The C<sub>out</sub> of the first full adder that is wired to the C<sub>in</sub> of the second full adder is now internal to the 2-bit adder. This 2-bit adder effectively adds two 2-bit numbers (A and B composed of the bits A<sub>0</sub>, A<sub>1</sub>, B<sub>0</sub>, and B<sub>1</sub>). It produces two sums (S<sub>0</sub> and S<sub>1</sub> – one for each bit) and a Cout (the overflow bit).</p>
+<p>We can chain several 2-bit adders in a similar manner to produce a 4-bit adder as follows:</p>
+<p><img src="images/Lesson13-40.png" class="img-fluid"></p>
+<p>The effect is the same as show earlier when we chained four full adders. This combination of two 2-bit adders produces the same sum: 0110<sub>2</sub> + 0111<sub>2</sub> = 1101<sub>2</sub> (the overflow bit is 0). Of course, this can be continued. We could encapsulate the two 2-bit adders into a 4-bit adder, and chain two of those to produce a single 8-bit adder. Two 8-bit adders could be encapsulated into a single 16-bit adder. Two 16-bit adders could be encapsulated into a single 32-bit adder. And this can go on and on. The incredible part about this is that, in the end, a seemingly complicated 32-bit adder is still just made up of many full adders chained together, which are themselves made up of half adders, which are themselves made up of the three primitive logic gates: <em>and</em>, <em>or</em>, and <em>not</em>. Simply amazing!</p>
+</section>
+<section id="bitwise-operators-in-python" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="bitwise-operators-in-python"><span class="header-section-number">6</span> Bitwise operators in Python</h2>
+<p>Up to this point, we’ve left out one final class of operators in Python: the <strong>bitwise operators</strong>. The reason is that they really only make sense once we understand how numbers are represented in computers. Moreover, how binary arithmetic works is fundamental to understanding them.</p>
+<p>The <strong>bitwise operators</strong> work on bits and perform bit-by-bit operations. Think back to the primitive logic gates (<em>and</em>, <em>or</em>, and <em>not</em>) and some derivatives (e.g., <em>xor</em>). Each of these concepts operated on bits and produced bits. In the following table, assume that a = 60 (or 00111100 in binary) and b = 13 (or 00001101 in binary):</p>
+<table class="table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 39%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th style="text-align: left;">Logical Operation</th>
+<th>Definition</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&amp;</td>
+<td style="text-align: left;">bitwise <em>and</em></td>
+<td>a &amp; b = 00001100 (or 12 in decimal)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>|</td>
+<td style="text-align: left;">bitwise <em>or</em></td>
+<td>a | b = 001111101 (or 61 in decimal)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>^</td>
+<td style="text-align: left;">bitwise <em>xor</em></td>
+<td>a ^ b = 00110001 (or 49 in decimal)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>~</td>
+<td style="text-align: left;">bitwise <em>not</em></td>
+<td>~a = 11000011 (or -61 in decimal; we will explain this one later)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>&lt;&lt;</td>
+<td style="text-align: left;">left shift</td>
+<td>a &lt;&lt; 2 = 11110000 (or 240 in decimal)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>&gt;&gt;</td>
+<td style="text-align: left;">right shift</td>
+<td>a &gt;&gt; 2 = 1111 (or 15 in decimal)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The bitwise not has the effect of inverting the bits. Why 11000011 in binary is equal to -61 in decimal will be explained in a later lesson. Here is output of the examples in the previous table in IDLE:</p>
+<pre><code>&gt;&gt;&gt; a = 60
+&gt;&gt;&gt; b = 13
+&gt;&gt;&gt; bin(a)
+'0b111100'
+&gt;&gt;&gt; bin(b)
+'0b1101'
+&gt;&gt;&gt; a &amp; b
+12
+&gt;&gt;&gt; bin(a &amp; b)
+'0b1100'
+&gt;&gt;&gt; a | b
+&gt;&gt;&gt; bin(a | b)
+'0b111101'
+&gt;&gt;&gt; a ^ b
+49
+&gt;&gt;&gt; bin(a ^ b)
+'0b110001'
+&gt;&gt;&gt; ~a
+-61
+
+&gt;&gt;&gt; a = 60
+&gt;&gt;&gt; b = 13
+&gt;&gt;&gt; a &lt;&lt; 2
+240
+&gt;&gt;&gt; bin(a &lt;&lt; 2)
+'0b11110000'
+&gt;&gt;&gt; a &gt;&gt; 2
+15
+&gt;&gt;&gt; bin(a &gt;&gt; 2)
+'0b1111'</code></pre>
+<p>Note the use of the <strong>bin</strong> function. It returns the binary representation of a value. If a = 60, the statement <code>bin(a)</code> returns 0b111100 (which is 60 in binary). The prefix 0b implies binary. In fact, you can assign values to variables in binary form using this prefix:</p>
+<pre><code>&gt;&gt;&gt; a = 0b00111100
+&gt;&gt;&gt; a
+60</code></pre>
+<p>This can be done in other bases as well. For example, in hexadecimal (with the prefix 0x) or in octal (with the prefix 0o):</p>
+<pre><code>&gt;&gt;&gt; a = 0b00111100
+&gt;&gt;&gt; a
+60
+&gt;&gt;&gt; b = 0xff
+&gt;&gt;&gt; b
+255
+&gt;&gt;&gt; c = 0o15
+&gt;&gt;&gt; c
+13</code></pre>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

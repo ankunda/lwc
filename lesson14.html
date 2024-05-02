@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-04-27">
+
+<title>Graphical User Interfaces</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="lesson14_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lesson14_files/libs/quarto-html/quarto.js"></script>
+<script src="lesson14_files/libs/quarto-html/popper.min.js"></script>
+<script src="lesson14_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="lesson14_files/libs/quarto-html/anchor.min.js"></script>
+<link href="lesson14_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lesson14_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="lesson14_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="lesson14_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="lesson14_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #002f8b;
+      }
+</style>
+
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Graphical User Interfaces</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 27, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#graphical-user-interfaces" id="toc-graphical-user-interfaces" class="nav-link active" data-scroll-target="#graphical-user-interfaces"><span class="header-section-number">1</span> Graphical User Interfaces</a>
+  <ul class="collapse">
+  <li><a href="#gui-components" id="toc-gui-components" class="nav-link" data-scroll-target="#gui-components"><span class="header-section-number">1.1</span> GUI components</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events"><span class="header-section-number">1.2</span> Events</a></li>
+  <li><a href="#they-python-tkinter-library" id="toc-they-python-tkinter-library" class="nav-link" data-scroll-target="#they-python-tkinter-library"><span class="header-section-number">1.3</span> They Python Tkinter library</a></li>
+  <li><a href="#a-tkinter-primer" id="toc-a-tkinter-primer" class="nav-link" data-scroll-target="#a-tkinter-primer"><span class="header-section-number">1.4</span> A Tkinter primer</a></li>
+  <li><a href="#common-tkinter-widgets" id="toc-common-tkinter-widgets" class="nav-link" data-scroll-target="#common-tkinter-widgets"><span class="header-section-number">1.5</span> Common Tkinter widgets</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="graphical-user-interfaces" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="graphical-user-interfaces"><span class="header-section-number">1</span> Graphical User Interfaces</h2>
+<p>Computing devices are indeed ubiquitous. We use them all the time for a variety of tasks. To use them, we must inherently interact with them. In fact, there’s an entire branch of computer science that deals with the way humans interact with machines (primarily computing machines) called human-computer interaction (HCI). In this lesson, we will focus on the way that we typically interact with computing devices: through graphical user interfaces.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>graphical user interface</strong> (GUI – pronounced “gooey”) is a type of interface that allows users to interact with computing machines through graphical entities. An <strong>interface</strong> is just a program that provides a way of interacting with a computing machine so that a user can use it to do its bidding!</p>
+</div>
+</div>
+<p>The interface typically monitors input (e.g., clicking with the mouse, typing on the keyboard, etc) and controls output (e.g., the result of inputs rendered to a monitor). GUIs are the most common type of interface between humans and computers. In fact, most software products and virtually all popular computer operating systems are GUI-based.</p>
+<p>Formally, GUIs implement an interface metaphor, such as a <em>desktop</em>, that allows users to interact with computer systems. Software objects, such as programs and data files, are generally represented as postage stamp sized pictures called <strong>icons</strong>. A human can access one of these objects by selecting it with a pointing device, such as a <strong>mouse</strong>. When <em>opened</em>, an icon expands to become a <strong>window</strong>. A window is a portion of the computer screen used to communicate with a particular program. Generally, windows and icons can be resized (i.e., made larger or smaller) and repositioned anywhere on the desktop. But of course, you already know all this!</p>
+<section id="gui-components" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="gui-components"><span class="header-section-number">1.1</span> GUI components</h3>
+<p>Although the types of components that make up a GUI can vary depending on operating system, application, and various other factors, there are many standard ones that virtually all GUIs support:</p>
+<p>• Window: an area on the screen that displays information.</p>
+<p>• Menu: allows users to execute commands by selecting from a list of options.</p>
+<p>• Icon: a small picture that represents something else (e.g., a file, an application, a command).</p>
+<p>• Control: also known as a widget, a component that users directly interact with (e.g., by clicking, dragging, etc) to perform some task (e.g., launch an application, set a configuration setting, etc). There are many types of controls that you may be familiar with: list, label, check box, radio button, slider, spinner, and so on.</p>
+<p>• Tab: a way of grouping GUI components in an area of a window.</p>
+</section>
+<section id="events" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="events"><span class="header-section-number">1.2</span> Events</h3>
+<p>On their own, GUIs really do nothing. That is, they are specifically designed for user interaction. Users must interact with a GUI, and when that happens, an event occurs that <em>triggers</em> some sort of <strong>action</strong>. An action can be virtually anything, such as opening a file, launching an application, performing a background task, and so on. We often say that some GUI components <em>listen</em> for user interaction; that is, they implement what is known as a <strong>listener</strong>. When the listener detects user interaction (e.g., through a mouse click), the interaction is registered as an <strong>event</strong>. The event then triggers some predefined action that handles it and typically produces some output that is expected by the user.</p>
+</section>
+<section id="they-python-tkinter-library" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="they-python-tkinter-library"><span class="header-section-number">1.3</span> They Python Tkinter library</h3>
+<p>By default, Python does not support GUIs. That is, Python is text-based. In fact, the majority of programming languages are text-based. The print statement, for example, displays text to the console (the terminal on the RPi, for example). It does not, for example, display text to a graphical window or on a label positioned somewhere on the user’s desktop. The integration and support of GUIs in programming languages is typically done through internal or external libraries that provide the objects and tools necessary to create GUIs and to allow users to interact with GUIs.</p>
+<p>Although there are many GUI libraries that work with Python, this lesson will focus on one of the more common and popular ones that is included with Python by default and is cross-platform (i.e., it can be used to create GUIs on a variety of computing machines and operating systems). This GUI library is called <strong>Tkinter</strong> (For more information: https://wiki.python.org/moin/TkInter).</p>
+<p>The Tkinter library is complex, yet it is powerful enough to create just about any GUI that a programmer would need. It would not be possible to cover the entire library in a single lesson. Therefore, we will take the approach of introducing the most frequently used components that Tkinter supports. Subsequently, we will show how to create a few simple GUIs that demonstrate a few of the different types that can be created.</p>
+</section>
+<section id="a-tkinter-primer" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="a-tkinter-primer"><span class="header-section-number">1.4</span> A Tkinter primer</h3>
+<p>Tkinter stands for “Tk interface.” Tk is a GUI toolkit that has been around for a while and was originally developed by the same folks that created the Java programming language. Tkinter is an object-oriented <em>layer</em> that provides a Python interface to the Tk GUI toolkit.</p>
+<p>The first thing we must do to use the Tkinter library in a Python program is to import it via:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Although there are various ways to import the library, the above is the most common method of doing so that reduces the amount of source code required.</p>
+<p>The typical manner in which GUIs are created using the Tkinter library is to create a window on which other components are placed. Let’s look at a simple program that creates a window and places a label on it:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>: <span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>: window <span class="op">=</span> Tk()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>: text <span class="op">=</span> Label(window, text<span class="op">=</span><span class="st">"GUIs in Python are pretty easy!"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>: text.pack()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>: window.mainloop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here’s the output of this short program:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson14-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Let’s explain the program, line-by-line. You already know the statement on line 1 that imports the Tkinter library. The statement on line 2 creates a graphical window (that is stored in the variable <code>window</code>). This must always be done in order to create a GUI using the Tkinter library. Line 3 creates a Tkinter Label, which is a component that is used to display text, an icon, or an image on a GUI. The label, which has the text “GUIs in Python are pretty easy!”, is stored in the variable <code>text</code> and is <em>bound</em> (or attached) to the window as its <em>child</em>. These explain the parameters passed in to the constructor of the <strong>Label</strong> class defined in the Tkinter library. The <code>pack</code> function called on line 4 is used on all Tkinter widgets. In this case, it instructs the label to size itself to fit the specified text and to make itself visible on the window. However, the GUI is not actually shown on the desktop until the statement on line 5. This statement instructs the window to appear on the desktop and wait for the user to interact with it. It will remain on the desktop until the user closes the window (in this case, by clicking on the X at the topright of the window).</p>
+<p>Let’s try a more standard way of creating GUIs using the Tkinter library. This method uses the objectoriented paradigm to encapsulate the GUI in a class that inherits from a Tkinter Frame. Here’s the program:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>: <span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>: <span class="kw">class</span> App(Frame):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>:     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, master):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>:         Frame.<span class="fu">__init__</span>(<span class="va">self</span>, master)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>:         <span class="va">self</span>.button1 <span class="op">=</span> Button(master, text<span class="op">=</span><span class="st">"BYE!"</span>,<span class="op">\</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>:         fg<span class="op">=</span><span class="st">"red"</span>, command<span class="op">=</span><span class="va">self</span>.quit)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>:         <span class="va">self</span>.button1.pack(side<span class="op">=</span>LEFT)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>:         <span class="va">self</span>.button2 <span class="op">=</span> Button(master, text<span class="op">=\</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>:         <span class="st">"Say something!"</span>, command<span class="op">=</span><span class="va">self</span>.say)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>:         <span class="va">self</span>.button2.pack(side<span class="op">=</span>LEFT)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span>:     <span class="kw">def</span> say(<span class="va">self</span>):</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span>:         <span class="bu">print</span>(<span class="st">"Froot Loops!"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span>: window <span class="op">=</span> Tk()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span>: app <span class="op">=</span> App(window)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span>: window.mainloop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here’s the resulting GUI:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson14-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Clicking on the BYE! button closes the application. Clicking on the Say something! button displays the string “Froot Loops!” to the console each time it is clicked.</p>
+<p>Let’s explain the statements of the program as we did before, in the order that they are executed. Clearly, line 1 imports the Tkinter library. Lines 2 through 12 define the <strong>App</strong> class and are not yet executed. Line 13 creates the main window of the GUI. Line 14 creates a new instance of the <strong>App</strong> class, passing the main window as a parameter (it becomes the parent of any GUI components created in the <strong>App</strong> class). This launches the constructor of the <strong>App</strong> class which begins on line 3. Since the <strong>App</strong> class is a subclass of the Tkinter <strong>Frame</strong> class, the constructor of the <strong>Frame</strong> class is first called on line 4. This initializes a Tkinter <strong>Frame</strong>, which serves as a holder for other GUI components. A Tkinter <strong>Button</strong> (called <code>button1</code>) is then instantiated as an instance variable on lines 5 and 6. It is set as a child of the window (called <code>master</code> in the <strong>App</strong> class), given the text “BYE!” colored in red, and instructed to execute the function <code>quit</code> when clicked. The function <code>quit</code> is defined in the Tkinter library. For a frame, it simply closes it.</p>
+<p>Line 7 makes the button visible. Note the parameter: <code>side=LEFT</code>. This places the button as far left as possible in the frame. The default is <code>TOP</code>, which places a component as far to the top as possible. A second button, <code>button2</code>, is instantiated in lines 8 and 9. This button is instructed to execute the function <code>say</code> when clicked, which is defined in the <strong>App</strong> class (on lines 11 and 12). The button is also positioned as far left as possible (next to <code>button1</code>). The function <code>say</code> simply displays the text “Froot Loops!” to the console.</p>
+<p>Finally, line 15 displays the GUI and allows the user to interact with it.</p>
+</section>
+<section id="common-tkinter-widgets" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="common-tkinter-widgets"><span class="header-section-number">1.5</span> Common Tkinter widgets</h3>
+<p>Before we go on to create more elaborate GUIs, let’s discuss a few of the more common Tkinter (in general, GUI) widgets. In fact, the Tkinter library supports fifteen core widgets:</p>
+<p>• Button: a button that can be used to execute an action when clicked.</p>
+<p>• Canvas: used to draw graphs, plot points, create drawings, etc.</p>
+<p>• Checkbutton: a button that can represent two distinct values by being checked or unchecked.</p>
+<p>• Entry: used to provide text-based user input.</p>
+<p>• Frame: a container that can group other widgets.</p>
+<p>• Label: used to display text or an image.</p>
+<p>• Listbox: used to display a list of options that the user can select from.</p>
+<p>• Menu: used to implement pull-down menus by grouping menu items.</p>
+<p>• Menubutton: a single menu item that is used in pull-down menus.</p>
+<p>• Message: like a Label, used to display text; however, it is more configurable.</p>
+<p>• Radiobutton: a button in a group of buttons that represents one of the values associated with the group.</p>
+<p>• Scale: supports the selection of a numeric value by dragging a slider.</p>
+<p>• Scrollbar: provides horizontal and vertical scroll bars for various GUI components.</p>
+<p>• Text: supports formatted text, including embedded images and even windows.</p>
+<p>• Toplevel: a container that can be displayed as a separate window on top of other components.</p>
+<p>Discussing all of these widgets in detail and showing how they can be used in GUIs is beyond the scope of this lesson. If you wish, you can visit many online tutorials to see these widgets (and more) used in the creation of GUIs.</p>
+<section id="configuring-widgets" class="level4" data-number="1.5.1">
+<h4 data-number="1.5.1" class="anchored" data-anchor-id="configuring-widgets"><span class="header-section-number">1.5.1</span> Configuring widgets</h4>
+<p>Most Tkinter widgets can be configured as they are instantiated by specifying various parameters in the constructor. Here’s an example with the Button widget shown above:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Button(master, text<span class="op">=</span><span class="st">"Submit"</span>, fg<span class="op">=</span><span class="st">"blue"</span>, bg<span class="op">=</span><span class="st">"yellow"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Another way of configuring a widget is to invoke its config function. In general, a widget, w, can be configured as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>w.config(option<span class="op">=</span>value, option<span class="op">=</span>value, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>b.config(text<span class="op">=</span><span class="st">"Send"</span>, fg<span class="op">=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="positioning-widgets" class="level4" data-number="1.5.2">
+<h4 data-number="1.5.2" class="anchored" data-anchor-id="positioning-widgets"><span class="header-section-number">1.5.2</span> Positioning widgets</h4>
+<p>Widgets can be positioned in the main window or in a frame using a variety of layouts. The one that has been used in previous examples is called the <strong>pack manager</strong>. It configures widgets in rows and columns. Options such as <em>fill</em>, <em>expand</em>, and <em>side</em>, help determine where a widget is placed and how it behaves graphically. The pack manager is good for placing a single widget and having it fill an entire container. It is also good for placing widgets next to each other vertically or horizontally.</p>
+<p>The pack manager’s <em>fill</em> option is used to have a widget fill the entire space assigned to it. There are several values that can be assigned to this option: BOTH makes the widget expand both horizontally and vertically; X makes the widget expand only horizontally; and Y makes the widget expand only vertically.</p>
+<p>The pack manager’s <em>expand</em> option is used to assign any additional space in a container to a widget. That is, if the parent container has any remaining space after packing all widgets, it will be distributed among all widgets that have the <em>expand</em> option set to a non-zero value.</p>
+<p>The pack manager’s <em>side</em> option is used to specify which side of the container to place the widget against. Values for this option are: TOP (the default) which packs widgets vertically; LEFT which packs widgets horizontally; BOTTOM which packs a widget against the bottom; and RIGHT which packs a widget to the right. Note that, although these values can be mixed, the results may not be as intended. Of course, you can easily experiment!</p>
+<p>Here’s an example of aligning Tkinter <strong>Labels</strong> vertically, while expanding them horizontally:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> Tk()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> Label(window, text<span class="op">=</span><span class="st">"A"</span>, bg<span class="op">=</span><span class="st">"red"</span>, fg<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>l1.pack(fill<span class="op">=</span>X)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> Label(window, text<span class="op">=</span><span class="st">"B"</span>, bg<span class="op">=</span><span class="st">"green"</span>, fg<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>l2.pack(fill<span class="op">=</span>X)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>l3 <span class="op">=</span> Label(window, text<span class="op">=</span><span class="st">"C"</span>, bg<span class="op">=</span><span class="st">"blue"</span>, fg<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>l3.pack(fill<span class="op">=</span>X)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>window.mainloop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And here’s the output (note that the window was manually resized to be larger horizontally):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson14-03.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>And here’s a GUI aligning the labels horizontally, expanding them horizontally, and expanding only the middle one vertically:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> Tk()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> Label(window, text<span class="op">=</span><span class="st">"A"</span>, bg<span class="op">=</span><span class="st">"red"</span>, fg<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>l1.pack(side<span class="op">=</span>LEFT, expand<span class="op">=</span><span class="dv">1</span>, fill<span class="op">=</span>X)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> Label(window, text<span class="op">=</span><span class="st">"B"</span>, bg<span class="op">=</span><span class="st">"green"</span>, fg<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>l2.pack(side<span class="op">=</span>LEFT, expand<span class="op">=</span><span class="dv">1</span>, fill<span class="op">=</span>BOTH)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>l3 <span class="op">=</span> Label(window, text<span class="op">=</span><span class="st">"C"</span>, bg<span class="op">=</span><span class="st">"blue"</span>, fg<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>l3.pack(side<span class="op">=</span>LEFT, expand<span class="op">=</span><span class="dv">1</span>, fill<span class="op">=</span>X)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>window.mainloop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And here’s the output (again, the window was manually resized):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson14-04.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>There is a much more powerful and flexible layout manager in the Tkinter library called the <strong>grid manager</strong>. It also configures widgets in rows and columns; however, each widget’s row and column (and how it behaves in its position in the row and column) can be individually specified. For the purpose of this lesson, the row and column in which a widget is placed is known as a <strong>cell</strong>. The grid manager supports several options: <em>row</em>, <em>column</em>, <em>sticky</em>, <em>columnspan</em>, and <em>rowspan</em>.</p>
+<p>The <em>row</em> option is a numeric value that specifies which row in the grid the widget should be placed in. Rows begin at 0. The <em>column</em> option is a numeric value that specifies which column in the grid the widget should be placed in. Similarly, columns begin at 0.</p>
+<p>The <em>sticky</em> option aligns the widget based on several values: N aligns the widget to the North (i.e., the top); S aligns the widget to the South (bottom); E aligns the widget to the East (right); and W aligns the widget to the West (left). Values can be combined; for example, NE aligns the widget to the Northeast (top-right). They can also be stacked; for example, N+S expands the widget vertically, E+W expands the widget horizontally, and N+S+E+W expands the widget both vertically and horizontally.</p>
+<p>The <em>columnspan</em> option allows a widget to span multiple columns. Similarly, the <em>rowspan</em> option allows a widget to span multiple rows.</p>
+<p>Here’s a first example using the grid manager:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> Tk()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> Label(window, text<span class="op">=</span><span class="st">"A label"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>l1.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> Label(window, text<span class="op">=</span><span class="st">"Another label"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>l2.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>e1 <span class="op">=</span> Entry(window)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>e1.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>e2 <span class="op">=</span> Entry(window)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>e2.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>window.mainloop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The program creates two labels and two text entry fields. Here’s its output:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson14-05.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Notice how the labels are, by default, aligned in the center of their cell. We can force them to be aligned to the left by slightly modifying the source code as follows:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> Tk()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> Label(window, text<span class="op">=</span><span class="st">"A label"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>l1.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>W)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> Label(window, text<span class="op">=</span><span class="st">"Another label"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>l2.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>W)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>e1 <span class="op">=</span> Entry(window)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>e1.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>e2 <span class="op">=</span> Entry(window)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>e2.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>window.mainloop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note how the <em>sticky</em> option has been added to the two labels. Here’s the output of the modified program:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson14-06.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Let’s add more widgets to see how the rest of the grid manager options can be used. First, however, it is good practice to doodle by drawing what it is that we are trying to accomplish, especially for GUIs that are complicated (typically, that’s when there are more than just a few widgets). Here’s a quick mock-up of what the GUI will look like:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson14-07.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>For clarity, here are the widget variable names, and their types and descriptions:</p>
+<p>• l1: a Label with the text “A label”, left-aligned in row 0, column 0.</p>
+<p>• l2: a Label with the text “Another label”, left-aligned in row 1, column 0.</p>
+<p>• l3: a Label with the text “A third label, centered”, centered horizontally in row 2, spanning across columns 0 and 1.</p>
+<p>• l4: a Label with a “smiley” image (100x100 pixels), centered horizontally and vertically, spanning across rows 0 and 1, and columns 2 and 3.</p>
+<p>• e1: an empty Entry, centered horizontally in row 0, column 1.</p>
+<p>• e2: an Entry with the text “user input”, centered horizontally in row 1, column 1.</p>
+<p>• c1: a Checkbutton with the text “Some Checkbutton option”, left-aligned in row 3, spanning across columns 0 and 1.</p>
+<p>• b1: a Button with the text “A button”, centered horizontally in row 3, column 2.</p>
+<p>• b2: a Button with the text “Another button”, centered horizontally in row 3, column 3.</p>
+<p>Before we get to the source code that creates this GUI, let’s take a look at the end result:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson14-08.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Now, let’s build the code to create this GUI, a little at a time. We’ll start with the following:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GUITest(Frame):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, master):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> setupGUI(<span class="va">self</span>):</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> Tk()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> GUITest(window)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>t.setupGUI()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>window.mainloop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At this point, all that’s been done is to create the main window. Note that we will be implementing the GUI as a class (called <strong>GUITest</strong>) that inherits from the Tkinter <strong>Frame</strong> class. That is, it’s just a frame on which other widgets will be placed. The <strong>GUITest</strong> class will, of course, have a constructor. We’ll also implement a <code>setupGUI</code> function that does the bulk of instantiating and positioning the widgets. This explains the statement <code>t.setupGUI()</code> in the main part of the program at the bottom. The process is to first create the main window, then create the instance of the <strong>GUITest</strong> class (which is a frame), then invoke its <code>setupGUI</code> function to create the GUI, and finally to display the GUI with the statement <code>window.mainloop()</code>.</p>
+<p>Let’s work on the constructor of the GUITest class:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, master):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  Frame.<span class="fu">__init__</span>(<span class="va">self</span>, master)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>.master <span class="op">=</span> master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The constructor first calls the constructor of its superclass (the <strong>Frame</strong> class). Then, it declares an instance variable, <code>master</code>, that stores the main window. This is necessary so that the <code>setupGUI</code> function can add widgets as children of the main window.</p>
+<p>Now on to the <code>setupGUI</code> function. We’ll build the function a little at a time. First, let’s add the first label, <code>l1</code>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setupGUI(<span class="va">self</span>):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  l1 <span class="op">=</span> Label(<span class="va">self</span>.master, text<span class="op">=</span><span class="st">"A label"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  l1.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>W)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The first statement instantiates a new <strong>Label</strong>, makes it a child of the main window (again, called <code>master</code> in the <strong>GUITest</strong> class), and sets its text. The second statement defines its properties with respect to the grid manager. It is to be positioned in row 0, column 0, and is to be left-aligned (to the West).</p>
+<p>The next label, <code>l2</code>, is similarly created; however, it is to be positioned in row 1, column 0, and has different text:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> Label(<span class="va">self</span>.master, text<span class="op">=</span><span class="st">"Another label"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>l2.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>W)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The third label is centered across two columns (0 and 1; therefore, it spans across two columns) in row 2. It also sets the sticky option to E+W, meaning that it will evenly split any leftover space within its container to the left and right (i.e., it will be centered):</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>l3 <span class="op">=</span> Label(<span class="va">self</span>.master, text<span class="op">=</span><span class="st">"A third label, centered"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>l3.grid(row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">0</span>, columnspan<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>E<span class="op">+</span>W)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The fourth and final label is an image that is centered across two rows (0 and 1) and two columns (2 and 3). Images are handled a bit differently than text. The image must first be loaded from a file and stored in a variable. This is done by using Tkinter’s <strong>PhotoImage</strong> class:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"smile.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the specified image file must be located in the same directory as the Python program. The label can then be created, with the image set as its contents:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>l4 <span class="op">=</span> Label(<span class="va">self</span>.master, image<span class="op">=</span>img)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>l4.image <span class="op">=</span> img</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>l4.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">2</span>, columnspan<span class="op">=</span><span class="dv">2</span>, rowspan<span class="op">=</span><span class="dv">2</span>,<span class="op">\</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a> sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The second statement appears to be redundant. That is, the first seems to assign the variable <code>img</code> as the label’s image; however, the second statement seems to do the same thing. It turns out that an image created using the <strong>PhotoImage</strong> class is “garbage collected” when a function that created it terminates. Once the <code>setupGUI</code> function terminates, the image disappears from the GUI. To prevent this from happening, we can keep an extra reference to the image. The second statement does this. The sticky option is set to N+S+E+W, which centers the image both horizontally and vertically.</p>
+<p>Next, the first text entry is created, centered in row 0, column 1:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>e1 <span class="op">=</span> Entry(<span class="va">self</span>.master)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>e1.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As mentioned earlier, widgets are centered by default when positioned using the grid manager. The second text entry widget is similarly added; however, it is in row 1, column 1. In addition, it contains default text that is added by using the <code>insert</code> function in the <strong>Entry</strong> class. This is accomplished by inserting text at the END position of the text entry widget:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>e2 <span class="op">=</span> Entry(<span class="va">self</span>.master)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>e2.insert(END, <span class="st">"user input"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>e2.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The Checkbutton widget is left-aligned in row 3 and spans across columns 0 and 1:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> Checkbutton(<span class="va">self</span>.master,<span class="op">\</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a> text<span class="op">=</span><span class="st">"Some Checkbutton option"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>c1.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">0</span>, columnspan<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>W)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, the two buttons are added. The first button is centered in row 3, column 2:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> Button(<span class="va">self</span>.master, text<span class="op">=</span><span class="st">"A button"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>b1.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And the second button is centered in row 3, column 3:</p>
+<pre><code>b2 = Button(self.master, text="Another button")
+b2.grid(row=3, column=3)</code></pre>
+<p>This completes the setupGUI function. Here’s a complete listing of the function for reference:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GUITest(Frame):</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, master):</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a> Frame.<span class="fu">__init__</span>(<span class="va">self</span>, master)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a> <span class="va">self</span>.master <span class="op">=</span> master</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a> <span class="kw">def</span> setupGUI(<span class="va">self</span>):</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a> l1 <span class="op">=</span> Label(<span class="va">self</span>.master, text<span class="op">=</span><span class="st">"A label"</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a> l1.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>W)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a> l2 <span class="op">=</span> Label(<span class="va">self</span>.master, text<span class="op">=</span><span class="st">"Another label"</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a> l2.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>W)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a> l3 <span class="op">=</span> Label(<span class="va">self</span>.master, text<span class="op">=</span><span class="st">"A third label, centered"</span>)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a> l3.grid(row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">0</span>, columnspan<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>E<span class="op">+</span>W)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a> img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"smile.gif"</span>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a> l4 <span class="op">=</span> Label(<span class="va">self</span>.master, image<span class="op">=</span>img)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a> l4.image <span class="op">=</span> img</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a> l4.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">2</span>, columnspan<span class="op">=</span><span class="dv">2</span>, rowspan<span class="op">=</span><span class="dv">2</span>,<span class="op">\</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a> sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a> e1 <span class="op">=</span> Entry(<span class="va">self</span>.master)</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a> e1.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a> e2 <span class="op">=</span> Entry(<span class="va">self</span>.master)</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a> e2.insert(END, <span class="st">"user input"</span>)</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a> e2.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a> c1 <span class="op">=</span> Checkbutton(<span class="va">self</span>.master, text<span class="op">=\</span></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a> <span class="st">"Some Checkbutton option"</span>)</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a> c1.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">0</span>, columnspan<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>W)</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a> b1 <span class="op">=</span> Button(<span class="va">self</span>.master, text<span class="op">=</span><span class="st">"A button"</span>)</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a> b1.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a> b2 <span class="op">=</span> Button(<span class="va">self</span>.master, text<span class="op">=</span><span class="st">"Another button"</span>)</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a> b2.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> Tk()</span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> GUITest(window)</span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>t.setupGUI()</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>window.mainloop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As a final example, let’s create a GUI on which two-dimensional points are plotted in various colors as follows:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson14-09.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The <strong>Canvas</strong> widget allows plotting points, among other useful things. It is quite important to note that the top-left of the canvas is the origin with the coordinates (0,0). It is possible to shift the origin, but this is beyond the scope of this lesson.</p>
+<p>Continuing with the strategy of implementing a class that inherits from a Tkinter widget, we’ll structure this example such that our user-defined class, <strong>Points</strong>, inherits from Tkinter’s <strong>Canvas</strong> class. Since some of the points that will be plotted are random (that is, with random x- and y-coordinates), the <code>randint</code> function of Python’s <strong>random</strong> class will be used. For flexibility, several constants will be defined: the width and height of the window, the various colors that points can be plotted in, the radius of the points, and the total number of points to plot. Structuring the program in this way will make it very easy to quickly test the program with different parameters</p>
+<p>Let’s take a look at the source code:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>WIDTH <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>HEIGHT <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>POINT_COLORS <span class="op">=</span> [ <span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span> ]</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>POINT_RADIUS <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>NUM_POINTS <span class="op">=</span> <span class="dv">2500</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Points(Canvas):</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a> <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, master):</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a> Canvas.<span class="fu">__init__</span>(<span class="va">self</span>, master, bg<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a> <span class="va">self</span>.pack(fill<span class="op">=</span>BOTH, expand<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a> <span class="kw">def</span> plotPoints(<span class="va">self</span>, n):</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(WIDTH):</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.plot(i, i)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.plot(WIDTH <span class="op">-</span> i <span class="op">-</span> <span class="dv">1</span>, i)</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> randint(<span class="dv">0</span>, WIDTH <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> randint(<span class="dv">0</span>, HEIGHT <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.plot(x, y)</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a> <span class="kw">def</span> plot(<span class="va">self</span>, x, y):</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> POINT_COLORS[randint(<span class="dv">0</span>, <span class="bu">len</span>(POINT_COLORS) <span class="op">-</span> <span class="dv">1</span>)]</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    color2 <span class="op">=</span> POINT_COLORS[randint(<span class="dv">0</span>, <span class="bu">len</span>(POINT_COLORS) <span class="op">-</span> <span class="dv">1</span>)]</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.create_oval(x, y,<span class="op">\</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>        x <span class="op">+</span> POINT_RADIUS <span class="op">*</span> <span class="dv">2</span>,<span class="op">\</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>        y <span class="op">+</span> POINT_RADIUS <span class="op">*</span> <span class="dv">2</span>,<span class="op">\</span></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>        outline<span class="op">=</span>color, fill<span class="op">=</span>color2)</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> Tk()</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>window.geometry(<span class="st">"</span><span class="sc">{}</span><span class="st">x</span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(WIDTH, HEIGHT))</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>window.title(<span class="st">"Check out these points!"</span>)</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> Points(window)</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>p.plotPoints(NUM_POINTS)</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>window.mainloop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By default, the width and height of the main window is defined to be 400x400 pixels. Knowing that the top-left of the canvas is the origin, then the bottom-right must have the coordinates (399,399). The points are plotted in four colors: black, red, green, and blue. Using the <strong>Canvas</strong> class, points are drawn as ovals. An oval is specified by a rectangular bounding box (specifically by its top-left and bottomright coordinates). If these coordinates are the same, the the oval is just a point. You will see how the constant <code>POINT_RADIUS</code> will be used in a later example. Finally, 2,500 points are plotted.</p>
+<p>The main part of the program (at the bottom of the source code) should be familiar. There are, however, two new statements. The first sets the width and height of the window (collectively known as the window’s geometry):</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>window.geometry(<span class="st">"</span><span class="sc">{}</span><span class="st">x</span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(WIDTH, HEIGHT))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This statement sets the window’s dimensions to the values of the constants WIDTH and HEIGHT. The second statement sets the window’s title (the text at the top of the window):</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>window.title(<span class="st">"Check out these points!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The final three statements create the GUI, plot the points, and display the GUI on the desktop.</p>
+<p>Let’s take a look at the Points class:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>: <span class="kw">class</span> Points(Canvas):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>:     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, master):</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>:         Canvas.<span class="fu">__init__</span>(<span class="va">self</span>, master, bg<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>:         <span class="va">self</span>.pack(fill<span class="op">=</span>BOTH, expand<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>:     <span class="kw">def</span> plotPoints(<span class="va">self</span>, n):</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>:         <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(WIDTH):</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>:             <span class="va">self</span>.plot(i, i)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>:             <span class="va">self</span>.plot(WIDTH <span class="op">-</span> i <span class="op">-</span> <span class="dv">1</span>, i)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>:         <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>:             x <span class="op">=</span> randint(<span class="dv">0</span>, WIDTH <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span>:             y <span class="op">=</span> randint(<span class="dv">0</span>, HEIGHT <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span>:             <span class="va">self</span>.plot(x, y)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span>:    <span class="kw">def</span> plot(<span class="va">self</span>, x, y):</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span>:         color <span class="op">=</span> POINT_COLORS[randint(<span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span>:             <span class="bu">len</span>(POINT_COLORS) <span class="op">-</span> <span class="dv">1</span>)]</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span>:         <span class="va">self</span>.create_oval(x, y, x <span class="op">+</span> POINT_RADIUS <span class="op">*</span> <span class="dv">2</span>,<span class="op">\</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span>:             y <span class="op">+</span> POINT_RADIUS <span class="op">*</span> <span class="dv">2</span>, outline<span class="op">=</span>color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The constructor of the <strong>Points</strong> class first calls the constructor of its superclass, Tkinter’s <strong>Canvas</strong> class. Note that the constructor can take various configuration parameters. In this case, the background is additionally set to white. The canvas is then configured to expand horizontally and vertically to fill the main window (i.e., it will expand to fit in the 400x400 pixel window).</p>
+<p>The <code>plotPoints</code> function does the bulk of generating the points to plot. The first part of the code (in lines 6 through 8) generates the set of points required to produce an X shape in the GUI. The variable i iterates from 0 through 399 (all valid x- and y- coordinate locations on the canvas). The first set of points generated have matching coordinates (e.g., (0,0), (1,1), (2,2), and so on). This forms the set of points from the top-left to the bottom-right of the canvas. The second set of points generated have opposite coordinates with respect to the width of the canvas. That is, when the x-component is 0, the ycomponent is 399; when the x-component is 1, the y-component is 398; and so on. This forms the set of points from the bottom-left to the top-right of the canvas.</p>
+<p>The second part of the <code>plotPoints</code> function (in lines 9 through 12) generates <em>n</em> random points (2,500 in the case of the program above). Recall that the <code>randint</code> function takes a closed interval. That is, the first and last parameters passed in to the function express the valid range of random integers to generate, inclusive of the low and high values.</p>
+<p>Finally, the <code>plot</code> function (in lines 13 through 17) actually plots the points on the canvas. First, in lines 14 and 15, a color is randomly selected from the list of colors that was defined as a constant near the top of the program. Next, an oval is drawn on the canvas within the specified bounding box. With the current set of parameters, the oval is just a point with no radius. The oval is drawn in the randomly selected color by specifying its outline to be of that color</p>
+<p>We can observe the behavior of the <code>create_oval</code> function in the <strong>Canvas</strong> class a bit more by changing the radius of the points to something larger (say, 2) by modifying the <code>POINT_RADIUS</code> constant at the top of the program as follows:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>POINT_RADIUS <span class="op">=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The output of the program looks a bit different:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson14-10.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The “points” now have a radius that is greater than 0. The bounding box of a “point” is defined by the x- and y-coordinates of the point and the point’s radius. The top-left of the bounding box is just the xand y-coordinates of the point. The bottom-right takes the radius into account. That is, the coordinates of the point really represent its top-left “corner”, while its bottom-right “corner” is adjusted to account for the specified radius (twice, in fact, to make up the entire diameter). When we keep the radius the same for both corners of the bounding box, the oval becomes a circle. In fact, a circle is just a special case of an oval.</p>
+<p>We can actually fill the points as well by slightly modifying the statement on lines 16 and 17:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span>: <span class="va">self</span>.create_oval(x, y, x <span class="op">+</span> POINT_RADIUS <span class="op">*</span> <span class="dv">2</span>,<span class="op">\</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span>:     y <span class="op">+</span> POINT_RADIUS <span class="op">*</span> <span class="dv">2</span>, outline<span class="op">=</span>color, fill<span class="op">=</span>color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We include a <em>fill</em> option that takes a color that the center of the oval will be filled with. Clearly, an oval can have two different colors: one for its outline, and one for its “inside”.</p>
+<p>Here’s the output of the program with the <em>fill</em> option set as specified above:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson14-11.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Lastly, here’s the output of the program with the <em>fill</em> option set to a random color, and the <em>outline</em> option set to another random color (note that it is possible that both colors are the same):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Lesson14-12.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
