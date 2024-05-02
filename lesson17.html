@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-05-02">
+
+<title>High Level Data Structures</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="lesson17_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lesson17_files/libs/quarto-html/quarto.js"></script>
+<script src="lesson17_files/libs/quarto-html/popper.min.js"></script>
+<script src="lesson17_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="lesson17_files/libs/quarto-html/anchor.min.js"></script>
+<link href="lesson17_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lesson17_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="lesson17_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="lesson17_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="lesson17_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #002f8b;
+      }
+</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">High Level Data Structures</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 2, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#lists" id="toc-lists" class="nav-link active" data-scroll-target="#lists"><span class="header-section-number">1</span> Lists</a></li>
+  <li><a href="#stacks" id="toc-stacks" class="nav-link" data-scroll-target="#stacks"><span class="header-section-number">2</span> Stacks</a></li>
+  <li><a href="#queues" id="toc-queues" class="nav-link" data-scroll-target="#queues"><span class="header-section-number">3</span> Queues</a></li>
+  <li><a href="#trees" id="toc-trees" class="nav-link" data-scroll-target="#trees"><span class="header-section-number">4</span> Trees</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>This lesson looks at the topic of data structures, which is concerned with the various ways that data can be organized within a computer program. Specifically, four common “high level” data structures are introduced: lists, stacks, queues, and trees. Each of these structures represents a way to organize data so that it may be applied to solve certain problems in an efficient manner. Three of these structures (lists, stacks, and queues) are linear in nature. That is, their items logically exist one after another in sequential order. The tree structure is non-sequential, in that its contents can not be meaningfully represented by a simple sequential listing.</p>
+<section id="lists" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="lists"><span class="header-section-number">1</span> Lists</h2>
+<p>When designing algorithms to solve computing problems, it is rare that we do not, to some degree, store and manipulate data. Often, we need to store data in a list form. This has been observed in previous lessons (e.g., searching a list for some value, sorting a list using the insertion sort, etc). In fact, we have seen (and used) lists in Scratch and in Python to solve problems.</p>
+<p>In general, a list groups values together in such a way that there is a first item in the list, a last item in the list, and some number of items in the middle of the list. Accessing any individual item in the list is permitted (using its position or index). There are generally two implementations of lists: array-based lists and linked lists.</p>
+<p>We have already seen arrays in a previous lesson; however, let’s briefly review. <strong>Arrays</strong> are comparable to a numbered list such as a grocery list, a class roster, or a set of numbered drawers. They are used to store multiple instances of anything, as long as they are all of the same kind (i.e., all numbers, all letters, all images, all books, etc). Imagine these things being in some sort of order (i.e., we have a first thing, a last thing, and some number of things in between). The members of (or entries in) the array are called elements.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The order in which elements are stored in an array is important. This is because very often a programmer needs to access a specific element of an array, and in order to do that, its position relative to the first element of the array must be known. The position of an element is also referred to as its <em>address</em>, and the relative address (how far away from the first element it is) is called its <em>index</em>.</p>
+<p>Again, the distinction between a value and its index is one that must be emphasized. A value refers to a piece of data stored in the array, and its index is the position in the array where that value is stored. The index represents <em>where</em> an element is, and the value represents <em>what</em> the element is. While the two are related, each of them will be of different importance to us depending on the scenario we are trying to solve.</p>
+<p>In most programming languages, arrays must be declared along with their capacity (i.e., the maximum number of values that the array can contain). This is important because array elements are located in contiguous memory locations (i.e., next to each other in memory). Therefore, an array’s capacity is required in order to properly allocate all of the contiguous memory locations needed. This does, however, represent the array’s weakness. If we know how many items we will store in the array, then this is simple. But what if we don’t? We may purposely overestimate, but this wastes memory. What if we underestimate and fill the array? The cost of creating a new, larger array, and then duplicating the existing array to this new array can be quite large. The need for specifying an array’s capacity at declaration time is what motivated a tweak on implementing lists in programming languages. The result is the linked list.</p>
+<p>Unlike arrays, <strong>linked lists</strong> can grow or shrink as needed. Individual elements in a linked list are not necessarily stored in contiguous memory locations. The cost of this benefit is that some mechanism for <em>linking</em> each element in the list must exist. Ultimately, this mechanism requires additional memory; thus, linked lists require more space in memory than arrays do when storing the same data. However, this is offset by the convenience of only storing what is needed in the list at any one time.</p>
+<p>Since the elements in a linked list are not necessarily stored in contiguous memory locations, we must somehow link the elements in the list to one another. This requires extending the concept of <em>element</em> to include two components: actual data (i.e., some value) and a link (sometimes called “next” in code) to the next element in the list. This extended definition makes up what is called a node. Linked lists are made up of <strong>nodes</strong>, each of which stores <strong>data</strong> and a <strong>link</strong> to the next node in the linked list:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>If each node in the list contains some data and a link to the next node, then we really only need to know the location of the first node in order to process each element in the list. From the first node, we can repeatedly following links to the next node, until the end of the list is reached:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-03.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Of course, it does not necessarily have to look so pretty. The linked list above is drawn so that each element seems to be located in contiguous memory locations; however, we could just as easily have drawn the linked list like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-04.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>In this case, the first node is still the one all the way to the left. The last node, however, is now the third from the left.</p>
+<p>The first node in a linked list is known as its <strong>head</strong>. Knowing where the head is in a linked list is crucial.</p>
+<p>So how do we know when to stop when, for example, we process each element in the list? That is, how do we know when we are at the last element in the list? The answer lies in the link component of the node. For clarity, you should know that the last node in a linked list is known as the <strong>tail</strong>. The link component of the tail of a linked list will always be <em>nothing</em>. In Python, we would say that its value would be equal to <code>None</code>. In other programming languages, we sometimes refer to this as <em>null</em>. For simplicity, the link component of the tail node is equivalent to 0.</p>
+<p>So what does the link component of a node other than the tail actually store? It stores the memory address of the next node in the list! Perhaps this is best explained by creating a linked list, step-by-step, and showing what happens at each step. Let’s insert the values 5, 9, 2, 6, and 1 into a linked list. Inserting the value 5 first requires creating a new node with 5 as the data component and 0 as the link component (by default):<br>
+<img src="images/lesson17-05.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>Of course, this node must be stored somewhere in memory. Let’s randomly pick the memory address 5B44 (in hexadecimal). In addition, since this is the only node in the linked list so far, then it is at its head:<br>
+<img src="images/lesson17-06.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>Suppose that inserting the value 9 creates a new node that is stored at memory address 5B46:<br>
+<img src="images/lesson17-07.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>The nodes must now be linked. Since this new node belongs after the head of the list (i.e., it is the second node inserted into the list), then we simply need to link the head to this new node as follows:<br>
+<img src="images/lesson17-08.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>Notice how the link component of the head contains the memory address of the next node in the list. This has the same effect as the following pictorial example:<br>
+<img src="images/lesson17-09.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>Since we know where the head of the linked list is located (by definition), then we can reach the second node by following the link (i.e., by moving the to memory address specified in the link component of the node).</p>
+<p>Inserting the value 2 is similar. Suppose that the new node containing this value is stored at memory address 5B50:<br>
+<img src="images/lesson17-10.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>Notice how the link component of the node containing the value 9 correctly links it to the newly inserted node. Now let’s insert the value 6. Suppose that the new node is stored at memory address 5B52:<br>
+<img src="images/lesson17-11.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>Finally, let’s insert the value 1. Suppose that the new node is stored at memory address 5B48:<br>
+<img src="images/lesson17-12.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>Notice how we can start at the head of the linked list and follow the link components of each node, all the way through the tail. We know to stop at the tail because its link component is 0. Pictorially, this can be represented as follows:<br>
+<img src="images/lesson17-13.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>Just like arrays, linked lists can be used to implement searching and sorting algorithms. Processing each element is just as simple. Moving elements around, however, is a bit more complicated since it involves rearranging the link components of nodes to reflect a potentially new ordering of the elements in the list. For example, consider the problem of deleting the node containing the value 2:<br>
+<img src="images/lesson17-14.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>Starting at the head, we see that the node containing the value 2 is the third node in the list. To remove this node, we will need to change the node containing the value 9 (since it is linked to the node that we wish to delete). The solution is to change the link component of this node so that it is equivalent to the link component of the node that we wish to delete:<br>
+<img src="images/lesson17-15.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>The node to be deleted is circled in red above. To remove it from the linked list, we simply need to copy its link component to the node that precedes it, thereby <em>rerouting</em> around it. After this action, the result is the following linked list (the grayed out node is no longer a part of the linked list): <img src="images/lesson17-16.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>Here is a recap of terminology associated with a linked list:</p>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th style="text-align: left;">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Node</td>
+<td style="text-align: left;">An element of a linked list that contains data and a link</td>
+</tr>
+<tr class="even">
+<td>Data</td>
+<td style="text-align: left;">The value held within the node</td>
+</tr>
+<tr class="odd">
+<td>Link</td>
+<td style="text-align: left;">A way to reference the next node in the linked list</td>
+</tr>
+<tr class="even">
+<td>Head</td>
+<td style="text-align: left;">Always refers to the first node</td>
+</tr>
+<tr class="odd">
+<td>Tail</td>
+<td style="text-align: left;">Always refers to the last node</td>
+</tr>
+<tr class="even">
+<td>Traversal</td>
+<td style="text-align: left;">Visiting all nodes from head to tail (can be used, for example, to print all data in the list)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stacks" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="stacks"><span class="header-section-number">2</span> Stacks</h2>
+<p><strong>Stack</strong> data structures are used, among other things, to model the behavior of stacks of real-world objects. In order to understand this structure let’s begin by thinking about a simple stack of blocks:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-17.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>In this stack, <strong>C</strong> is the top block, <strong>B</strong> is beneath <strong>C</strong>, and <strong>A</strong> is the bottom block. Assuming that the blocks were added one at a time, how must this stack have been built? First, the bottom block, <strong>A</strong>, must have been set, then <strong>B</strong> would have been placed on top of <strong>A</strong>, and finally <strong>C</strong> would have been placed on top of <strong>B</strong>. Note that the blocks must be added to the stack from bottom to top: <strong>A</strong>, then <strong>B</strong>, then <strong>C</strong>. The last block placed on the stack will be the top block.</p>
+<p>Now, let’s think about removing a block from the stack. As any child could demonstrate, the block that is most easily accessible is the top block (<strong>C</strong> in this case). Removing <strong>C</strong> from the stack leaves us with <strong>B</strong> sitting on top of <strong>A</strong>. It is interesting to note that the first item to be removed from the stack, <strong>C</strong>, was the last item added to the stack (remember the order in which the blocks were added). In fact, assuming that you don’t cheat and grab an item from the middle of the stack, the last item added on the stack would always be the first taken off. For this reason, stacks are known as Last-In, First-Out (LIFO) data structures.</p>
+<p>As mentioned earlier, the stack data structure models the behavior of real-world stacks of objects. The two primary operations that can be applied to stack data structures are <strong>push</strong> and <strong>pop</strong>. The <strong>push</strong> operator is used to add a new item onto the top of the stack. The <strong>pop</strong> operator is used to remove the top item from the stack. Stack data structures do not support the removal of items from the middle of the stack. The stack of real-world blocks shown above could be modeled by applying the following operations to an initially empty stack data structure:</p>
+<pre><code>    push A
+    push B
+    push C</code></pre>
+<p>The removal of C could subsequently be accomplished by issuing the pop command:</p>
+<pre><code>    pop</code></pre>
+<p>To be more formal, the <strong>stack</strong> data structure can be defined as a specialized type of list (an ordered sequence of items) in which all insertions to and deletions from the list take place at one end. The end of the list where the insertions and deletions are performed is known as the <strong>top</strong> of the stack. Stacks are usually drawn vertically, so that the item at top of the stack appears literally as the topmost item in the structure; however, they could just as easily be drawn sideways or upside down.</p>
+<p>In order to ensure that you have a clear understanding of the behavior of the stack data structure, consider the following sequence of stack operations and pictorial representations of the stack that would result after each operation is applied. Note again that the pop operation always removes the last item placed on the top of the stack:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-18.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Now that you have some understanding of how stacks behave, it is natural to ask, “So what?” Why are stacks of interest to computer scientists? In the real world, we routinely encounter stacks of objects (e.g., CDs, dishes, bills). We use these stacks to temporarily hold objects until we are ready to use or <em>process</em> them in some way. One important characteristic of all stacks (both the real-world type and their software counterpart) is that, due to their LIFO nature, they reverse the order of the objects they hold. For example, if you place three CDs in a stack, AC/DC, then Iron Maiden, then Justin Bieber, and then play the top one, you will unfortunately be listening to Justin Bieber and not AC/DC. In everyday life, we tend to use stacks in situations where order is unimportant (e.g., for holding identical, non-perishable items like dinner plates).</p>
+<p>In a similar manner, stack data structures are used by computer software to temporarily hold data <em>objects</em> until they can be processed by the computer. However, instead of deemphasizing the LIFO nature of stacks, in computing stacks tend to be used almost exclusively in situations where we specifically want to process items in the opposite order than they were added to the structure.</p>
+<p>One common use of stacks in computing is to manage the execution of interruptible tasks. The utility of stacks for this purpose can easily be seen by a real-world analogy. Say that you are typing an English paper (task one) and the phone rings. You pick up the phone (i.e., place task one on the stack of <em>on hold</em> processes) and begin a conversation with a friend (task two). During this conversation you get a second phone call, so you put your friend on hold (i.e., place task two on the stack of <em>on hold</em> processes) and take a call from your mom (task three). After a brief talk with mom, you switch back to your friend (i.e., after task three completes, you <strong>pop</strong> task two off of the stack of <em>on hold</em> processes and restart it from the point you left off). Finally, after a not-so-brief conversation with your friend, you return to your English paper (i.e., after task two completes, you <strong>pop</strong> task one off of the stack of <em>on hold</em> processes and restart it where you left off).</p>
+<p>Note that in order to handle these interruptible tasks properly, a data structure such as a stack that incorporates LIFO behavior must be employed.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Try your hand at <strong>push</strong>ing the letters of the word PUPILS, one letter at a time, to a stack.</p>
+<p>Now pop each letter off of the stack, one at a time. While doing so, record each popped letter to see the word formed after the pop operations are complete and the stack is empty again.</p>
+</div>
+</div>
+</div>
+<p>As you can see, a stack can easily reverse a word. We can also use a stack to match parentheses in, for example, mathematical expressions. The basic idea is to scan through an expression, one character at a time, from left-to-right. Left (or open) parentheses are pushed on the stack. Right (or close) parentheses result in a pop (and a match of the left parenthesis that was just popped). Operators and operands are ignored.</p>
+<p>Take a look at the following expression and its resulting stack operations. To make it easier to follow, we’ll change the orientation of the stack so that the top is to the right:</p>
+<p><code>a + b * (c + (d - e) / (f / g))</code><br>
+<img src="images/lesson17-19.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+<p>So long as the stack is empty at the end, all parentheses have been matched. Create the table for the following expression:</p>
+<p><code>(a + (b - c)</code></p>
+<p>An error arises because the expression has been processed, but there is still an open parenthesis on the stack. Now create the table for the following expression:</p>
+<p><code>(a + b))</code></p>
+<p>Another error arises because there is a close parenthesis left to process, but there is no matching open parenthesis on the stack (it is empty).</p>
+</section>
+<section id="queues" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="queues"><span class="header-section-number">3</span> Queues</h2>
+<p>In America, a waiting line (such as the kind you encounter at a bank or supermarket), is simply referred to as a <em>line</em>. In England and many other countries, a waiting line is called a <em>queue</em> (pronounced like the letter Q). The following illustrates a real-world queue that you might encounter at a local movie theater:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-20.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Person A is buying a ticket to see the next Star Wars movie. Persons B, C, D, and E are waiting in line to buy their tickets. The four of them are considered to be waiting in the queue. Since person A is in the process of buying his ticket, he is not considered to be part of the queue (i.e., he is not waiting). Person B is at the front, or head, of the queue, and will be the next person to be served. Person E is at the back, or end, of the queue, and must wait for everyone ahead to be served before being able to buy a ticket.</p>
+<p><strong>Queues</strong> are known as First-In, First-Out (FIFO) data structures. Assuming that no one breaks or cuts in line, the first person to enter the queue will be the first person to leave the queue (and thus be the first person served). Queues are extremely useful, both in the real-world and in computing, because they enable us to control access to scarce resources (such as Star Wars tickets in the example above).</p>
+<p>The queue data structure models the behavior of real-world queues. It supports two primary operations: <strong>enqueue</strong> and <strong>dequeue</strong>. The <strong>enqueue</strong> operation is used to add a new item to the back of the queue. This operator is analogous to a person getting in line. The <strong>dequeue</strong> operation is used to remove an item from the front of the queue. This operation is analogous to having the person at the head of the line step forward to be served (and then of course to purchase grossly overpriced and over-buttered popcorn and a soda).</p>
+<p>More formally, a <strong>queue</strong> is a list in which all insertions take place at one end, the <strong>back</strong> of the queue, and all deletions take place at the opposite end, the <strong>front</strong> (or head) of the queue. The basic queue data structure does not allow the insertion or deletion of items from the middle. Thus, it does not support concepts like people breaking or cutting in line, or giving up and leaving because the line is too long.</p>
+<p>Consider the following sequence of operations applied to an initially empty queue, and the resulting queue configurations. In order to help clearly distinguish between the behavior of stacks verses queues, the same data presented in the (numeric) stack example above is used (along with the same pattern of operations applied to the structure). Notice that, even though the order of operations is the same in both of these examples, the contents of the two structures is quite different:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-21.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Here is a recap of terminology associated with stacks and queues:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Term</th>
+<th style="text-align: left;">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Item</td>
+<td style="text-align: left;">An element within the stack or queue that contains a value</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th style="text-align: left;">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Push</td>
+<td style="text-align: left;">Operation to add an item to the top of the stack</td>
+</tr>
+<tr class="even">
+<td>Pop</td>
+<td style="text-align: left;">Operation to remove (and return) the item at the top of the stack</td>
+</tr>
+<tr class="odd">
+<td>Top</td>
+<td style="text-align: left;">Always refers to the top item in the stack</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th style="text-align: left;">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Enqueue</td>
+<td style="text-align: left;">Operation to add an item to the back of the queue</td>
+</tr>
+<tr class="even">
+<td>Dequeue</td>
+<td style="text-align: left;">Operation to remove (and return) the item at the back of the queue</td>
+</tr>
+<tr class="odd">
+<td>Front</td>
+<td style="text-align: left;">Always refers to the front item in the queue</td>
+</tr>
+<tr class="even">
+<td>Back</td>
+<td style="text-align: left;">Always refers to the back item in the queue</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trees" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="trees"><span class="header-section-number">4</span> Trees</h2>
+<p>Although there are many different types of tree-like data structures, we will focus on the <strong>binary tree</strong> in this lesson. First, let’s recall the various searching algorithms that were discussed in previous lessons. One in particular was especially efficient on sorted data: the binary search. The binary search works well because it effectively halves the search space with each comparison. The strategy is to continuously pick the middle value in a portion of the list making up half of what is left to search through. Initially, the middle of the list is picked. If the specified value is not found, then the half of the list that it cannot be contained within is discarded, and the process repeats with the other half of the list. This idea of halving the search space with a single comparison is the foundation for the binary tree. Earlier, you learned that linked lists were made up of nodes that point to other nodes in a linear or sequential fashion. These other nodes could be considered neighbors. Reaching the nodes in a linked list is performed by following the link component of each node until the tail of the list is reached. One could maintain a sorted linked list and implement the binary search, for example. Binary trees are also made up of nodes; however, instead of a node containing a link to some next <em>neighbor</em> node, each node in a binary tree contains two link components. These link components are known as the node’s children. This represents a different relationship between nodes.</p>
+<p>Perhaps it is best to see what a tree actually looks like for reference:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-22.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The top node in the tree is known as the <strong>root</strong> of the tree. In a binary tree, each node has up to two <strong>children</strong>. In the tree above, the root node has two children (one to the left, and one to the right – which is usually where we place them). In turn, these two children have children of their own. This can continue many times; however, at some point there will be nodes at the bottom of the tree that do not have children. These nodes are known as <strong>leaf</strong> nodes. Collectively, they are referred to as the <strong>leaves</strong> of the tree.</p>
+<p>Why is this data structure called a binary tree? Well, if we were to turn the image above upside-down, it would look kind of like a real tree with a root at the bottom that splits into branches. Each branch splits into more, and so on, until the leaves are reached. It is called a <strong>binary tree</strong> because each node in the tree has, at most, two children. As branches are followed down the tree, the tree repeatedly splits into two halves, much like the process behind the binary search.</p>
+<p>Sometimes it is useful to only consider parts of the tree. These parts are known as <strong>subtrees</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-23.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Although there is only a single root in a binary tree (always the node at the top of the tree), each subtree can be said to have a node that serves as its root. For example, the node labeled “left child” in the tree above can be said to be the root of the shaded subtree on the left.</p>
+<p>The nodes in a binary tree are arranged in levels. A <strong>level</strong> can be said to be a horizontal <em>slice</em> of the binary tree. In the tree above, for example, the nodes labeled “left child” and “right child” are at the same level. In fact, they are at level 1. The root is at level 0. For a binary tree that is <strong>balanced</strong> (i.e., one that isn’t lopsided with too many extra nodes on any side), the number of levels is a function of the number of nodes. In a binary tree containing <em>n</em> nodes, there can be, at most, <span class="math inline">\(⌈log_2n ⌉\)</span> levels. Intuitively, this makes sense since each level down the tree splits that part of the tree in half. In the tree above, there are 12 nodes; thus, there can be at most <span class="math inline">\(⌈log_212⌉=⌈3.58⌉=4\)</span> . In fact, there are four levels in the tree!</p>
+<p>The most useful binary trees implement an internal ordering of the nodes. <strong>Ordered binary trees</strong> are binary trees that abide by the rule that, given any node, the values of all children in the left subtree are less than the value of the node. Similarly, the values of all children in the right subtree are greater than (or sometimes greater than or equal to) the value of the node. This is also referred to as a <strong>binary search</strong> <strong>tree</strong>. Here is an example of an ordered binary tree:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-24.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Notice that, for any node in the tree, the values of all children in its left subtree are less than the value of the node. Similarly, the values of all children in its right subtree are greater than the value of the node. For example, the values of all nodes to the left of the root are all less than seven, and the values of all nodes to the right of the root are all greater than 7.</p>
+<p>If we were to place all nodes at the same level (i.e., all next to each other) and remove all links to children, this binary tree would look very much like a sorted array:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-25.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Notice that we can easily implement a binary search! An ordered binary tree actually works very much the same way. To search for a value, we begin at the root and compare its value to the desired value. If the desired value is less than the value of the root, we follow the link to the left and continue. If the desired value is greater than the value of the root, we follow the link to the right and continue. This exactly replicates the behavior of the binary search. If we find a node that is equal to the desired value, then the search is successful. If we reach a leaf node that is not equal to the desired value, then the search is unsuccessful.</p>
+<p>An interesting aspect of the binary tree is that we can use an array to represent one in memory. The root of the tree is placed at the first position in the array (i.e., at index 0). The children of any node are easily found as follows: • The left child of a node at index <em>i</em> is at index <span class="math inline">\(2i+1\)</span> ; • The right child of a node at index <em>i</em> is at index <span class="math inline">\(2i+2\)</span> ; and • The parent of a node at index <em>i</em> is at index <span class="math inline">\(⌊(i−1)/2⌋\)</span> . Take a look at the previous tree again:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-24.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>This tree can be represented by an array as follows:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lesson17-26.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The arrows are there to illustrate a few of the nodes and their children. For example, the root node is at index 0. Its children are at indexes <span class="math inline">\(2(0)+1=1\)</span> and <span class="math inline">\(2(0)+2=2\)</span> . This is illustrated by the arrows pointing from the root node in the array. As another example, the children of the node containing the value 2 (which is at index 3) are at indexes <span class="math inline">\(2(3)+1=7\)</span> and <span class="math inline">\(2(3)+2=8\)</span> . Nodes with missing children are still included in the array (i.e., space is left for the missing children). As a final example, the parent of the node containing the value 6 (which is at index 10) is at index <span class="math inline">\(⌊(10−1)/2⌋=⌊9/2⌋=⌊4.5⌋=4\)</span>. These are all confirmed in the tree above.</p>
+<p>Here is a recap of terminology associated with trees:</p>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th style="text-align: left;">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Binary Tree</td>
+<td style="text-align: left;">A tree where each node has at most two children</td>
+</tr>
+<tr class="even">
+<td>Node</td>
+<td style="text-align: left;">An element of a tree that contains data and references to all child nodes</td>
+</tr>
+<tr class="odd">
+<td>Root</td>
+<td style="text-align: left;">Always refers to the topmost node</td>
+</tr>
+<tr class="even">
+<td>Children</td>
+<td style="text-align: left;">Nodes attached to a parent</td>
+</tr>
+<tr class="odd">
+<td>Parent</td>
+<td style="text-align: left;">Any node with children</td>
+</tr>
+<tr class="even">
+<td>Leaf</td>
+<td style="text-align: left;">A node that does not have any children (opposite of parent)</td>
+</tr>
+<tr class="odd">
+<td>Subtree</td>
+<td style="text-align: left;">A subset of attached nodes within a tree. The topmost node of a subtree forms the root of that subtree (or a “subroot” of the entire tree)</td>
+</tr>
+<tr class="even">
+<td>Level</td>
+<td style="text-align: left;">Starting at 0 for the root, the level of a node is how far down the tree that node is</td>
+</tr>
+<tr class="odd">
+<td>Balanced</td>
+<td style="text-align: left;">A tree whose maximum level is, at most, log base 2 of the number of nodes within the tree</td>
+</tr>
+<tr class="even">
+<td>Ordered Binary Tree</td>
+<td style="text-align: left;">A binary tree with the extra property of having smaller values to the left and larger values to the right</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
