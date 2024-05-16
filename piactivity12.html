@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-05-16">
+
+<title>My Binary Addiction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="piactivity12_files/libs/clipboard/clipboard.min.js"></script>
+<script src="piactivity12_files/libs/quarto-html/quarto.js"></script>
+<script src="piactivity12_files/libs/quarto-html/popper.min.js"></script>
+<script src="piactivity12_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="piactivity12_files/libs/quarto-html/anchor.min.js"></script>
+<link href="piactivity12_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="piactivity12_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="piactivity12_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="piactivity12_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="piactivity12_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #002f8b;
+      }
+</style>
+
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">My Binary Addiction</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 16, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#the-adder" id="toc-the-adder" class="nav-link" data-scroll-target="#the-adder"><span class="header-section-number">2</span> The adder</a></li>
+  <li><a href="#gpio-in-python" id="toc-gpio-in-python" class="nav-link" data-scroll-target="#gpio-in-python"><span class="header-section-number">3</span> GPIO in Python</a></li>
+  <li><a href="#the-circuit" id="toc-the-circuit" class="nav-link" data-scroll-target="#the-circuit"><span class="header-section-number">4</span> The circuit</a></li>
+  <li><a href="#the-code" id="toc-the-code" class="nav-link" data-scroll-target="#the-code"><span class="header-section-number">5</span> The code</a></li>
+  <li><a href="#extending-this-a-bit" id="toc-extending-this-a-bit" class="nav-link" data-scroll-target="#extending-this-a-bit"><span class="header-section-number">6</span> Extending this a bit</a></li>
+  <li><a href="#homework-full-adder-reloaded" id="toc-homework-full-adder-reloaded" class="nav-link" data-scroll-target="#homework-full-adder-reloaded"><span class="header-section-number">7</span> Homework: Full Adder… Reloaded</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>In this activity, you will implement a one-bit binary adder using LEDs, resistors, and push-button switches. You will need the following items:<br>
+• Raspberry Pi B v3 with power adapter;<br>
+• LCD touchscreen;<br>
+• Keyboard and mouse;<br>
+• Breadboard;<br>
+• GPIO interface board with ribbon cable; and<br>
+• LEDs, resistors, switches, and jumper wires provided in your kit.</p>
+<p>Regarding the electronic components, you will need the following:<br>
+• 2x red LEDs;<br>
+• 4x green LEDs;<br>
+• 4x blue LEDs;<br>
+• 2x push-button switches;<br>
+• 9x 220Ω resistors; and<br>
+• 9x jumper wires.</p>
+</section>
+<section id="the-adder" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-adder"><span class="header-section-number">2</span> The adder</h2>
+<p>Recall the single-bit half adder shown in a previous lesson:</p>
+<p><a href="images/piactivity12-01.png" data-fig-align="center"></a></p>
+<p>It takes two single-bit inputs, A and B, and produces two outputs, S (the sum bit) and C (the carry bit). The half adder has the following truth table:</p>
+<p><a href="images/piactivity12-02.png" data-fig-align="center"></a></p>
+<p>The question is, how do we implement these logic gates in a programming language? We have seen that if-statements are related to logic gates. For example, we can evaluate if one condition <em>and</em> another are true. If and only if both are true will the entire condition be true (and the statements in the true part of the if-statement will be executed). Therefore, one way to implement the truth table for a half adder is as follows:</p>
+<pre><code> 1: if A is 0 and B is 0
+ 2: then
+ 3:     S ← 0
+ 4:     C ← 0
+ 5: else
+ 6:     if A is 1 and B is 1
+ 7:     then
+ 8:         S ← 0
+ 9:         C ← 1
+10:     else
+11:         S ← 1
+12:         C ← 0
+13:     end
+14: end</code></pre>
+<p>Notice that this basically handles each row of the truth table above. The first if-statement handles the first row of the truth table (when A and B are both 0), and sets S and C to 0. The second if-statement handles the last row of the truth table (when A and B are both 1), and sets S to 0 and C to 1. The last case (the else part of the second if-statement) handles the two middle rows of the truth table, where either A or B is 1 (but not both), and sets S to 1 and C to 0.</p>
+<p>This is how we would implement a half adder in Scratch, for example. Most general purpose programming languages (like Python), however, allow bitwise operations. That is, they can take Boolean inputs (like A and B) and implement the logic of primitive gates (e.g., <em>and</em> and <em>or</em>). This is a much simpler way to implement the logic! Plus, it allows us to significantly reduce the amount of code required to implement the half adder. Recall that S is the output of A <em>xor</em> B, and C is the output of A <em>and</em> B:</p>
+<pre><code>    S = (~A &amp; B) | (A &amp; ~B)
+    C = A &amp; B</code></pre>
+<p>That’s it! Just two statements. Recall that Python support several bitwise operators, including <em>and</em> (&amp;), <em>or</em> ( | ), and <em>not</em> (~). Also, the <em>xor</em> operation is performed as shown in an earlier lesson: <em>not</em> A <em>and</em> B <em>or</em> A <em>and</em> <em>not</em> B. Therefore, S is ultimately assigned the result of A <em>xor</em> B, and C is assigned the result of A <em>and</em> B. Although we structured our half adder such that the xor functionality was built using the three primitive gates (<em>and</em>, <em>or</em>, and <em>not</em>), Python has the <em>xor</em> bitwise operator (^) that we can use directly! This is quite useful:</p>
+<pre><code>    S = A ^ B
+    C = A &amp; B</code></pre>
+</section>
+<section id="gpio-in-python" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="gpio-in-python"><span class="header-section-number">3</span> GPIO in Python</h2>
+<p>Before we continue, let’s review how Python handles GPIO on the RPi. Implement the following single switch, single LED circuit:</p>
+<p><a href="images/piactivity12-03.png" data-fig-align="center"></a></p>
+<p>Here’s one way to layout this circuit:</p>
+<p><a href="images/piactivity12-04.png" data-fig-align="center"></a></p>
+<p>If you have the black GPIO interface board, layout the circuit as follows instead:</p>
+<p><a href="images/piactivity12-05.png" data-fig-align="center"></a></p>
+<p>Recall that there are actually <strong>three</strong> different pin numbering schemes in use with GPIO pins on the RPi: (1) the <strong>physical</strong> pin order on the RPi; (2) the numbering assigned by the manufacturer of the <strong>Broadcom</strong> chip on the RPi; and (3) an older numbering assigned by an early RPi user who developed a library called <strong>wiringPi</strong>. Here’s the cross-reference table shown in an earlier activity:</p>
+<p><a href="images/piactivity12-06.png" data-fig-align="center"></a></p>
+<p>If you have the green GPIO interface, you won’t have to refer to the table since the RPi uses the BCM pin numbering scheme (which the green GPIO interface also uses). If you have the black GPIO interface, the following comparison of the GPIO interface boards labeled with both pin numbering schemes (shown in an earlier activity) will help:</p>
+<p><a href="images/piactivity12-07.png" data-fig-align="center"></a></p>
+<p>In the layout diagram above, the LED is connected to <strong>GP17</strong> (which refers to BCM pin <strong>17</strong> on the RPi and <strong>P0</strong> on the black GPIO interface), and the switch is connected to <strong>GP25</strong> (which refers to BCM pin <strong>25</strong> on the RPi and <strong>P6</strong> on the black GPIO interface).</p>
+<p>The goal is to detect a switch press by ensuring that the input pin to which it is connected is initially pulled down. When the switch is pressed, current flows from +3.3V to the input pin, which can be detected. The LED is then driven high. Here’s a Python program that implements this:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> RPi.GPIO <span class="im">as</span> GPIO</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set the LED and switch pin numbers</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>led <span class="op">=</span> <span class="dv">17</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>button <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># use the Broadcom pin mode</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>GPIO.setmode(GPIO.BCM)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># setup the LED and switch pins</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>GPIO.setup(led, GPIO.OUT)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>GPIO.setup(button, GPIO.IN, pull_up_down<span class="op">=</span>GPIO.PUD_DOWN)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># do this forever</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="va">True</span>):</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># light the LED when the switch is pressed...</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...turn it off otherwise</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (GPIO.<span class="bu">input</span>(button) <span class="op">==</span> GPIO.HIGH):</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        GPIO.output(led, GPIO.HIGH)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        GPIO.output(led, GPIO.LOW)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    sleep(<span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To make things more interesting, let’s blink an LED once every second (i.e., on for 0.5 second, off for 0.5 second) by default. If the switch is pressed, let’s blink the LED faster, once every 0.5 second (i.e., on for 0.25 second, off for 0.25 second):</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> RPi.GPIO <span class="im">as</span> GPIO</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set the LED and switch pin numbers</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>led <span class="op">=</span> <span class="dv">17</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>button <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># use the Broadcom pin mode</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>GPIO.setmode(GPIO.BCM)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># setup the LED and switch pins</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>GPIO.setup(led, GPIO.OUT)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>GPIO.setup(button, GPIO.IN, pull_up_down<span class="op">=</span>GPIO.PUD_UP)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># we'll discuss this later, but the try-except construct allows</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># us to detect when Ctrl+C is pressed so that we can reset the</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># GPIO pins</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># blink the LED forever</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (<span class="va">True</span>):</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the delay is 0.5s if the switch is not pressed</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (GPIO.<span class="bu">input</span>(button) <span class="op">==</span> GPIO.HIGH):</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>            delay <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># otherwise, it's 0.25s</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>            delay <span class="op">=</span> <span class="fl">0.25</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># blink the LED</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        GPIO.output(led, GPIO.HIGH)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        sleep(delay)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        GPIO.output(led, GPIO.LOW)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        sleep(delay)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co"># detect Ctrl+C</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">KeyboardInterrupt</span>:</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># reset the GPIO pins</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    GPIO.cleanup()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You probably noticed the <strong>try-except</strong> construct. A comment notes that it will be discussed later (and it will!). For now, it’s enough to know that such a construct is used to group statements that may cause an exception (i.e., some sort of abnormal event during runtime). In the case of the program above, the abnormal event is the user pressing Ctrl+C (which breaks out of the program). We can detect this and execute statements subsequently to do things like cleaning up and/or resetting the GPIO pins.</p>
+<p>Now that GPIO on the RPi in Python has been reviewed, let’s get to work on the circuit for this activity.</p>
+</section>
+<section id="the-circuit" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="the-circuit"><span class="header-section-number">4</span> The circuit</h2>
+<p>Implement the following half adder circuit. For this part of the activity, you will need two switches, four LEDs, four resistors, and some jumper wires:</p>
+<p><a href="images/piactivity12-08.png" data-fig-align="center"></a></p>
+<p>Here’s one way to layout this circuit:</p>
+<p><a href="images/piactivity12-09.png" data-fig-align="center"></a></p>
+<p>If you have the black GPIO interface, layout the circuit as follows instead:</p>
+<p><a href="images/piactivity12-10.png" data-fig-align="center"></a></p>
+<p>Note that the LEDs labeled S and C (the outputs) are green LEDs, and the LEDs labeled A and B (the inputs) are red LEDs. The input LEDs are also connected to the push-button switches. Since the switches are connected to +3.3V (i.e., they complete the circuit both to the input pins, GP25 (P6) and GP5 (P21), and to the red LEDs when closed), then the LEDs must be connected such that the anode (the longer positive side) is matched with the switch (i.e., the shorter negative side is connected to GND). This is illustrated in the circuit above. Pay close attention to polarity (i.e., where the negative and positive terminals of electronic components are) and wiring. Recall that the position of the resistor (either on the negative or positive side of the LED) doesn’t matter. In the circuit above, the resistors are placed on the negative side of the LEDs.</p>
+<p>Note that S (the green LED on the left) is connected to GP17 (P0), and C (the green LED on the right) is connected to GP22 (P3).</p>
+<p>Note that the labels (A, B, S, and C) are strictly informative (i.e., they serve no function other than to provide situational awareness). It should be clear that the left push-button switch represents the bit input A, the right push-button switch represents the bit input B, the green LED on the left represents the bit output S, and the green LED on the right represents the bit output C. The red LEDs are wired to the push-button switches and provide feedback of the state of A and B (i.e., the left LED corresponds to the left push-button switch, and vice versa).</p>
+</section>
+<section id="the-code" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="the-code"><span class="header-section-number">5</span> The code</h2>
+<p>Here’s the entire program for the half adder in Python:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> RPi.GPIO <span class="im">as</span> GPIO</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set the GPIO pin numbers</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>inA <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>inB <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>outS <span class="op">=</span> <span class="dv">17</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>outC <span class="op">=</span> <span class="dv">22</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># use the Broadcom pin mode</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>GPIO.setmode(GPIO.BCM)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># setup the input and output pins</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>GPIO.setup(inA, GPIO.IN, pull_up_down<span class="op">=</span>GPIO.PUD_DOWN)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>GPIO.setup(inB, GPIO.IN, pull_up_down<span class="op">=</span>GPIO.PUD_DOWN)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>GPIO.setup(outS, GPIO.OUT)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>GPIO.setup(outC, GPIO.OUT)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># we'll discuss this later, but the try-except construct allows</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># us to detect when Ctrl+C is pressed so that we can reset the</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># GPIO pins</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># keep going until the user presses Ctrl+C</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (<span class="va">True</span>):</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># initialize A, B, S, and C</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        S <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        C <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># set A and B depending on the switches</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (GPIO.<span class="bu">input</span>(inA) <span class="op">==</span> GPIO.HIGH):</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            A <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (GPIO.<span class="bu">input</span>(inB) <span class="op">==</span> GPIO.HIGH):</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>            B <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># calculate S and C using A and B</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        S <span class="op">=</span> A <span class="op">^</span> B <span class="co"># A xor B</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        C <span class="op">=</span> A <span class="op">&amp;</span> B <span class="co"># A and B</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># set the output pins appropriately</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (to light the LEDs as appropriate)</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        GPIO.output(outS, S)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>        GPIO.output(outC, C)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co"># detect Ctrl+C</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">KeyboardInterrupt</span>:</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># reset the GPIO pins</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    GPIO.cleanup()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After importing the required libraries, variables that map to GPIO pins are declared (<em>inA</em> representing the pin connected to switch A, <em>inB</em> representing the pin connected to switch B, <em>outS</em> representing the pin connected to LED S, and <em>outC</em> representing the pin connected to LED C). Next, the pins are setup (as either input or output pins). Since the switches are wired to +3.3V, the input pins are setup with a pull- down resistor. That is, their default value will be low at 0V. When a switch is pressed, this will bring up the input pin to 3.3V. Since the LEDs representing the inputs are also wired with the switches, they will light when the switches are pressed.</p>
+<p>Next, the program detects the switch states and turns on the LEDs as appropriate. A and B are initialized to 0. If a switch is pressed, its corresponding input (A or B) is changed to 1. The values of S and C are then calculated (as A <em>xor</em> B for S, and A <em>and</em> B for C). Finally, the LEDs are triggered appropriately depending on the values of S and C.</p>
+<p>Perhaps a more efficient way to assign values for A and B is simply to modify the while loop as follows:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="va">True</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set A and B depending on the switches</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> GPIO.<span class="bu">input</span>(inA)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> GPIO.<span class="bu">input</span>(inB)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate S and C depending on A and B</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> A <span class="op">^</span> B <span class="co"># A xor B</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> A <span class="op">&amp;</span> B <span class="co"># A and B</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the output pins appropriately (to light the LEDs as</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># appropriate)</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    GPIO.output(outS, S)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    GPIO.output(outC, C)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The end result is the same!</p>
+</section>
+<section id="extending-this-a-bit" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="extending-this-a-bit"><span class="header-section-number">6</span> Extending this a bit</h2>
+<p>Take a look at the following circuit diagram. This time, there are nine LEDs, all connected to GPIO pins (GP17=P0, GP18=P1, GP27=P2, GP22=P3, GP26=P25, GP12=P26, GP16=P27, GP20=P28, GP21=P29) to a resistor that is connected to ground.</p>
+<p><a href="images/piactivity12-11.png" data-fig-align="center"></a></p>
+<p>Here is one way to layout this circuit:</p>
+<p><a href="images/piactivity12-12.png" data-fig-align="center"></a></p>
+<p>For the black GPIO interface, the layout diagram could look like this:</p>
+<p><a href="images/piactivity12-13.png" data-fig-align="center"></a></p>
+<p>The LEDs represent the sum of two 8-bit numbers, with the least significant bit represented by the LED all the way to the right. For example, if the LEDs were to represent the sum of 94 + 113 = 207 (see the table below), then the state of the LEDs would be: off, on, on, off, off, on, on, on, on. The overflow bit (on the left) would be 0 (off).</p>
+<p><a href="images/piactivity12-14.png" data-fig-align="center"></a></p>
+<p>If the LEDs were to represent the sum of 150 + 150 = 300 (see the table below), then the state of the LEDs would be: on, off, off, on, off, on, on, off, off. In this case, the overflow bit would be 1 (on).</p>
+<p><a href="images/piactivity12-15.png" data-fig-align="center"></a></p>
+<p>To make this work, you will need to implement a full adder as described in a previous lesson:</p>
+<p><a href="images/piactivity12-16.png" data-fig-align="center"></a></p>
+<p>Recall that a full adder is made up of two half adders. One half adder computes the sum and carry of A and B. The sum is then brought into another half adder and added along with the carry in. The sum of this second half adder produces the actual sum of A and B plus the carry in. The carry out of this half adder is combined with the carry out of the first half adder through an <em>or</em> gate. The output is the carry out. You can take the script that implements the half adder (created in the first part of this activity) and extend it to a full adder.</p>
+<p>Since each number is represented as a list, we will iterate through each, one bit at a time, and implement the full adder to produce a sum and carry out for each bit. Recall that the carry out is fed into the carry in for the next bit (to the left). We saw this when chaining full adders together to add two 4-bit numbers together:</p>
+<p><a href="images/piactivity12-17.png" data-fig-align="center"></a></p>
+<p>In this activity, we are extending this to add two 8-bit numbers. The idea is the same.</p>
+<p>Let’s take a look at the beginning of the source code for this program. First, the header:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#################################################################</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Description: </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#################################################################</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> RPi.GPIO <span class="im">as</span> GPIO <span class="co"># bring in GPIO functionality</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint <span class="co"># to generate random integers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We’ll make use of the randint function from the random library to generate the two random numbers.</p>
+<p>Since there are many outputs, one for each LED, why don’t we specify them all in a list. the following function sets up the GPIO pins for this program:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># function that defines the GPIO pins for the nine output LEDs</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setGPIO():</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># define the pins (change these if they are different)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    gpio <span class="op">=</span> [<span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">27</span>, <span class="dv">22</span>, <span class="dv">26</span>, <span class="dv">12</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">21</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set them up as output pins</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    GPIO.setup(gpio, GPIO.OUT)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gpio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note how the pins are defined in a list called <em>gpio</em>. We then set each pin in the list to be an output pin.</p>
+<p>The following snippet of code defines a function that generate a random 8-bit binary number:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># function that randomly generates an 8-bit binary number</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setNum():</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create an empty list to represent the bits</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    num <span class="op">=</span> []</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># generate eight random bits</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">8</span>):</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># append a random bit (0 or 1) to the end of the list</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        num.append(randint(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> num</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This function first creates an empty list, called num. It then appends a random integer from 0 to 1, 8 times. The final number is then returned.</p>
+<p>The following function handles turning on the appropriate LEDs representing the sum of the two 8-bit binary numbers:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># displays the sum (by turning on the appropriate LEDs)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display():</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(<span class="bu">sum</span>)):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># if the i-th bit is 1, then turn the i-th LED on</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="bu">sum</span>[i] <span class="op">==</span> <span class="dv">1</span>):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>            GPIO.output(gpio[i], GPIO.HIGH)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># otherwise, turn it off</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>            GPIO.output(gpio[i], GPIO.LOW)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The function first iterates through the bits in the final sum. For each bit that is on (1), the matching GPIO pin is set high. For each bit that is off (0), the matching GPIO pin is set low.</p>
+<p>And now we have reached the function that you are to implement in this activity – the full adder:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># function that implements a full adder using two half adders</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># inputs are Cin, A, and B; outputs are S and Cout</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the function that you need to implement</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fullAdder(Cin, A, B):</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">###########################</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># write your code here!!!!!</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">###########################</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> S, Cout <span class="co"># we can return more than one value!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Of course, you will need to implement this on your own! At then end of the function, two values are returned: S and Cout. This makes perfect sense, since that’s the expected output of a full adder.</p>
+<p>The following function controls the addition of each bit in the two 8-bit binary numbers. It effectively serves as the chain that connects the full adders (that you will implement in the function above):</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># controls the addition of each 8-bit number to produce a sum</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate(num1, num2):</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    Cout <span class="op">=</span> <span class="dv">0</span> <span class="co"># the initial Cout is 0</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">=</span> [] <span class="co"># initialize the sum</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(num1) <span class="op">-</span> <span class="dv">1</span> <span class="co"># position of the right-most bit of num1</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># step through each bit, from right-to-left</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (n <span class="op">&gt;=</span> <span class="dv">0</span>):</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># isolate A and B (the current bits of num1 and num2)</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> num1[n]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> num2[n]</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># set the Cin (as the previous half adder's Cout)</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        Cin <span class="op">=</span> Cout</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># call the fullAdder function that takes Cin, A, and...</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># ...B, and returns S and Cout</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        S, Cout <span class="op">=</span> fullAdder(Cin, A, B)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># insert sum bit, S, at the beginning (index 0) of sum</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">sum</span>.insert(<span class="dv">0</span>, S)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># go to the next bit position (to the left)</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>        n <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># insert the final carry out at the beginning of the sum</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sum</span>.insert(<span class="dv">0</span>, Cout)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once all of the bits have been run through the full adder (and the sum has been completely calculated), the overflow bit of the sum (i.e., the left-most bit at the first position in the list <em>sum</em>) is set as the final C<sub>out</sub>. This is why the circuit requires nine LEDs.</p>
+<p>And now we have reached the main part of the program:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the Broadcom pin scheme</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>GPIO.setmode(GPIO.BCM)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># setup the GPIO pins</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>gpio <span class="op">=</span> setGPIO()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get a random num1 and display it to the console</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> setNum()</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f" </span><span class="ch">\t</span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># get a random num2 and display it to the console</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> setNum()</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"+</span><span class="ch">\t</span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the sum of num1 + num2 and display it to the console</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> calculate(num1, num2)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"= </span><span class="sc">{</span><span class="bu">sum</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># turn on the appropriate LEDs to "display" the sum</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>display()</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co"># wait for user input before cleaning up and resetting GPIO pins</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"Press ENTER to terminate"</span>)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>GPIO.cleanup()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The main part of the program first sets the GPIO output pins (connected to the LEDs) by calling the function <code>setGPIO</code>. Again, this function defines a list that contains the pins corresponding to the nine output LEDs. It then iterates over them (via a for loop) and sets them up as output pins. The list is then returned to the main part of the program (note that the variable <code>gpio</code> contains this list).</p>
+<p>Next, the first number is generated by calling the function <code>setNum</code>. Again, this function iteratively builds a list of eight random bits. Once finished, the list is returned to the main part of the program (note that the variable <code>num1</code> contains this list). The same occurs for the second number. Note the use of the <code>randint</code> function. It is imported through the <em>random</em> library. Its format is <code>randint(x, y)</code>, where <em>x</em> and <em>y</em> are the lower and upper values specified by the interval [<em>x</em>, <em>y</em>] to select a random integer from. For example, <code>randint(5, 44)</code> selects a random integer from 5 to 44.</p>
+<p>Next, the sum is calculated by calling the function <code>calculate</code> (passing in the two numbers as parameters). Again, this function serves as the 8-bit adder that chains together eight full adders. It cycles through the two numbers from right-to-left, each time (i.e., for each bit) calling the <code>fullAdder</code> function. This function is provided <em>C<sub>in</sub></em>, <em>A</em>, and <em>B</em> as input parameters. It implements a full adder (made up of two half adders) and calculates (and returns) values for <em>S</em> and <em>C<sub>out</sub></em>. <strong>Your task is to implement the</strong> <strong><code>fullAdder</code> function.</strong></p>
+<p>Finally, the <code>display</code> function is called, which turns on the appropriate LEDs that correspond to the bits that are on (1) in the variable <code>sum</code>.</p>
+</section>
+<section id="homework-full-adder-reloaded" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="homework-full-adder-reloaded"><span class="header-section-number">7</span> Homework: Full Adder… Reloaded</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Create the <em>fullAdder</em> function that implements a full adder (that is made up of two half adders). Of course, you will also need to implement the program previously covered to test appropriately. <strong>Make</strong> <strong>sure to use bitwise operators in your implementation of the full adder! A template is provided on</strong> <strong>the class web site.</strong></p>
+<p><strong>You are to submit your Python source code only (as a .py file) through the upload facility on the</strong> <strong>web site.</strong></p>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
