@@ -31,12 +31,12 @@ Regarding the electronic components, you will need the following:
 ## The adder
 Recall the single-bit half adder shown in a previous lesson:
 
-[](images/piactivity12-01.png){fig-align="center"}
+![](images/piactivity12-01.png){fig-align="center"}
 
 It takes two single-bit inputs, A and B, and produces two outputs, S (the sum bit) and C (the carry bit). 
 The half adder has the following truth table:
 
-[](images/piactivity12-02.png){fig-align="center"}
+![](images/piactivity12-02.png){fig-align="center"}
 
 The question is, how do we implement these logic gates in a programming language? We have seen that
 if-statements are related to logic gates. For example, we can evaluate if one condition *and* another are 
@@ -95,29 +95,29 @@ is quite useful:
 Before we continue, let's review how Python handles GPIO on the RPi. Implement the following single 
 switch, single LED circuit:
 
-[](images/piactivity12-03.png){fig-align="center"}
+![](images/piactivity12-03.png){fig-align="center"}
 
 Here's one way to layout this circuit:
 
-[](images/piactivity12-04.png){fig-align="center"}
+![](images/piactivity12-04.png){fig-align="center"}
 
 If you have the black GPIO interface board, layout the circuit as follows instead:
 
-[](images/piactivity12-05.png){fig-align="center"}
+![](images/piactivity12-05.png){fig-align="center"}
 
 Recall that there are actually **three** different pin numbering schemes in use with GPIO pins on the RPi: 
 (1) the **physical** pin order on the RPi; (2) the numbering assigned by the manufacturer of the **Broadcom** 
 chip on the RPi; and (3) an older numbering assigned by an early RPi user who developed a library 
 called **wiringPi**. Here's the cross-reference table shown in an earlier activity:
 
-[](images/piactivity12-06.png){fig-align="center"}
+![](images/piactivity12-06.png){fig-align="center"}
 
 If you have the green GPIO interface, you won't have to refer to the table since the RPi uses the BCM 
 pin numbering scheme (which the green GPIO interface also uses). If you have the black GPIO 
 interface, the following comparison of the GPIO interface boards labeled with both pin numbering 
 schemes (shown in an earlier activity) will help:
 
-[](images/piactivity12-07.png){fig-align="center"}
+![](images/piactivity12-07.png){fig-align="center"}
 
 In the layout diagram above, the LED is connected to **GP17** (which refers to BCM pin **17** on the RPi 
 and **P0** on the black GPIO interface), and the switch is connected to **GP25** (which refers to BCM pin **25** 
@@ -207,15 +207,15 @@ Now that GPIO on the RPi in Python has been reviewed, let's get to work on the c
 Implement the following half adder circuit. For this part of the activity, you will need two switches, four
 LEDs, four resistors, and some jumper wires:
 
-[](images/piactivity12-08.png){fig-align="center"}
+![](images/piactivity12-08.png){fig-align="center"}
 
 Here's one way to layout this circuit:
 
-[](images/piactivity12-09.png){fig-align="center"}
+![](images/piactivity12-09.png){fig-align="center"}
 
 If you have the black GPIO interface, layout the circuit as follows instead:
 
-[](images/piactivity12-10.png){fig-align="center"}
+![](images/piactivity12-10.png){fig-align="center"}
 
 Note that the LEDs labeled S and C (the outputs) are green LEDs, and the LEDs labeled A and B (the 
 inputs) are red LEDs. The input LEDs are also connected to the push-button switches. Since the 
@@ -328,15 +328,15 @@ Take a look at the following circuit diagram. This time, there are nine LEDs, al
 (GP17=P0, GP18=P1, GP27=P2, GP22=P3, GP26=P25, GP12=P26, GP16=P27, GP20=P28, 
 GP21=P29) to a resistor that is connected to ground.
 
-[](images/piactivity12-11.png){fig-align="center"}
+![](images/piactivity12-11.png){fig-align="center"}
 
 Here is one way to layout this circuit:
 
-[](images/piactivity12-12.png){fig-align="center"}
+![](images/piactivity12-12.png){fig-align="center"}
 
 For the black GPIO interface, the layout diagram could look like this:
 
-[](images/piactivity12-13.png){fig-align="center"}
+![](images/piactivity12-13.png){fig-align="center"}
 
 
 The LEDs represent the sum of two 8-bit numbers, with the least significant bit represented by the LED 
@@ -344,16 +344,16 @@ all the way to the right. For example, if the LEDs were to represent the sum of 
 table below), then the state of the LEDs would be: off, on, on, off, off, on, on, on, on. The overflow bit 
 (on the left) would be 0 (off).
 
-[](images/piactivity12-14.png){fig-align="center"}
+![](images/piactivity12-14.png){fig-align="center"}
 
 If the LEDs were to represent the sum of 150 + 150 = 300 (see the table below), then the state of the 
 LEDs would be: on, off, off, on, off, on, on, off, off. In this case, the overflow bit would be 1 (on).
 
-[](images/piactivity12-15.png){fig-align="center"}
+![](images/piactivity12-15.png){fig-align="center"}
 
 To make this work, you will need to implement a full adder as described in a previous lesson:
 
-[](images/piactivity12-16.png){fig-align="center"}
+![](images/piactivity12-16.png){fig-align="center"}
 
 Recall that a full adder is made up of two half adders. One half adder computes the sum and carry of A 
 and B. The sum is then brought into another half adder and added along with the carry in. The sum of 
@@ -367,7 +367,7 @@ the full adder to produce a sum and carry out for each bit. Recall that the carr
 in for the next bit (to the left). We saw this when chaining full adders together to add two 4-bit numbers 
 together:
 
-[](images/piactivity12-17.png){fig-align="center"}
+![](images/piactivity12-17.png){fig-align="center"}
 
 In this activity, we are extending this to add two 8-bit numbers. The idea is the same.
 
