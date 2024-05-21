@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-05-14">
+
+<title>Room Adventure</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="piactivity11_files/libs/clipboard/clipboard.min.js"></script>
+<script src="piactivity11_files/libs/quarto-html/quarto.js"></script>
+<script src="piactivity11_files/libs/quarto-html/popper.min.js"></script>
+<script src="piactivity11_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="piactivity11_files/libs/quarto-html/anchor.min.js"></script>
+<link href="piactivity11_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="piactivity11_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="piactivity11_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="piactivity11_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="piactivity11_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #002f8b;
+      }
+</style>
+
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Room Adventure</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 14, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#the-game" id="toc-the-game" class="nav-link" data-scroll-target="#the-game"><span class="header-section-number">2</span> The Game</a></li>
+  <li><a href="#the-gameplay" id="toc-the-gameplay" class="nav-link" data-scroll-target="#the-gameplay"><span class="header-section-number">3</span> The gameplay</a></li>
+  <li><a href="#the-design" id="toc-the-design" class="nav-link" data-scroll-target="#the-design"><span class="header-section-number">4</span> The design</a></li>
+  <li><a href="#the-main-part-of-the-game" id="toc-the-main-part-of-the-game" class="nav-link" data-scroll-target="#the-main-part-of-the-game"><span class="header-section-number">5</span> The main part of the game</a></li>
+  <li><a href="#source-code-template" id="toc-source-code-template" class="nav-link" data-scroll-target="#source-code-template"><span class="header-section-number">6</span> Source code template?</a></li>
+  <li><a href="#suggested-improvements" id="toc-suggested-improvements" class="nav-link" data-scroll-target="#suggested-improvements"><span class="header-section-number">7</span> Suggested improvements</a></li>
+  <li><a href="#homework-room-adventure" id="toc-homework-room-adventure" class="nav-link" data-scroll-target="#homework-room-adventure"><span class="header-section-number">8</span> Homework: Room Adventure</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>The first step to designing any kind of computer program is to establish the goal or purpose and to identify all of the necessary details. This is very similar to first understanding a problem before setting about to solve it. Although we will build a very simple game, it can still have (very simple) goals.</p>
+<p>The setting of the game is a small “mansion” consisting of four rooms. Here’s the layout:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity11-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="the-game" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-game"><span class="header-section-number">2</span> The Game</h2>
+<p>Each room has various exits that lead to other rooms in the mansion. In addition, each room has items, some of which can simply be observed, and others that can be picked up and added to the player’s inventory. For this activity, there is no actual <em>goal</em> for the player other than to move about the mansion, observe various items throughout the rooms in the mansion, and add various items found in the rooms to inventory. There is an end state that results in death, however! Of course, this doesn’t prevent extending the game with a better story and more variety (some ideas will be discussed later).</p>
+<p>The four rooms are laid out in a simple square pattern. Room 1 is at the top-left of the mansion, room 2 is at the top-right, room 3 is at the bottom-left, and room four is at the bottom-right. Each room has items that can be observed:<br>
+• Room 1: A chair and a table; • Room 2: A rug and a fireplace; • Room 3: Some bookshelves, a statue, and a desk; and • Room 4: A brew rig (you know, to brew some delicious libations).</p>
+<p>Observable items can provide useful information (once observed) and may reveal new items (some of which can be placed in the player’s inventory). In addition, each room may have some items that can be grabbed by the player and placed in inventory:<br>
+• Room 1: A key;<br>
+• Room 3: A book;<br>
+and<br>
+• Room 4: A 6-pack of a recently brewed beverage.</p>
+<p>The rooms have various exits that lead to other rooms in the mansion:<br>
+• Room 1: An exit to the east that leads to to room 2, and an exit to the south that leads to room 3;<br>
+• Room 2: An exit to the south that leads to room 4, and an exit to the west that leads to room 1;<br>
+• Room 3: An exit to the north that leads to room 1, and an exit to the east that leads to room 4;<br>
+and<br>
+• Room 4: An exit to the north that leads to room 2, an exit to the west that leads to room 3, and an (unlabeled) exit to the south that leads to…death! Think of it as jumping out of a window.</p>
+</section>
+<section id="the-gameplay" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="the-gameplay"><span class="header-section-number">3</span> The gameplay</h2>
+<p>The game is text-based (egads, there are no graphics!). Situational awareness is provided by means of meaningful text that describes the current situation in the mansion. Information such as which room the player is located in, what objects are in the current room, and so on, is continually provided throughout the game. The player is prompted for an action (i.e., what to do) after which the current situation is updated.</p>
+<p>The game supports a simple vocabulary for the player’s actions that is composed of a verb followed by a noun. For example, the action “go south” instructs the player to take the south exit in the current room (if that is a valid exit). If the specified exit is invalid (or, for example, if the player misspells an action), an appropriate response is provided, instructing the player of the accepted vocabulary. Supported verbs are: <em>go</em>, <em>look</em>, and <em>take</em>. Supported nouns depend on the verb; for example, for the verb <em>go</em>, the nouns <em>north</em>, <em>east</em>, <em>south</em>, and <em>west</em> are supported. This will allow the player to structure the following <em>go</em> commands:<br>
+• go north<br>
+• go east<br>
+• go south<br>
+• go west (young man!)</p>
+<p>The verbs <em>look</em> and <em>take</em> support a variety of nouns that depend on the actual items located in the rooms of the mansion. The player cannot, for example, “look table” in a room that doesn’t have a table! Some examples of <em>look</em> and <em>take</em> actions are:<br>
+• look table<br>
+• take key</p>
+<p>The gameplay depends on the user’s input. Rooms change based on valid <em>go</em> actions, meaningful information is provided based on valid <em>look</em> actions, and inventory is accumulated based on valid <em>take</em> actions. For this game, gameplay can continue forever or until the player decides to “go south” in room 4 and effectively jump out of the window to his/her death:</p>
+<p>At any time, the player may issue the following actions to leave the game:<br>
+• quit<br>
+• exit<br>
+• bye</p>
+</section>
+<section id="the-design" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="the-design"><span class="header-section-number">4</span> The design</h2>
+<p>By now, you may have already noticed that the four rooms are similar. They each have exits, items that may be observed, and items that may be added to the player’s inventory. A good design choice is to utilize the object-oriented paradigm and implement a class that serves as the blueprint for all of the rooms in the game. In fact, let’s begin there. Launch IDLE or a text editor and edit a new Python program. Call the document <strong>RoomAdventure.py</strong>. Let’s begin with an informative header and the beginning of the room class:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Description: </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># the blueprint for a room</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Room:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the constructor</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># rooms have a name, exits (e.g., south), exit locations</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (e.g., to the south is room n), items (e.g., table), item</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># descriptions (for each item), and grabbables (things that</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># can be taken into inventory)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.exits <span class="op">=</span> []</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.exitLocations <span class="op">=</span> []</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.items <span class="op">=</span> []</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.itemDescriptions <span class="op">=</span> []</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.grabbables <span class="op">=</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Note that it is wise to periodically save your program in case something happens. Also, it may be</strong> <strong>best to simply read the source code in this activity so that you understand what is going on instead</strong> <strong>of actually writing the code as it appears in the document. The entire code will be shown later so</strong> <strong>that you can write it in its entirety and see the full context.</strong></p>
+<p>So far, we have covered the constructor of the room class. It does what most constructors do: initializes various instance variables. In this case, a room object must be provided a name in order to be successfully instantiated (note the <code>name</code> parameter in the constructor). The room’s name is assigned, and lists that contain its exits, observable items, and items that can be placed in inventory are initialized (all as empty lists). The variables are defined as follows:<br>
+• <em>name</em>: contains the room’s name;<br>
+• <em>exits</em>: contains the room’s exits (e.g., north, south);<br>
+• <em>exitLocations</em>: contains the rooms found at each exit (e.g., to the south of this room is room 2);<br>
+• <em>items</em>: contains the observable items in the room;<br>
+• <em>itemDescriptions</em>: contains the descriptions of the observable items in the room; and<br>
+• <em>grabbables</em>: contains the items in the room that can be placed in inventory.</p>
+<p>Note that the lists <em>exits</em> and <em>exitLocations</em> are known as parallel lists. So are the lists <em>items</em> and <em>itemDescriptions</em>. <strong>Parallel lists</strong> are two or more lists that are associated with each other. That is, they have related data that must be combined to provide meaningful information. The lists are correlated by position (or index). That is, the items at the first index of <em>exits</em> and <em>exitLocations</em> form a meaningful pair. If this were the object reference for room 1, for example, the first item in the list <em>exits</em> could be the string “east”. Consequently, the first item in the list <em>exitLocations</em> would then be the object reference for room 2, since moving east from room 1 should lead to room 2. Similarly, the first item in the list items for room 1 could be “table”. Consequently, the first item in the list <em>itemDescriptions</em> would then be “It is made of oak. A golden key rests on it.” (since this is the description for the table in room 1).</p>
+<p>The room class should then provide appropriate getters and setters for each instance variable. Recall that this is accomplished by providing getter and setter methods that manipulate (either access or change) instance variables, each of which typically begins with an underscore. For example, the getter for the list <em>exits</em> would be a function named <code>exits</code> that would return the instance variable (a list) *_exits*. Here are the getters and setters for each instance variable. These are located in the room class, beneath the constructor (make sure to properly indent!):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># getters and setters for the instance variables</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> name(<span class="va">self</span>):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._name</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">@name.setter</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> name(<span class="va">self</span>, value):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._name <span class="op">=</span> value</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exits(<span class="va">self</span>):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._exits</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">@exits.setter</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exits(<span class="va">self</span>, value):</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._exits <span class="op">=</span> value</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exitLocations(<span class="va">self</span>):</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._exitLocations</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">@exitLocations.setter</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exitLocations(<span class="va">self</span>, value):</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._exitLocations <span class="op">=</span> value</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> items(<span class="va">self</span>):</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._items</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">@items.setter</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> items(<span class="va">self</span>, value):</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._items <span class="op">=</span> value</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> itemDescriptions(<span class="va">self</span>):</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._itemDescriptions</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">@itemDescriptions.setter</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> itemDescriptions(<span class="va">self</span>, value):</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._itemDescriptions <span class="op">=</span> value</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> grabbables(<span class="va">self</span>):</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._grabbables</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">@grabbables.setter</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> grabbables(<span class="va">self</span>, value):</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._grabbables <span class="op">=</span> value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The approach in the game design will be to create an instance of the room class for each room in the mansion. With what has been implemented so far, the room blueprint exists, but there is currently no way to add exits, items, or grabbables. We must therefore provide methods to enable adding each of these things to a room. The first obvious addition is to provide support for adding exits (and their appropriate exit locations). Let’s call this method <code>addExit</code>, and have it be provided with an exit and associated room as parameters:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># adds an exit to the room</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the exit is a string (e.g., north)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the room is an instance of a room</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> addExit(<span class="va">self</span>, exit, room):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># append the exit and room to the appropriate lists</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._exits.append(exit)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._exitLocations.append(room)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The next obvious addition is to provide support for adding observable items and their associated descriptions. Let’s do this similarly to the previous method (i.e., it will be provided with an item and its description) and call the method <code>addItem</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># adds an item to the room</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the item is a string (e.g., table)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the desc is a string that describes the item (e.g., it is made</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># of wood)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> addItem(<span class="va">self</span>, item, desc):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># append the item and description to the appropriate lists</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._items.append(item)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._itemDescriptions.append(desc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Another obvious addition is to provide support for adding grabbables to the room in a method called <code>addGrabbable</code>. Since grabbables have no associated information, a single list is maintained. In addition, the method will be provided the grabbable item’s name:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># adds a grabbable item to the room</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the item is a string (e.g., key)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> addGrabbable(<span class="va">self</span>, item):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># append the item to the list</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._grabbables.append(item)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Since a grabbable item can be <em>grabbed</em> and placed in inventory, a method that removes the item from the room once it has been added to the player’s inventory must be implemented. We will call this method <code>delGrabbable</code> and provided it with the item’s name:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># removes a grabbable item from the room</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the item is a string (e.g., key)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> delGrabbable(<span class="va">self</span>, item):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># remove the item from the list</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._grabbables.remove(item)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lastly, it will be quite useful to provide a meaningful description of the room. This will make it simple to display all of the relevant information about the current room (e.g., exits, observable items, grabbables, etc). Recall that classes may specify a <code>__str__()</code> function that returns a string representation of a class. Statements that <em>print</em> an instance of the class are then directed to this function for the appropriate string to display. Add the following function to the room class:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># returns a string description of the room</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># first, the room name</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="st">"You are in </span><span class="sc">{}</span><span class="st">.</span><span class="ch">\n</span><span class="st">"</span>.<span class="bu">format</span>(<span class="va">self</span>.name)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># next, the items in the room</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> <span class="st">"You see: "</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> item <span class="kw">in</span> <span class="va">self</span>.items:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            s <span class="op">+=</span> item <span class="op">+</span> <span class="st">" "</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># next, the exits from the room</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> <span class="st">"Exits: "</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> exit <span class="kw">in</span> <span class="va">self</span>.exits:</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>            s <span class="op">+=</span> exit <span class="op">+</span> <span class="st">" "</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the escaped character, <code>\n</code>, adds a linefeed to the string (which means to go to the next line). Strings can span multiple lines! The function <em>builds</em> a string (the variable <em>s</em> in the function above). If the player is currently in room 1 at the start of the game, for example, the string would be formatted as follows:</p>
+<pre><code>You are in Room 1.
+You see: chair table 
+Exits: east south 
+You are carrying: []</code></pre>
+<p>At this point, we are finished with the room class. For clarity, here it is in its entirety:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the blueprint for a room</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Room:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the constructor</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># rooms have a name, exits (e.g., south), exit locations</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (e.g., to the south is room n), items (e.g., table), item</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># descriptions (for each item), and grabbables (things that</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># can be taken into inventory)</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.exits <span class="op">=</span> []</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.exitLocations <span class="op">=</span> []</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.items <span class="op">=</span> []</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.itemDescriptions <span class="op">=</span> []</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.grabbables <span class="op">=</span> []</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># getters and setters for the instance variables</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> name(<span class="va">self</span>):</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._name</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">@name.setter</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> name(<span class="va">self</span>, value):</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._name <span class="op">=</span> value</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exits(<span class="va">self</span>):</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._exits</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">@exits.setter</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exits(<span class="va">self</span>, value):</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._exits <span class="op">=</span> value</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exitLocations(<span class="va">self</span>):</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._exitLocations</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">@exitLocations.setter</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exitLocations(<span class="va">self</span>, value):</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._exitLocations <span class="op">=</span> value</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> items(<span class="va">self</span>):</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._items</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">@items.setter</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> items(<span class="va">self</span>, value):</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._items <span class="op">=</span> value</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> itemDescriptions(<span class="va">self</span>):</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._itemDescriptions</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">@itemDescriptions.setter</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> itemDescriptions(<span class="va">self</span>, value):</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._itemDescriptions <span class="op">=</span> value</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> grabbables(<span class="va">self</span>):</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._grabbables</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">@grabbables.setter</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> grabbables(<span class="va">self</span>, value):</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._grabbables <span class="op">=</span> value</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># adds an exit to the room</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the exit is a string (e.g., north)</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the room is an instance of a room</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> addExit(<span class="va">self</span>, exit, room):</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>        <span class="co"># append the exit and room to the appropriate lists</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._exits.append(exit)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._exitLocations.append(room)</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>    <span class="co"># adds an item to the room</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the item is a string (e.g., table)</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the desc is a string that describes the item (e.g., it is made</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># of wood)</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> addItem(<span class="va">self</span>, item, desc):</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>        <span class="co"># append the item and exit to the appropriate lists</span></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._items.append(item)</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._itemDescriptions.append(desc)</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>    <span class="co"># adds a grabbable item to the room</span></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the item is a string (e.g., key)</span></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> addGrabbable(<span class="va">self</span>, item):</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>        <span class="co"># append the item to the list</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._grabbables.append(item)</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>    <span class="co"># removes a grabbable item from the room</span></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the item is a string (e.g., key)</span></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> delGrabbable(<span class="va">self</span>, item):</span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>        <span class="co"># remove the item from the list</span></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._grabbables.remove(item)</span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>    <span class="co"># returns a string description of the room</span></span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>        <span class="co"># first, the room name</span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="st">"You are in </span><span class="sc">{}</span><span class="st">.</span><span class="ch">\n</span><span class="st">"</span>.<span class="bu">format</span>(<span class="va">self</span>.name)</span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>        <span class="co"># next, the items in the room</span></span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> <span class="st">"You see: "</span></span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> item <span class="kw">in</span> <span class="va">self</span>.items:</span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>            s <span class="op">+=</span> item <span class="op">+</span> <span class="st">" "</span></span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>        <span class="co"># next, the exits from the room</span></span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> <span class="st">"Exits: "</span></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> exit <span class="kw">in</span> <span class="va">self</span>.exits:</span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>            s <span class="op">+=</span> exit <span class="op">+</span> <span class="st">" "</span></span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For clarity, here’s a layout of the Room class:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity11-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="the-main-part-of-the-game" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="the-main-part-of-the-game"><span class="header-section-number">5</span> The main part of the game</h2>
+<p>It is now time to implement the main part of the game. Note that the room class discussed above only specifies what rooms are (i.e., their state and behavior). No rooms have been created thus far, no user input capability has been implemented, no decision-making based on user input has been implemented, and so on. This is our next task.</p>
+<p>Let’s begin by initializing an empty inventory list and creating the rooms of the mansion. The source code that follows belongs beneath the room class:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># START THE GAME!!!</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> [] <span class="co"># nothing in inventory...yet</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>createRooms() <span class="co"># create the rooms</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note the call to the function <code>createRooms()</code>. We often implement the main part of a program as a driver, in that it drives actions to be taken. Often, the actions are encapsulated in functions. Therefore, the main part of a program may call many functions. Overall, this helps to improve the readability of our programs and helps to simplify maintaining and updating them as well. The <code>createRooms()</code> function creates each instance of the four rooms. It sets their name, exits (and exit locations), observable items (and descriptions), and grabbable items. Lastly, it sets the player’s current room at the beginning of the game (room 1). Let’s work on the <code>createRooms()</code> function:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># creates the rooms</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> createRooms():</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># r1 through r4 are the four rooms in the mansion</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># currentRoom is the room the player is currently in (which can</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># be one of r1 through r4)</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># since it needs to be changed in the main part of the program,</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># it must be global</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> currentRoom</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create the rooms and give them meaningful names</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    r1 <span class="op">=</span> Room(<span class="st">"Room 1"</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    r2 <span class="op">=</span> Room(<span class="st">"Room 2"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    r3 <span class="op">=</span> Room(<span class="st">"Room 3"</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    r4 <span class="op">=</span> Room(<span class="st">"Room 4"</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add exits to room 1</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    r1.addExit(<span class="st">"east"</span>, r2) <span class="co"># -&gt; to the east of room 1 is room 2</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    r1.addExit(<span class="st">"south"</span>, r3)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add grabbables to room 1</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    r1.addGrabbable(<span class="st">"key"</span>)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add items to room 1</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    r1.addItem(<span class="st">"chair"</span>, <span class="st">"It is made of wicker and no one is sitting on it."</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    r1.addItem(<span class="st">"table"</span>, <span class="st">"It is made of oak. A golden key rests on it."</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add exits to room 2</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    r2.addExit(<span class="st">"west"</span>, r1)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    r2.addExit(<span class="st">"south"</span>, r4)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add items to room 2</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    r2.addItem(<span class="st">"rug"</span>, <span class="st">"It is nice and Indian. It also needs to be vacuumed."</span>)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    r2.addItem(<span class="st">"fireplace"</span>, <span class="st">"It is full of ashes."</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add exits to room 3</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    r3.addExit(<span class="st">"north"</span>, r1)</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    r3.addExit(<span class="st">"east"</span>, r4)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add grabbables to room 3</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    r3.addGrabbable(<span class="st">"book"</span>)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add items to room 3</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>    r3.addItem(<span class="st">"bookshelves"</span>, <span class="st">"They are empty. Go figure."</span>)</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>    r3.addItem(<span class="st">"statue"</span>, <span class="st">"There is nothing special about it."</span>)</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>    r3.addItem(<span class="st">"desk"</span>, <span class="st">"The statue is resting on it. So is a book."</span>)</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add exits to room 4</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    r4.addExit(<span class="st">"north"</span>, r2)</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    r4.addExit(<span class="st">"west"</span>, r3)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    r4.addExit(<span class="st">"south"</span>, <span class="va">None</span>) <span class="co"># DEATH!</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add grabbables to room 4</span></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>    r4.addGrabbable(<span class="st">"6-pack"</span>)</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add items to room 4</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>    r4.addItem(<span class="st">"brew_rig"</span>, <span class="st">"Gourd is brewing some sort of oatmeal stout on the brew rig. A 6-pack is resting beside it."</span>)</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set room 1 as the current room at the beginning of the game</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>    currentRoom <span class="op">=</span> r1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note the exit to the south of room 4: None. This is the “window” referred to earlier. If the player exits south in room 4, the game will be over. This will be easy to check since the current room will be None (and not some actual instance of the class room). Recall that the reserved word <strong>None</strong> in Python refers to nothing or the absence of a value.</p>
+<p>When the program is first run, the player’s inventory list is initially empty. Subsequently, the call to the <code>createRooms()</code> function creates the rooms and stores them in memory. In addition, the global variable <em>currentRoom</em> is set to the local variable <em>r1</em> (room 1). Even though <em>r1</em> is local to the function <code>createRooms()</code>, it will still be in memory for the duration of the game.</p>
+<p>At this point, all that’s left to do is to display the information associated with the current room, to prompt the player for an input action, and to act based on the player’s input action. This will be done beneath the call to the function <code>createRooms()</code>. First, let’s provide situational awareness and also deal with the possibility that the player has <em>jumped out the window</em> (in which case the game should end). These tasks will occur until either the player dies or asks to leave the game. Therefore, the remainder of the program will be contained within a repetition construct (we’ll use a while loop). Exiting the while loop will be possible by use of the <code>break</code> instruction:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># play forever (well, at least until the player dies or asks to quit)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="va">True</span>):</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the status so the player has situational awareness</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the status has room and inventory information</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    status <span class="op">=</span> <span class="st">"</span><span class="sc">{}</span><span class="ch">\n</span><span class="st">You are carrying: </span><span class="sc">{}</span><span class="ch">\n</span><span class="st">"</span>.<span class="bu">format</span>(currentRoom, inventory)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if the current room is None, then the player is dead</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this only happens if the player goes south when in room 4</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># exit the game</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (currentRoom <span class="op">==</span> <span class="va">None</span>):</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        death()</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># display the status</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"========================================================"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Initially, a default status is set that provides the information associated with the current room and the player’s inventory. This is then displayed. However, if the current room is None (i.e., the player exited south in room 4), then the player is dead and the game is ended (via the break statement that will exit the while loop). Note the call to the function <code>death()</code>. For now, you can comment this one out. It simply displays an appropriate “message” when the player dies. It will be provided later in the full code listing for the main part of the game.</p>
+<p>The next task is to add support for user input:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># prompt for player input</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the game supports a simple language of &lt;verb&gt; &lt;noun&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># valid verbs are go, look, and take</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># valid nouns depend on the verb</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    action <span class="op">=</span> <span class="bu">input</span>(<span class="st">"What to do? "</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the user's input to lowercase to make it easier to compare</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the verb and noun to known values</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    action <span class="op">=</span> action.lower()</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># exit the game if the player wants to leave (supports quit,</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># exit, and bye)</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (action <span class="op">==</span> <span class="st">"quit"</span> <span class="kw">or</span> action <span class="op">==</span> <span class="st">"exit"</span> <span class="kw">or</span> action <span class="op">==</span> <span class="st">"bye"</span>):</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The strategy is to prompt the player for input and convert it to lowercase to make comparison to the supported vocabulary easier. We also handle exiting the game. The next task is to parse the player’s action; that is, to determine the input and try to apply it to the supported vocabulary of a verb followed by a noun:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set a default response</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> <span class="st">"I don't understand. Try verb noun. Valid verbs are go, look, and take"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># split the user input into words (words are separated by spaces)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and store the words in a list</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    words <span class="op">=</span> action.split()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the game only understands two word inputs</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="bu">len</span>(words) <span class="op">==</span> <span class="dv">2</span>):</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># isolate the verb and noun</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        verb <span class="op">=</span> words[<span class="dv">0</span>]</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        noun <span class="op">=</span> words[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At this point, the user’s input is parsed into a verb and a noun. The next step is to check the verb to see if it matches one that is supported (i.e., <em>go</em>, <em>look</em>, <em>take</em>):</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the verb is: go</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (verb <span class="op">==</span> <span class="st">"go"</span>):</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># set a default response</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> <span class="st">"Invalid exit."</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># check for valid exits in the current room</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(currentRoom.exits)):</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># a valid exit is found</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (noun <span class="op">==</span> currentRoom.exits[i]):</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                <span class="co"># change the current room to the one that is</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                <span class="co"># associated with the specified exit</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                currentRoom <span class="op">=</span> currentRoom.exitLocations[i]</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>                <span class="co"># set the response (success)</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>                response <span class="op">=</span> <span class="st">"Room changed."</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>                <span class="co"># no need to check any more exits</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the verb is <em>go</em>, we then check the noun for a valid exit in the current room. Recall that the exits have an associated exit location (via the parallel lists declared in the room class). The strategy is to identify the specified exit in the list of exits in the current room, and then identify the matching exit location (i.e., the room that the exit leads to). Subsequently, we change the current room to this adjacent room. We then break out of the for loop which will display the response (shown later) and cycle back to the beginning of the while loop.</p>
+<p>Support for the verb look is similar:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the verb is: look</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> (verb <span class="op">==</span> <span class="st">"look"</span>):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># set a default response</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> <span class="st">"I don't see that item."</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># check for valid items in the current room</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(currentRoom.items)):</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># a valid item is found</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (noun <span class="op">==</span> currentRoom.items[i]):</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                <span class="co"># set the response to the item's description</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                response <span class="op">=</span> currentRoom.itemDescriptions[i]</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>                <span class="co"># no need to check any more items</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Support for the verb <em>take</em> is only slightly different:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the verb is: take</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> (verb <span class="op">==</span> <span class="st">"take"</span>):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># set a default response</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> <span class="st">"I don't see that item."</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># check for valid grabbable items in the current room</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> grabbable <span class="kw">in</span> currentRoom.grabbables:</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># a valid grabbable item is found</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (noun <span class="op">==</span> grabbable):</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>            <span class="co"># add the grabbable item to the player's</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>            <span class="co"># inventory</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>            inventory.append(grabbable)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># remove the grabbable item from the room</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>            currentRoom.delGrabbable(grabbable)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>            <span class="co"># set the response (success)</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>            response <span class="op">=</span> <span class="st">"Item grabbed."</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>            <span class="co"># no need to check any more grabbable items</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this case, if the specified grabbable item is found in the room, it is added to the player’s inventory. Subsequently, it is removed from the current room’s list of grabbables (after all, we don’t want to grab it again!). An appropriate response is set, and the for loop is exited.</p>
+<p>The last thing to do is to display the response and cycle back to the beginning of the while loop so that the description of the current room and the player’s inventory can be displayed, and input can be solicited from the player once again:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># display the response</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(response))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Yes, this is a lot of code split up into many parts across this document. This is why it was suggested that you not actually write any segmented code as you read this document and process through the activity. And now, here is the entire source code for the main part of the program. Note that the <code>createRooms()</code> function is not included below; however, it should be placed above the main part of the program (but outside of the <code>Room</code> class):</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># START THE GAME!!!</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> [] <span class="co"># nothing in inventory...yet</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>createRooms() <span class="co"># add the rooms to the game</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># play forever (well, at least until the player dies or asks to quit)</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="va">True</span>):</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the status so the player has situational awareness</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the status has room and inventory information</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    status <span class="op">=</span> <span class="st">"</span><span class="sc">{}</span><span class="ch">\n</span><span class="st">You are carrying: </span><span class="sc">{}</span><span class="ch">\n</span><span class="st">"</span>.<span class="bu">format</span>(currentRoom, inventory)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if the current room is None, then the player is dead</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this only happens if the player goes south when in room 4</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (currentRoom <span class="op">==</span> <span class="va">None</span>):</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"You are dead."</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># display the status</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"========================================================"</span>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(status)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if the current room is None (and the player is dead), exit the</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># game</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (currentRoom <span class="op">==</span> <span class="va">None</span>):</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>        death()</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># prompt for player input</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the game supports a simple language of &lt;verb&gt; &lt;noun&gt;</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># valid verbs are go, look, and take</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># valid nouns depend on the verb</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    action <span class="op">=</span> <span class="bu">input</span>(<span class="st">"What to do? "</span>)</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the user's input to lowercase to make it easier to compare</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the verb and noun to known values</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    action <span class="op">=</span> action.lower()</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># exit the game if the player wants to leave (supports quit,</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># exit, and bye)</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (action <span class="op">==</span> <span class="st">"quit"</span> <span class="kw">or</span> action <span class="op">==</span> <span class="st">"exit"</span> <span class="kw">or</span> action <span class="op">==</span> <span class="st">"bye"</span>):</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set a default response</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> <span class="st">"I don't understand. Try verb noun. Valid verbs are go, look, and take"</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># split the user input into words (words are separated by spaces)</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>    words <span class="op">=</span> action.split()</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the game only understands two word inputs</span></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="bu">len</span>(words) <span class="op">==</span> <span class="dv">2</span>):</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># isolate the verb and noun</span></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>        verb <span class="op">=</span> words[<span class="dv">0</span>]</span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>        noun <span class="op">=</span> words[<span class="dv">1</span>]</span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the verb is: go</span></span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (verb <span class="op">==</span> <span class="st">"go"</span>):</span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>            <span class="co"># set a default response</span></span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>            response <span class="op">=</span> <span class="st">"Invalid exit."</span></span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>            <span class="co"># check for valid exits in the current room</span></span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(currentRoom.exits)):</span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>                <span class="co"># a valid exit is found</span></span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (noun <span class="op">==</span> currentRoom.exits[i]):</span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># change the current room to the one that is</span></span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># associated with the specified exit</span></span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>                    currentRoom <span class="op">=</span> currentRoom.exitLocations[i]</span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># set the response (success)</span></span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>                    response <span class="op">=</span> <span class="st">"Room changed."</span></span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># no need to check any more exits</span></span>
+<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span></span>
+<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the verb is: look</span></span>
+<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> (verb <span class="op">==</span> <span class="st">"look"</span>):</span>
+<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a>            <span class="co"># set a default response</span></span>
+<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a>            response <span class="op">=</span> <span class="st">"I don't see that item."</span></span>
+<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a>            <span class="co"># check for valid items in the current room</span></span>
+<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(currentRoom.items)):</span>
+<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a>                <span class="co"># a valid item is found</span></span>
+<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (noun <span class="op">==</span> currentRoom.items[i]):</span>
+<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># set the response to the item's description</span></span>
+<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a>                    response <span class="op">=</span> currentRoom.itemDescriptions[i]</span>
+<span id="cb19-83"><a href="#cb19-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-84"><a href="#cb19-84" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># no need to check any more items</span></span>
+<span id="cb19-85"><a href="#cb19-85" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span></span>
+<span id="cb19-86"><a href="#cb19-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-87"><a href="#cb19-87" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the verb is: take</span></span>
+<span id="cb19-88"><a href="#cb19-88" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> (verb <span class="op">==</span> <span class="st">"take"</span>):</span>
+<span id="cb19-89"><a href="#cb19-89" aria-hidden="true" tabindex="-1"></a>            <span class="co"># set a default response</span></span>
+<span id="cb19-90"><a href="#cb19-90" aria-hidden="true" tabindex="-1"></a>            response <span class="op">=</span> <span class="st">"I don't see that item."</span></span>
+<span id="cb19-91"><a href="#cb19-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-92"><a href="#cb19-92" aria-hidden="true" tabindex="-1"></a>            <span class="co"># check for valid grabbable items in the current room</span></span>
+<span id="cb19-93"><a href="#cb19-93" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> grabbable <span class="kw">in</span> currentRoom.grabbables:</span>
+<span id="cb19-94"><a href="#cb19-94" aria-hidden="true" tabindex="-1"></a>                <span class="co"># a valid grabbable item is found</span></span>
+<span id="cb19-95"><a href="#cb19-95" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (noun <span class="op">==</span> grabbable):</span>
+<span id="cb19-96"><a href="#cb19-96" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># add the grabbable item to the player's</span></span>
+<span id="cb19-97"><a href="#cb19-97" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># inventory</span></span>
+<span id="cb19-98"><a href="#cb19-98" aria-hidden="true" tabindex="-1"></a>                    inventory.append(grabbable)</span>
+<span id="cb19-99"><a href="#cb19-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-100"><a href="#cb19-100" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># remove the grabbable item from the room</span></span>
+<span id="cb19-101"><a href="#cb19-101" aria-hidden="true" tabindex="-1"></a>                    currentRoom.delGrabbable(grabbable)</span>
+<span id="cb19-102"><a href="#cb19-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-103"><a href="#cb19-103" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># set the response (success)</span></span>
+<span id="cb19-104"><a href="#cb19-104" aria-hidden="true" tabindex="-1"></a>                    response <span class="op">=</span> <span class="st">"Item grabbed."</span></span>
+<span id="cb19-105"><a href="#cb19-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-106"><a href="#cb19-106" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># no need to check any more grabbable items</span></span>
+<span id="cb19-107"><a href="#cb19-107" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span></span>
+<span id="cb19-108"><a href="#cb19-108" aria-hidden="true" tabindex="-1"></a>    <span class="co"># display the response</span></span>
+<span id="cb19-109"><a href="#cb19-109" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(response))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="source-code-template" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="source-code-template"><span class="header-section-number">6</span> Source code template?</h2>
+<p>You may be asking yourself if there is source code in the form of a template for this activity. No, there isn’t. Although it will be tedious and a bit time-consuming, typing the code by hand will help you to understand the code, to learn how to properly format Python code, and perhaps result in better retention of Python syntax and good program style and structure. Please refrain from simply copy-and-pasting the source code from the PDF version of this document into a Python source code file. It is to your advantage to take time now to learn this so that it becomes easier in the future. After all, aren’t you in this curriculum because you are interested in learning this stuff and because you chose to be here? In fact, the prof should code the game with you in real time during this activity, typing each statement, one at a time!</p>
+<p>The flow of the source code is as follows:<br>
+• The room class;<br>
+• The createRooms() function;<br>
+• The (optional) death() function; and<br>
+• The main part of the program.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity11-03.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The optional death() function Earlier, you were asked to comment out the call to the function death() in the main part of the program. In case you wish to implement it, here it is (yes, it is intentionally obfuscated). It must be defined above the main part of the program. Since it is obfuscated, you may copy-and-paste this function into your source code (pay attention to the end of the lines and indentation!):</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> death():</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">17</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">7</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">13</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">11</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">10</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">17</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">9</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">21</span> <span class="op">+</span> <span class="st">"u"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">23</span> <span class="op">+</span> <span class="st">"u"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">25</span> <span class="op">+</span> <span class="st">"u"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">25</span> <span class="op">+</span> <span class="st">"u"</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">6</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">6</span> <span class="op">+</span> <span class="st">"u"</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">6</span> <span class="op">+</span> <span class="st">"u$u"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"u$u"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">6</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">6</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">9</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span>)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">10</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">12</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"u"</span>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">13</span> <span class="op">+</span> <span class="st">"u$</span><span class="ch">\"</span><span class="st">$</span><span class="ch">\"</span><span class="st">$</span><span class="ch">\"</span><span class="st">$</span><span class="ch">\"</span><span class="st">$</span><span class="ch">\"</span><span class="st">$</span><span class="ch">\"</span><span class="st">$u"</span>)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"u$ $ $ $ $u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">5</span> <span class="op">+</span> <span class="st">"u$u$u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">4</span>)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">5</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">6</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">9</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">5</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">6</span>)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">11</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">*</span> <span class="dv">5</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">10</span>)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"$"</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">10</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">9</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span>)</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">6</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">11</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">11</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">" </span><span class="ch">\"\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">10</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">9</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">" </span><span class="ch">\"\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">11</span> <span class="op">+</span> <span class="st">"u"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">10</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">11</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">11</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span>)</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">5</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">22</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"\"</span><span class="st">"</span>)</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" "</span> <span class="op">*</span> <span class="dv">5</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span> <span class="op">+</span> <span class="st">" "</span> <span class="op">*</span> <span class="dv">25</span> <span class="op">+</span> <span class="st">"$"</span> <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\"</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="suggested-improvements" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="suggested-improvements"><span class="header-section-number">7</span> Suggested improvements</h2>
+<p>Although this is a simple game in terms of gameplay, it can quickly become quite complicated to design and implement. It can also become more involved and, dare I say it, even more fun than it already is by making just a few fairly minor improvements:<br>
+• Some items that can be placed in the player’s inventory are identified in the description of items (e.g., the key on the table in room 1). When placed in inventory, the item’s description should be appropriately modified (e.g., the key is no longer on the table).<br>
+• Adding more observable items and items that can be added to inventory in each room.<br>
+• Adding more rooms (e.g., making some sort of maze).<br>
+• Making the mansion three-dimensional (i.e., adding exits above and below to new rooms).<br>
+• Adding a goal that requires solving a puzzle. For example, using a key in inventory that was taken from a room to unlock a box that is located in another room. Unlocking the box may reveal new items. This would require adding to the vocabulary (e.g., a new verb use). If the player is in the correct room and has the correct item in inventory, issuing the proper action (e.g., “use key”) would solve a puzzle and/or reveal new items that can be observed or taken into inventory.<br>
+• Adding the ability to look at individual inventory items (i.e., inventory items can have descriptions as well).<br>
+• Adding points that the player can accumulate by adding items to inventory or by solving puzzles.<br>
+• …there are more…</p>
+</section>
+<section id="homework-room-adventure" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="homework-room-adventure"><span class="header-section-number">8</span> Homework: Room Adventure</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Activity">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Activity
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>For the homework portion of this activity, you may have the option to work in <strong>groups</strong> (pending prof approval). It is suggested that groups contain at least one confident Python coder.</p>
+<p>Your task is to implement <strong>at least one</strong> of the suggested improvements. <strong>Clearly comment your</strong> <strong>changes and additions to the source code!</strong> If you wish to implement an improvement that is not listed above, please get with the prof first for approval. Note that this component is worth over <strong>one-third of</strong> <strong>your grade</strong> for this assignment! So be creative and precise. You will definitely want to implement significant improvements, since your grade for this portion will be comparatively assigned (i.e., the best improvements to the game earn the best grade for this portion of the assignment).</p>
+<p><strong>You are to submit your Python source code only (as a .py file) through the upload facility on the</strong> <strong>web site.</strong></p>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

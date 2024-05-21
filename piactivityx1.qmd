@@ -1,0 +1,211 @@
+---
+title: "The Goldilocks Sensor"
+date: "May 16 2024"
+title-block-banner: "#002f8b" 
+toc: true
+number-sections: true
+format:
+  html:
+    code-fold: false 
+jupyter: python3
+---
+
+## Introduction
+In this activity, you will implement a temperature sensor with LEDs, resistors, and push-button 
+switches. You will need the following items:  
+    • Raspberry Pi 400 with power adapter;  
+    • LCD touchscreen;  
+    • Keyboard and mouse;  
+    • Breadboard;  
+    • GPIO interface board with ribbon cable; and  
+    • LEDs, resistors, switches, and jumper wires provided in your kit.  
+
+Regarding the electronic components, you will need the following:  
+• 1x red LEDs;  
+• 1x green LEDs;  
+• 1x blue LEDs;  
+• 1x push-button switches;  
+• 3x 220Ω resistors; 
+• 1x 10kΩ resistor; 
+• 1x DHT11 Moisture and Temperature Sensor; and
+• 9x jumper wires. 
+
+## The hardware
+First things first, we need to hook up the temperature sensor and make sure we can read values from it. To do so, we will need to hook up the sensor to a breadboard. The following cirvuit diagram will demonstrate this.
+
+![](images/piactivityx1-01.png){fig-align="center"}
+
+Creating this circuit on your breadboard will hook the sensor up to send data across the GPIO pin 17. Now let's look at how to read this sensor in code.
+
+## The solftware
+First, we will need to communicate with the temperature sensor. The temperature sensor is a DHT11 and unlike the other sensors you have used before, this one will use a new library. This will require the following commands to be run on you Raspberry Pi:
+
+```
+sudo pip3 install adafruit-circuit-python-dht
+sudo apt-get install libgpiod2
+```
+
+The first command installs a new library to python named: `adafruit-circuit-python-dht`. This will allow you to easily progam an interface with the sensor in python. The second command installs a library to the raspberry pi itself to help the GPIO communicate with the sensor.
+
+After this is all done, we can now write a short python program to test our sensor.
+
+```python
+import RPi.GPIO as GPIO
+import board
+import adafruit_dht
+
+dhtSensor = adafruit_dht.DHT11(board.D17, use_pulseio=false)
+
+try:
+    while(True):
+        tempC = dhtSensor.temperature
+        tempF = tempC * (9/5) + 32
+        print(f"Temp: {tempF} F / {tempC} C")
+except KeyboardInterrupt:
+    GPIO.cleanup()
+```
+
+After running that you should get something like this as the output:
+```
+Temp: 68.0 F / 20 C
+```
+
+Repeated a bunch of times of course. 
+
+## The goldilocks zone
+It seems like the sensor is constantly spitting out data at us. Which is good. That means that the sensor is working correctly. But lets make this a little more interesting. Now, we are gonna add three LEDs. One red, one green, and one blue. These LEDs will indicate the temperature around us.
+
+For instance, when the sensor reads something over 75, we light up the red (and only the red) LED to indicate that it is warm. When the sensor reads something below 70 degrees we light up the blue (and only the blue) LED to indicate that it is cold. When the sensor reads something in between 70 and 75 we light up the green (and only the green) LED to indicate that its just right.
+
+Hook up some LEDs to the breadboard as shown in the following circuit diagram:
+
+![](images/piactivityx1-02.png){fig-align="center"}
+
+Now lets modify our code to light up the LEDs in the temperature ranges.
+
+```python
+import RPi.GPIO as GPIO
+import board
+import adafruit_dht
+
+HOT = 27
+MED = 26
+COLD = 25
+
+dhtSensor = adafruit_dht.DHT11(board.D17, use_pulseio=false)
+
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(HOT, GPIO.OUT)
+GPIO.setup(MED, GPIO.OUT)
+GPIO.setup(COLD, GPIO.OUT)
+
+try:
+    while(True):
+        tempC = dhtSensor.temperature
+        tempF = tempC * (9/5) + 32
+        print(f"Temp: {tempF} F / {tempC} C")
+
+        if(tempF >= 75):
+            GPIO.output(HOT, GPIO.HIGH)
+            GPIO.output(MED, GPIO.LOW)
+            GPIO.output(COLD, GPIO.LOW)
+        elif(tempF > 70 and tempF < 75):
+            GPIO.output(HOT, GPIO.LOW)
+            GPIO.output(MED, GPIO.HIGH)
+            GPIO.output(COLD, GPIO.LOW)
+        elif(tempf <= 70):
+            GPIO.output(HOT, GPIO.LOW)
+            GPIO.output(MED, GPIO.LOW)
+            GPIO.output(COLD, GPIO.HIGH)
+        else:
+            GPIO.output(HOT, GPIO.LOW)
+            GPIO.output(MED, GPIO.LOW)
+            GPIO.output(COLD, GPIO.LOW)
+
+except KeyboardInterrupt:
+    GPIO.cleanup()
+```
+
+Now when we run the program, the LEDs should change based on the temperature read by the sensor.
+
+## Improvements
+WHile this little gadget we made is great, its not perfect. Here are some ways we can improve it:
+- With a constant stream there may be a case the temperature is on the edge between out thresholds. This would mean that the LEDs could potentially flicker between two LEDs back and forth. This is not ideal. By taking a sample on a button press, this issue would be resolved
+- Additionally, this sensor also works as a humidity sensor. Add three more LEDs with red being lit by any humidity above 75% humidity, blue being lit with any humidity below 50% humidity, and green being lit in between 50% and 75% humidity.
+
+## Homework: Full Adder... Reloaded
+::: {.callout-important title="Activity" collapse=false}
+Add the additions described above to your python program and implement the hardware. **A template is provided on** 
+**the class web site.**
+
+**You are to submit your Python source code only (as a .py file) through the upload facility on the** 
+**web site.**
+:::
+
+## For teachers eyes only
+Here is my working code for the LEDs and button. No LEDs for the humidity are implemented but this addition is easy and simply examines their ability to extend what they have already made.
+
+```python
+import RPi.GPIO as GPIO
+import board
+import adafruit_dht
+from time import sleep
+
+HOT = 27
+MED = 26
+COLD = 25
+
+get_sample = 22
+
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(HOT, GPIO.OUT)
+GPIO.setup(MED, GPIO.OUT)
+GPIO.setup(COLD, GPIO.OUT)
+
+GPIO.setup(get_sample, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+dhtDevice = adafruit_dht.DHT11(board.D17, use_pulseio=False)
+
+try:
+    sample = None
+    while(True):
+        if(GPIO.input(get_sample) == GPIO.HIGH and sample == None):
+            # get the temperature in C
+            sample = dhtDevice.temperature
+            print(f"{sample} C ==> {sample * (9/5) + 32} F")
+        else:
+            sample = None
+
+        if(sample != None):
+            if(sample >= 25):
+                GPIO.output(HOT, GPIO.HIGH)
+                GPIO.output(MED, GPIO.LOW)
+                GPIO.output(COLD, GPIO.LOW)
+            elif(sample < 25 and sample > 20):
+                GPIO.output(HOT, GPIO.LOW)
+                GPIO.output(MED, GPIO.HIGH)
+                GPIO.output(COLD, GPIO.LOW)
+            elif(sample <= 20):
+                GPIO.output(HOT, GPIO.LOW)
+                GPIO.output(MED, GPIO.LOW)
+                GPIO.output(COLD, GPIO.HIGH)
+            else:
+                GPIO.output(HOT, GPIO.LOW)
+                GPIO.output(MED, GPIO.LOW)
+                GPIO.output(COLD, GPIO.LOW)
+except RuntimeError as err:
+    print(err)
+
+except KeyboardInterrupt:
+    GPIO.cleanup()
+```
+
+And some pictures of the hardware setup:
+
+![](images/piactivityx1-03.jpg){fig-align="center"}
+
+![](images/piactivityx1-04.jpg){fig-align="center"}
+
+![](images/piactivityx1-05.jpg){fig-align="center"}
