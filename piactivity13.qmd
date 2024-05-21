@@ -832,7 +832,7 @@ p = MainGUI(window)
 window.mainloop()
 ```
 
-## Homework: The Reckoner'
+## Homework: The Reckoner
 For the homework portion of this activity, you may have the option to work in groups (pending prof
 approval). It is suggested that groups contain at least one confident Python coder.
 Your task is to implement the following improvements to the calculator:
