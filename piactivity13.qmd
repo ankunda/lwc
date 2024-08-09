@@ -1,0 +1,865 @@
+---
+title: "The Reckoner"
+date: "May 21 2024"
+title-block-banner: "#002f8b" 
+toc: true
+number-sections: true
+format:
+  html:
+    code-fold: false 
+jupyter: python3
+---
+
+## Raspberry Pi Activity: The Reckoner
+
+### Introduction
+In this activity, you will implement a simple graphical calculator using the Tkinter library. You will
+need the following items:
+    • Raspberry Pi B v3 with power adapter;
+    • LCD touchscreen; and
+    • Keyboard and mouse.
+
+If you wish, you can simply bring your laptop with the Python interpreter (and also perhaps IDLE) installed since you will not be using the GPIO pins on the RPi. <span style="color:red">Note, however, that the calculator is specifically designed to illustrate an intuitive user interface for the LCD touchscreen included in your RPi kit. Therefore, it is actually to your advantage to do the activity on the RPi and LCD touchscreen.</span>|
+
+Let's begin by taking a look at a model of the GUI for The Reckoner:
+
+![](images/piactivity13-01.png){fig-align="center"}
+
+The top portion represents the display (i.e., where expressions and their results can be displayed). The bottom portion includes various buttons that either represent operands (by combining the digits 0 through 9 and/or the decimal point), operators (that perform various arithmetic operations), or special-purpose actions: clearing the display (AC) and evaluating expressions (=). The abbreviation AC on a calculator stands for All Clear. For The Reckoner, it will clear the display. The ** operator is Python's exponentiation operator (i.e., $x^{y}$).
+
+By clicking or tapping on the various buttons, simple or complex expressions can be displayed:
+
+![](images/piactivity13-02.png){fig-align="center"}
+
+By subsequently clicking or tapping on the equal button (=), the expression can be arithmetically evaluated as follows:
+
+![](images/piactivity13-03.png){fig-align="center"}
+
+The font that is used in the calculator is called **TexGyreAdventor**. It is freely available and can be obtained here: https://www.fontsquirrel.com/fonts/tex-gyre-adventor. Installing the font on the RPi is relatively simple:
+
+    1. Download the OTF files from the Web site above; and
+    2. Copy the OTF files to the proper place on the RPi's file system.
+
+**To accomplish this (particularly at the command line/terminal), you may need to refer to the first RPi activity in the curriculum: Sampling some Raspberry Pi.**
+
+You can either download the files directly to the RPi (e.g., into the Downloads folder) or on another system – then copy them to the RPi using a USB stick, for example. To subsequently get them to install on the RPi, simply copy them to the fonts folder from the terminal via:
+
+```
+sudo cp tex*.otf /usr/local/share/fonts
+```
+
+Then, reboot the RPi. Note that on most Linux systems (not the RPi), you can double-click the OTF files and install them that way.
+
+In this activity, we'll take an iterative approach to creating The Reckoner. First, we'll create the GUI and ensure that it is correct before proceeding. We'll test and fix any issues before proceeding to the next step: integrating code that will handle the button clicks/taps. As buttons are clicked/tapped, our program must accurately detect which button was clicked/tapped and, furthermore, perform some action that is appropriate for that specific button. Next, we'll work through and integrate evaluating the expression. To simplify things a bit, we'll hand that off to Python! Since it is possible that an expression has errors (e.g., mismatched parentheses, multiple consecutive operators, etc), we'll finally integrate error checking so that user errors don't unexpectedly *break* our program.
+
+### Creating the GUI
+
+To simplify creating the GUI, we'll use Tkinter's grid manager. Recall that it allows the placement of widgets using a row/column approach. The display will be located at row 0, column 0, and span four columns. The top row of buttons (“(“, “)”, “AC”, and “**”) will be located at row 1, columns 0 through 3. The remaining buttons will be placed in increasing rows, at columns 0 through 3. Here's the calculator layout with row and column numbers:
+
+![](images/piactivity13-04.png){fig-align="center"}
+
+Let's first work on a template for The Reckoner:
+```python
+#################################################################
+# Name:
+# Date:
+# Description
+#################################################################
+from tkinter import *
+
+# the main GUI
+class MainGUI(Frame):
+    ...
+
+##############################
+# the main part of the program
+##############################
+# create the window
+...
+# set the window title
+...
+# generate the GUI
+...
+# display the GUI and wait for user interaction
+...
+```
+
+Note how this simply sets up a shell that we can work with. Of course, a header will be included at the top. Since we will make use of the Tkinter library, it will have to be properly imported. Next, we'll specify the class that will represent The Reckoner's main GUI (called **MainGUI** in the code above). This class will be a Tkinter frame; therefore, it will inherit from Tkinter's **Frame** class. After the class, we'll include the main part of the program – which is pretty simple. It creates the window, sets its title, creates an instance of the **MainGUI** class (thereby generating the calculator GUI), and finally displays the GUI and waits for user interaction.
+
+Let's continue by specifying the constructor of the MainGUI class and also filling in the main part of the program: 
+
+```python
+#################################################################
+# Name:
+# Date:
+# Description
+#################################################################
+from tkinter import *
+
+# the main GUI
+class MainGUI(Frame):
+    # the constructor
+    def __init__(self, parent):
+        Frame.__init__(self, parent, bg="white")
+        self.setupGUI()
+    
+    # sets up the GUI
+    def setupGUI(self):
+        pass
+
+##############################
+# the main part of the program
+##############################
+# create the window
+window = Tk()
+# set the window title
+window.title("The Reckoner")
+# generate the GUI
+p = MainGUI(window)
+# display the GUI and wait for user interaction
+window.mainloop()
+```
+
+Note how the constructor merely calls the constructor of its parent **Frame** class, passing in the window and specifying the background color. Since the constructor makes use of a subroutine inside the **MainGUI** class (*setupGUI*), we can quickly stub it out by adding the **pass** statement for now. At this point, you should be able to run the program. It currently doesn't do very much; however, a small window with the title “The Reckoner” should appear:
+
+![](images/piactivity13-05.png){fig-align="center"}
+
+Now, let's implement the *setupGUI* method, replacing the single **pass** statement. The display will be implemented as a Tkinter **Label**, and the buttons will each be implemented as a Tkinter **Button**. To make the interface nifty, each button will be represented with an image (GIF) that has already been designed and properly sized. Here's the first iteration of the *setupGUI* method that sets up the display:
+
+```python
+def setupGUI(self):
+    # the calculator uses the TexGyreAdventor font (see
+    # https://www.fontsquirrel.com/fonts/tex-gyre-adventor)
+    # on most Linux system, simply double-click the font files
+    # and install them
+    # on the RPi, copy them to /usr/local/share/fonts (with
+    # sudo):
+    # sudo cp tex*.otf /usr/local/share/fonts
+    # then reboot
+
+    # the display
+    # right-align text in the display; and set its background to
+    # white, its height to 2 characters, and its font to 50
+    # point TexGyreAdventor
+    self.display = Label(self, text="", anchor=E, bg="white",\
+    height=2, width=15, font=("TexGyreAdventor", 50))
+    # put it in the top row, spanning across all four columns;
+    # and expand it on all four sides
+    self.display.grid(row=0, column=0, columnspan=4,\
+    sticky=E+W+N+S)
+
+    # pack the GUI
+    self.pack(fill=BOTH, expand=1)
+```
+
+<span style="color:red">Note that the backslashes are used here to delineate individual statements without ugly text wrapping in this document. In the actual code, backslashes can be omitted so that every statement is on a single line of code.</span>
+
+Running the updated program should now display a window with the calculator's display:
+
+![](images/piactivity13-06.png){fig-align="center"}
+
+Note that Tkinter's **Label** class can be instantiated with many configuration parameters. In the case of the calculator's display, we set its text to nothing (i.e., “”); right-align the text with *anchor=E*; set its background to white; set its height to 2 characters high; set its width to 15 characters wide; and set its font to 50 point TexGyreAdventor. We then lay the display on a grid at row 0, column 0, spanning four columns, and expanding it on all sides (using the sticky configuration option). Finally, the GUI is packed such that the display fills the entire window space both horizontally and vertically.
+
+Next, let's work on the buttons. Each button will be added to the calculator in its appropriate row and column. Since each button will be represented by an image (e.g., 0.gif, 1.gif, eql.gif, add.gif, etc), we can make use of Tkinter's **PhotoImage** class to “load” an image for each button. Button images are 115x115 pixels – which should be the perfect size for use on the RPi. The strategy will be to load the image and store it as a variable (img), create the button with the image as its property, and set the button in its proper layout position using Tkinter's grid manager. In general, here's how it's done for a button (this example uses the left parenthesis as an example and also assumes that button images are in a sub-folder called *images*):
+
+```python
+img = PhotoImage(file="images/lpr.gif")
+button = Button(self, bg="white", image=img)
+button.image = img
+button.grid(row=1, column=0, sticky=N+S+E+W)
+```
+
+The first line loads and scales the proper image, storing it to the variable *img*. The second line creates the button, setting the image as its display property. Since the button images are colored and have rounded corners, the background is set to white. The third line formally sets the button's image as the preloaded image (recall why from the lesson on GUIs). The last line places the button on the frame in its proper position along the grid, expanding it to fill its space in all directions. To make things look a little bit better, we'll additionally remove any border around the button and set the background of the button when it is active (i.e., clicked/tapped) to white.
+
+Note that the display has been slightly modified so that it no longer has the width configuration option. This is because the row of buttons will be wider than the display. By default, the display will be fitted to the new width. Here's the entire first (top) row of buttons:
+
+```python
+def setupGUI(self):
+    # the calculator uses the TexGyreAdventor font (see
+    # https://www.fontsquirrel.com/fonts/tex-gyre-adventor)
+    # on most Linux system, simply double-click the font files and install them
+    # on the RPi, copy them to /usr/local/share/fonts (with sudo):
+    #  sudo cp tex*.otf /usr/local/share/fonts
+    # then reboot 
+
+    # the display 
+    # right-align text in the display; and set its background to
+    #  white, its height to 2 characters, and its font to 50 point TexGyreAdventor
+    self.display = Label(self, text="", anchor=E, bg="white", height=2, \
+        font=("TexGyreAdventor", 50))
+    # put it in the top row, spanning across all four columns;
+    #  and expand it on all four sides
+    self.display.grid(row=0, column=0, columnspan=4, sticky=E+W+N+S)
+
+    # the button layout
+    # ( ) AC **
+    # 7 8 9 /
+    # 4 5 6 *
+    # 1 2 3 -
+    # 0 . = +
+
+    # the first row
+    # (
+    # first, fetch and store the image
+    # to work best on the RPi, images should be 115x115 pixels
+    # otherwise, may need to add .subsample(n)
+    img = PhotoImage(file="images/lpr.gif")
+    # next, create the button (white background, no border, no
+    #  highlighting, no color when clicked)
+    button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0, \
+        activebackground="white")
+    # set the button's image
+    button.image = img
+    # put the button in its proper row and column
+    button.grid(row=1, column=0, sticky=N+S+E+W)
+    # the same is done for the rest of the buttons
+
+    # )
+    img = PhotoImage(file="images/rpr.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0, \
+        activebackground="white")
+    button.image = img
+    button.grid(row=1, column=1, sticky=N+S+E+W)
+
+    # AC
+    img = PhotoImage(file="images/clr.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0, \
+        activebackground="white")
+    button.image = img
+    button.grid(row=1, column=2, sticky=N+S+E+W)
+
+    # **
+    img = PhotoImage(file="images/pow.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0, \
+        activebackground="white")
+    button.image = img
+    button.grid(row=1, column=3, sticky=N+S+E+W)
+
+    # pack the GUI
+    self.pack(fill=BOTH, expand=1)
+```
+
+Running the modified program should display a window with the calculator's display at the top and the first row of buttons beneath the display (in the order “(“, “)”, “AC”, “**”):
+
+![](images/piactivity13-07.png){fig-align="center"}
+
+Let's now add the remaining rows of buttons after the code for the first row (but before packing the GUI):
+
+```python
+    # the second row
+    # 7
+    img = PhotoImage(file="images/7.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=2, column=0, sticky=N+S+E+W)
+    # 8
+    img = PhotoImage(file="images/8.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=2, column=1, sticky=N+S+E+W)
+    # 9
+    img = PhotoImage(file="images/9.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=2, column=2, sticky=N+S+E+W)
+    # /
+    img = PhotoImage(file="images/div.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=2, column=3, sticky=N+S+E+W)
+
+    # the third row
+    # 4
+    img = PhotoImage(file="images/4.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=3, column=0, sticky=N+S+E+W)
+    # 5
+    img = PhotoImage(file="images/5.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=3, column=1, sticky=N+S+E+W)
+    # 6
+    img = PhotoImage(file="images/6.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=3, column=2, sticky=N+S+E+W)
+    # *
+    img = PhotoImage(file="images/mul.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=3, column=3, sticky=N+S+E+W)
+
+    # the fourth row
+    # 1
+    img = PhotoImage(file="images/1.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+        highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=4, column=0, sticky=N+S+E+W)
+    # 2
+    img = PhotoImage(file="images/2.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=4, column=1, sticky=N+S+E+W)
+    # 3
+    img = PhotoImage(file="images/3.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=4, column=2, sticky=N+S+E+W)
+    # -
+    img = PhotoImage(file="images/sub.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=4, column=3, sticky=N+S+E+W)
+
+    # the fifth row
+    # 0
+    img = PhotoImage(file="images/0.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=5, column=0, sticky=N+S+E+W)
+    # .
+    img = PhotoImage(file="images/dot.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=5, column=1, sticky=N+S+E+W)
+    # =
+    img = PhotoImage(file="images/eql.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=5, column=2, sticky=N+S+E+W)
+    # +
+    img = PhotoImage(file="images/add.gif")
+    button = Button(self, bg="white", image=img, borderwidth=0,\
+    highlightthickness=0, activebackground="white")
+    button.image = img
+    button.grid(row=5, column=3, sticky=N+S+E+W)
+
+# pack the GUI
+self.pack(fill=BOTH, expand=1)
+```
+
+At this point, the calculator GUI is complete. The problem, however, is that it appears too large for the RPi's LCD touchscreen. There are two reasons for this: (1) the rows and columns of the grid are fixed based on the size of the button images; and (2) the rows and columns of the grid automatically expand to fit the buttons. We can set the rows and columns to resize automatically so that they all fit on the desktop by adding a few lines of code before creating the buttons:
+
+```python
+# configure the rows and columns of the Frame to adjust to
+# the window
+# there are 6 rows (0 through 5)
+for row in range(6):
+    Grid.rowconfigure(self, row, weight=1)
+# there are 4 columns (0 through 3)
+for col in range(4):
+    Grid.columnconfigure(self, col, weight=1)
+# Add the lines before this comment
+
+# the first row
+# (
+img = PhotoImage(file="images/lpr.gif")
+...
+```
+
+This indeed forces all of the buttons to be displayed on the desktop; however, things don't look pretty: the buttons are all cut off. This is because the calculator is taller than it is wide – and the desktop is the opposite: it is wider than it is tall. A solution is to render the calculator *sideways*! One way to do this is by rotating the RPi's display 90 degrees to the left (counter-clockwise) – or 270 degrees to the right (clockwise).
+
+To force a rotation of the display, we need to edit the RPi's configuration from the terminal as follows:
+```sudo leafpad /boot/config.txt```
+
+Then, add the following line at the bottom of the file:
+```display_rotate=3```
+
+Finally, save the file (via Ctrl+S), exit the terminal, and reboot the RPi. You can set the RPi stand with its (normally) right edge on the table to right the desktop (and the calculator when the modified program is executed).
+
+Although the calculator looks much better, it still seems a little off. This is because it was designed to be executed in fullscreen mode (i.e., without the top window bar). To force it to launch in fullscreen mode, add the following statement to the constructor of the **MainGUI** class:
+
+```python
+def __init__(self, parent):
+    Frame.__init__(self, parent, bg="white")
+    parent.attributes("-fullscreen", True) # New!
+    self.setupGUI()
+```
+
+The calculator should look as follows (except rendered sideways) when the program is now executed.
+
+![](images/piactivity13-08.png){fig-align="center"}
+
+At this point, using the mouse to interact with the calculator works as expected. However, when using the touchscreen directly (i.e., by tapping), something seems off! The point at which a tap occurs does not correlate with the pointer on the desktop. This occurs because, although the display has been rotated, the pointer responding to taps to the touchscreen has not! That is, the touchscreen's coordinate system must also be rotated (or transformed to work along with the display's rotation). To do so, a utility called **xinput** must be installed. First, exit the calculator via Alt+F4. Then, install **xinput** via the terminal as follows (make sure that your RPi is connected to the Internet):
+```sudo apt-get update```
+```sudo apt-get install xinput```
+
+Then, reboot. Subsequently, execute the following command at the terminal:
+```xinput --set-prop 'FT5406 memory based driver' 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1```
+
+Note that the command is to be entered on a single line. It is formatted for readability in this document. This transforms the touchscreen's coordinate system to one that represents a 90 degree left (counter-clockwise) rotation. To use the touchscreen in rotated mode, you will need to execute this command each time the RPi is rebooted. There is a way to automate the process; however, it is beyond the scope of this activity.
+
+If you wish to run the calculator on a desktop or laptop (i.e., not on the RPi), you most likely won't need to rotate the display. Furthermore, you most likely won't need to force the calculator to launch in fullscreen mode. Therefore, you can comment out the appropriate line of code in your program. If you wish to return the RPi to its normal “wide” desktop, you simply need to comment (with #) or remove the last line that was added to /boot/config.txt.
+
+### Making the buttons work
+
+Of course, the buttons currently do nothing. Let's work on that next. In Tkinter, buttons can have a method specified that is triggered (or called) when the button is clicked. To do this, we simply need to slightly modify each button's instantiation. Here's an example with the first button in the top row (the left parenthesis):
+
+```python
+# (
+img = PhotoImage(file="images/lpr.gif")
+button = Button(self, bg="white", image=img, borderwidth=0,\
+highlightthickness=0, activebackground="white", command=self.process) # Edit
+button.image = img
+button.grid(row=1, column=0, sticky=N+S+E+W)
+```
+
+Of course, this will need to be implemented for all of the buttons. In order for this to actually work, the *process* method must be implemented. We can include a simple version of this new method at the bottom of the ***MainGUI*** class, beneath the *setupGUI* method:
+
+```python
+def setupGUI(self):
+    ...
+    # pack the GUI
+    self.pack(fill=BOTH, expand=1)
+
+# processes button presses
+def process(self):
+    print("Button pressed!")
+```
+
+After implementing this for all of the buttons, running the updated program and clicking/tapping on the buttons results in “Button pressed!” being displayed to the console. On the RPi, the calculator is fullscreen mode; therefore, the console may not be visible. You can use Alt+Tab to switch through any windows on the desktop, including the console (terminal) and the calculator. Knowing when the buttons are clicked/tapped is useful; however, it is necessary to distinguish between the individual buttons (i.e., know which was clicked/tapped). A first thought may be to modify the command configuration option in each button's instantiation to include a parameter:
+
+```python
+# (
+img = PhotoImage(file="images/lpr.gif")
+button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+    activebackground="white", command=self.process("(")) # New 
+button.image = img
+button.grid(row=1, column=0, sticky=N+S+E+W)
+```
+
+Of course, the *process* method must be updated accordingly:
+
+```python
+# processes button presses
+def process(self, button):
+    print("Button {} pressed!".format(button))
+```
+
+Clearly, each button must provide its own unique parameter to the process method (e.g., “0” for 0, “1” for 1, “AC” for AC, “=” for =, “\*\*” for \*\*, “/” for /, etc). Unfortunately, running the updated program doesn't seem to work. The button clicks/taps seem to be displayed when the program is first run and not when individual buttons are actually clicked/tapped.
+
+The problem stems from the fact that, as the buttons are instantiated, the *process* method is immediately invoked. To delay invocation of the *process* method, it must be anonymously defined using the **lambda** Python keyword. A thorough discussion of the lambda keyword is beyond the scope of this activity; however, in this case it allows the *process* method to be invoked at the time of the button click/tap. Let's modify each of the command configuration options appropriately. Here's an example of this modification to the left parenthesis (of course, the remaining buttons must be modified accordingly):
+
+```python
+# (
+img = PhotoImage(file="images/lpr.gif")
+button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+    activebackground="white", command=lambda: self.process("(")) # New
+button.image = img
+button.grid(row=1, column=0, sticky=N+S+E+W)
+```
+
+Running the modified program should display text appropriate to a clicked/tapped button (as it is clicked/tapped).
+
+The next step is to update the *process* method so that it actually behaves properly depending on the button that is clicked/tapped. We can implement simple logic to accomplish this. Almost all of the buttons, when clicked/tapped, should just be added to the display. The two exceptions include the AC and equals (=) buttons. AC should clear the display, and = should evaluate the expression and update the display with the result. Let's start with the AC button since it's perhaps the simplest case. Change the *process* method as follows:
+
+```python
+# processes button presses
+def process(self, button):
+    # AC clears the display
+    if (button == "AC"):
+        # clear the display
+        self.display["text"] = ""
+```
+
+The display is cleared by changing its text attribute. In Python, associative arrays (i.e., arrays with named indexes as opposed to numeric indexes) are valid. Although you probably haven't seen associative arrays yet, you will later in the curriculum (Python calls them dictionaries).
+
+The next case is to handle the various buttons that should just be appended to the display. Modify the process method as follows:
+
+```python
+# processes button presses
+def process(self, button):
+    # AC clears the display
+    if (button == "AC"):
+        # clear the display
+        self.display["text"] = ""
+    # otherwise, just tack on the appropriate operand/operator
+    else:
+        self.display["text"] += button
+```
+
+Notice how the last line appends the button parameter to the text already on the display. Running the modified program now allows the calculator to behave as expected. The AC button clears the display, while the other buttons (including, for now, the equals button) are appended to the display in the order that they are clicked/tapped. Of course, this is not the intended behavior of the equals button!
+
+### Evaluating expressions
+
+Finally, we must discuss the equals (=) button. How, exactly, should this work? Admittedly, we could manually calculate the expression and return a result. However, Python provides the eval function that takes a string, evaluates it as an arithmetic expression, and returns a numeric result. Here are several examples:
+
+``` python
+eval("1+1")              # the returned result is 2
+eval("5+(4-2)**5+6*2")   # the returned result is 49
+```
+
+Evaluating the expression on the display is now pretty simple! We just need to send the expression to Python's *eval* function to get a numeric result. Then, we can change the display, replacing it with a string version of the returned result. It looks something like this:
+
+```python
+expr = self.display["text"]
+result = eval(expr)
+self.display["text"] = str(result)
+```
+
+The first line stores the expression from the display to the variable expr, the second line evaluates the expression with Python's eval function, and the third line stores the result (as a string) back to the display. Of course, the three lines could be combined into a single statement; however, it is probably slightly less readable:
+
+```python
+self.display["text"] = str(eval(self.display["text"]))
+```
+
+Let's implement the evaluation portion by modifying the process method as follows:
+
+``` python
+# processes button presses
+def process(self, button):
+    # AC clears the display
+    if (button == "AC"):
+        # clear the display
+        self.display["text"] = ""
+    # = starts an evaluation of whatever is on the display
+    elif (button == "="):
+        # get the expression in the display
+        expr = self.display["text"]
+        # evaluate the expression
+        result = eval(expr)
+        # store the result to the display
+        self.display["text"] = str(result)
+    # otherwise, just tack on the appropriate operand/operator
+    else:
+    self.display["text"] += button
+```
+
+At this point, a valid arithmetic expression in the display will be properly evaluated and updated with the result. But what if the expression in the display is not valid? For example, what is the result of the expression <span style="color:red">4 + 5 *</span> (note the missing operand after the multiplication operator)? In fact, an error is outputted to the console (note that errors on different systems may differ slightly):
+
+```
+Exception in Tkinter callback
+Traceback (most recent call last):
+    File"/usr/local/Cellar/python3/3.6.1/Frameworks/Python.
+        framework/Versions/3.6/lib/python3.6/tkinter/__init__.py",
+        line 1699, in __call__
+        return self.func(*args)
+    File "TheReckoner-TEMPLATE9.py", line 153, in <lambda>
+        button = Button(self, bg="white", image=img,borderwidth=0,
+        highlightthickness=0, activebackground=
+        "white",command=lambda: self.process("="))
+    File "TheReckoner-TEMPLATE9.py", line 176, in process
+        result = eval(expr)
+    File "<string>", line 1
+    4+5*
+    ^
+SyntaxError: unexpected EOF while parsing
+```
+
+Evidently, there was an unexpected EOF (end of file) while parsing the expression. Of course, this makes sense: the end of the expression was reached before a valid expression was provided. That is, the *eval* function expected more to the expression. To make the calculator more robust, we can detect such errors and provide an appropriate response to the user. This can be accomplished by using a **try-except** block (you should have seen this before!). The purpose of a **try-except** block is to encapsulate instructions that could cause an exception (something that alters the normal flow of a program) in a try block. If an exception occurs, it can be handled in the **except** block. More details about **try-except** will be covered later in the curriculum.
+
+Let's handle any invalid expression evaluation by setting the calculator's display to the string ERROR so that the user is aware that an error occurred. This can be accomplished by modifying the process method as follows:
+
+```python
+# get the expression in the display
+expr = self.display["text"]
+# the evaluation may return an error!
+try:
+    # evaluate the expression
+    result = eval(expr)
+    # store the result to the display
+    self.display["text"] = str(result)
+# handle if an error occurs during evaluation
+except:
+    # note the error in the display
+    self.display["text"] = "ERROR"
+```
+
+Note that the evaluation of the expression (into the variable result) and the subsequent modification of the display with the result is done in the **try** block. If this results in an error, the **except** block is executed, setting the contents of the display to the string ERROR.
+
+Congratulations, you've made a simple calculator! Indeed, it's basic; however, there are many improvements that could be made:
+
+• The length of the display supports approximately 12 characters; however, more characters could
+be added to the display by the user. Doing so results in a cropped expression, which is probably
+not desired. The display could be limited to 12 characters, ignoring any further input. Moreover,
+the result of an expression could be larger than 12 characters. Perhaps such results could be
+truncated.
+
+• There is no easy way to erase the last character entered of an expression in the display. Adding a
+back button to the calculator could allow this in case the user makes an error.
+
+• Other useful operators could be added. For example: modulus (%), square root, logarithm (log),
+natural logarithm (ln), factorial (!), sine, cosine, tangent, and constants such as pi and e. Take
+look at the Google calculator (search for “calculator” on Google). Of course, Python's eval
+function must support these (you'll have to try them out!).
+
+• Most calculators clear any previous expression result if the user enters a new expression. For
+example, suppose that the display has the result of an expression. If the user decides to enter a
+different expression, the display must first be cleared. Currently, the user must do this manually
+(by pressing the AC button). Perhaps the display could be automatically cleared of an expression
+result if the user begins to enter a new expression.
+
+• Similarly, perhaps the display could be cleared of an error if the user begins to enter a new
+expression.
+
+For completeness, here's the entire code (reduced in font size for readability):
+
+```python
+from tkinter import *
+
+# the main GUI
+class MainGUI(Frame):
+    # the constructor
+    def __init__(self, parent):
+        Frame.__init__(self, parent, bg="white")
+        parent.attributes("-fullscreen", True)
+        self.setupGUI()
+    # sets up the GUI
+    def setupGUI(self):
+        # https://www.fontsquirrel.com/fonts/tex-gyre-adventor)
+        # on most Linux system, simply double-click the font files and install them
+        # on the RPi, copy them to /usr/local/share/fonts (with
+        # sudo): sudo cp tex*.otf /usr/local/share/fonts
+        # then reboot
+
+        # the display
+        # right-align text in the display; and set its
+        #  background to white, its height to 2 characters, and its font to 50 point TexGyreAdventor
+        self.display = Label(self, text="", anchor=E,\
+        bg="white", height=2, font=("TexGyreAdventor", 50))
+        # put it in the top row, spanning across all four columns; and expand it on all four sides
+        self.display.grid(row=0, column=0, columnspan=4,\
+        sticky=E+W+N+S)
+
+        # the button layout
+        # ( ) AC **
+        # 7 8 9 /
+        # 4 5 6 *
+        # 1 2 3 -
+        # 0 . = +
+
+        # configure the rows and columns of the Frame to adjust to the window
+        # there are 6 rows (0 through 5)
+        for row in range(6):
+            Grid.rowconfigure(self, row, weight=1)
+        # there are 4 columns (0 through 3)
+        for col in range(4):
+            Grid.columnconfigure(self, col, weight=1)
+
+        # the first row
+        # (
+        # first, fetch and store the image
+        # to work best on the RPi, images should be 115x115 pixels
+        # otherwise, may need to add .subsample(n)
+        img = PhotoImage(file="images/lpr.gif")
+        # next, create the button (white background, no border,
+        # no highlighting, no color when clicked)
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("("))
+        # set the button's image
+        button.image = img
+        # put the button in its proper row and column
+        button.grid(row=1, column=0, sticky=N+S+E+W)
+        # the same is done for the rest of the buttons
+        # )
+        img = PhotoImage(file="images/rpr.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process(")"))
+        button.image = img
+        button.grid(row=1, column=1, sticky=N+S+E+W)
+        # AC
+        img = PhotoImage(file="images/clr.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("AC"))
+        button.image = img
+        button.grid(row=1, column=2, sticky=N+S+E+W)
+        # **
+        img = PhotoImage(file="images/pow.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("**"))
+        button.image = img
+        button.grid(row=1, column=3, sticky=N+S+E+W)
+
+        # the second row
+        # 7
+        img = PhotoImage(file="images/7.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("7"))
+        button.image = img
+        button.grid(row=2, column=0, sticky=N+S+E+W)
+        # 8
+        img = PhotoImage(file="images/8.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("8"))
+        button.image = img
+        button.grid(row=2, column=1, sticky=N+S+E+W)
+        # 9
+        img = PhotoImage(file="images/9.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("9"))
+        button.image = img
+        button.grid(row=2, column=2, sticky=N+S+E+W)
+        # /
+        img = PhotoImage(file="images/div.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("/"))
+        button.image = img
+        button.grid(row=2, column=3, sticky=N+S+E+W)
+
+        # the third row
+        # 4
+        img = PhotoImage(file="images/4.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("4"))
+        button.image = img
+        button.grid(row=3, column=0, sticky=N+S+E+W)
+        # 5
+        img = PhotoImage(file="images/5.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("5"))
+        button.image = img
+        button.grid(row=3, column=1, sticky=N+S+E+W)
+        # 6
+        img = PhotoImage(file="images/6.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("6"))
+        button.image = img
+        button.grid(row=3, column=2, sticky=N+S+E+W)
+        # *
+        img = PhotoImage(file="images/mul.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("*"))
+        button.image = img
+
+        button.grid(row=3, column=3, sticky=N+S+E+W)
+
+        # the fourth row
+        # 1
+        img = PhotoImage(file="images/1.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("1"))
+        button.image = img
+        button.grid(row=4, column=0, sticky=N+S+E+W)
+        # 2
+        img = PhotoImage(file="images/2.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("2"))
+        button.image = img
+        button.grid(row=4, column=1, sticky=N+S+E+W)
+        # 3
+        img = PhotoImage(file="images/3.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("3"))
+        button.image = img
+        button.grid(row=4, column=2, sticky=N+S+E+W)
+        # -
+        img = PhotoImage(file="images/sub.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("-"))
+        button.image = img
+        button.grid(row=4, column=3, sticky=N+S+E+W)
+
+        # the fifth row
+        # 0
+        img = PhotoImage(file="images/0.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("0"))
+        button.image = img
+        button.grid(row=5, column=0, sticky=N+S+E+W)
+        # .
+        img = PhotoImage(file="images/dot.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("."))
+        button.image = img
+        button.grid(row=5, column=1, sticky=N+S+E+W)
+        # =
+        img = PhotoImage(file="images/eql.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("="))
+        button.image = img
+        button.grid(row=5, column=2, sticky=N+S+E+W)
+        # +
+        img = PhotoImage(file="images/add.gif")
+        button = Button(self, bg="white", image=img, borderwidth=0, highlightthickness=0,\
+        activebackground="white", command=lambda: self.process("+"))
+        button.image = img
+        button.grid(row=5, column=3, sticky=N+S+E+W)
+
+        # pack the GUI
+        self.pack(fill=BOTH, expand=1)
+
+    # processes button presses
+    def process(self, button):
+    # AC clears the display
+        if (button == "AC"):
+            # clear the display
+            self.display["text"] = ""
+        # = starts an evaluation of whatever is on the display
+        elif (button == "="):
+            # get the expression in the display
+            expr = self.display["text"]
+            # the evaluation may return an error!
+            try:
+                # evaluate the expression
+                result = eval(expr)
+                # store the result to the display
+                self.display["text"] = str(result)
+            # handle if an error occurs during evaluation
+            except:
+                # note the error in the display
+                self.display["text"] = "ERROR"
+        # otherwise, just tack on the appropriate
+        # operand/operator
+        else:
+            self.display["text"] += button
+
+##############################
+# the main part of the program
+##############################
+# create the window
+window = Tk()
+# set the window title
+window.title("The Reckoner")
+# generate the GUI
+p = MainGUI(window)
+# display the GUI and wait for user interaction
+window.mainloop()
+```
+
+## Homework: The Reckoner
+For the homework portion of this activity, you may have the option to work in groups (pending prof
+approval). It is suggested that groups contain at least one confident Python coder.
+Your task is to implement the following improvements to the calculator:
+
+(1) Add a modulus (%) button that calculates the remainder returned by a division. For example: 23 % 13 = 10.
+(2) Add a back button that removes the last (i.e., right-most) character in the display.
+(3) Modify the layout as follows to accommodate the new buttons:
+
+![](images/piactivity13-09.png){fig-align="center"}
+
+See below for what that should look like on the RPi.
+
+(4) Limit the display to 14 characters. Do not allow the user to enter more than 14 characters.
+(5) Any result that is greater than 14 characters should be truncated to the first 11 characters followed by three successive dots. For example: 2 ** 47 = 14073748835...
+(6) If an expression result (or an error) has just been put on the display, clear the screen before displaying the next character inputted by the user.
+
+A few notes:
+
+• The calculator has now increased by one row. This has the unfortunate effect of no longer
+
+![](images/piactivity13-10.png){fig-align="center"}
+
+properly rendering the calculator on the LCD touchscreen. To fix this, we can reduce the font size of text in the display from 50 point to 45 point. Furthermore, we can reduce the height of the display from two characters to one character.
+
+• The equals (=) button now spans two columns. You will have to download the new image for this button.
+• There is now a blank “button” on the calculator. Feel free to just leave this “button” blank.
+
+**Do not make any additional improvements to your submission for this assignment.** However, feel free to do so on your own if you wish (although you may need to recreate the buttons if you choose to add more rows or columns to the calculator).
+
+**You are to submit your Python source code only (as a .py file) through the upload facility on the web site.**

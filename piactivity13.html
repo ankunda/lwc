@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-05-21">
+
+<title>The Reckoner</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="piactivity13_files/libs/clipboard/clipboard.min.js"></script>
+<script src="piactivity13_files/libs/quarto-html/quarto.js"></script>
+<script src="piactivity13_files/libs/quarto-html/popper.min.js"></script>
+<script src="piactivity13_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="piactivity13_files/libs/quarto-html/anchor.min.js"></script>
+<link href="piactivity13_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="piactivity13_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="piactivity13_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="piactivity13_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="piactivity13_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #002f8b;
+      }
+</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">The Reckoner</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 21, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#raspberry-pi-activity-the-reckoner" id="toc-raspberry-pi-activity-the-reckoner" class="nav-link active" data-scroll-target="#raspberry-pi-activity-the-reckoner"><span class="header-section-number">1</span> Raspberry Pi Activity: The Reckoner</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">1.1</span> Introduction</a></li>
+  <li><a href="#creating-the-gui" id="toc-creating-the-gui" class="nav-link" data-scroll-target="#creating-the-gui"><span class="header-section-number">1.2</span> Creating the GUI</a></li>
+  <li><a href="#making-the-buttons-work" id="toc-making-the-buttons-work" class="nav-link" data-scroll-target="#making-the-buttons-work"><span class="header-section-number">1.3</span> Making the buttons work</a></li>
+  <li><a href="#evaluating-expressions" id="toc-evaluating-expressions" class="nav-link" data-scroll-target="#evaluating-expressions"><span class="header-section-number">1.4</span> Evaluating expressions</a></li>
+  </ul></li>
+  <li><a href="#homework-the-reckoner" id="toc-homework-the-reckoner" class="nav-link" data-scroll-target="#homework-the-reckoner"><span class="header-section-number">2</span> Homework: The Reckoner’</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="raspberry-pi-activity-the-reckoner" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="raspberry-pi-activity-the-reckoner"><span class="header-section-number">1</span> Raspberry Pi Activity: The Reckoner</h2>
+<section id="introduction" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h3>
+<p>In this activity, you will implement a simple graphical calculator using the Tkinter library. You will need the following items: • Raspberry Pi B v3 with power adapter; • LCD touchscreen; and • Keyboard and mouse.</p>
+<p>If you wish, you can simply bring your laptop with the Python interpreter (and also perhaps IDLE) installed since you will not be using the GPIO pins on the RPi. <span style="color:red">Note, however, that the calculator is specifically designed to illustrate an intuitive user interface for the LCD touchscreen included in your RPi kit. Therefore, it is actually to your advantage to do the activity on the RPi and LCD touchscreen.</span>|</p>
+<p>Let’s begin by taking a look at a model of the GUI for The Reckoner:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity13-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The top portion represents the display (i.e., where expressions and their results can be displayed). The bottom portion includes various buttons that either represent operands (by combining the digits 0 through 9 and/or the decimal point), operators (that perform various arithmetic operations), or special-purpose actions: clearing the display (AC) and evaluating expressions (=). The abbreviation AC on a calculator stands for All Clear. For The Reckoner, it will clear the display. The ** operator is Python’s exponentiation operator (i.e., <span class="math inline">\(x^{y}\)</span>).</p>
+<p>By clicking or tapping on the various buttons, simple or complex expressions can be displayed:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity13-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>By subsequently clicking or tapping on the equal button (=), the expression can be arithmetically evaluated as follows:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity13-03.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The font that is used in the calculator is called <strong>TexGyreAdventor</strong>. It is freely available and can be obtained here: https://www.fontsquirrel.com/fonts/tex-gyre-adventor. Installing the font on the RPi is relatively simple:</p>
+<pre><code>1. Download the OTF files from the Web site above; and
+2. Copy the OTF files to the proper place on the RPi's file system.</code></pre>
+<p><strong>To accomplish this (particularly at the command line/terminal), you may need to refer to the first RPi activity in the curriculum: Sampling some Raspberry Pi.</strong></p>
+<p>You can either download the files directly to the RPi (e.g., into the Downloads folder) or on another system – then copy them to the RPi using a USB stick, for example. To subsequently get them to install on the RPi, simply copy them to the fonts folder from the terminal via:</p>
+<pre><code>sudo cp tex*.otf /usr/local/share/fonts</code></pre>
+<p>Then, reboot the RPi. Note that on most Linux systems (not the RPi), you can double-click the OTF files and install them that way.</p>
+<p>In this activity, we’ll take an iterative approach to creating The Reckoner. First, we’ll create the GUI and ensure that it is correct before proceeding. We’ll test and fix any issues before proceeding to the next step: integrating code that will handle the button clicks/taps. As buttons are clicked/tapped, our program must accurately detect which button was clicked/tapped and, furthermore, perform some action that is appropriate for that specific button. Next, we’ll work through and integrate evaluating the expression. To simplify things a bit, we’ll hand that off to Python! Since it is possible that an expression has errors (e.g., mismatched parentheses, multiple consecutive operators, etc), we’ll finally integrate error checking so that user errors don’t unexpectedly <em>break</em> our program.</p>
+</section>
+<section id="creating-the-gui" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="creating-the-gui"><span class="header-section-number">1.2</span> Creating the GUI</h3>
+<p>To simplify creating the GUI, we’ll use Tkinter’s grid manager. Recall that it allows the placement of widgets using a row/column approach. The display will be located at row 0, column 0, and span four columns. The top row of buttons (“(“, “)”, “AC”, and “**”) will be located at row 1, columns 0 through 3. The remaining buttons will be placed in increasing rows, at columns 0 through 3. Here’s the calculator layout with row and column numbers:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity13-04.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Let’s first work on a template for The Reckoner:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#################################################################</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Name:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Date:</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Description</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#################################################################</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># the main GUI</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MainGUI(Frame):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">##############################</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># the main part of the program</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">##############################</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># create the window</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># set the window title</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the GUI</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># display the GUI and wait for user interaction</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note how this simply sets up a shell that we can work with. Of course, a header will be included at the top. Since we will make use of the Tkinter library, it will have to be properly imported. Next, we’ll specify the class that will represent The Reckoner’s main GUI (called <strong>MainGUI</strong> in the code above). This class will be a Tkinter frame; therefore, it will inherit from Tkinter’s <strong>Frame</strong> class. After the class, we’ll include the main part of the program – which is pretty simple. It creates the window, sets its title, creates an instance of the <strong>MainGUI</strong> class (thereby generating the calculator GUI), and finally displays the GUI and waits for user interaction.</p>
+<p>Let’s continue by specifying the constructor of the MainGUI class and also filling in the main part of the program:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#################################################################</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Name:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Date:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Description</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#################################################################</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># the main GUI</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MainGUI(Frame):</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the constructor</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, parent):</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        Frame.<span class="fu">__init__</span>(<span class="va">self</span>, parent, bg<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.setupGUI()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sets up the GUI</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setupGUI(<span class="va">self</span>):</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">##############################</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># the main part of the program</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">##############################</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># create the window</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> Tk()</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># set the window title</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>window.title(<span class="st">"The Reckoner"</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the GUI</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> MainGUI(window)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># display the GUI and wait for user interaction</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>window.mainloop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note how the constructor merely calls the constructor of its parent <strong>Frame</strong> class, passing in the window and specifying the background color. Since the constructor makes use of a subroutine inside the <strong>MainGUI</strong> class (<em>setupGUI</em>), we can quickly stub it out by adding the <strong>pass</strong> statement for now. At this point, you should be able to run the program. It currently doesn’t do very much; however, a small window with the title “The Reckoner” should appear:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity13-05.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Now, let’s implement the <em>setupGUI</em> method, replacing the single <strong>pass</strong> statement. The display will be implemented as a Tkinter <strong>Label</strong>, and the buttons will each be implemented as a Tkinter <strong>Button</strong>. To make the interface nifty, each button will be represented with an image (GIF) that has already been designed and properly sized. Here’s the first iteration of the <em>setupGUI</em> method that sets up the display:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setupGUI(<span class="va">self</span>):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the calculator uses the TexGyreAdventor font (see</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># https://www.fontsquirrel.com/fonts/tex-gyre-adventor)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># on most Linux system, simply double-click the font files</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and install them</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># on the RPi, copy them to /usr/local/share/fonts (with</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sudo):</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sudo cp tex*.otf /usr/local/share/fonts</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># then reboot</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the display</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># right-align text in the display; and set its background to</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># white, its height to 2 characters, and its font to 50</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># point TexGyreAdventor</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.display <span class="op">=</span> Label(<span class="va">self</span>, text<span class="op">=</span><span class="st">""</span>, anchor<span class="op">=</span>E, bg<span class="op">=</span><span class="st">"white"</span>,<span class="op">\</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">2</span>, width<span class="op">=</span><span class="dv">15</span>, font<span class="op">=</span>(<span class="st">"TexGyreAdventor"</span>, <span class="dv">50</span>))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># put it in the top row, spanning across all four columns;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and expand it on all four sides</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.display.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>, columnspan<span class="op">=</span><span class="dv">4</span>,<span class="op">\</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    sticky<span class="op">=</span>E<span class="op">+</span>W<span class="op">+</span>N<span class="op">+</span>S)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pack the GUI</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.pack(fill<span class="op">=</span>BOTH, expand<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span style="color:red">Note that the backslashes are used here to delineate individual statements without ugly text wrapping in this document. In the actual code, backslashes can be omitted so that every statement is on a single line of code.</span></p>
+<p>Running the updated program should now display a window with the calculator’s display:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity13-06.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Note that Tkinter’s <strong>Label</strong> class can be instantiated with many configuration parameters. In the case of the calculator’s display, we set its text to nothing (i.e., “”); right-align the text with <em>anchor=E</em>; set its background to white; set its height to 2 characters high; set its width to 15 characters wide; and set its font to 50 point TexGyreAdventor. We then lay the display on a grid at row 0, column 0, spanning four columns, and expanding it on all sides (using the sticky configuration option). Finally, the GUI is packed such that the display fills the entire window space both horizontally and vertically.</p>
+<p>Next, let’s work on the buttons. Each button will be added to the calculator in its appropriate row and column. Since each button will be represented by an image (e.g., 0.gif, 1.gif, eql.gif, add.gif, etc), we can make use of Tkinter’s <strong>PhotoImage</strong> class to “load” an image for each button. Button images are 115x115 pixels – which should be the perfect size for use on the RPi. The strategy will be to load the image and store it as a variable (img), create the button with the image as its property, and set the button in its proper layout position using Tkinter’s grid manager. In general, here’s how it’s done for a button (this example uses the left parenthesis as an example and also assumes that button images are in a sub-folder called <em>images</em>):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/lpr.gif"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>button.image <span class="op">=</span> img</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The first line loads and scales the proper image, storing it to the variable <em>img</em>. The second line creates the button, setting the image as its display property. Since the button images are colored and have rounded corners, the background is set to white. The third line formally sets the button’s image as the preloaded image (recall why from the lesson on GUIs). The last line places the button on the frame in its proper position along the grid, expanding it to fill its space in all directions. To make things look a little bit better, we’ll additionally remove any border around the button and set the background of the button when it is active (i.e., clicked/tapped) to white.</p>
+<p>Note that the display has been slightly modified so that it no longer has the width configuration option. This is because the row of buttons will be wider than the display. By default, the display will be fitted to the new width. Here’s the entire first (top) row of buttons:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setupGUI(<span class="va">self</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the calculator uses the TexGyreAdventor font (see</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># https://www.fontsquirrel.com/fonts/tex-gyre-adventor)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># on most Linux system, simply double-click the font files and install them</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># on the RPi, copy them to /usr/local/share/fonts (with sudo):</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#  sudo cp tex*.otf /usr/local/share/fonts</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># then reboot </span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the display </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># right-align text in the display; and set its background to</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">#  white, its height to 2 characters, and its font to 50 point TexGyreAdventor</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.display <span class="op">=</span> Label(<span class="va">self</span>, text<span class="op">=</span><span class="st">""</span>, anchor<span class="op">=</span>E, bg<span class="op">=</span><span class="st">"white"</span>, height<span class="op">=</span><span class="dv">2</span>, <span class="op">\</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        font<span class="op">=</span>(<span class="st">"TexGyreAdventor"</span>, <span class="dv">50</span>))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># put it in the top row, spanning across all four columns;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#  and expand it on all four sides</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.display.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>, columnspan<span class="op">=</span><span class="dv">4</span>, sticky<span class="op">=</span>E<span class="op">+</span>W<span class="op">+</span>N<span class="op">+</span>S)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the button layout</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ( ) AC **</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 7 8 9 /</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4 5 6 *</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1 2 3 -</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 0 . = +</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the first row</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># first, fetch and store the image</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># to work best on the RPi, images should be 115x115 pixels</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># otherwise, may need to add .subsample(n)</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/lpr.gif"</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># next, create the button (white background, no border, no</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">#  highlighting, no color when clicked)</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>, <span class="op">\</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the button's image</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># put the button in its proper row and column</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the same is done for the rest of the buttons</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># )</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/rpr.gif"</span>)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>, <span class="op">\</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AC</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/clr.gif"</span>)</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>, <span class="op">\</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># **</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/pow.gif"</span>)</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>, <span class="op">\</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">3</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pack the GUI</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.pack(fill<span class="op">=</span>BOTH, expand<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Running the modified program should display a window with the calculator’s display at the top and the first row of buttons beneath the display (in the order “(“, “)”, “AC”, “**”):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity13-07.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Let’s now add the remaining rows of buttons after the code for the first row (but before packing the GUI):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the second row</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 7</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/7.gif"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 8</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/8.gif"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 9</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/9.gif"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># /</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/div.gif"</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">3</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the third row</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/4.gif"</span>)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/5.gif"</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 6</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/6.gif"</span>)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># *</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/mul.gif"</span>)</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">3</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the fourth row</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/1.gif"</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>        highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">4</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/2.gif"</span>)</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">4</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3</span></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/3.gif"</span>)</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">4</span>, column<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -</span></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/sub.gif"</span>)</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">4</span>, column<span class="op">=</span><span class="dv">3</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the fifth row</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 0</span></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/0.gif"</span>)</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>    <span class="co"># .</span></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/dot.gif"</span>)</span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a>    <span class="co"># =</span></span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/eql.gif"</span>)</span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a>    <span class="co"># +</span></span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/add.gif"</span>)</span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a>    button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>    highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a>    button.image <span class="op">=</span> img</span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a>    button.grid(row<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="dv">3</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a><span class="co"># pack the GUI</span></span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.pack(fill<span class="op">=</span>BOTH, expand<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At this point, the calculator GUI is complete. The problem, however, is that it appears too large for the RPi’s LCD touchscreen. There are two reasons for this: (1) the rows and columns of the grid are fixed based on the size of the button images; and (2) the rows and columns of the grid automatically expand to fit the buttons. We can set the rows and columns to resize automatically so that they all fit on the desktop by adding a few lines of code before creating the buttons:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># configure the rows and columns of the Frame to adjust to</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the window</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># there are 6 rows (0 through 5)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>):</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    Grid.rowconfigure(<span class="va">self</span>, row, weight<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># there are 4 columns (0 through 3)</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    Grid.columnconfigure(<span class="va">self</span>, col, weight<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the lines before this comment</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># the first row</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># (</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/lpr.gif"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This indeed forces all of the buttons to be displayed on the desktop; however, things don’t look pretty: the buttons are all cut off. This is because the calculator is taller than it is wide – and the desktop is the opposite: it is wider than it is tall. A solution is to render the calculator <em>sideways</em>! One way to do this is by rotating the RPi’s display 90 degrees to the left (counter-clockwise) – or 270 degrees to the right (clockwise).</p>
+<p>To force a rotation of the display, we need to edit the RPi’s configuration from the terminal as follows: <code>sudo leafpad /boot/config.txt</code></p>
+<p>Then, add the following line at the bottom of the file: <code>display_rotate=3</code></p>
+<p>Finally, save the file (via Ctrl+S), exit the terminal, and reboot the RPi. You can set the RPi stand with its (normally) right edge on the table to right the desktop (and the calculator when the modified program is executed).</p>
+<p>Although the calculator looks much better, it still seems a little off. This is because it was designed to be executed in fullscreen mode (i.e., without the top window bar). To force it to launch in fullscreen mode, add the following statement to the constructor of the <strong>MainGUI</strong> class:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, parent):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    Frame.<span class="fu">__init__</span>(<span class="va">self</span>, parent, bg<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    parent.attributes(<span class="st">"-fullscreen"</span>, <span class="va">True</span>) <span class="co"># New!</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.setupGUI()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The calculator should look as follows (except rendered sideways) when the program is now executed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity13-08.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>At this point, using the mouse to interact with the calculator works as expected. However, when using the touchscreen directly (i.e., by tapping), something seems off! The point at which a tap occurs does not correlate with the pointer on the desktop. This occurs because, although the display has been rotated, the pointer responding to taps to the touchscreen has not! That is, the touchscreen’s coordinate system must also be rotated (or transformed to work along with the display’s rotation). To do so, a utility called <strong>xinput</strong> must be installed. First, exit the calculator via Alt+F4. Then, install <strong>xinput</strong> via the terminal as follows (make sure that your RPi is connected to the Internet): <code>sudo apt-get update</code> <code>sudo apt-get install xinput</code></p>
+<p>Then, reboot. Subsequently, execute the following command at the terminal: <code>xinput --set-prop 'FT5406 memory based driver' 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1</code></p>
+<p>Note that the command is to be entered on a single line. It is formatted for readability in this document. This transforms the touchscreen’s coordinate system to one that represents a 90 degree left (counter-clockwise) rotation. To use the touchscreen in rotated mode, you will need to execute this command each time the RPi is rebooted. There is a way to automate the process; however, it is beyond the scope of this activity.</p>
+<p>If you wish to run the calculator on a desktop or laptop (i.e., not on the RPi), you most likely won’t need to rotate the display. Furthermore, you most likely won’t need to force the calculator to launch in fullscreen mode. Therefore, you can comment out the appropriate line of code in your program. If you wish to return the RPi to its normal “wide” desktop, you simply need to comment (with #) or remove the last line that was added to /boot/config.txt.</p>
+</section>
+<section id="making-the-buttons-work" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="making-the-buttons-work"><span class="header-section-number">1.3</span> Making the buttons work</h3>
+<p>Of course, the buttons currently do nothing. Let’s work on that next. In Tkinter, buttons can have a method specified that is triggered (or called) when the button is clicked. To do this, we simply need to slightly modify each button’s instantiation. Here’s an example with the first button in the top row (the left parenthesis):</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/lpr.gif"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>highlightthickness<span class="op">=</span><span class="dv">0</span>, activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="va">self</span>.process) <span class="co"># Edit</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>button.image <span class="op">=</span> img</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Of course, this will need to be implemented for all of the buttons. In order for this to actually work, the <em>process</em> method must be implemented. We can include a simple version of this new method at the bottom of the <strong><em>MainGUI</em></strong> class, beneath the <em>setupGUI</em> method:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setupGUI(<span class="va">self</span>):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pack the GUI</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.pack(fill<span class="op">=</span>BOTH, expand<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># processes button presses</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process(<span class="va">self</span>):</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Button pressed!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After implementing this for all of the buttons, running the updated program and clicking/tapping on the buttons results in “Button pressed!” being displayed to the console. On the RPi, the calculator is fullscreen mode; therefore, the console may not be visible. You can use Alt+Tab to switch through any windows on the desktop, including the console (terminal) and the calculator. Knowing when the buttons are clicked/tapped is useful; however, it is necessary to distinguish between the individual buttons (i.e., know which was clicked/tapped). A first thought may be to modify the command configuration option in each button’s instantiation to include a parameter:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/lpr.gif"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="va">self</span>.process(<span class="st">"("</span>)) <span class="co"># New </span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>button.image <span class="op">=</span> img</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Of course, the <em>process</em> method must be updated accordingly:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># processes button presses</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process(<span class="va">self</span>, button):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Button </span><span class="sc">{}</span><span class="st"> pressed!"</span>.<span class="bu">format</span>(button))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Clearly, each button must provide its own unique parameter to the process method (e.g., “0” for 0, “1” for 1, “AC” for AC, “=” for =, “**” for **, “/” for /, etc). Unfortunately, running the updated program doesn’t seem to work. The button clicks/taps seem to be displayed when the program is first run and not when individual buttons are actually clicked/tapped.</p>
+<p>The problem stems from the fact that, as the buttons are instantiated, the <em>process</em> method is immediately invoked. To delay invocation of the <em>process</em> method, it must be anonymously defined using the <strong>lambda</strong> Python keyword. A thorough discussion of the lambda keyword is beyond the scope of this activity; however, in this case it allows the <em>process</em> method to be invoked at the time of the button click/tap. Let’s modify each of the command configuration options appropriately. Here’s an example of this modification to the left parenthesis (of course, the remaining buttons must be modified accordingly):</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/lpr.gif"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"("</span>)) <span class="co"># New</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>button.image <span class="op">=</span> img</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Running the modified program should display text appropriate to a clicked/tapped button (as it is clicked/tapped).</p>
+<p>The next step is to update the <em>process</em> method so that it actually behaves properly depending on the button that is clicked/tapped. We can implement simple logic to accomplish this. Almost all of the buttons, when clicked/tapped, should just be added to the display. The two exceptions include the AC and equals (=) buttons. AC should clear the display, and = should evaluate the expression and update the display with the result. Let’s start with the AC button since it’s perhaps the simplest case. Change the <em>process</em> method as follows:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># processes button presses</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process(<span class="va">self</span>, button):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AC clears the display</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (button <span class="op">==</span> <span class="st">"AC"</span>):</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># clear the display</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">=</span> <span class="st">""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The display is cleared by changing its text attribute. In Python, associative arrays (i.e., arrays with named indexes as opposed to numeric indexes) are valid. Although you probably haven’t seen associative arrays yet, you will later in the curriculum (Python calls them dictionaries).</p>
+<p>The next case is to handle the various buttons that should just be appended to the display. Modify the process method as follows:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># processes button presses</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process(<span class="va">self</span>, button):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AC clears the display</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (button <span class="op">==</span> <span class="st">"AC"</span>):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># clear the display</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># otherwise, just tack on the appropriate operand/operator</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">+=</span> button</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice how the last line appends the button parameter to the text already on the display. Running the modified program now allows the calculator to behave as expected. The AC button clears the display, while the other buttons (including, for now, the equals button) are appended to the display in the order that they are clicked/tapped. Of course, this is not the intended behavior of the equals button!</p>
+</section>
+<section id="evaluating-expressions" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="evaluating-expressions"><span class="header-section-number">1.4</span> Evaluating expressions</h3>
+<p>Finally, we must discuss the equals (=) button. How, exactly, should this work? Admittedly, we could manually calculate the expression and return a result. However, Python provides the eval function that takes a string, evaluates it as an arithmetic expression, and returns a numeric result. Here are several examples:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span>(<span class="st">"1+1"</span>)              <span class="co"># the returned result is 2</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span>(<span class="st">"5+(4-2)**5+6*2"</span>)   <span class="co"># the returned result is 49</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Evaluating the expression on the display is now pretty simple! We just need to send the expression to Python’s <em>eval</em> function to get a numeric result. Then, we can change the display, replacing it with a string version of the returned result. It looks something like this:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>expr <span class="op">=</span> <span class="va">self</span>.display[<span class="st">"text"</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">eval</span>(expr)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">=</span> <span class="bu">str</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The first line stores the expression from the display to the variable expr, the second line evaluates the expression with Python’s eval function, and the third line stores the result (as a string) back to the display. Of course, the three lines could be combined into a single statement; however, it is probably slightly less readable:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">=</span> <span class="bu">str</span>(<span class="bu">eval</span>(<span class="va">self</span>.display[<span class="st">"text"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s implement the evaluation portion by modifying the process method as follows:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># processes button presses</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process(<span class="va">self</span>, button):</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AC clears the display</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (button <span class="op">==</span> <span class="st">"AC"</span>):</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># clear the display</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># = starts an evaluation of whatever is on the display</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> (button <span class="op">==</span> <span class="st">"="</span>):</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># get the expression in the display</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        expr <span class="op">=</span> <span class="va">self</span>.display[<span class="st">"text"</span>]</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># evaluate the expression</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="bu">eval</span>(expr)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># store the result to the display</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">=</span> <span class="bu">str</span>(result)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># otherwise, just tack on the appropriate operand/operator</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">+=</span> button</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At this point, a valid arithmetic expression in the display will be properly evaluated and updated with the result. But what if the expression in the display is not valid? For example, what is the result of the expression <span style="color:red">4 + 5 *</span> (note the missing operand after the multiplication operator)? In fact, an error is outputted to the console (note that errors on different systems may differ slightly):</p>
+<pre><code>Exception in Tkinter callback
+Traceback (most recent call last):
+    File"/usr/local/Cellar/python3/3.6.1/Frameworks/Python.
+        framework/Versions/3.6/lib/python3.6/tkinter/__init__.py",
+        line 1699, in __call__
+        return self.func(*args)
+    File "TheReckoner-TEMPLATE9.py", line 153, in &lt;lambda&gt;
+        button = Button(self, bg="white", image=img,borderwidth=0,
+        highlightthickness=0, activebackground=
+        "white",command=lambda: self.process("="))
+    File "TheReckoner-TEMPLATE9.py", line 176, in process
+        result = eval(expr)
+    File "&lt;string&gt;", line 1
+    4+5*
+    ^
+SyntaxError: unexpected EOF while parsing</code></pre>
+<p>Evidently, there was an unexpected EOF (end of file) while parsing the expression. Of course, this makes sense: the end of the expression was reached before a valid expression was provided. That is, the <em>eval</em> function expected more to the expression. To make the calculator more robust, we can detect such errors and provide an appropriate response to the user. This can be accomplished by using a <strong>try-except</strong> block (you should have seen this before!). The purpose of a <strong>try-except</strong> block is to encapsulate instructions that could cause an exception (something that alters the normal flow of a program) in a try block. If an exception occurs, it can be handled in the <strong>except</strong> block. More details about <strong>try-except</strong> will be covered later in the curriculum.</p>
+<p>Let’s handle any invalid expression evaluation by setting the calculator’s display to the string ERROR so that the user is aware that an error occurred. This can be accomplished by modifying the process method as follows:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the expression in the display</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>expr <span class="op">=</span> <span class="va">self</span>.display[<span class="st">"text"</span>]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the evaluation may return an error!</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># evaluate the expression</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="bu">eval</span>(expr)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># store the result to the display</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">=</span> <span class="bu">str</span>(result)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># handle if an error occurs during evaluation</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># note the error in the display</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">=</span> <span class="st">"ERROR"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the evaluation of the expression (into the variable result) and the subsequent modification of the display with the result is done in the <strong>try</strong> block. If this results in an error, the <strong>except</strong> block is executed, setting the contents of the display to the string ERROR.</p>
+<p>Congratulations, you’ve made a simple calculator! Indeed, it’s basic; however, there are many improvements that could be made:</p>
+<p>• The length of the display supports approximately 12 characters; however, more characters could be added to the display by the user. Doing so results in a cropped expression, which is probably not desired. The display could be limited to 12 characters, ignoring any further input. Moreover, the result of an expression could be larger than 12 characters. Perhaps such results could be truncated.</p>
+<p>• There is no easy way to erase the last character entered of an expression in the display. Adding a back button to the calculator could allow this in case the user makes an error.</p>
+<p>• Other useful operators could be added. For example: modulus (%), square root, logarithm (log), natural logarithm (ln), factorial (!), sine, cosine, tangent, and constants such as pi and e. Take look at the Google calculator (search for “calculator” on Google). Of course, Python’s eval function must support these (you’ll have to try them out!).</p>
+<p>• Most calculators clear any previous expression result if the user enters a new expression. For example, suppose that the display has the result of an expression. If the user decides to enter a different expression, the display must first be cleared. Currently, the user must do this manually (by pressing the AC button). Perhaps the display could be automatically cleared of an expression result if the user begins to enter a new expression.</p>
+<p>• Similarly, perhaps the display could be cleared of an error if the user begins to enter a new expression.</p>
+<p>For completeness, here’s the entire code (reduced in font size for readability):</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tkinter <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the main GUI</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MainGUI(Frame):</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the constructor</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, parent):</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        Frame.<span class="fu">__init__</span>(<span class="va">self</span>, parent, bg<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        parent.attributes(<span class="st">"-fullscreen"</span>, <span class="va">True</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.setupGUI()</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sets up the GUI</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setupGUI(<span class="va">self</span>):</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># https://www.fontsquirrel.com/fonts/tex-gyre-adventor)</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># on most Linux system, simply double-click the font files and install them</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># on the RPi, copy them to /usr/local/share/fonts (with</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># sudo): sudo cp tex*.otf /usr/local/share/fonts</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># then reboot</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the display</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># right-align text in the display; and set its</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">#  background to white, its height to 2 characters, and its font to 50 point TexGyreAdventor</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.display <span class="op">=</span> Label(<span class="va">self</span>, text<span class="op">=</span><span class="st">""</span>, anchor<span class="op">=</span>E,<span class="op">\</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>        bg<span class="op">=</span><span class="st">"white"</span>, height<span class="op">=</span><span class="dv">2</span>, font<span class="op">=</span>(<span class="st">"TexGyreAdventor"</span>, <span class="dv">50</span>))</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># put it in the top row, spanning across all four columns; and expand it on all four sides</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.display.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>, columnspan<span class="op">=</span><span class="dv">4</span>,<span class="op">\</span></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>        sticky<span class="op">=</span>E<span class="op">+</span>W<span class="op">+</span>N<span class="op">+</span>S)</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the button layout</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># ( ) AC **</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 7 8 9 /</span></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 4 5 6 *</span></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 1 2 3 -</span></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 0 . = +</span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># configure the rows and columns of the Frame to adjust to the window</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># there are 6 rows (0 through 5)</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>):</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>            Grid.rowconfigure(<span class="va">self</span>, row, weight<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># there are 4 columns (0 through 3)</span></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> col <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>            Grid.columnconfigure(<span class="va">self</span>, col, weight<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the first row</span></span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (</span></span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># first, fetch and store the image</span></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># to work best on the RPi, images should be 115x115 pixels</span></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># otherwise, may need to add .subsample(n)</span></span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/lpr.gif"</span>)</span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># next, create the button (white background, no border,</span></span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># no highlighting, no color when clicked)</span></span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"("</span>))</span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># set the button's image</span></span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a>        <span class="co"># put the button in its proper row and column</span></span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the same is done for the rest of the buttons</span></span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># )</span></span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/rpr.gif"</span>)</span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">")"</span>))</span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a>        <span class="co"># AC</span></span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/clr.gif"</span>)</span>
+<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"AC"</span>))</span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a>        <span class="co"># **</span></span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/pow.gif"</span>)</span>
+<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"**"</span>))</span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">3</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the second row</span></span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 7</span></span>
+<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/7.gif"</span>)</span>
+<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"7"</span>))</span>
+<span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 8</span></span>
+<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/8.gif"</span>)</span>
+<span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"8"</span>))</span>
+<span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 9</span></span>
+<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/9.gif"</span>)</span>
+<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"9"</span>))</span>
+<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-95"><a href="#cb24-95" aria-hidden="true" tabindex="-1"></a>        <span class="co"># /</span></span>
+<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/div.gif"</span>)</span>
+<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"/"</span>))</span>
+<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">3</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the third row</span></span>
+<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 4</span></span>
+<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/4.gif"</span>)</span>
+<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"4"</span>))</span>
+<span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 5</span></span>
+<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/5.gif"</span>)</span>
+<span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"5"</span>))</span>
+<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-115"><a href="#cb24-115" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 6</span></span>
+<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/6.gif"</span>)</span>
+<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"6"</span>))</span>
+<span id="cb24-119"><a href="#cb24-119" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a>        <span class="co"># *</span></span>
+<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/mul.gif"</span>)</span>
+<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"*"</span>))</span>
+<span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">3</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-128"><a href="#cb24-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-129"><a href="#cb24-129" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the fourth row</span></span>
+<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 1</span></span>
+<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/1.gif"</span>)</span>
+<span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"1"</span>))</span>
+<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">4</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 2</span></span>
+<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/2.gif"</span>)</span>
+<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"2"</span>))</span>
+<span id="cb24-140"><a href="#cb24-140" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">4</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 3</span></span>
+<span id="cb24-143"><a href="#cb24-143" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/3.gif"</span>)</span>
+<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"3"</span>))</span>
+<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">4</span>, column<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a>        <span class="co"># -</span></span>
+<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/sub.gif"</span>)</span>
+<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"-"</span>))</span>
+<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">4</span>, column<span class="op">=</span><span class="dv">3</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the fifth row</span></span>
+<span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 0</span></span>
+<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/0.gif"</span>)</span>
+<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"0"</span>))</span>
+<span id="cb24-160"><a href="#cb24-160" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-161"><a href="#cb24-161" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a>        <span class="co"># .</span></span>
+<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/dot.gif"</span>)</span>
+<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"."</span>))</span>
+<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-167"><a href="#cb24-167" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-168"><a href="#cb24-168" aria-hidden="true" tabindex="-1"></a>        <span class="co"># =</span></span>
+<span id="cb24-169"><a href="#cb24-169" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/eql.gif"</span>)</span>
+<span id="cb24-170"><a href="#cb24-170" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"="</span>))</span>
+<span id="cb24-172"><a href="#cb24-172" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="dv">2</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-174"><a href="#cb24-174" aria-hidden="true" tabindex="-1"></a>        <span class="co"># +</span></span>
+<span id="cb24-175"><a href="#cb24-175" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> PhotoImage(<span class="bu">file</span><span class="op">=</span><span class="st">"images/add.gif"</span>)</span>
+<span id="cb24-176"><a href="#cb24-176" aria-hidden="true" tabindex="-1"></a>        button <span class="op">=</span> Button(<span class="va">self</span>, bg<span class="op">=</span><span class="st">"white"</span>, image<span class="op">=</span>img, borderwidth<span class="op">=</span><span class="dv">0</span>, highlightthickness<span class="op">=</span><span class="dv">0</span>,<span class="op">\</span></span>
+<span id="cb24-177"><a href="#cb24-177" aria-hidden="true" tabindex="-1"></a>        activebackground<span class="op">=</span><span class="st">"white"</span>, command<span class="op">=</span><span class="kw">lambda</span>: <span class="va">self</span>.process(<span class="st">"+"</span>))</span>
+<span id="cb24-178"><a href="#cb24-178" aria-hidden="true" tabindex="-1"></a>        button.image <span class="op">=</span> img</span>
+<span id="cb24-179"><a href="#cb24-179" aria-hidden="true" tabindex="-1"></a>        button.grid(row<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="dv">3</span>, sticky<span class="op">=</span>N<span class="op">+</span>S<span class="op">+</span>E<span class="op">+</span>W)</span>
+<span id="cb24-180"><a href="#cb24-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-181"><a href="#cb24-181" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pack the GUI</span></span>
+<span id="cb24-182"><a href="#cb24-182" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pack(fill<span class="op">=</span>BOTH, expand<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb24-183"><a href="#cb24-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-184"><a href="#cb24-184" aria-hidden="true" tabindex="-1"></a>    <span class="co"># processes button presses</span></span>
+<span id="cb24-185"><a href="#cb24-185" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> process(<span class="va">self</span>, button):</span>
+<span id="cb24-186"><a href="#cb24-186" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AC clears the display</span></span>
+<span id="cb24-187"><a href="#cb24-187" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (button <span class="op">==</span> <span class="st">"AC"</span>):</span>
+<span id="cb24-188"><a href="#cb24-188" aria-hidden="true" tabindex="-1"></a>            <span class="co"># clear the display</span></span>
+<span id="cb24-189"><a href="#cb24-189" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb24-190"><a href="#cb24-190" aria-hidden="true" tabindex="-1"></a>        <span class="co"># = starts an evaluation of whatever is on the display</span></span>
+<span id="cb24-191"><a href="#cb24-191" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> (button <span class="op">==</span> <span class="st">"="</span>):</span>
+<span id="cb24-192"><a href="#cb24-192" aria-hidden="true" tabindex="-1"></a>            <span class="co"># get the expression in the display</span></span>
+<span id="cb24-193"><a href="#cb24-193" aria-hidden="true" tabindex="-1"></a>            expr <span class="op">=</span> <span class="va">self</span>.display[<span class="st">"text"</span>]</span>
+<span id="cb24-194"><a href="#cb24-194" aria-hidden="true" tabindex="-1"></a>            <span class="co"># the evaluation may return an error!</span></span>
+<span id="cb24-195"><a href="#cb24-195" aria-hidden="true" tabindex="-1"></a>            <span class="cf">try</span>:</span>
+<span id="cb24-196"><a href="#cb24-196" aria-hidden="true" tabindex="-1"></a>                <span class="co"># evaluate the expression</span></span>
+<span id="cb24-197"><a href="#cb24-197" aria-hidden="true" tabindex="-1"></a>                result <span class="op">=</span> <span class="bu">eval</span>(expr)</span>
+<span id="cb24-198"><a href="#cb24-198" aria-hidden="true" tabindex="-1"></a>                <span class="co"># store the result to the display</span></span>
+<span id="cb24-199"><a href="#cb24-199" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">=</span> <span class="bu">str</span>(result)</span>
+<span id="cb24-200"><a href="#cb24-200" aria-hidden="true" tabindex="-1"></a>            <span class="co"># handle if an error occurs during evaluation</span></span>
+<span id="cb24-201"><a href="#cb24-201" aria-hidden="true" tabindex="-1"></a>            <span class="cf">except</span>:</span>
+<span id="cb24-202"><a href="#cb24-202" aria-hidden="true" tabindex="-1"></a>                <span class="co"># note the error in the display</span></span>
+<span id="cb24-203"><a href="#cb24-203" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">=</span> <span class="st">"ERROR"</span></span>
+<span id="cb24-204"><a href="#cb24-204" aria-hidden="true" tabindex="-1"></a>        <span class="co"># otherwise, just tack on the appropriate</span></span>
+<span id="cb24-205"><a href="#cb24-205" aria-hidden="true" tabindex="-1"></a>        <span class="co"># operand/operator</span></span>
+<span id="cb24-206"><a href="#cb24-206" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb24-207"><a href="#cb24-207" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.display[<span class="st">"text"</span>] <span class="op">+=</span> button</span>
+<span id="cb24-208"><a href="#cb24-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-209"><a href="#cb24-209" aria-hidden="true" tabindex="-1"></a><span class="co">##############################</span></span>
+<span id="cb24-210"><a href="#cb24-210" aria-hidden="true" tabindex="-1"></a><span class="co"># the main part of the program</span></span>
+<span id="cb24-211"><a href="#cb24-211" aria-hidden="true" tabindex="-1"></a><span class="co">##############################</span></span>
+<span id="cb24-212"><a href="#cb24-212" aria-hidden="true" tabindex="-1"></a><span class="co"># create the window</span></span>
+<span id="cb24-213"><a href="#cb24-213" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> Tk()</span>
+<span id="cb24-214"><a href="#cb24-214" aria-hidden="true" tabindex="-1"></a><span class="co"># set the window title</span></span>
+<span id="cb24-215"><a href="#cb24-215" aria-hidden="true" tabindex="-1"></a>window.title(<span class="st">"The Reckoner"</span>)</span>
+<span id="cb24-216"><a href="#cb24-216" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the GUI</span></span>
+<span id="cb24-217"><a href="#cb24-217" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> MainGUI(window)</span>
+<span id="cb24-218"><a href="#cb24-218" aria-hidden="true" tabindex="-1"></a><span class="co"># display the GUI and wait for user interaction</span></span>
+<span id="cb24-219"><a href="#cb24-219" aria-hidden="true" tabindex="-1"></a>window.mainloop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="homework-the-reckoner" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="homework-the-reckoner"><span class="header-section-number">2</span> Homework: The Reckoner’</h2>
+<p>For the homework portion of this activity, you may have the option to work in groups (pending prof approval). It is suggested that groups contain at least one confident Python coder. Your task is to implement the following improvements to the calculator:</p>
+<ol type="1">
+<li>Add a modulus (%) button that calculates the remainder returned by a division. For example: 23 % 13 = 10.</li>
+<li>Add a back button that removes the last (i.e., right-most) character in the display.</li>
+<li>Modify the layout as follows to accommodate the new buttons:</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity13-09.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>See below for what that should look like on the RPi.</p>
+<ol start="4" type="1">
+<li>Limit the display to 14 characters. Do not allow the user to enter more than 14 characters.</li>
+<li>Any result that is greater than 14 characters should be truncated to the first 11 characters followed by three successive dots. For example: 2 ** 47 = 14073748835…</li>
+<li>If an expression result (or an error) has just been put on the display, clear the screen before displaying the next character inputted by the user.</li>
+</ol>
+<p>A few notes:</p>
+<p>• The calculator has now increased by one row. This has the unfortunate effect of no longer</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/piactivity13-10.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>properly rendering the calculator on the LCD touchscreen. To fix this, we can reduce the font size of text in the display from 50 point to 45 point. Furthermore, we can reduce the height of the display from two characters to one character.</p>
+<p>• The equals (=) button now spans two columns. You will have to download the new image for this button. • There is now a blank “button” on the calculator. Feel free to just leave this “button” blank.</p>
+<p><strong>Do not make any additional improvements to your submission for this assignment.</strong> However, feel free to do so on your own if you wish (although you may need to recreate the buttons if you choose to add more rows or columns to the calculator).</p>
+<p><strong>You are to submit your Python source code only (as a .py file) through the upload facility on the web site.</strong></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
