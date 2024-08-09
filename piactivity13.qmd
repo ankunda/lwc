@@ -48,6 +48,7 @@ You can either download the files directly to the RPi (e.g., into the Downloads 
 sudo cp tex*.otf /usr/local/share/fonts
 ```
 
+
 Then, reboot the RPi. Note that on most Linux systems (not the RPi), you can double-click the OTF files and install them that way.
 
 In this activity, we'll take an iterative approach to creating The Reckoner. First, we'll create the GUI and ensure that it is correct before proceeding. We'll test and fix any issues before proceeding to the next step: integrating code that will handle the button clicks/taps. As buttons are clicked/tapped, our program must accurately detect which button was clicked/tapped and, furthermore, perform some action that is appropriate for that specific button. Next, we'll work through and integrate evaluating the expression. To simplify things a bit, we'll hand that off to Python! Since it is possible that an expression has errors (e.g., mismatched parentheses, multiple consecutive operators, etc), we'll finally integrate error checking so that user errors don't unexpectedly *break* our program.
